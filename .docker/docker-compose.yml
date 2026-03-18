@@ -1,7 +1,7 @@
 services:
     db:
-        image: mysql:8.0.35
-        command: --default-authentication-plugin=mysql_native_password --port=3307
+        image: mysql:8.4.4
+        command: --mysql-native-password=ON --port=3307
         platform: linux/x86_64
         volumes:
             - "db_app:/var/lib/mysql"
@@ -14,7 +14,7 @@ services:
         ports:
             - 3307:3307
         networks:
-            - symfony
+            - clases_de_apoyo
     php:
         build:
             context: ./php
@@ -25,7 +25,7 @@ services:
             - clases_de_apoyo_var:/var/www/symfony/var
             - clases_de_apoyo_vendor:/var/www/symfony/vendor
         networks:
-            - symfony
+            - clases_de_apoyo
     nginx:
         build:
             context: ./nginx
@@ -36,7 +36,7 @@ services:
         ports:
             - 8080:8080
         networks:
-            - symfony
+            - clases_de_apoyo
         env_file:
             - .env.nginx.local
 
@@ -46,4 +46,4 @@ volumes:
     db_app:
 
 networks:
-    symfony:
+    clases_de_apoyo:
