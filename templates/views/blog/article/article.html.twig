@@ -1,0 +1,80 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = article.excerpt %}
+{% set metaTitle = article.title %}
+<title>{{ metaTitle }} | Clases de Apoyo</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{metaTitle}}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<meta property="og:image" content="{{ sonata_path(article.image, 'big') }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@clasesdeapoyo" />
+<meta name="twitter:title" content="{{metaTitle}}" />
+<meta name="twitter:description" content="{{ metaDescription }}" />
+<meta name="twitter:image" content="{{ app.request.schemeAndHttpHost }}{{ sonata_path(article.image, 'big') }}" />
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(article) }}
+{% endblock breadcrumb %}
+
+{% block pageTitle %}
+Blog
+{% endblock pageTitle %}
+
+{% block pageContent %}
+
+<article class="article">
+  <header class="article__header">
+    {# if article.category is not empty %}
+      <div class="article__category">{{ article.category.name }}</div>
+    {% endif #}
+    <h1 class="h1 mb-4">{{ article.title }}</h1>
+    <address class="mb-4">
+      <time datetime="{{ article.createdAt|date('Y-m-d') }}">
+        {{ article.createdAt|date('F d, Y') }}
+      </time>
+    </address>
+    {% if not article.skipCover %}
+    <img 
+      src="{{ sonata_path(article.image, 'big') }}" 
+      width="{{ article.image.width }}" 
+      height="{{ article.image.height }}" 
+      alt="{{ article.title }}"
+      class="block w-full h-auto mb-8"
+    />
+    {% endif %}
+  </header>
+  <div class="formatted-text">
+    {{ article.text|raw }}
+  </div>
+<article>
+
+<script type="application/ld+json">
+{ "@context": "http://schema.org", 
+ "@type": "BlogPosting",
+ "headline": "{{ article.title }}",
+ "image": "{{ sonata_path(article.image, 'reference') }}",
+ "author": "Gerardo Fernández Moreno",
+ "keywords": "colegio universidad selectividad exámenes pau", 
+ "publisher": {
+    "@type": "Organization",
+  "name": "Clases de Apoyo",
+  "logo": {
+  "@type": "imageObject",
+  "url": "{{ app.request.schemeAndHttpHost }}{{ asset('build/images/logo.png') }}"
+  }
+  },
+ "url": "{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}",
+ "datePublished": "{{ article.createdAt|date('F d, Y') }}",
+ "dateCreated": "{{ article.createdAt|date('F d, Y') }}",
+ "dateModified": "{{ article.updatedAt|date('F d, Y') }}",
+ "description": "{{ article.excerpt }}",
+ "articleBody": "{{ article.text }}",
+ "mainEntityOfPage": "{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}"
+ }
+</script>
+
+{% endblock pageContent %}
+

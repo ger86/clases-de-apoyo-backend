@@ -1,0 +1,114 @@
+{% extends 'container_layout.html.twig' %}
+
+{% set communityTestCourseSubject = exam.testYear.communityTestCourseSubject %}
+{% set communityTest = communityTestCourseSubject.communityTest %}
+{% set courseSubject = communityTestCourseSubject.courseSubject %}
+
+{% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
+    courseSubject.subjectName ~ ' ' ~ exam.name %}
+{% set title =  communityTest.knowledgeTest.name|lower ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
+    courseSubject.subjectName ~ ' ' ~ exam.name %}
+{% set metaDescription = "Descarga el examen de " ~ communityTest.knowledgeTest.name ~ " resuelto de " ~ courseSubject.subjectName ~ ". Año: " ~ exam.name  %}
+
+{% block metatags %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}" />
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block pageTitle %}
+  Examen de {{ title }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(exam) }}
+{% endblock %}
+
+{% block pageContent %}
+<section>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-8">
+      <h2 class="h2 mb-4">Ver archivos de este examen</h2>
+      <div class="mb-4 list-group">
+        {% for file in exam.files %}
+          {% if canSeeExam(exam) %}
+            <a href="{{ path('file', {'fileId': file.id}) }}" 
+              class="list-group-item"
+              title="{{ file.name }}"
+              onclick="gtag('event', 'click', {
+                'event_category': 'view-file',
+                'event_label': 'exam'
+              });"
+            >
+              <span>Ver {{ file.name }}</span>
+              <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+            </a>
+          {% else %}
+          <a href="{{path('app_register')}}" 
+            class="list-group-item"
+            rel="nofollow"
+            onclick="gtag('event', 'click', {
+              'event_category': 'premium-box',
+              'event_label': 'chapter'
+            });"
+          >
+            <span>Ver {{ file.name }} (hazte premium para poder verlo)</span>
+            <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+          </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <h2 class="h2 mb-4">Contenidos</h2>
+      <div class="text-lg">{{ exam.description|raw }}</div>
+    </div>
+    <aside class="col-span-12 lg:col-span-4" role="complementary">
+      <div class="simple-box mb-8 font-bold text-2xl">
+        Dificultad: {{ exam.difficulty }}
+      </div>
+      {% if not app.user and not canSeeExam(exam) %}
+      <div class="simple-box mb-8">
+        <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h3>
+        <p class="mb-4">Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
+        de los ejercicios que te proponemos en cada tema y todo ello sin ver un anuncio más.</p>
+        <a 
+          class="btn btn-secondary block text-center"
+          href="{{path('app_register')}}"
+          rel="nofollow"
+          onclick="gtag('event', 'click', {
+            'event_category': 'premium-box',
+            'event_label': 'exam'
+          });"
+        >
+          Quiero hacerme premium
+        </a>
+      </div>
+      {% endif %}
+      {% include 'ads/sidebar_ad.html.twig' with { 'mb': 'mb-8'} %}
+      {% include 'common/elements/youtube_box.html.twig' %}
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock stylesheets %}
+
+
+{% block javascripts %}
+<script type="application/ld+json">
+{ "@context": "http://schema.org", 
+ "@type": "ScholarlyArticle",
+ "headline": "{{ metaTitle }}",
+ "author": "Clases de Apoyo", 
+ "editor": "Juan Carlos Rojo", 
+ "keywords": "pau selectividad bachillerato {{ courseSubject.subjectName }}",
+ "url": "{{ getCanonicalUrl() }}",
+ "datePublished": "{{ exam.createdAt|date('Y-m-d') }}",
+ "dateCreated": "{{ exam.createdAt|date('Y-m-d') }}",
+ "dateModified": "{{ exam.updatedAt|date('Y-m-d') }}",
+ "description": "{{ metaDescription }}"
+ }
+</script>
+{% endblock javascripts %}

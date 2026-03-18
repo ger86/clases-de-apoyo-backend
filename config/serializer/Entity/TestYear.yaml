@@ -1,0 +1,10 @@
+App\Entity\TestYear:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["test_year"]
+        year:
+            groups: ["test_year"]
+        getExamsIds:
+            serialized_name: exams
+            groups: ["test_year"]

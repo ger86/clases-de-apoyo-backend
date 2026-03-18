@@ -1,0 +1,48 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Un error sucedió" %}
+{% set metaTitle = "Un error sucedió" %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block pageTitle %}
+<h1>Un error sucedió</h1>
+{% endblock %}
+
+{% block pageContent %}
+<h2 class="mt-4">¡Vaya! Ha ocurrido un error inesperado que estamos resolviendo.</h2>
+<p>Sin embargo seguro que puedes encontrar mucho contenido interesante en Clases de Apoyo como:</p>
+<ul>
+  <li>
+    <a href="{{ path('knowledge_test', { 'testSlug': 'selectividad' }) }}" title="Exámenes de selectividad resueltos">
+      Exámenes de selectividad resueltos
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('course', { 'courseSlug': '2o-bachillerato' }) }}" title="Apuntes y ejercicios resueltos de 2º de Bachillerato">
+      Apuntes y ejercicios resueltos de 2º de Bachillerato
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('course', { 'courseSlug': '1o-bachillerato' }) }}" title="Apuntes y ejercicios resueltos de 1º de Bachillerato">
+      Apuntes y ejercicios resueltos de 1º de Bachillerato
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('course_subject', { 'courseSlug': '1o-bachillerato', 'subjectSlug' : 'matematicas' }) }}" 
+       title="Apuntes y ejercicios resueltos de 1º de Bachillerato"
+    >
+      Apuntes de matemáticas de 2º de Bachillerato
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('course', { 'courseSlug': '4o-eso' }) }}" title="Apuntes y ejercicios resueltos de 4º de ESO">
+      Apuntes y ejercicios de 4º de E.S.O
+    </a>
+  </li>
+</ul>
+{% endblock %}

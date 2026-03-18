@@ -1,0 +1,42 @@
+security:
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: true
+        main:
+            pattern: ^/
+            form_login:
+                enable_csrf: true
+                login_path: app_login
+                check_path: app_login
+            remember_me:
+                secret:   '%app.secret%'
+                lifetime: 604800
+            logout:
+                path: app_logout
+                target: home
+
+    access_control:
+        - { path: /_wdt/.*, role: PUBLIC_ACCESS }
+        - { path: /_profiler/.*, role: PUBLIC_ACCESS }
+        - { path: ^/login$, role: PUBLIC_ACCESS }
+        - { path: ^/register, role: PUBLIC_ACCESS }
+        - { path: ^/resetting, role: PUBLIC_ACCESS }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/usuario, role: ROLE_USER }
+        - { path: ^/, roles: PUBLIC_ACCESS  }
+

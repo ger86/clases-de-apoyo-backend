@@ -1,0 +1,86 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "" %}
+{% set metaTitle = file.name %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(file) }}
+{% endblock %}
+
+{% block pageTitle %}
+{{ file.name }}
+{% endblock %}
+
+{% block pageContent %}
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  {% if not isPremium()%}
+  <div class="col-span-12 lg:col-span-8">
+  {% else %}
+  <div class="col-span-12">
+  {% endif %}
+    <iframe 
+      src="/viewer/web/viewer.html?file={{ url|url_encode }}" 
+      width="100%" 
+      height="650px"
+      style="display: block; border: none;"
+    >
+    </iframe>
+  </div>
+  {% if not isPremium()%}
+  <div class="col-span-12 lg:col-span-4">
+  {% else %}
+  <div class="col-span-12">
+  {% endif %}
+    <div class="sticky">
+      {# <a rel="nofollow"
+         href="{% path file.file, 'reference' %}" 
+         target="_blank" 
+         title="Descargar"
+         class="btn btn-outline-secondary btn-block mb-4"
+      >
+        <i class="icon-file-o"></i> Descargar
+      </a> #}
+      {% if not isPremium()%}
+      {# <div class="simple-box">
+        <h3>Llega el Black Friday a Clases de Apoyo!</h3>
+        <p>Regístrate y usa el cupón <strong>BF2018</strong> para obtener 5€ de descuento cuando realices el pago de tu 
+        cuenta Premium.</p>
+        <p><small>(*) Válido para los 30 primeros cupones</small></p>
+        <a class="btn btn-secondary btn-block btn-lg"
+          href="{{path('app_register')}}"
+          rel="nofollow"
+          onclick="gtag('event', 'click', {
+            'event_category': 'premium-box-coupon',
+            'event_label': 'file-viewer'
+          });"
+        >
+          Quiero hacerme premium     
+        </a>
+      </div> #}
+      
+      <div class="simple-box">
+        <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h3>
+        <p>Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
+        de los ejercicios que te proponemos en cada tema y todo ello sin ver un anuncio más.</p>
+        <a class="btn btn-secondary block text-center"
+          href="{{path('app_register')}}"
+          rel="nofollow"
+          onclick="gtag('event', 'click', {
+            'event_category': 'premium-box',
+            'event_label': 'file-viewer'
+          });"
+        >
+          Quiero hacerme premium     
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+<header class="py-4 lg:relative lg:z-10">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <button id="openSidebarMenuBtn" class="lg:hidden mr-2 text-2xl " 
+          href="#"
+          aria-label="Abrir menú"
+        >
+          <i class="icon-bars"></i>
+        </button>
+        <a class="block mr-1 w-[135px]" href="{{path('home')}}">
+          <img class="block w-full h-auto" src="{{asset('build/images/logo.png')}}" 
+              title="Clases de Apoyo"
+              alt="Clases de Apoyo">
+        </a>
+        <nav id="headerNav" class="fixed lg:static top-0 lg:top-auto left-0 lg:left-auto z-20 w-0 lg:w-auto h-full bg-slate-600 lg:bg-transparent overflow-x-hidden lg:ml-4">
+          <ul class="pt-12 lg:pt-0 mb-0 pl-0 list-none">
+            <li class="lg:hidden p-4">
+              <button 
+                id="closeSidebarMenuBtn" 
+                class="block text-white" 
+                aria-label="Cerrar"
+              >
+                &times; Cerrar
+              </button>
+            </li>
+            <li class="lg:hidden p-4">
+              <a class="text-white" 
+                href="{{ path('app_login') }}"
+                rel="nofollow"
+              >
+                Iniciar sesión
+              </a>
+            </li>
+          {% for menuLink in menuLinks %}
+            <li class="group relative lg:static z-1 block lg:inline-block p-4 lg:p-2">
+              <a 
+                class="block text-white lg:text-body hover:text-white lg:hover:text-primary text-base lg:text-lg xl:text-xl transition-colors duration-300" 
+                href="{{ menuLink.link }}"
+              >
+                {{ menuLink.name }}
+              </a>
+              {% if menuLink.children is not empty %}
+              <ul 
+                class="absolute block w-[250px] opacity-0 invisible overflow-hidden transition-all duration-300 bg-white shadow-lg group-hover:opacity-100 group-hover:overflow-visible group-hover:visible"
+              >
+                {% for childMenuItem in menuLink.children %}
+                <li>
+                  <a 
+                    class="block p-4 text-white hover:text-white lg:text-body lg:hover:text-primary transition-colors duration-300 hover:bg-gray-100 hover:text-primary hover:no-underline text-base lg:text-xl" 
+                    href="{{ childMenuItem.link }}"
+                  >
+                    {{ childMenuItem.name }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+          </ul>
+        </nav>
+      </div>
+      <nav class="flex items-center">
+        {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+        <div>
+          <button
+            class="btn btn-link relative"
+            type="button"
+            id="profileDropdownBtn"
+          >
+            <small><strong>{{ app.user.username|split('@')[0] }}</strong></small>
+          </button>
+          <div
+            id="profileDropdownMenu"
+            class="absolute w-[250px] right-0 lg:right-auto z-10 mt-4 invisible bg-white shadow-md opacity-0 transition-all duration-100"
+          >
+            <a
+              class="block p-4"
+              href="{{ path('app_profile_show') }}"
+              title="Ver perfil"
+            >
+              Ver perfil
+            </a>
+            <a
+              class="block p-4 text-gray-500"
+              href="{{ path('app_logout') }}"
+              title="Cerrar sesión"
+            >
+              Cerrar sesión
+            </a>
+          </div>
+        </div>
+        {% if not isPremium() %}
+        <a class="btn-secondary" 
+           href="{{path('app_subscription_payment')}}"
+           rel="nofollow"
+           onclick="gtag('event', 'click', {
+            'event_category': 'premium-box',
+            'event_label': 'header'
+          });"
+        >
+          Hazte premium
+        </a>
+        {% endif %}
+        {% else %}
+        <a class="btn-light hidden lg:block lg:text-base xl:text-lg" 
+           href="{{ path('app_login') }}"
+           rel="nofollow"
+        >
+           Iniciar sesión
+        </a>
+        <a class="btn-secondary ml-4 lg:text-base xl:text-lg" 
+           href="{{path('app_register')}}"
+           rel="nofollow"
+           onclick="gtag('event', 'click', {
+            'event_category': 'premium-box',
+            'event_label': 'header'
+          });"
+        >
+          Hazte premium
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+
+  <div 
+    id="headerOverlay"
+    class="fixed top-0 left-0 hidden w-full h-full bg-black bg-opacity-50 opacity-0 transition-opacity duration-200 ease-out z-10 content-['']">
+  </div>
+</header>

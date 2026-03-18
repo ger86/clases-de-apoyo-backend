@@ -1,0 +1,49 @@
+sonata_media:
+    class:
+        media: App\Entity\SonataMediaMedia
+        gallery: App\Entity\SonataMediaGallery
+        gallery_item: App\Entity\SonataMediaGalleryItem
+    default_context: default
+    db_driver: doctrine_orm
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.file
+                - sonata.media.provider.image
+        document:
+            providers:
+                - sonata.media.provider.file
+        article:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small:  { width: 360, height: 220, quality: 80, constraint: false }
+                medium: { width: 750, height: 422,  quality: 80, constraint: false }
+                big:    { width: 1170, height: 9999, quality: 70, constraint: false }
+        video_cover:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small:  { width: 360, height: 220, quality: 80, constraint: false }
+                medium: { width: 750, height: 422,  quality: 80, constraint: false }
+                big:    { width: 1170, height: 9999, quality: 70, constraint: false }
+    cdn:
+        server:
+            path: 'https://s3.%env(resolve:S3_BUCKET_REGION)%.amazonaws.com/%env(resolve:S3_BUCKET_NAME)%'
+            
+    providers:
+        image:
+            filesystem: sonata.media.filesystem.s3
+        file:
+            filesystem: sonata.media.filesystem.s3
+            generator: Sonata\MediaBundle\Generator\PathGenerator
+
+    filesystem:
+        s3:
+            bucket:      '%env(resolve:S3_BUCKET_NAME)%'
+            accessKey:   '%env(resolve:S3_ACCESS_KEY)%'
+            secretKey:   '%env(resolve:S3_SECRET_KEY)%'
+            region:      '%env(resolve:S3_BUCKET_REGION)%'
+            acl: owner_full_control 
+            version: '2006-03-01'
+

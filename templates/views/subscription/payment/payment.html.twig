@@ -1,0 +1,34 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block pageTitle %}
+Pago de tu cuenta premium
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('app_profile_show') }}">Mi perfil</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Pago de tu cuenta premium</li>
+  </ol>
+</nav>
+
+{% endblock %}
+
+
+{% block pageContent %}
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-6">
+    {% include 'views/subscription/payment/parts/payment_left.html.twig' %}
+  </div>
+  <div class="col-span-12 lg:col-span-6">
+    {% include 'views/subscription/payment/parts/payment_right.html.twig' %}
+  </div>
+</div>
+  
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+<p><strong>Usuario: </strong> {{ user.email }}<p>
+<p><strong>Importe: </strong> {{ amount }}</p>
+<p><strong>Id de suscripción: </strong> {{ user.subscriptionId }}</p>
+{% endblock body %}

@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Encuentra apuntes, problemas y ejercicios resueltos todas las asignaturas desde ESO hasta Bachillerato y exámenes resueltos de selectividad" %}
+{% set metaTitle = "Apuntes y exámenes resueltos | Clases de Apoyo " %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{metaTitle}}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block body %}
+<div class="home-cover h-[300px] lg:h-screen relative bg-cover bg-center bg-transparent border-b-4 border-b-solid border-b-primary">
+  <div class="container mx-auto px-4 h-full">
+    <div class="hidden lg:flex justify-end pt-12">
+      <div class="text-right">
+        <h2 class="h2 mb-4 pb-4 text-white border-b-2 border-b-solid border-b-white">En Clases de Apoyo podrás encontrar</h2>
+        <ul class="list-none p-l-0 m-l-0">
+          <li class="mb-2 text-lg"><a href="/c/1o-bachillerato" class="text-white font-light text-2xl">Apuntes y ejercicios resueltos de 1º de Bachillerato</a></li>
+          <li class="mb-2 text-lg"><a href="/c/2o-bachillerato" class="text-white font-light text-2xl">Apuntes y ejercicios resueltos de 2º de Bachillerato</a></li>
+          <li class="mb-2 text-lg"><a href="/s/selectividad" class="text-white font-light text-2xl">Exámenes de selectividad resueltos</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="py-12 lg:py-8 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div>
+        <h2 class="h2 mb-4">Todos los apuntes que necesitas</h2>
+        <p class="text-2xl mb-8">En la web de Clases de Apoyo podréis acceder a la mayor colección de apuntes de ESO y Bachillerato</p>
+        <p class="text-lg mb-4">Comenzamos esta web hace más de 15 años con un solo objetivo: conseguir traeros la mejor y más grande colección de apuntes y ejercicios resueltos de bachillerato.</p>
+        <p class="text-lg mb-4">Por eso, aquí podréis encontrar todos los apuntes que necesitéis de matemáticas, química, historia, física... En ellos os contaremos todo lo que ya sabéis de una forma con la que creemos que es más fácil aprender.</p>
+        <p class="text-lg mb-4">Además, todos los apuntes vienen acompañados de sus respectivos problemas y ejercicios resueltos para que podáis practicar con los ejercicios que habitualmente caen en los exámenes</p>
+        <p class="text-lg mb-4">Y no solo eso, constantemente corregimos y ampliamos los apuntes y ejercicios para que siempre los tengáis actualizados con el temario de cada año.</p>
+        <p class="text-lg mb-4">Vamos, que os intentamos dar (casi casi) todo hecho salvo la parte en la que toca estudiar y celebrar cada aprobado.</p>
+      </div>
+      <div>
+        <p>
+          <img src="{{ asset('build/images/home-apuntes.jpg') }}" 
+            alt="Apuntes y ejercicios resueltos de Bachillerato" 
+            title="Apuntes y ejercicios resueltos de Bachillerato" 
+            class="w-full h-auto block hidden lg:block"
+            loading="lazy" />
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 lg:py-8 bg-white home-section">
+  <div class="container mx-auto px-4">
+    <div>
+      <h2 class="h2 mb-8">¿Qué puedes encontrar en Clases de Apoyo?</h2>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div>
+          <div class="mb-8 mt-4">
+            <img src="{{asset('build/images/home-apuntes-2.jpg')}}" 
+                  class="w-full h-auto block mb-4" 
+                  alt="Apuntes y ejercicios resueltos"
+                  title="Apuntes y ejercicios resueltos"
+                  loading="lazy"
+            />
+            <h4 class="mt-8 mb-4 h4">Apuntes y ejercicios resueltos</h4>
+            <p class="text-lg">Encuentra apuntes de matemáticas, física, química, filosofía e historia tanto de ESO y Bachillerato y practica con los ejercicios resueltos que te proponemos</p>
+          </div>
+        </div>
+        <div>
+          <div class="mb-8 mt-4">
+            <img src="{{asset('build/images/home-selectividad.jpg')}}" 
+                  class="w-full h-auto block mb-4" 
+                  alt="Exámenes de selectividad resueltos"
+                  title="Exámenes de selectividad resueltos"
+                  loading="lazy"
+            />
+            <h4 class="mt-8 mb-4 h4">Exámenes de selectividad resueltos</h4>
+            <p class="text-lg">Practica para la PAU con nuestros exámenes de selectividad resueltos de matemáticas, física, química, inglés y no dejes que te sorprendan en la prueba de este año</p>
+          </div>
+        </div>
+        <div>
+          <div class="mb-8 mt-4">
+            <img src="{{asset('build/images/home-videos.jpg')}}" 
+                  class="w-full h-auto block mb-4" 
+                  alt="Videos con problemas resueltos"
+                  title="Videos con problemas resueltos"
+                  loading="lazy"
+            />
+            <h4 class="mt-8 mb-4 h4">Videos con problemas resueltos</h4>
+            <p class="text-lg">También tenemos un canal de Youtube donde te enseñamos a resolver paso a paso los ejercicios más típicos que suelen caer en los exámenes para que no te quedes con ninguna duda.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="text" class="py-4 lg:py-8 bg-gray-700 text-white">
+  <div class="container mx-auto px-4">
+    <div class="py-12">
+      <h2 class="h2 mb-8 text-white">¿Cómo empezó Clases de Apoyo?</h2>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <p class="text-lg mb-4">Aquí pensábamos aburriros con la historia de Clases de Apoyo. Vamos el típico rollo de cómo comenzó, por qué seguimos cada año dedicando numerosas hora a escribir apuntes y sobre todo a hablaros un poco de nosotros.</p>
+          <p class="text-lg">Pero como seguramente pocos lleguéis a esta sección y mucho menos os pondréis a leerla, tan solo queremos deciros que nos encanta lo que hacemos, es decir, enseñar, y que cuando tienes la suerte de poder dedicarte a lo que te gusta al final el trabajo se convierte en una especie de hobbie.</p>
+        </div>
+        <div>
+          <p class="text-lg mb-4">Aún así, si todavía os habéis quedado con la curiosidad de conocernos o de ver cómo trabajamos, nos encantaría que nos visitarais en la academia que Juan Carlos tiene en Madrid.
+          Allí estaremos encantados de ayudaros si tenéis cualquier duda o queréis mejorar con esa asignatura que quizás se os está atragantando.</p>
+          <p class="text-lg">Porque al final, si esto existe es para que cuando llegue junio del año que viene podáis tirar los libros y pasar 3 meses (qué envidia) sin preocupaciones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('home') }}
+{% endblock stylesheets %}

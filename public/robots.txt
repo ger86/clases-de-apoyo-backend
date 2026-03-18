@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /register
+Disallow: /login
+Disallow: /contacto
+Disallow: /aviso-legal
+Sitemap: https://www.clasesdeapoyo.com/sitemap/sitemap.xml

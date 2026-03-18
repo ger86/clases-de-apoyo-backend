@@ -1,0 +1,14 @@
+<div class="mb-8">
+  <nav id="courseSubjectNavbar" class="p-4 bg-slate-100">
+    <h3 class="h3 mb-4">Índice de temas</h4>
+    <nav>
+      <ul class="list-disc list-inside">
+      {% for chapterBlock in courseSubject.chapterBlocks %}
+        <li class="mb-4">
+          <a href="#{{ chapterBlock.slug}}">{{chapterBlock.name}}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </nav>
+  </nav>
+</div>

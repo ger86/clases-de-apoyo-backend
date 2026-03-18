@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email para recuperar contraseña enviado{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 lg:h-[600px]">
+  <div class="flex justify-center items-center h-full">
+    <div class="simple-box lg:max-w-[600px]">
+      <p>
+        Acabamos de enviarte un email que contiene un enlace que puedes usar para restablecer tu contraseña. </p>
+      <p>
+        Este enlace caducará en {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+      </p>
+      <p>
+        Si no recibes este email, comprueba tu carpeta de correo no deseado o <a href="{{ path('app_forgot_password_request') }}">prueba de nuevo</a>.
+      </p>
+      <a class="btn-primary w-full" href="{{ path('home')}} ">Ir al inicio</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

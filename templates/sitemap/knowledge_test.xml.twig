@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>{{ url('knowledge_test',{ 'testSlug': knowledgeTest.slug }) }}</loc>
+  <lastmod>{{ knowledgeTest.updatedAt|date('c')}}</lastmod>
+  <changefreq>monthly</changefreq>
+</url>
+{% for communityTest in knowledgeTest.communityTests %}
+  <url>
+    <loc>
+      {{ url('community_test', { 
+          'testSlug': knowledgeTest.slug, 
+          'communitySlug': communityTest.community.slug 
+      }) }}
+    </loc>
+    <lastmod>{{ communityTest.updatedAt|date('c')}}</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  {% for communityTestCourseSubject in communityTest.communityTestCourseSubjects %}
+    <url>
+      <loc>
+        {{ url('community_test_course_subject', { 
+            'testSlug': knowledgeTest.slug, 
+            'communitySlug': communityTest.community.slug,
+            'courseSubjectSlug': communityTestCourseSubject.courseSubject.subjectSlug
+        }) }}
+      </loc>
+      <lastmod>{{ communityTestCourseSubject.updatedAt|date('c')}}</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>  
+    {% for testYear in communityTestCourseSubject.testYears %}
+      {% for exam in testYear.exams %}
+      <url>
+        <loc>
+          {{ url('exam', { 
+              'testSlug': knowledgeTest.slug, 
+              'communitySlug': communityTest.community.slug,
+              'courseSubjectSlug': communityTestCourseSubject.courseSubject.subjectSlug,
+              'examSlug': exam.slug
+          }) }}
+        </loc>
+        <lastmod>{{ exam.updatedAt|date('c')}}</lastmod>
+        <changefreq>monthly</changefreq>
+      </url>  
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+</urlset>

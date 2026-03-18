@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block body %}
+<div class="login">
+  <div class="login__box">
+    <h1>¡Un último paso!</h1>
+    <p>Tu cuenta ha sido creada con la dirección de email <strong>{{ user.email }}</strong>.</p>
+    <p>Hemos <strong>enviado un correo a tu dirección de email para que verifiques que eres el propietario</strong>.</p>
+    <p>Contiene un enlace en el que deberás hacer clic para confirmar tu cuenta.</p>
+    <p>Si no lo has recibido comprueba tu carpeta de correo no deseado.</p>
+    <p>Si ya has confirmado tu correo, puedes iniciar sesión:</p>
+    <div><a class="btn btn-outline-primary btn-block" href="{{ path('app_login') }}">Iniciar sesión</a></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('build/login.css') }}">
+{% endblock stylesheets %}

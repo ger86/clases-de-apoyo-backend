@@ -1,0 +1,27 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block pageTitle %}
+¡Pago completado!
+{% endblock %}
+
+{% block pageContent %}
+<div class="mt-4 formatted-text">
+  <p>Muchas gracias por tu compra.</p>
+  <p>Estamos procesando tu pago. Esto no debería tardar más de <strong>5 minutos</strong>.</p>
+  <p>Si recargas la página verás como el botón de arriba a la derecha llamado "Hazte Premium" desaparece (aunque igual hemos sido tan rápidos que ya hemos procesado tu pago).</p>
+  <p>A partir de ese momento podrás disfrutar de las ventajas de Clases de Apoyo Premium 🙌🏻:</p>
+  <ul class="list-disc list-inside">
+    <li>Navegar sin anuncios</li>
+    <li>Acceso a todo el contenido sin restricciones</li>
+  </ul>
+  <p>Si todavía no has iniciado sesión (es necesario que lo hagas para que podamos activar todas las ventajas que acabas de contratar) 
+  puedes hacerlo desde aquí: 
+  <a href="{{ path('app_login')}}" title="iniciar sesión">iniciar sesión</a>.</p>
+  <p>Si por el contrario arriba a la derecha ya aparece tu email, no tienes que hacer nada más salvo navegar y usar todos 
+  los apuntes que necesites.</p>
+  <p>Y recuerda que si tienes algún problema no dudes en escribirnos a 
+  <a href="mailto:info@clasesdeapoyo.com">info@clasesdeapoyo.com</a>.</p>
+  <p>Muchas gracias por confiar en nosotros.</p>
+</div>
+  
+{% endblock %}

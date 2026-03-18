@@ -1,0 +1,1 @@
+composer require symfony/mailer sonata-project/media-bundle:"4.x-dev" knplabs/knp-markdown-bundle sonata-project/formatter-bundle:"5.x"

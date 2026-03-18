@@ -1,0 +1,61 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% block pageTitle %}
+Blog
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Blog</li>
+  </ol>
+</nav>
+{% endblock %}
+
+
+{% block pageContent %}
+
+{% for article in articles %}
+<article class="mb-12">
+  <header class="">
+    {# if article.category is not empty %}
+      <div class="article__category">{{ article.category.name }}</div>
+    {% endif #}
+    <h2 class="h2">
+      <a class="text-body" href="{{ path('blog_article', { slug: article.slug })}}">
+        {{ article.title }}
+      </a>  
+    </h2>
+    <address class="mb-8">
+      <time datetime="{{ article.createdAt|date('Y-m-d') }}">
+        {{ article.createdAt|date('F d, Y') }}
+      </time>
+    </address>
+    <a href="{{ path('blog_article', { slug: article.slug })}}">
+      <img 
+        src="{{ sonata_path(article.image, 'big') }}" 
+        width="{{ article.image.width }}" 
+        height="{{ article.image.height }}" 
+        alt="{{ article.title }}"
+        class="block w-full h-auto mb-8" 
+      />
+    </a>
+  </header>
+  <div class="">
+    <div class="mb-4">
+      {{ article.excerpt|raw }}
+    </div>
+    <p>
+      <a href="{{ path('blog_article', { slug: article.slug })}}">
+        Leer más...
+      </a
+    </p>
+  </div>
+</article>
+{% endfor %}
+
+{% endblock %}

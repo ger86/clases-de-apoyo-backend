@@ -1,0 +1,11 @@
+App\Entity\File:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["chapter_block", "exam"]
+        name:
+            groups: ["chapter_block", "exam"]
+        weight:
+            groups: ["chapter_block", "exam"]
+        file:
+            groups: ["chapter_block", "exam"]

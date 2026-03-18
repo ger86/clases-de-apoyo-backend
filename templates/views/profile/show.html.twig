@@ -1,0 +1,49 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block pageTitle %}
+Mi perfil
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Mi perfil</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block pageContent %}
+<div class="lg:h-[600px]">
+  <div>
+    <div>
+      <h1 class="h1 mb-8">
+        Información de usuario
+      </h1>
+      <div>
+        <p class="mb-4"><strong>Email:</strong> {{ user.email }}</p>
+        {% if user.isPremium %}
+          {% if user.isSubscriptionActive %}
+            <p><strong>Fecha de renovación:</strong> {{ user.premiumUntil|date('d/m/Y') }}</p>
+          {% endif %}
+          <p><strong>Estado suscripción:</strong> {{ user.subscriptionStatus }}</p>
+          <form action="{{ path('app_subscription_create_billing_portal_session') }}" method="POST">
+            <button class="btn-secondary" type="submit">Actualizar datos de pago</button>
+          </form>
+        {% else %}
+        <a 
+          href="{{ path('app_subscription_payment') }}"
+          title="Hazte premium"
+          class="btn-primary"
+        >
+          Hazte premium
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock pageContent %}

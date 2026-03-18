@@ -1,0 +1,35 @@
+{% extends 'base_no_ads.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('book_shop') }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="shop">
+    <div class="shop__left">
+      <h2>{{ book.title }}</h2>
+      <p>{{ book.text|raw }}</p>
+      <div class="shop__form">
+        <p>
+          <strong>Lo enviaremos a:</strong> {{ email }}
+        </p>
+        <p>
+          <strong>Precio:</strong> {{ book.price|number_format(2) }} € <small>(IVA inc)</small>
+        </p>
+      </div>
+    </div>
+    <div class="shop__right">
+      {% include 'views/shop/book_payment/parts/right.html.twig' %}
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://js.stripe.com/v3/"></script>
+{{ encore_entry_script_tags('book_shop') }}
+{% endblock %}

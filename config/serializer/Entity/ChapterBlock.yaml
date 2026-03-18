@@ -1,0 +1,13 @@
+App\Entity\ChapterBlock:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["chapter_block"]
+        name:
+            groups: ["chapter_block"]
+        description:
+            groups: ["chapter_block"]
+        chapters:
+            groups: ["chapter_block"]
+        weight:
+            groups: ["chapter_block"]

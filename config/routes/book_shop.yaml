@@ -1,0 +1,7 @@
+# shop_book:
+#     path:     /shop/b/{slug}
+#     controller: App\Controller\BookShopController::book
+
+# shop_book_payment:
+#     path:     /shop/b/{slug}/pay
+#     controller: App\Controller\BookShopController::bookPayment

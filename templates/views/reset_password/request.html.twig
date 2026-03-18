@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restablecer contraseña{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 lg:h-[600px]">
+  <div class="flex justify-center items-center h-full">
+    <div class="simple-box">
+      {% for flashError in app.flashes('reset_password_error') %}
+          <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+      {% endfor %}
+      <h1 class="h3 mb-8">Solicitar nueva contraseña</h1>
+
+      {{ form_start(requestForm) }}
+          {{ form_row(requestForm.email) }}
+          <div class="form-group">
+              <small>
+              Escribe tu dirección de email y te enviaremos un enlace para restablecer tu contraseña. ¡Así de fácil!
+              </small>
+          </div>
+
+          <button class="btn-primary w-full">Envíame un email para restablecer mi contraseña</button>
+      {{ form_end(requestForm) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('build/login.css') }}">
+{% endblock stylesheets %}

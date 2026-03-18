@@ -1,0 +1,7 @@
+App\Entity\Subject:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["course_subject", "community_test_course_subject"]
+        name:
+            groups: ["course_subject", "community_test_course_subject"]

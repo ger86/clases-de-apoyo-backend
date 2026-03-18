@@ -1,0 +1,11 @@
+App\Entity\KnowledgeTest:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["knowledge_test"]
+        name:
+            groups: ["knowledge_test"]
+        slug:
+            groups: ["knowledge_test"]
+        communityTests:
+            groups: ["knowledge_test"]

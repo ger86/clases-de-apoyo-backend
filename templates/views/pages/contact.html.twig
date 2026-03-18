@@ -1,0 +1,23 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Aviso legal" %}
+{% set metaTitle = "Aviso legal" %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block pageTitle %}
+<h1>Contacto</h1>
+{% endblock %}
+
+{% block pageContent %}
+<p>Puedes contactar con nosotros de las siguientes formas:</p>
+<p>Escribiéndonos un email a <a href="mailto:info@clasesdeapoyo.com">info@clasesdeapoyo.com</a>
+<p>Vistiándonos en nuestra academia situada en Madrid en la dirección Avenida Menéndez Pelayo 83 1ºF, Madrid</p>
+<p>O siguiéndonos en <a href="https://www.facebook.com/clasesdeapoyo/" target="_blank">Facebook</a>, 
+  <a href="https://www.youtube.com/channel/UC_7mMMKSQSrXrNmpVScQPJQ" target="_blank">Youtube</a> o 
+  <a href="https://www.instagram.com/clases_de_apoyo/" target="_blank">Instagram</a></p>
+{% endblock %}

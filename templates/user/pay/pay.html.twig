@@ -1,0 +1,42 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block pageTitle %}
+<h1>Pago de tu cuenta premium</h1>
+{% endblock %}
+
+{% block pageContent %}
+<div class="row pay">
+  <div class="col-md-6 order-md-1 order-6">
+    {% include 'user/pay/parts/pay_left.html.twig' %}
+  </div>
+  <div class="col-md-6 order-md-6 order-1">
+    <button id="checkout-button">Subscribe</button>
+  </div>
+</div>
+  
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('build/pay.css') }}">
+{% endblock stylesheets %}
+
+{% block javascripts %}
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe('{{ stripePublicKey }}');
+
+    var checkoutButton = document.querySelector('#checkout-button');
+    checkoutButton.addEventListener('click', function () {
+      stripe.redirectToCheckout({
+        items: [{
+          plan: '{{ stripePlanId }}',
+          quantity: 1
+        }],
+        successUrl: '{{ url('app_user_pay_premium_success') }}',
+        cancelUrl:  '{{ url('app_user_pay_premium') }}',
+        customerEmail: '{{ app.user.email }}',
+      });
+    });
+  </script>
+{% endblock javascripts %}

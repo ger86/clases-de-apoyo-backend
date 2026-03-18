@@ -1,0 +1,16 @@
+<ul class="list-disc list-inside">
+{% for related in chapter.chapterBlock.chapters|filter(related => chapter.id != related.id) %}
+  <li class="mb-4">
+    <a
+      href="
+      {{ path('chapter', {
+            chapterSlug: related.slug,
+            subjectSlug: related.chapterBlock.courseSubject.subjectSlug,
+            courseSlug: related.chapterBlock.courseSubject.course.slug
+      }) }}"
+    >
+      {{ related.name }}
+    </a>
+  </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,40 @@
+{% if courseSubject.chapterBlocks is not empty %}
+<div>
+  {% for chapterBlock in courseSubject.chapterBlocks %}
+    <div class="mb-8" id="{{chapterBlock.slug}}">
+      <h2 class="h2 mb-8">Apuntes de {{ chapterBlock.name|lower }}</h2>
+      <div class="list-group">
+        {% for chapter in chapterBlock.chapters %}
+          <a 
+            href="{{ path('chapter', { 
+            chapterSlug: chapter.slug,
+            subjectSlug: chapterBlock.courseSubject.subjectSlug,
+            courseSlug: chapterBlock.courseSubject.course.slug
+            }) }}" 
+            class="list-group-item"
+          >
+            <span>
+              {{ chapter.name }}
+            </span>
+            <span class="list-group-item-badge">
+              <i class="icon-angle-right"></i>
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<div>
+  <p>¡Vaya! Todavía no tenemos apuntes de {{ courseSubject.subjectName|lower }} de {{ courseSubject.course.name|lower }}
+  pero si quieres que nos demos prisa en añadirlos puedes escribirnos un email a 
+  <a href="mailto:info@clasesdeapoyo.com" title="mailto:info@clasesdeapoyo.com">info@clasesdepoaoyo.com</a> para que nos
+  pongamos manos a la obra. 
+  </p>
+  <p>¡Muchas gracias!</p>
+</div>
+{% endif %}
+<div class="text-lg">
+  {{ courseSubject.description|raw }}
+</div>

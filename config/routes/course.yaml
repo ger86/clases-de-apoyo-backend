@@ -1,0 +1,11 @@
+course:
+    path:     /c/{courseSlug}
+    controller: App\Controller\CourseController::course
+
+course_subject:
+    path:     /c/{courseSlug}/{subjectSlug}
+    controller: App\Controller\CourseController::courseSubject
+
+chapter:
+    path:     /c/{courseSlug}/{subjectSlug}/{chapterSlug}
+    controller: App\Controller\CourseController::chapter

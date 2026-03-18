@@ -1,0 +1,3 @@
+file:
+    path:     /f/{fileId}
+    controller: App\Controller\FileController::viewer

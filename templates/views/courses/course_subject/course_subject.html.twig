@@ -1,0 +1,30 @@
+{% extends 'container_sidebar_layout.html.twig'%}
+
+{% block metatags %}
+{% set metaDescription = "Encuentra problemas resueltos y apuntes de " ~ courseSubject.subjectName ~ " de "  ~ courseSubject.course.name %}
+{% set metaTitle = "Apuntes de " ~ courseSubject.subjectName ~ " de " ~ courseSubject.course.name %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{metaTitle}}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+{% endblock %}
+
+{% block pageTitle %}
+Apuntes de {{ courseSubject.subjectName|lower }} de {{ courseSubject.course.name }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(courseSubject) }}
+{% endblock %}
+
+{% block sidebarContent %}
+{% include 'views/courses/course_subject/parts/sidebar.html.twig' %}
+{{ parent() }}
+{% endblock %}
+
+{% block pageContent %}
+<section class="course-subject">
+  {% include 'views/courses/course_subject/parts/chapters_block.html.twig' %}
+</section>
+{% endblock %}

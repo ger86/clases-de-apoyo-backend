@@ -1,0 +1,10 @@
+App\Entity\CommunityTest:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["knowledge_test"]
+        community:
+            groups: ["knowledge_test"]
+        getCommunityTestCourseSubjectsIds:
+            serialized_name: communityTestCourseSubjects
+            groups: ["knowledge_test"]

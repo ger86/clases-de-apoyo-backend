@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for c in courses %}
+    {% set sitemapXml = 'sitemap_' ~ c.slug ~ '.xml' %}
+    <sitemap>
+        <loc>{{ absolute_url(asset(sitemapXml, 'sitemap')) }}</loc>
+    </sitemap>
+  {% endfor %}
+  {% for t in knowledgeTests %}
+    {% set sitemapXml = 'sitemap_' ~ t.slug ~ '.xml' %}
+    <sitemap>
+        <loc>{{ absolute_url(asset(sitemapXml, 'sitemap')) }}</loc>
+    </sitemap>
+  {% endfor %}
+  <sitemap>
+      <loc>{{ absolute_url(asset('blog.xml', 'sitemap')) }}</loc>
+  </sitemap>
+  <sitemap>
+      <loc>{{ absolute_url(asset('videos.xml', 'sitemap')) }}</loc>
+  </sitemap>
+</sitemapindex>

@@ -1,0 +1,3 @@
+stripe_webhook:
+  path: /stripe/webhook
+  controller: App\Controller\Subscription\StripeWebhookController

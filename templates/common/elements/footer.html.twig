@@ -1,0 +1,58 @@
+<footer class="py-8 flex flex-col items-center bg-gray-800 text-center text-white">
+  <img src="{{asset('build/images/logo.png')}}" title="Clases de Apoyo" alt="Clases de Apoyo">
+  <div>
+    <ul class="p-0 m-0 flex flex-col lg:flex-row">
+      <li class="mb-1 lg:mb-0 mr-4">
+        <a class="text-white" href="{{ path('contact') }}" title="Contacto" rel="nofollow">Contacto</a>
+      </li>
+      <li class="mb-1 lg:mb-0 mr-4">
+        <a 
+          class="text-white" 
+          href="https://app.gdpr.direct/shared/legal-hub?id=N5yCuZMzcmuTbA1kTpmU" 
+          title="Aviso legal" 
+          rel="nofollow"
+          target="_blank"
+        >
+          Aviso legal
+        </a>
+      </li>
+      <li class="mb-1 lg:mb-0 mr-4">
+        <a 
+          class="text-white" 
+          href="https://app.gdpr.direct/shared/legal-hub?id=N5yCuZMzcmuTbA1kTpmU" 
+          title="Política de cookies" 
+          rel="nofollow"
+          target="_blank"
+        >
+          Política de cookies
+        </a>
+      </li>
+      <li class="mb-1 lg:mb-0 mr-4">
+        <a 
+          class="text-white" 
+          href="https://app.gdpr.direct/shared/legal-hub?id=N5yCuZMzcmuTbA1kTpmU" 
+          title="Política de privacidad" 
+          rel="nofollow"
+          target="_blank"
+        >
+          Política de privacidad
+        </a>
+      </li>
+      {% set show_cookie_preferences = (app.environment == 'prod') or ((app.environment != 'dev') and not isPremium() and ('fos_user' not in app.request.attributes.get('_route'))) or (app.environment == 'dev') %}
+      {% if show_cookie_preferences %}
+      <li class="mb-1 lg:mb-0 mr-4">
+        <button
+          type="button"
+          class="text-white underline underline-offset-4 hover:text-primary transition"
+          data-cookie-open
+          aria-haspopup="dialog"
+          aria-controls="cookie-consent-dialog"
+        >
+          Configurar cookies
+        </button>
+      </li>
+      {% endif %}
+      <li class="mr-4">Tu web de apuntes</li>
+    </ul>
+  </div>
+</footer>

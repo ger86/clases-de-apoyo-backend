@@ -1,0 +1,56 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block pageTitle %}
+Actualizar información de pago
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('app_profile_show') }}">Mi perfil</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Actualizar información de pago</li>
+  </ol>
+</nav>
+
+{% endblock %}
+
+{% block pageContent %}
+
+{% if success %}
+<div class="alert alert-success">Tu información de pago ha sido actualizada con éxito. ¡Gracias!</div>
+{% endif %}
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-8">
+    <div class="simple-box">
+      <h3 class="h3 mb-8">
+        Actualizar datos de pago
+      </h3>
+      <div>
+        <p>Aquí podras modificar la tarjeta con la que estás pagando tu suscripción a Clases de Apoyo Premium.</p>
+        <p>Para ello, pulsa en el botón "Actualizar tarjeta" situado más abajo e introduce los nuevos datos de pago.</p>
+        <form action="{{ path('app_subscription_update_payment_info') }}" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ stripePublicKey }}"
+            data-name="Clases de Apoyo"
+            data-email="{{ app.user.email }}"
+            data-panel-label="Actualizar tarjeta"
+            data-label="Actualizar tarjeta"
+            data-allow-remember-me=false
+            data-locale="es">
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

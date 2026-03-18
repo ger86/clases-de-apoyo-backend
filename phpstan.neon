@@ -1,0 +1,21 @@
+parameters:
+    phpVersion: 80400
+    level: 2
+    paths:
+        - src
+    excludePaths:
+        - %rootDir%/../../../migrations
+    symfony:
+        containerXmlPath: 'var/cache/dev/App_KernelDevDebugContainer.xml'
+    doctrine:
+        repositoryClass: Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - 
+            message: '#Access to an undefined property Stripe\\StripeObject::\$object.#'
+            path: %rootDir%/../../../src
+        -
+            message: '#Access to an undefined property Stripe\\StripeObject::\$end.#'
+            path: %rootDir%/../../../src
+        -
+            identifier: missingType.iterableValue

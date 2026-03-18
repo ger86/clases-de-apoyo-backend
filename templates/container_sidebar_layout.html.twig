@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="min-h-[100px] py-8 bg-gradient-to-r from-primary to-primary-light">
+  <div class="container mx-auto px-4">
+    <h1 class="h1 text-white">{% block pageTitle %}{% endblock %}</h1>
+  </div>
+</div>
+
+<div class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    {% block breadcrumb %}{% endblock %}
+  </div>
+</div>
+
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-9">
+      <div class="mb-8">
+        {% include 'ads/large_ad.html.twig' %}
+      </div>
+      {% block pageContent %}{% endblock %}
+    </div>
+    <div class="col-span-12 lg:col-span-3">
+      <aside role="complementary" class="pb-12">
+        <div>
+        {% block sidebarContent %}
+          {% if not isPremium()%}
+          <div class="mb-4">
+            {% include 'ads/sidebar_ad.html.twig' %}
+          </div>
+          {% endif %}
+          <div class="mb-4">
+            {{ renderLastArticle() }}
+          </div>
+          <div class="mb-4">
+            {% include 'common/elements/youtube_box.html.twig' %}
+          </div>
+          <h3 class="h3 mb-4">Síguenos en:</h3>
+          <div class="flex">
+            <div class="w-[40px] h-[40px] mr-4 rounded-full bg-[#3b5998] text-center leading-[40px]">
+              <a class="text-white" href="https://www.facebook.com/clasesdeapoyo/" target="_blank" title="Facebook" rel="noreferrer">
+                <i class="icon-facebook"></i>
+              </a>
+            </div>
+            <div class="w-[40px] h-[40px] mr-4 rounded-full bg-[#cd486b] text-white text-center leading-[40px]">
+              <a class="text-white" href="https://www.instagram.com/clases_de_apoyo/" target="_blank" title="Instagram" rel="noreferrer">
+                <i class="icon-instagram"></i>
+              </a>
+            </div>
+            <div class="w-[40px] h-[40px] mr-4 rounded-full bg-[#FF0000] text-white text-center leading-[40px]">
+              <a class="text-white" href="https://www.youtube.com/channel/UC_7mMMKSQSrXrNmpVScQPJQ" target="_blank" title="Youtube" rel="noreferrer">
+                <i class="icon-youtube-play"></i>
+              </a>    
+            </div>
+            <div class="w-[40px] h-[40px] mr-4 rounded-full bg-[#0084b4] text-white  text-center leading-[40px]">
+              <a class="text-white" href="https://twitter.com/clasesdeapoyo" target="_blank" title="Twitter" rel="noreferrer">
+                <i class="icon-twitter"></i>
+              </a>
+            </div>
+          </div>
+        {% endblock %}
+        </div>
+      </div>
+    </aside>  
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+App\Entity\CommunityTestCourseSubject:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["community_test_course_subject"]
+        courseSubject:
+            groups: ["community_test_course_subject"]
+        getTestYearsIds:
+            serialized_name: testYears
+            groups: ["community_test_course_subject"]

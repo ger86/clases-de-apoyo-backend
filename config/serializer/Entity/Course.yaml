@@ -1,0 +1,14 @@
+App\Entity\Course:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["course"]
+        name:
+            groups: ["course"]
+        description:
+            groups: ["course"]
+        weight:
+            groups: ["course"]
+        getCourseSubjectsIds:
+            serialized_name: courseSubjects
+            groups: ["course"]

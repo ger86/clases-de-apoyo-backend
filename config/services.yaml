@@ -1,0 +1,53 @@
+parameters:
+    locale: "es"
+    app.secret: "%env(resolve:APP_SECRET)%"
+    sitemap_dir: "%kernel.project_dir%/public/sitemap"
+    app.subscription.default_price: '5.00 € / mes'
+    app.mail.default_from: '%env(resolve:DEFAULT_FROM_EMAIL)%'
+    app.mail.default_name: '%env(resolve:DEFAULT_FROM_EMAIL_NAME)%'
+    app.stripe.price_id: "%env(resolve:STRIPE_PRICE_ID)%"
+    app.stripe.public_key: "%env(resolve:STRIPE_PUBLIC_KEY)%"
+    app.stripe.secret_key: "%env(resolve:STRIPE_SECRET_KEY)%"
+    app.stripe.webhook_secret: "%env(resolve:STRIPE_WEBHOOK_SECRET)%"
+
+imports:
+    - { resource: "services/admin.yaml" }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $projectDir: "%kernel.project_dir%"
+            $sitemapDir: "%sitemap_dir%"
+            $env: "%kernel.environment%"
+
+    Symfony\Component\Config\Definition\Builder\ValidationBuilder:
+        autowire: true
+
+    App\:
+        resource: "../src/*"
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+
+    App\Service\Shop\SendBookCommand:
+        arguments:
+            $pool: "@sonata.media.pool"
+
+    App\Controller\:
+        resource: "../src/Controller"
+        tags: ["controller.service_arguments"]
+
+    Aws\S3\S3Client:
+        arguments:
+            - version: "latest"
+              region: "%env(S3_BUCKET_REGION)%"
+              credentials:
+                  key: "%env(S3_ACCESS_KEY)%"
+                  secret: "%env(S3_SECRET_KEY)%"
+                  
+    Sonata\MediaBundle\Generator\PathGenerator: ~

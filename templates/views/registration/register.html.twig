@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear cuenta en Clases de Apoyo{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-6">
+      <div class="p-8 bg-slate-100">
+        <h2 class="h3 mb-4">Clases de Apoyo Premium</h2>
+        <p class="text-lg mb-8">Por <strong>{{ subscriptionDefaultPrice }}</strong> al mes disfruta de las siguientes ventajas:</p>
+        <h3 class="h4 mb-4">1. Acceso completo a Clases de Apoyo</h3>
+        <p class="mb-8">Consulta todos los exámenes de selectividad y accede a las soluciones de los problemas propuestos</p>
+        <h3 class="h4 mb-4">2. ¡Navega sin anuncios!</h3>
+        <p class="mb-8">Elimina todos los anuncios y navega por toda la página cómodamente.</p>
+        <h3 class="h4 mb-4">3. Contribuye a que podamos seguir trabajando en Clases de Apoyo</h3>
+        <p>Además, siendo usuario premium colaboras a que podamos seguir trabajando en Clases de Apoyo</p>
+      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6">
+      <div class="p-8 bg-gray-100">
+        <h2 class="h3 mb-4">Crear tu cuenta</h2>
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+
+        <div class="mb-4">
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email, {
+              
+            }) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Contraseña'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_row(registrationForm.recaptcha) }}
+            <div><small>Los datos de pago se te pedirán en el siguiente paso.</small></div>
+            <div class="mb-2"><small>También podras introducir tu cupón de descuento si tienes uno.</small></div>
+            <button type="submit" class="btn-primary w-full">Crear cuenta</button>
+
+        {{ form_end(registrationForm) }}
+        </div>
+        <div>
+          <p>Si ya tienes cuenta:</p> 
+          <a class="btn-outline-primary w-full mb-4" href="{{ path('app_login')}}">Inicia sesión</a>
+          <p>Si olvidaste tu contraseña: <a class="text-primary" href="{{ path('app_forgot_password_request')}}">Recuperar contraseña</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

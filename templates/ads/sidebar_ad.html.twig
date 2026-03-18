@@ -1,0 +1,23 @@
+{% if (app.environment != 'dev') %}
+  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+  <div class="sidebar-ad {% if mb is defined %}{{mb}}{% endif %}">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-7198950640550751"
+          data-ad-slot="7545127788"
+          data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  {% endif %}
+{% else %}
+  {% if not isPremium()%}
+  <div class="sidebar-ad {% if mb is defined %}{{mb}}{% endif %}" 
+    style="background: #dadada; width: 100%; height: auto; padding-top: 100%;"
+  >
+    Anuncio barra lateral
+  </div>
+  {% endif %}
+{% endif %}

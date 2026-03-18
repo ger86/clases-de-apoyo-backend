@@ -1,0 +1,102 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Encuentra apuntes, problemas y ejercicios resueltos de " ~ chapter.name ~ " de " ~ chapter.chapterBlock.courseSubject.subjectName ~ " de "  ~ chapter.chapterBlock.courseSubject.course.name %}
+{% set metaTitle = "Apuntes y ejercicios de " ~ chapter.name|lower ~ " de " ~ chapter.chapterBlock.courseSubject.course.name %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block pageTitle %}
+Apuntes de {{ chapter.name|lower }} de {{ chapter.chapterBlock.courseSubject.course.name }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(chapter) }}
+{% endblock %}
+
+{% block pageContent %}
+<section>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-8">
+      <div class="mb-8">
+        <h2 class="h2 mb-4">Ver archivos de este tema</h2>
+        <div class="mb-4 list-group">
+          {% for file in chapter.files %}
+            {% include 'views/courses/chapter/parts/file.html.twig' with {'file': file} %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="mb-8">
+        <h2 class="h2 mb-4">Contenidos</h2>
+        <div>{{ chapter.description|raw }}</div>
+      </div>
+      <div class="mb-8">
+        <h2 class="h2 mb-4">Apuntes relacionados de {{ chapter.chapterBlock.name|lower }}</h2>
+        {% include 'views/courses/chapter/parts/related_chapters.html.twig' %}
+      </div>
+    </div>
+    <aside class="col-span-12 lg:col-span-4" role="complementary">
+      {% if chapter.youtubeVideos is not empty %}
+      <div class="chapter__section">
+        <h3 class="h3 mb-4">Vídeos explicativos</h2>
+        <ul class="list-disc list-inside">
+          {% for video in chapter.youtubeVideos %}
+          <li class="mb-4">
+            <a 
+              class="text-primary"
+              href="{{ path('youtube_video', { 'videoSlug': video.slug }) }}"
+              title="{{ video.title }}" 
+              target="_blank"
+            >
+              {{ video.title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if not app.user %}
+      <div class="simple-box mb-4">
+        <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h3>
+        <p class="mb-4">Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
+        de los ejercicios que te proponemos en cada tema y todo ello sin ver un anuncio más.</p>
+        <a 
+          class="btn btn-secondary block text-center"
+          href="{{path('app_register')}}"
+          rel="nofollow"
+          onclick="gtag('event', 'click', {
+            'event_category': 'premium-box',
+            'event_label': 'chapter'
+          });"
+        >
+          Quiero hacerme premium     
+        </a>
+      </div>
+      {% endif %}
+      {% include 'ads/sidebar_ad.html.twig' with { 'mb': 'mb-4'} %} 
+      {% include 'common/elements/youtube_box.html.twig' %}
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script type="application/ld+json">
+{ "@context": "http://schema.org", 
+ "@type": "ScholarlyArticle",
+ "headline": "{{ chapter.name }}",
+ "alternativeHeadline": "{{ chapter.name }} de {{ chapter.chapterBlock.courseSubject.course.name }}",
+ "author": "Clases de Apoyo", 
+ "editor": "Juan Carlos Rojo", 
+ "keywords": "{{ chapter.name }} apuntes bachillerato {{ chapter.chapterBlock.courseSubject.subject.name }}",
+ "url": "{{ getCanonicalUrl() }}",
+ "datePublished": "{{ chapter.createdAt|date('Y-m-d') }}",
+ "dateCreated": "{{ chapter.createdAt|date('Y-m-d') }}",
+ "dateModified": "{{ chapter.updatedAt|date('Y-m-d') }}",
+ "description": "{{ chapter.description }}"
+ }
+</script>
+{% endblock javascripts %}

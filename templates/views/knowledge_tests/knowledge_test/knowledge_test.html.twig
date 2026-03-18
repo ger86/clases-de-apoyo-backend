@@ -1,0 +1,62 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Consulta todos los exámenes de selectividad resueltos para preparar la PAU practicando con los ejercicios de años anteriores de todas las asignaturas" %}
+<title>Exámenes de selectividad | Clases de Apoyo</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="Exámenes de selectividad | Clases de Apoyo" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "ItemList",
+  "url": "{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}",
+  "numberOfItems": "{{ test.communityTests|length }}",
+  "itemListElement": [
+    {% for communityTest in test.communityTests %}
+    {
+    "@type": "ListItem",
+    "position": {{ loop.index }},
+    "url": "{{ url('community_test', {testSlug: test.slug, communitySlug: communityTest.community.slug}) }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+{% endblock metatags %}
+
+{% block pageTitle %}
+Exámenes de {{ test.name|lower }} resueltos
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(test) }}
+{% endblock %}
+
+{% block pageContent %}
+<section>
+  <div class="mb-8">
+    <div class="list-group">
+      {% for communityTest in test.communityTests %}
+      <a 
+        href="{{ path('community_test', {testSlug: test.slug, communitySlug: communityTest.community.slug}) }}" 
+        class="list-group-item"
+      >
+        <div>
+          <h3 class="h4 mb-4 font-normal">Exámenes de selectividad resueltos de {{ communityTest.community.name }}</h5>
+        </div>
+        <span class="list-group-item-badge">
+          <i class="icon-angle-right"></i>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="text-lg">
+    {{ test.description|raw }}
+  </div>
+</section>
+{% endblock %}

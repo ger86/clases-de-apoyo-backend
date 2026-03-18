@@ -1,0 +1,15 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: 
+        - 'tailwind_2_layout.html.twig'
+        - 'form/theme.html.twig'
+        - '@SonataFormatter/Form/formatter.html.twig'
+    globals:
+        stripePriceId: '%app.stripe.price_id%'
+        defaultMail: '%app.mail.default_from%'
+        subscriptionDefaultPrice: '%app.subscription.default_price%'
+    file_name_pattern: "*.twig"
+
+when@test:
+    twig:
+        strict_variables: true

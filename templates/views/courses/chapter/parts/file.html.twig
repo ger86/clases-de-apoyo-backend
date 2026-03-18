@@ -1,0 +1,28 @@
+{% if canSeeChapterFile(file) %}  
+  <a 
+    href="{{ path('file', { 'fileId': file.id}) }}" 
+    title="{{ file.name }}"
+    class="list-group-item"
+    rel="noopener"
+    onclick="gtag('event', 'click', {
+      'event_category': 'view-file',
+      'event_label': 'chapter'
+    });"
+  >
+    <span> Ver {{ file.name|lower }}</span>
+    <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+  </a>
+{% else %}
+  <a 
+    href="{{ path('app_register') }}" 
+    class="list-group-item" 
+    rel="nofollow"
+    onclick="gtag('event', 'click', {
+      'event_category': 'premium-box',
+      'event_label': 'chapter'
+    });"  
+  >
+    <span>Ver {{ file.name|lower }} (hazte premium para poder verlo)</span>
+    <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+  </a>
+{% endif %}

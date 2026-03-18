@@ -1,0 +1,13 @@
+App\Entity\Exam:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["exam"]
+        name:
+            groups: ["exam"]
+        description:
+            groups: ["exam"]
+        difficulty:
+            groups: ["exam"]
+        files:
+            groups: ["exam"]

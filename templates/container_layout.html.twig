@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="min-h-[100px] py-8 bg-gradient-to-r from-primary to-primary-light">
+  <div class="container mx-auto px-4">
+    <h1 class="h1 text-white">{% block pageTitle %}{% endblock %}</h1>
+  </div>
+</div>
+
+<div class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    {% block breadcrumb %}{% endblock %}
+  </div>
+</div>
+
+<div class="container  mx-auto px-4 py-8">
+  <div class="mb-8">
+    {% include 'ads/large_ad.html.twig' %}
+  </div>
+  {% block pageContent %}{% endblock %}
+</div>
+
+{% endblock %}

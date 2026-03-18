@@ -1,0 +1,49 @@
+services:
+    db:
+        image: mysql:8.0.35
+        command: --default-authentication-plugin=mysql_native_password --port=3307
+        platform: linux/x86_64
+        volumes:
+            - "db_app:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_TCP_PORT: 3307
+        ports:
+            - 3307:3307
+        networks:
+            - symfony
+    php:
+        build:
+            context: ./php
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ../:/var/www/symfony:cached
+            - clases_de_apoyo_var:/var/www/symfony/var
+            - clases_de_apoyo_vendor:/var/www/symfony/vendor
+        networks:
+            - symfony
+    nginx:
+        build:
+            context: ./nginx
+        volumes:
+            - ../:/var/www/symfony:cached
+            - clases_de_apoyo_var:/var/www/symfony/var
+            - clases_de_apoyo_vendor:/var/www/symfony/vendor
+        ports:
+            - 8080:8080
+        networks:
+            - symfony
+        env_file:
+            - .env.nginx.local
+
+volumes:
+    clases_de_apoyo_var:
+    clases_de_apoyo_vendor:
+    db_app:
+
+networks:
+    symfony:

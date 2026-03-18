@@ -1,0 +1,84 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% set communityTest = communityTestCourseSubject.communityTest %}
+{% set courseSubject = communityTestCourseSubject.courseSubject %}
+
+{% block metatags %}
+  {% set metaTitle = "Exámenes de selectividad resueltos de " ~ courseSubject.subjectName ~ " en " ~ communityTest.community.name ~  " | Clases de Apoyo" %}
+  {% set metaDescription = "Descarga examenes de " ~ communityTest.knowledgeTest.name ~ " resueltos de " ~ courseSubject.subjectName ~ " en " ~ communityTest.community.name ~" desde 1996." %}
+  <title>{{ metaTitle }}</title>
+  <meta name="description" content="{{ metaDescription }}" />
+  <meta property="og:title" content="{{ metaTitle }}" />
+  <meta property="og:description" content="{{ metaDescription }}" />
+  <link rel="canonical" href="{{ getCanonicalUrl() }}">
+{% endblock %}
+
+{% block pageTitle %}
+Exámenes de {{ communityTest.knowledgeTest.name|lower ~ ' resueltos de ' ~ courseSubject.subjectName|lower  ~ ' de ' ~ 
+  communityTest.community.name }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(communityTestCourseSubject) }}
+{% endblock %}
+
+{% block pageContent %}
+<section class="community-test-course-subject">
+  {% if not isPremium()%}
+  <div class="simple-box mb-4">
+    <h3 class="mb-4 h3">¿Quieres acceder a más contenido aún?</h3>
+    <p class="mb-4">Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
+    de los ejercicios que te proponemos en cada tema y todo ello sin ver un anuncio más.</p>
+    <a 
+      class="btn btn-secondary block text-center"
+      href="{{path('app_register')}}"
+      rel="nofollow"
+      onclick="gtag('event', 'click', {
+        'event_category': 'premium-box',
+        'event_label': 'community-test-course-subject'
+      });"
+    >
+      Quiero hacerme premium
+    </a>
+  </div>
+  {% endif %}
+  <div class="mb-8">
+    <table class="border-collapse table-auto w-full">
+      <thead 
+        class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left bg-slate-200 rounded"
+      >
+        <tr>
+          <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Año</th>
+          <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Exámenes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for testYear in communityTestCourseSubject.testYears %}
+        <tr class="{% if loop.index % 2 == 0 %}bg-gray-50{% endif %}">  
+          <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">{{ testYear.year }}</td>
+          <td class="border-b border-slate-300 p-4 text-body">
+            <div class="exams-list">
+              {% for exam in testYear.exams %}
+              <div>
+                <a title="{{ exam.readableExamType }}" href="{{ path('exam', {
+                    testSlug: communityTest.knowledgeTest.slug,
+                    communitySlug: communityTest.community.slug,
+                    courseSubjectSlug: communityTestCourseSubject.courseSubject.subjectSlug,
+                    examSlug: exam.slug
+                  })}}">
+                      {{ exam.readableExamType }}
+                  </a>   
+              </div>
+              {% endfor %}
+            </div>
+          </td>
+        </tr>   
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-lg">
+    {{ communityTestCourseSubject.description|raw }}
+  </div>
+</section>
+{% endblock %}

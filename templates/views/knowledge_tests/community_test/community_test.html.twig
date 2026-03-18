@@ -1,0 +1,73 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaTitle = "Exámenes de " ~ communityTest.knowledgeTest.name ~" resueltos de " ~ communityTest.community.name ~" | Clases de Apoyo" %}
+{% set metaDescription = "Exámenes de " ~ communityTest.knowledgeTest.name ~" resueltos en " ~ communityTest.community.name ~ " de Matemáticas, Física, Química, Inglés..." %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}" />
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "ItemList",
+  "url": "{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}",
+  "numberOfItems": "{{ communityTest.communityTestCourseSubjects|length }}",
+  "itemListElement": [
+    {% for ctCourseSubject in communityTest.communityTestCourseSubjects %}
+    {
+    "@type": "ListItem",
+    "position": {{ loop.index }},
+    "url": "{{ url('community_test_course_subject', {testSlug: communityTest.knowledgeTest.slug, communitySlug: communityTest.community.slug, courseSubjectSlug: ctCourseSubject.courseSubject.subjectSlug}) }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock metatags %}
+
+{% block pageTitle %}
+Exámenes de {{ communityTest.knowledgeTest.name|lower ~ ' resueltos de ' ~ communityTest.community.name }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(communityTest) }}
+{% endblock %}
+
+{% block pageContent %}
+<section>
+  <div>
+    <div class="list-group mb-8">
+      {% for ctCourseSubject in communityTest.communityTestCourseSubjects %}
+      <a 
+        href="{{ path('community_test_course_subject', {
+                testSlug: communityTest.knowledgeTest.slug, 
+                communitySlug: communityTest.community.slug,
+                courseSubjectSlug: ctCourseSubject.courseSubject.subjectSlug
+         }) }}" 
+        class="list-group-item"
+      >
+        <div>
+          <h3 class="h3 mb-4 font-normal">
+            {{ ctCourseSubject.courseSubject.subjectName }}
+          </h5>
+          <p class="mb-0 text-lg">
+            Accede a los exámenes de {{ communityTest.knowledgeTest.name|lower }} de {{ communityTest.community.name  }} de
+            {{ ctCourseSubject.courseSubject.subjectName|lower }}.
+          </p>
+        </div>
+        <span class="list-group-item-badge">
+          <i class="icon-angle-right"></i>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="text-lg">
+      {{ communityTest.description|raw }}
+    </div>
+  </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+<div class="simple-box mb-8">
+  <div class="text-lg font-bold mb-8">
+      {{ subscriptionDefaultPrice }}
+  </div>
+  <div class="">
+    <form action="{{ path('app_subscription_create_checkout_session') }}" method="POST">
+      <input type="hidden" name="priceId" value="{{ stripePriceId }}" />
+      <button class="btn-primary w-full" type="submit">Pagar</button>
+    </form>
+  </div>
+</div>
+
+<p>
+Para cualquier consulta que te surja durante el proceso puedes contactar con nosotros a través de 
+  <a href="mailto:info@clasesdeapoyo.com">info@clasesdeapoyo.com</a>.
+</p>
+<p>
+¡Bienvenido!
+</p>

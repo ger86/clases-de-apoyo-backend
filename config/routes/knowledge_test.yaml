@@ -1,0 +1,23 @@
+exam:
+    path:     /s/{testSlug}/{communitySlug}/{courseSubjectSlug}/{examSlug}
+    controller: App\Controller\KnowledgeTestController::exam
+    requirements:
+        testSlug: '^((?!_wdt|_profiler).)*$'
+
+community_test_course_subject:
+    path:     /s/{testSlug}/{communitySlug}/{courseSubjectSlug}
+    controller: App\Controller\KnowledgeTestController::communityTestCourseSubject
+    requirements:
+        testSlug: '^((?!_wdt|_profiler).)*$'
+
+community_test:
+    path:     /s/{testSlug}/{communitySlug}
+    controller: App\Controller\KnowledgeTestController::communityTest
+    requirements:
+        testSlug: '^((?!_wdt|_profiler).)*$'
+        
+knowledge_test:
+    path:     /s/{testSlug}
+    controller: App\Controller\KnowledgeTestController::test
+    requirements:
+        testSlug: '^((?!_wdt|_profiler|u).)*$'

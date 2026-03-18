@@ -1,0 +1,14 @@
+App\Entity\CourseSubject:
+    exclusion_policy: all
+    attributes:
+        id:
+            groups: ["course_subject", "community_test_course_subject"]
+        subject:
+            groups: ["course_subject", "community_test_course_subject"]
+        description:
+            groups: ["course_subject", "community_test_course_subject"]
+        weight:
+            groups: ["course_subject", "community_test_course_subject"]
+        getChapterBlocksIds:
+            serialized_name: chapterBlocks
+            groups: ["course_subject", "community_test_course_subject"]

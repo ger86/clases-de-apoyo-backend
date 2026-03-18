@@ -1,0 +1,7 @@
+blog_index:
+    path:     /blog
+    controller: App\Controller\BlogController::index
+
+blog_article:
+    path:     /blog/{slug}
+    controller: App\Controller\BlogController::article

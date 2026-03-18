@@ -1,0 +1,47 @@
+{% set successContent %}
+<p>
+  ¡Enhorabuena! El pago se ha completado perfectamente. En breves instantes te enviaremos
+  un correo con el libro.
+</p>
+<p>
+  Recuerda que si tienes cualquier problema con tu compra puedes escribirnos a 
+  <a href="mailto:info@clasesdeapoyo.com">info@clasesdeapoyo.com</a>
+</p>
+{% endset %}
+
+<form 
+  action="/charge" 
+  method="post" 
+  class="payment-form" 
+  data-public-api-key="{{ stripePublicKey }}"
+>
+  <div class="alert alert-danger" role="alert"></div>
+  <div class="form-group">
+    <label for="card-element">
+      Nombre en la tarjeta
+    </label>
+    <input id="cardholder-name" type="text" class="form-control" name="cardholder-name">
+  </div>
+  <div class="form-group">
+    <label>
+      Información de tarjeta
+    </label>
+    <div id="card-element"></div>
+  </div>
+  <div>
+    <p><small><strong>Número de tarjeta</strong>: Introduce el número de tu tarjeta.</small></p>
+    <p><small><strong>MM / AA</strong>: Fecha de caducidad de tu tarjeta</small></p>
+    <p><small><strong>CVC</strong>: Código de seguridad de tu tarjeta</small></p>
+  </div>
+  <div class="form-actions">
+    <button 
+      class="btn btn-secondary"
+      data-secret="{{ paymentIntent.client_secret }}" 
+      id="card-button">Pagar {{ book.price|number_format(2) }} €
+    </button>
+  </div>
+</form>
+{% include 'common/animated_success.html.twig' with {
+  'title': '¡Pago completado!',
+  'content': successContent
+} %}

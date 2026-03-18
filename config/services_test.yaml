@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        public: true
+
+    test.App\Service\Menu\MenuBroker: '@App\Service\Menu\MenuBroker'
+    test.App\Service\PremiumService: '@App\Service\PremiumService'
+    test.App\Service\Menu\KnowledgeTestMenuItem: '@App\Service\Menu\KnowledgeTestMenuItem'
+    test.App\Service\BreadcrumbService: '@App\Service\BreadcrumbService'
+    test.App\TwigExtension\PageElementsExtension: '@App\TwigExtension\PageElementsExtension'
+    test.App\TwigExtension\PremiumExtension: '@App\TwigExtension\PremiumExtension'

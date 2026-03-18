@@ -1,0 +1,6 @@
+<h3 class="h3 mb-4">Últimos artículos</h3>
+{% for article in lastArticles %}
+  <div class="mb-8">
+    {% include 'common/blog/article_teaser.html.twig' %}
+  </div>
+{% endfor %}

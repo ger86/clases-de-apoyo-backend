@@ -1,0 +1,30 @@
+<div class="pay-box">
+  <p class="pay-box__amount">
+    {% if discountCode is empty %}
+      20
+    {% else %}
+      {{discountCode.price}}
+    {% endif %}
+    €
+  </p>
+  <div class="pay-box__form">
+    {% include 'paypal/button.html.twig' with { 'paypalButton' : paypalButton} %}
+  </div>
+</div>
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+<p>Si de momento no te interesa realizar el pago puedes <a href="{{ path('app_logout') }}">
+  cerrar sesión</a> para seguir navegando normalmente.</p>
+
+<p>Los pagos en Clases de Apoyo los gestionamos a traves de Paypal, la forma más segura de realizar pagos a través de Internet.</p>
+<p><strong>No necesitas cuenta de Paypal</strong> para realizar el pago. En la página que aparece en la página tras pulsar el botón "Comprar Ahora" podrás introducir los datos de tu tarjeta de crédito sin necesidad de crear una cuenta.
+Basta con que hagas click sobre la opción "No dispone de cuenta de Paypal".</p>
+<p>
+Para cualquier consulta que te surja durante el proceso puedes contactar con nosotros a través de <a href="mailto:info@clasesdeapoyo.com">info@clasesdeapoyo.com</a>.
+</p>
+<p>
+¡Bienvenido!
+</p>

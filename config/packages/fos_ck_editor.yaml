@@ -1,0 +1,24 @@
+fos_ck_editor:
+    default_config: default
+    configs:
+        default:
+            entities: false
+            allowedContent: true
+            toolbar:
+                - [Bold, Italic, Underline, '-', Cut, Copy, Paste, PasteText, PasteFromWord, '-', Undo, Redo, '-', NumberedList, BulletedList, '-', Outdent, Indent, '-', Blockquote, '-', Image, Link, Unlink, Table]
+                - [Format, Maximize, Source]
+            filebrowserBrowseRoute: admin_app_sonatamediamedia_browser
+            filebrowserImageBrowseRoute: admin_app_sonatamediamedia_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadMethod: form
+            filebrowserUploadRoute: admin_app_sonatamediamedia_upload 
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            filebrowserImageUploadRoute: admin_app_sonatamediamedia_upload 
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: default
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

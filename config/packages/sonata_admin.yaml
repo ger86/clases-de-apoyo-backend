@@ -1,0 +1,51 @@
+sonata_admin:
+    title: Clases de Apoyo
+    title_logo: logo.png
+    dashboard:
+        blocks:
+            -   position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [cda_courses, cda_users]
+            -   position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [cda_selectividad, cda_blog, cda_shop]
+        groups:
+            cda_courses:
+                label: "Cursos"
+                items: ~
+            cda_selectividad:
+                label: "Selectividad"
+                items: ~
+            cda_users:
+                label: "Usuarios"
+                items: ~
+            cda_blog:
+                label: "Blog"
+                items: ~
+            cda_shop: 
+                label: "Tienda"
+                items: ~
+            sonata_media:
+                label: Multimedia
+                icon: <i class='fa fa-image'></i>
+    assets:
+        extra_javascripts:
+            - bundles/fosckeditor/ckeditor.js
+            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
+            - bundles/sonataformatter/markitup/sets/markdown/set.js
+            - bundles/sonataformatter/markitup/sets/html/set.js
+            - bundles/sonataformatter/markitup/sets/textile/set.js
+        extra_stylesheets:
+            - bundles/sonataformatter/markitup/skins/sonata/style.css
+            - bundles/sonataformatter/markitup/sets/markdown/style.css
+            - bundles/sonataformatter/markitup/sets/html/style.css
+            - bundles/sonataformatter/markitup/sets/textile/style.css
+            
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+

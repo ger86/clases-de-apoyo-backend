@@ -1,0 +1,54 @@
+home:
+    path:     /
+    controller: App\Controller\DefaultController::home
+
+legal_notice:
+    path:     /aviso-legal
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        path: 'https://app.gdpr.direct/shared/legal-hub?id=N5yCuZMzcmuTbA1kTpmU'
+        permanent: true
+
+legal_notice_cookies:
+    path:     /privacy-statement
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        path: 'https://app.gdpr.direct/shared/legal-hub?id=N5yCuZMzcmuTbA1kTpmU'
+        permanent: true
+
+contact:
+    path:     /contacto
+    controller: App\Controller\DefaultController::contact
+
+app_login: 
+    path: /login
+    controller: App\Controller\LoginController
+
+app_register: 
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+app_verify_email:
+    path: /verify/email
+    controller: App\Controller\RegistrationController::verifyUserEmail
+
+app_forgot_password_request:
+    path: /reset-password
+    controller: App\Controller\ResetPasswordController::request
+
+app_check_email:
+    path: /reset-password/check-email
+    controller: App\Controller\ResetPasswordController::checkEmail
+
+app_reset_password:
+    path: /reset-password/reset/{token}
+    controller: App\Controller\ResetPasswordController::reset
+    defaults: { token: null }
+
+app_profile_show:
+    path: /usuario/perfil
+    controller: App\Controller\ProfileController::show
+
+app_logout:
+    path: /logout
+    controller: App\Controller\LogoutController

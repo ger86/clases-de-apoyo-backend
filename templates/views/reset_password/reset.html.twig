@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restablecer contraseña{% endblock %}
+
+{% block body %}
+
+<div class="container mx-auto px-4 py-8 lg:h-[600px]">
+  <div class="flex justify-center items-center h-full">
+    <div class="simple-box lg:max-w-[600px]">
+      <h1 class="h3 mb-8">Restablece tu contraseña</h1>
+      {{ form_start(resetForm) }}
+          {{ form_row(resetForm.plainPassword) }}
+          <button class="btn-primary w-full">Restablecer contraseña</button>
+      {{ form_end(resetForm) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base_no_ads.html.twig' %}
+
+{% block body %}
+<div class="container shop">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="shop__box">
+        <h2>{{ book.title }}</h2>
+        <p>{{ book.text|raw }}</p>
+        <div class="shop__form">
+          <p>
+            <strong>Precio:</strong> {{ book.price|number_format(2) }} € <small>(IVA inc)</span>
+          </p>
+          {{ form(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('build/shop.css') }}">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock stylesheets %}
+

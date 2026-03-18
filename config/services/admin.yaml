@@ -1,0 +1,166 @@
+services:
+    sonata.admin.chapter:
+        public: true
+        class: App\Admin\ChapterAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Capítulo" }
+        arguments:
+            - ~
+            - App\Entity\Chapter
+            - ~
+    sonata.admin.chapter_block:
+        public: true
+        class: App\Admin\ChapterBlockAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Bloque de capítulos" }
+        arguments:
+            - ~
+            - App\Entity\ChapterBlock
+            - ~
+    sonata.admin.course:
+        public: true
+        class: App\Admin\CourseAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Cursos" }
+        arguments:
+            - ~
+            - App\Entity\Course
+            - ~
+    sonata.admin.community:
+        public: true
+        class: App\Admin\CommunityAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Comunidad Autónoma" }
+        arguments:
+            - ~
+            - App\Entity\Community
+            - ~
+    sonata.admin.community_test:
+        public: true
+        class: App\Admin\CommunityTestAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Test de Comunidad Autónoma" }
+        arguments:
+            - ~
+            - App\Entity\CommunityTest
+            - ~
+    sonata.admin.community_test_course_subject:
+        public: true
+        class: App\Admin\CommunityTestCourseSubjectAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Asignatura para un test de una comunidad autónoma" }
+        arguments:
+            - ~
+            - App\Entity\CommunityTestCourseSubject
+            - ~
+    sonata.admin.course_subject:
+        public: true
+        class: App\Admin\CourseSubjectAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Asignatura de un curso" }
+        arguments:
+            - ~
+            - App\Entity\CourseSubject
+            - ~
+    sonata.admin.exam:
+        public: true
+        class: App\Admin\ExamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Examen de selectividad" }
+        arguments:
+            - ~
+            - App\Entity\Exam
+            - ~
+    sonata.admin.file:
+        public: true
+        class: App\Admin\FileAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Archivo" }
+        arguments:
+            - ~
+            - App\Entity\File
+            - ~
+    sonata.admin.knowledge_test:
+        public: true
+        class: App\Admin\KnowledgeTestAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Test de conocimientos" }
+        arguments:
+            - ~
+            - App\Entity\KnowledgeTest
+            - ~
+    sonata.admin.premium_payment:
+        public: true
+        class: App\Admin\PremiumPaymentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_users, label: "Pagos" }
+        arguments:
+            - ~
+            - App\Entity\PremiumPayment
+            - ~
+    sonata.admin.subject:
+        public: true
+        class: App\Admin\SubjectAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Asignatura" }
+        arguments:
+            - ~
+            - App\Entity\Subject
+            - ~
+    sonata.admin.test_year:
+        public: true
+        class: App\Admin\TestYearAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_selectividad, label: "Año de un test" }
+        arguments:
+            - ~
+            - App\Entity\TestYear
+            - ~
+    sonata.admin.user:
+        public: true
+        class: App\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_users, label: "Usuarios" }
+        arguments:
+            - ~
+            - App\Entity\User
+            - ~
+        calls:
+            - [ setRoles, ["@security.role_hierarchy"]]
+            - [ setUserPasswordHasher, ["@Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface"]]
+    sonata.admin.discount_code:
+        public: true
+        class: App\Admin\DiscountCodeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_users, label: "Código de descuento" }
+        arguments:
+            - ~
+            - App\Entity\DiscountCode
+            - ~
+    sonata.admin.youtube_video:
+        public: true
+        class: App\Admin\YoutubeVideoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_courses, label: "Vídeos" }
+        arguments:
+            - ~
+            - App\Entity\YoutubeVideo
+            - ~
+    admin.blog.article:
+        public: true
+        class: App\Admin\ArticleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_blog, label: 'Artículos' }
+        arguments:
+            - ~
+            - App\Entity\Article
+            - ~
+    admin.shop.book:
+        public: true
+        class: App\Admin\BookAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_shop, label: 'Libros' }
+        arguments:
+            - ~
+            - App\Entity\Book
+            - ~

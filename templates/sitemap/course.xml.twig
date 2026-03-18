@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>{{ url('course',{ 'courseSlug': course.slug }) }}</loc>
+  <lastmod>{{ course.updatedAt|date('c')}}</lastmod>
+  <changefreq>monthly</changefreq>
+</url>
+{% for courseSubject in course.courseSubjects %}
+  <url>
+    <loc>
+      {{ url('course_subject', { 
+          'courseSlug': course.slug, 
+          'subjectSlug': courseSubject.subjectSlug 
+      }) }}
+    </loc>
+    <lastmod>{{ courseSubject.updatedAt|date('c')}}</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  {% for chapterBlock in courseSubject.chapterBlocks %}
+    {% for chapter in chapterBlock.chapters %}
+    <url>
+      <loc>
+        {{ url('chapter', { 
+            'courseSlug': course.slug, 
+            'subjectSlug': courseSubject.subjectSlug,
+            'chapterSlug': chapter.slug
+        }) }}
+      </loc>
+      <lastmod>{{ chapter.updatedAt|date('c')}}</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+</urlset>

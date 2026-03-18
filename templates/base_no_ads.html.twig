@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-itunes-app" content="app-id=593278230"/>
+    <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}"/>
+    <link rel="preload" href="{{ asset('build/fonts/icomoon.ttf') }}" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://accounts.google.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://d10lpsik1i8c69.cloudfront.net">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://ssl.gstatic.com">
+    <link rel="preconnect" href="https://apis.google.com">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://settings.luckyorange.net">
+    {% if (app.environment != 'dev') and not isPremium()%}
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="fb:app_id" content="119458268142780" />
+    <meta property="og:site_name" content="Clases de Apoyo" />
+    <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" />
+    <meta property="og:street_address" content="Avenida Menéndez Pelayo, 83" />
+    <meta property="og:locality" content="Madrid" />
+    <meta property="og:region" content="Madrid" />
+    <meta property="og:postal_code" content="28007" />
+    <meta property="og:country_name" content="Spain" />
+    <meta property="og:email" content="info@clasesdeapoyo.com" />
+    <meta property="og:phone_number" content="91 212 32 11" />
+    {% block metatags %}{% endblock %}
+    <style>
+      {{ outputCss(asset('build/base.css')) }}
+    </style>
+    {% include 'common/elements/analytics.html.twig' %}
+    {% block stylesheets %}{% endblock %} 
+  </head>
+  <body>
+    {{ renderHeader() }}
+    {% block body %}{% endblock %}
+    {% include 'common/elements/prefooter.html.twig' %}
+    {% include 'common/elements/footer.html.twig' %}
+
+    <script src="{{ asset('build/manifest.js') }}"></script>
+    <script src="{{ asset('build/base.js') }}"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name" : "Clases de Apoyo",
+        "url": "{{ app.request.getSchemeAndHttpHost() }}",
+        "logo": "{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/images/logo.png') }}",
+        "contactPoint" : [{
+          "@type" : "ContactPoint",
+          "telephone" : "+34912123211",
+          "contactType" : "customer service",
+          "areaServed" : "ES",
+          "availableLanguage" : [
+            "Spanish"
+          ]
+        }]
+      }
+    </script>
+    {% block javascripts %}{% endblock %}
+  </body>
+</html>

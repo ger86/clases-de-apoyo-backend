@@ -1,0 +1,9 @@
+.home-cover {
+  background-image: url(./home-bg-sm.jpg);
+}
+
+@media screen(lg) {
+  .home-cover {
+    background-image: url(./home-bg.jpg);
+  }
+}

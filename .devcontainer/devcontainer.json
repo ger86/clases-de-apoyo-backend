@@ -1,0 +1,25 @@
+{
+  "name": "Clases de Apoyo Symfony",
+  "dockerComposeFile": [
+    "../.docker/docker-compose.yml"
+  ],
+  "service": "php",
+  "workspaceFolder": "/var/www/symfony",
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+        "settings": {
+          "terminal.integrated.shell.linux": null
+        },
+        "extensions": [
+          "bmewburn.vscode-intelephense-client",
+          "junstyle.php-cs-fixer",
+          "editorconfig.editorconfig",
+          "neilbrayfield.php-docblocker",
+          "kaiwood.insert-cursor-at-beginning-of-each-line-selected",
+          "mykhailokushnir.vscode-php-getter-setter",
+          "syler.sass-indented"
+        ]
+    }
+  }
+}

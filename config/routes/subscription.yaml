@@ -1,0 +1,15 @@
+app_subscription_payment:
+    path:     /u/suscripcion/pago
+    controller: App\Controller\Subscription\SubscriptionPaymentController
+
+app_subscription_payment_success:
+    path:     /u/suscripcion/pago/exito
+    controller: App\Controller\Subscription\SubscriptionPaymentSuccessController
+
+app_subscription_create_checkout_session:
+    path:     /u/suscripcion/checkout-session
+    controller: App\Controller\Subscription\SubscriptionCreateCheckoutSessionController
+
+app_subscription_create_billing_portal_session:
+    path:     /usuario/billing-portal-session
+    controller: App\Controller\Subscription\SubscriptionCreateBillingPortalSessionController

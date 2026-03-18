@@ -1,0 +1,50 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+
+{% set metaDescription = video.excerpt %}
+{% set metaTitle = video.title %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{metaTitle}}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+
+{% endblock %}
+
+{% block pageTitle %}
+{{ video.title }}
+{% endblock %}
+
+{% block pageContent %}
+<article>
+  <div class="mb-8">
+    <iframe
+      class="w-full aspect-video"
+      src="https://www.youtube.com/embed/{{ video.youtubeId }}?rel=0" allowfullscreen
+    >
+    </iframe>
+  </div>
+  <div class="text-lg">
+    {{ video.description|raw }}
+  </div>
+</article>
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="application/ld+json">
+{
+ "@context": "http://schema.org/",
+ "@type": "VideoObject",
+ "name": "{{ video.title }}",
+ "description": "{{ video.excerpt }}",
+ {% if video.image is not empty %}
+ "thumbnailURL": "{{ sonata_path(video.image, 'reference') }}",
+ {% endif %}
+ "uploadDate": "{{ video.createdAt|date('Y-m-d') }}",
+ "contentUrl": "https://www.youtube.com/watch?v={{ video.youtubeId }}"
+ }
+ </script>
+{% endblock javascripts %}
+

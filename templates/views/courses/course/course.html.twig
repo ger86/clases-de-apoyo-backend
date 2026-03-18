@@ -1,0 +1,45 @@
+{% extends 'container_sidebar_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaDescription = "Encuentra apuntes, problemas y ejercicios resueltos de matemáticas, física, química y lengua de " ~ course.name %}
+{% set metaTitle = "Apuntes y ejercicios de " ~ course.name %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{metaTitle}}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+{% endblock %}
+
+{% block pageTitle %}
+Apuntes de {{ course.name }}
+{% endblock %}
+
+{% block breadcrumb %}
+{{ renderBreadcrumb(course) }}
+{% endblock %}
+
+{% block pageContent %}
+<section class="course">
+  <h2 class="h2 mb-8">Escoge tu asignatura</h2>
+  <div>
+    <div class="list-group mb-8">
+      {% for courseSubject in course.courseSubjects %}
+      <a 
+        href="{{ path('course_subject', {courseSlug: course.slug, subjectSlug: courseSubject.subject.slug}) }}" 
+        class="list-group-item"
+      >
+        <div>
+          <h3 class="h3 mb-4 font-normal">{{ courseSubject.subject.name }}</h3>
+          <p class="mb-0 text-lg">Accede a todos los apuntes de {{ courseSubject.subject.name|lower }} de {{ course.name }} y practica con nuestro
+          recopilatorio de ejercicios resueltos.</p>
+        </div>
+        <span class="list-group-item-badge">
+          <i class="icon-angle-right"></i>
+        </span>
+      </a>
+      {% endfor %}
+  </div>
+  <div class="text-lg">
+    {{ course.description|raw }}
+  </div>
+</section>
+{% endblock %}

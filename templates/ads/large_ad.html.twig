@@ -1,0 +1,21 @@
+{% if (app.environment != 'dev') %}
+  {% if not isPremium()%}
+  <div class="large-ad">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7198950640550751"
+      data-ad-slot="7464402583"
+      data-ad-format="auto"></ins>
+  </div>  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  {% endif %}
+{% else %}
+  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+  <div class="large-ad" style="background: #dadada; width: 100%; height: 40px; text-align: center; margin: 0rem 0 1rem; line-height: 40px;">
+    Anuncio largo
+  </div>
+  {% endif %}
+{% endif %}

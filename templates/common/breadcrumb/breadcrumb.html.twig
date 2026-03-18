@@ -1,0 +1,16 @@
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    {% for b in breadcrumb %}
+      {% if b.link is empty %}
+      <li class="pr-2 font-bold text-heading" aria-current="page">{{ b.name }}</li>
+      {% else %}
+      <li 
+        class="pr-2 font-bold text-gray-600 {% if not loop.last %}{{arrow}}{% endif %}"
+      >
+        <a class="text-body" href="{{ b.link }}">{{ b.name }}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
