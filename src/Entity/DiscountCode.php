@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\DiscountCodeRepository;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,8 +25,8 @@ class DiscountCode
     #[ORM\Column(type: 'string', length: 256)]
     private string $stripePlanId = '';
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?DateTimeInterface $validUntil = null;
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?DateTimeImmutable $validUntil = null;
 
     public function __toString()
     {
@@ -61,14 +62,16 @@ class DiscountCode
         return $this;
     }
 
-    public function getValidUntil(): ?DateTimeInterface
+    public function getValidUntil(): ?DateTimeImmutable
     {
         return $this->validUntil;
     }
 
     public function setValidUntil(?DateTimeInterface $validUntil): self
     {
-        $this->validUntil = $validUntil;
+        $this->validUntil = $validUntil instanceof DateTimeImmutable || $validUntil === null
+            ? $validUntil
+            : DateTimeImmutable::createFromMutable($validUntil);
 
         return $this;
     }

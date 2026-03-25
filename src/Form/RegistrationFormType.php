@@ -23,9 +23,9 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'constraints' => [
-                    new Email([
-                        'message' => 'Por favor, introduce un email válido',
-                    ]),
+                    new Email(
+                        message: 'Por favor, introduce un email válido',
+                    ),
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [

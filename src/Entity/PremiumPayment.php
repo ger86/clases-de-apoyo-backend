@@ -15,8 +15,8 @@ class PremiumPayment
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'datetime')]
-    private DateTimeInterface $createdAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'string', length: 512, nullable: false)]
     private string $paymentId;
@@ -42,14 +42,14 @@ class PremiumPayment
         return $this->id;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     public function setCreatedAt(DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt instanceof DateTimeImmutable ? $createdAt : DateTimeImmutable::createFromMutable($createdAt);
 
         return $this;
     }

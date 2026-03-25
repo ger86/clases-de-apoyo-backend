@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Enum\SubscriptionStatus;
 use App\Repository\UserRepository;
-use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,8 +32,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $password = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?DateTimeInterface $premiumUntil = null;
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?DateTimeImmutable $premiumUntil = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $customerId;
@@ -52,13 +51,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $discountCodeSent = false;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private DateTimeInterface $createdAt;
+    private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private DateTimeInterface $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
@@ -77,14 +76,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getPremiumUntil(): ?DateTimeInterface
+    public function getPremiumUntil(): ?DateTimeImmutable
     {
         return $this->premiumUntil;
     }
 
-    public function setPremiumUntil(DateTimeInterface $premiumUntil): self
+    public function setPremiumUntil(?DateTimeInterface $premiumUntil): self
     {
-        $this->premiumUntil = $premiumUntil;
+        $this->premiumUntil = $premiumUntil instanceof DateTimeImmutable || $premiumUntil === null
+            ? $premiumUntil
+            : DateTimeImmutable::createFromMutable($premiumUntil);
 
         return $this;
     }
@@ -128,26 +129,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     public function setCreatedAt(DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt instanceof DateTimeImmutable ? $createdAt : DateTimeImmutable::createFromMutable($createdAt);
 
         return $this;
     }
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt instanceof DateTimeImmutable ? $updatedAt : DateTimeImmutable::createFromMutable($updatedAt);
 
         return $this;
     }
@@ -264,7 +265,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
         $this->customerId = \is_string($customerId) ? $customerId : null;
 
-        $premiumUntil = DateTime::createFromFormat('U', (string) $line->period->end);
+        $premiumUntil = DateTimeImmutable::createFromFormat('U', (string) $line->period->end);
         if ($premiumUntil !== false) {
             $this->premiumUntil = $premiumUntil->modify('+6 hours');
         }

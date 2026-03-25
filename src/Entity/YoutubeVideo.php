@@ -38,13 +38,13 @@ class YoutubeVideo
     #[ORM\JoinColumn(name: 'media_id', referencedColumnName: 'id')]
     private ?SonataMediaMedia $image = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private DateTimeInterface $createdAt;
+    private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private DateTimeInterface $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $excerpt = null;
@@ -133,26 +133,26 @@ class YoutubeVideo
         return $this;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     public function setCreatedAt(DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt instanceof DateTimeImmutable ? $createdAt : DateTimeImmutable::createFromMutable($createdAt);
 
         return $this;
     }
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt instanceof DateTimeImmutable ? $updatedAt : DateTimeImmutable::createFromMutable($updatedAt);
 
         return $this;
     }
