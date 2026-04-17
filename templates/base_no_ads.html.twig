@@ -5,19 +5,15 @@
     <meta name="apple-itunes-app" content="app-id=593278230"/>
     <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}"/>
     <link rel="preload" href="{{ asset('build/fonts/icomoon.ttf') }}" as="font" type="font/ttf" crossorigin="anonymous">
-    <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="preconnect" href="https://accounts.google.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://d10lpsik1i8c69.cloudfront.net">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://ssl.gstatic.com">
     <link rel="preconnect" href="https://apis.google.com">
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://settings.luckyorange.net">
-    {% if (app.environment != 'dev') and not isPremium()%}
-    <link rel="preconnect" href="https://googleads.g.doubleclick.net">
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="fb:app_id" content="119458268142780" />
     <meta property="og:site_name" content="Clases de Apoyo" />
@@ -30,20 +26,23 @@
     <meta property="og:email" content="info@clasesdeapoyo.com" />
     <meta property="og:phone_number" content="91 212 32 11" />
     {% block metatags %}{% endblock %}
-    <style>
-      {{ outputCss(asset('build/base.css')) }}
-    </style>
-    {% include 'common/elements/analytics.html.twig' %}
+    {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %} 
   </head>
-  <body>
+  {% set analytics_enabled = app.environment == 'prod' %}
+  {% set google_ads_enabled = false %}
+  {% set cookie_consent_available = analytics_enabled or app.environment == 'dev' %}
+  <body
+    data-ga-enabled="{{ analytics_enabled ? '1' : '0' }}"
+    data-ga-id="{{ analytics_enabled ? 'G-20GQFJDF5H' : '' }}"
+    data-google-ads-enabled="0"
+    data-google-ads-client=""
+  >
     {{ renderHeader() }}
     {% block body %}{% endblock %}
+    
     {% include 'common/elements/prefooter.html.twig' %}
     {% include 'common/elements/footer.html.twig' %}
-
-    <script src="{{ asset('build/manifest.js') }}"></script>
-    <script src="{{ asset('build/base.js') }}"></script>
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -62,6 +61,12 @@
         }]
       }
     </script>
+    {{ encore_entry_script_tags('app') }}
     {% block javascripts %}{% endblock %}
+    {% include 'common/elements/cookie-consent.html.twig' with {
+      consent_available: cookie_consent_available,
+      analytics_enabled: analytics_enabled,
+      ads_enabled: google_ads_enabled
+    } %}
   </body>
 </html>
