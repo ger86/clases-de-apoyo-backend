@@ -33,6 +33,7 @@
     "symfony/runtime": "8.0.*",
     "symfony/security-bundle": "8.0.*",
     "symfony/serializer": "8.0.*",
+    "symfony/twig-bridge": "8.0.3",
     "symfony/twig-bundle": "8.0.*",
     "symfony/validator": "8.0.*",
     "symfony/webpack-encore-bundle": "^2.4",

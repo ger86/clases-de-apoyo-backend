@@ -32,9 +32,9 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'label' => 'Acepto los términos y condiciones',
                 'constraints' => [
-                    new IsTrue([
-                        'message' => 'Por favor, acepta los términos y condiciones',
-                    ]),
+                    new IsTrue(
+                        message: 'Por favor, acepta los términos y condiciones',
+                    ),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -42,14 +42,14 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Contraseña',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Por favor, introduce una contraseña',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Tu contraseña debe tener al menos {{ limit }} caracteres',
-                        'max' => 4096,
-                    ]),
+                    new NotBlank(
+                        message: 'Por favor, introduce una contraseña',
+                    ),
+                    new Length(
+                        min: 6,
+                        minMessage: 'Tu contraseña debe tener al menos {{ limit }} caracteres',
+                        max: 4096,
+                    ),
                 ],
             ])
             ->add('recaptcha', Recaptcha3Type::class, [

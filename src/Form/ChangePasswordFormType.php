@@ -20,14 +20,14 @@ class ChangePasswordFormType extends AbstractType
                 'first_options' => [
                     'attr' => ['autocomplete' => 'new-password'],
                     'constraints' => [
-                        new NotBlank([
-                            'message' => 'Por favor, introduce una contraseña',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Tu contraseña debe tener al menos {{ limit }} caracteres',
-                            'max' => 4096,
-                        ]),
+                        new NotBlank(
+                            message: 'Por favor, introduce una contraseña',
+                        ),
+                        new Length(
+                            min: 6,
+                            minMessage: 'Tu contraseña debe tener al menos {{ limit }} caracteres',
+                            max: 4096,
+                        ),
                     ],
                     'label' => 'Nueva contraseña',
                 ],
