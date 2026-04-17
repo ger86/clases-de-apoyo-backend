@@ -23,6 +23,10 @@ p {
   body.cookie-consent-open {
     overflow-y: hidden;
   }
+
+  body.file-ai-chat-open {
+    overflow: hidden;
+  }
 }
 
 @layer components {
@@ -154,5 +158,169 @@ p {
   .formatted-text h4
   {
     @apply mt-8 mb-4;
+  }
+
+  .file-viewer-shell {
+    @apply relative overflow-hidden rounded-2xl bg-white shadow-sm;
+  }
+
+  .file-viewer-frame {
+    @apply block min-h-[650px] border-0 bg-white;
+  }
+
+  .file-ai-root {
+    @apply relative;
+  }
+
+  .file-ai-floating-action {
+    @apply absolute right-4 top-4 z-10 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-primary-dark;
+  }
+
+  .file-ai-backdrop {
+    @apply pointer-events-none fixed inset-0 z-40 bg-slate-950/45 opacity-0 transition-opacity duration-200;
+  }
+
+  .file-ai-backdrop-visible {
+    @apply pointer-events-auto opacity-100;
+  }
+
+  .file-ai-drawer {
+    @apply pointer-events-none fixed right-0 top-0 z-50 flex h-full w-full max-w-[28rem] translate-x-full flex-col gap-4 overflow-hidden border-l border-slate-200 bg-[#f4f8fb] p-4 opacity-0 shadow-2xl transition-all duration-200 sm:p-5;
+  }
+
+  .file-ai-drawer-visible {
+    @apply pointer-events-auto translate-x-0 opacity-100;
+  }
+
+  .file-ai-drawer-header {
+    @apply flex items-start justify-between gap-4 border-b border-slate-200 pb-4;
+  }
+
+  .file-ai-kicker {
+    @apply mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .file-ai-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+
+  .file-ai-close-button {
+    @apply rounded-full border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-900;
+  }
+
+  .file-ai-message-list {
+    @apply flex flex-1 flex-col gap-3 overflow-y-auto pr-1;
+  }
+
+  .file-ai-info-card {
+    @apply rounded-3xl bg-sky-100 p-4;
+  }
+
+  .file-ai-info-title {
+    @apply mb-2 text-base font-bold text-slate-900;
+  }
+
+  .file-ai-info-text {
+    @apply text-sm leading-6 text-slate-900;
+  }
+
+  .file-ai-empty-state {
+    @apply rounded-3xl border border-dashed border-slate-300 bg-white px-5 py-6 text-center;
+  }
+
+  .file-ai-empty-title {
+    @apply mb-2 text-lg font-bold text-slate-900;
+  }
+
+  .file-ai-empty-text {
+    @apply text-sm leading-6 text-slate-600;
+  }
+
+  .file-ai-message-row {
+    @apply flex;
+  }
+
+  .file-ai-message-row-user {
+    @apply justify-end;
+  }
+
+  .file-ai-message-row-assistant {
+    @apply justify-start;
+  }
+
+  .file-ai-message-bubble {
+    @apply max-w-[90%] rounded-[1.5rem] px-4 py-3 shadow-sm;
+  }
+
+  .file-ai-message-bubble-user {
+    @apply bg-primary text-white;
+  }
+
+  .file-ai-message-bubble-assistant {
+    @apply bg-white text-slate-900;
+  }
+
+  .file-ai-message-role {
+    @apply mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary;
+  }
+
+  .file-ai-message-role-user {
+    @apply text-sky-100;
+  }
+
+  .file-ai-message-body {
+    @apply whitespace-pre-wrap break-words text-sm leading-6 text-slate-900;
+  }
+
+  .file-ai-message-body-user {
+    @apply text-white;
+  }
+
+  .file-ai-message-body p {
+    @apply mb-3;
+  }
+
+  .file-ai-message-body p:last-child {
+    @apply mb-0;
+  }
+
+  .file-ai-message-body mjx-container {
+    @apply max-w-full overflow-x-auto overflow-y-hidden;
+  }
+
+  .file-ai-message-body mjx-container[display="true"] {
+    @apply my-3;
+  }
+
+  .file-ai-loading-bubble {
+    @apply flex items-center gap-3;
+  }
+
+  .file-ai-loading-spinner {
+    @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent;
+  }
+
+  .file-ai-loading-text {
+    @apply text-sm font-semibold text-slate-700;
+  }
+
+  .file-ai-error {
+    @apply rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700;
+  }
+
+  .file-ai-composer {
+    @apply border-t border-slate-200 bg-[#f4f8fb] pt-4;
+  }
+
+  .file-ai-textarea {
+    @apply mb-3 block min-h-[72px] w-full resize-none rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm leading-6 text-slate-900 shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+
+  .file-ai-send-button {
+    @apply inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:bg-primary-dark;
+  }
+
+  .file-ai-send-button-disabled {
+    @apply cursor-not-allowed bg-slate-300 text-slate-50 hover:bg-slate-300;
   }
 }

@@ -1,3 +1,13 @@
 file:
     path:     /f/{fileId}
     controller: App\Controller\FileController::viewer
+
+file_pdf:
+    path: /f/{fileId}/pdf
+    controller: App\Controller\FileController::pdf
+    methods: [GET]
+
+file_ai_chat:
+    path: /f/{fileId}/ai-chat
+    controller: App\Controller\FileController::askAi
+    methods: [POST]

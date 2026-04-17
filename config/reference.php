@@ -1237,6 +1237,10 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         html_to_text_converter?: scalar|null, // A service implementing the "Symfony\Component\Mime\HtmlToTextConverter\HtmlToTextConverterInterface". // Default: null
  *     },
  * }
+ * @psalm-type StimulusConfig = array{
+ *     controller_paths?: list<scalar|null>,
+ *     controllers_json?: scalar|null, // Default: "%kernel.project_dir%/assets/controllers.json"
+ * }
  * @psalm-type MonologConfig = array{
  *     use_microseconds?: scalar|null, // Default: true
  *     channels?: list<scalar|null>,
@@ -2049,6 +2053,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     doctrine_migrations?: DoctrineMigrationsConfig,
  *     security?: SecurityConfig,
  *     twig?: TwigConfig,
+ *     stimulus?: StimulusConfig,
  *     monolog?: MonologConfig,
  *     sonata_block?: SonataBlockConfig,
  *     knp_menu?: KnpMenuConfig,
@@ -2075,6 +2080,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         security?: SecurityConfig,
  *         web_profiler?: WebProfilerConfig,
  *         twig?: TwigConfig,
+ *         stimulus?: StimulusConfig,
  *         monolog?: MonologConfig,
  *         debug?: DebugConfig,
  *         maker?: MakerConfig,
@@ -2103,6 +2109,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         security?: SecurityConfig,
  *         twig?: TwigConfig,
+ *         stimulus?: StimulusConfig,
  *         monolog?: MonologConfig,
  *         sonata_block?: SonataBlockConfig,
  *         knp_menu?: KnpMenuConfig,
@@ -2130,6 +2137,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         security?: SecurityConfig,
  *         web_profiler?: WebProfilerConfig,
  *         twig?: TwigConfig,
+ *         stimulus?: StimulusConfig,
  *         monolog?: MonologConfig,
  *         debug?: DebugConfig,
  *         sonata_block?: SonataBlockConfig,
