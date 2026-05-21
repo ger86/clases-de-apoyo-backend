@@ -12,11 +12,9 @@ use App\Service\Stripe\StripeCreateProductCheckoutSession;
 use App\Service\Stripe\StripeRetrieveCheckoutSession;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class ProductController extends AbstractController
 {
@@ -98,7 +96,7 @@ class ProductController extends AbstractController
         string $fileKey,
         ProductPurchaseRepository $purchaseRepository,
         ProductDownloadStorage $downloadStorage
-    ): BinaryFileResponse {
+    ): RedirectResponse {
         $purchase = $purchaseRepository->findPaidByToken($token);
         if ($purchase === null) {
             throw $this->createAccessDeniedException('No puedes descargar este producto.');
@@ -109,18 +107,11 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException('No existe ese archivo.');
         }
 
-        $path = $downloadStorage->resolveReadablePath($productFile);
-        if ($path === null) {
+        $downloadUrl = $downloadStorage->createDownloadUrl($productFile);
+        if ($downloadUrl === null) {
             throw $this->createNotFoundException('El archivo todavía no está disponible.');
         }
 
-        $response = new BinaryFileResponse($path);
-        $response->headers->set('Content-Type', 'application/pdf');
-        $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $productFile['filename']
-        );
-
-        return $response;
+        return new RedirectResponse($downloadUrl);
     }
 }

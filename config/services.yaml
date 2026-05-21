@@ -9,7 +9,7 @@ parameters:
     app.stripe.public_key: "%env(resolve:STRIPE_PUBLIC_KEY)%"
     app.stripe.secret_key: "%env(resolve:STRIPE_SECRET_KEY)%"
     app.stripe.webhook_secret: "%env(resolve:STRIPE_WEBHOOK_SECRET)%"
-    app.product_download_dir: "%kernel.project_dir%/var/product-downloads"
+    app.product_download_presigned_ttl: "+10 minutes"
 
 imports:
     - { resource: "services/admin.yaml" }
@@ -21,7 +21,6 @@ services:
         public: false
         bind:
             $projectDir: "%kernel.project_dir%"
-            $productDownloadDir: "%app.product_download_dir%"
             $sitemapDir: "%sitemap_dir%"
             $env: "%kernel.environment%"
 

@@ -3,44 +3,44 @@
 namespace App\Service\Product;
 
 use App\Entity\Product;
+use Aws\Exception\AwsException;
+use Aws\S3\S3Client;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class ProductDownloadStorage
 {
     public function __construct(
-        private string $productDownloadDir
+        private S3Client $s3Client,
+        #[Autowire(env: 'S3_BUCKET_NAME')]
+        private string $bucketName,
+        #[Autowire('%app.product_download_presigned_ttl%')]
+        private string $presignedTtl
     ) {
     }
 
-    public function getRootDir(): string
+    public function getStorageDescription(): string
     {
-        return rtrim($this->productDownloadDir, '/');
+        return \sprintf('s3://%s', $this->bucketName);
     }
 
     /**
      * @param array{key: string, label: string, path: string, filename: string, description?: string} $productFile
      */
-    public function resolveReadablePath(array $productFile): ?string
+    public function createDownloadUrl(array $productFile): ?string
     {
-        $path = $this->normalizeRelativePath($productFile['path']);
-        if ($path === null) {
+        $objectKey = $this->normalizeObjectKey($productFile['path']);
+        if ($objectKey === null || !$this->objectExists($objectKey)) {
             return null;
         }
 
-        $resolvedPath = realpath($this->getRootDir() . '/' . $path);
-        $resolvedRoot = realpath($this->getRootDir());
-        if ($resolvedPath === false || $resolvedRoot === false) {
-            return null;
-        }
+        $command = $this->s3Client->getCommand('GetObject', [
+            'Bucket' => $this->bucketName,
+            'Key' => $objectKey,
+            'ResponseContentDisposition' => \sprintf('attachment; filename="%s"', addslashes($productFile['filename'])),
+            'ResponseContentType' => 'application/pdf',
+        ]);
 
-        if (!$this->isInsideRoot($resolvedPath, $resolvedRoot)) {
-            return null;
-        }
-
-        if (!is_file($resolvedPath) || !is_readable($resolvedPath)) {
-            return null;
-        }
-
-        return $resolvedPath;
+        return (string) $this->s3Client->createPresignedRequest($command, $this->presignedTtl)->getUri();
     }
 
     /**
@@ -50,7 +50,8 @@ final class ProductDownloadStorage
     {
         $missing = [];
         foreach ($product->getFiles() as $file) {
-            if ($this->resolveReadablePath($file) === null) {
+            $objectKey = $this->normalizeObjectKey($file['path']);
+            if ($objectKey === null || !$this->objectExists($objectKey)) {
                 $missing[] = $file['path'];
             }
         }
@@ -58,7 +59,7 @@ final class ProductDownloadStorage
         return $missing;
     }
 
-    private function normalizeRelativePath(string $path): ?string
+    private function normalizeObjectKey(string $path): ?string
     {
         $path = ltrim($path, '/');
         $legacyPrefix = 'var/product-downloads/';
@@ -79,10 +80,21 @@ final class ProductDownloadStorage
         return $path;
     }
 
-    private function isInsideRoot(string $resolvedPath, string $resolvedRoot): bool
+    private function objectExists(string $objectKey): bool
     {
-        $resolvedRoot = rtrim($resolvedRoot, '/');
+        try {
+            $this->s3Client->headObject([
+                'Bucket' => $this->bucketName,
+                'Key' => $objectKey,
+            ]);
 
-        return $resolvedPath === $resolvedRoot || str_starts_with($resolvedPath, $resolvedRoot . '/');
+            return true;
+        } catch (AwsException $exception) {
+            if (\in_array($exception->getStatusCode(), [403, 404], true)) {
+                return false;
+            }
+
+            throw $exception;
+        }
     }
 }

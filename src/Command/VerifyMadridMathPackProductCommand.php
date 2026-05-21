@@ -67,7 +67,7 @@ class VerifyMadridMathPackProductCommand extends Command
 
         $missingFiles = $this->downloadStorage->findMissingFiles($product);
         foreach ($missingFiles as $missingFile) {
-            $errors[] = \sprintf('No existe o no es legible el archivo %s dentro de %s.', $missingFile, $this->downloadStorage->getRootDir());
+            $errors[] = \sprintf('No existe o no es legible el archivo %s dentro de %s.', $missingFile, $this->downloadStorage->getStorageDescription());
         }
 
         if ($errors !== []) {
@@ -81,7 +81,7 @@ class VerifyMadridMathPackProductCommand extends Command
 
         $output->writeln(\sprintf('<info>Producto verificado:</info> %s', $product->getSlug()));
         $output->writeln(\sprintf('Archivos: %d', \count($product->getFiles())));
-        $output->writeln(\sprintf('Directorio: %s', $this->downloadStorage->getRootDir()));
+        $output->writeln(\sprintf('Almacenamiento: %s', $this->downloadStorage->getStorageDescription()));
 
         return Command::SUCCESS;
     }
