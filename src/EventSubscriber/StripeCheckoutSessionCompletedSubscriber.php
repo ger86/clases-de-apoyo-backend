@@ -31,6 +31,10 @@ class StripeCheckoutSessionCompletedSubscriber implements EventSubscriberInterfa
     public function onCheckoutSessionCompleted(StripeCheckoutSessionCompletedEvent $event): void
     {
         $session = $event->session;
+        if ($session->mode !== 'subscription') {
+            return;
+        }
+
         $user = $this->getUser($session);
         $user->processSubscription($session->subscription, $session->customer, SubscriptionStatus::ACTIVE);
         $this->em->flush();

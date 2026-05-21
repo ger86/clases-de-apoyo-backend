@@ -1,0 +1,67 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaTitle = product.title ~ ' | Clases de Apoyo' %}
+{% set metaDescription = 'Descarga el pack completo de exámenes y soluciones de PAU/EvAU Matemáticas II Madrid desde 1994 hasta 2025.' %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+{% endblock %}
+
+{% block pageTitle %}
+{{ product.title }}
+{% endblock %}
+
+{% block pageContent %}
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-8">
+    <div class="text-lg mb-8">
+      {{ product.description|raw }}
+    </div>
+
+    <div class="simple-box mb-8">
+      <h2 class="h2 mb-4">Qué incluye</h2>
+      <ul class="list-disc list-inside text-lg">
+        <li>88 enunciados de Matemáticas II de la PAU/EvAU de Madrid.</li>
+        <li>81 documentos de soluciones.</li>
+        <li>PDF completo de 943 páginas con exámenes y soluciones.</li>
+        <li>Archivos separados de enunciados y soluciones para estudiar con más comodidad.</li>
+      </ul>
+    </div>
+
+    <div class="simple-box">
+      <h2 class="h2 mb-4">Archivos que recibirás</h2>
+      <div class="list-group">
+        {% for file in product.files %}
+          <div class="list-group-item">
+            <span>
+              <strong>{{ file.label }}</strong>
+              {% if file.description is defined %}
+                <br><small>{{ file.description }}</small>
+              {% endif %}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <aside class="col-span-12 lg:col-span-4" role="complementary">
+    <div class="simple-box sticky">
+      <p class="text-lg font-bold mb-2">Pago único</p>
+      <p class="text-4xl font-bold mb-6">{{ product.formattedPrice }}</p>
+      <form action="{{ path('product_checkout', {slug: product.slug}) }}" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token('product_checkout_' ~ product.id) }}">
+        <button class="btn btn-secondary block w-full text-center" type="submit">
+          Comprar y descargar
+        </button>
+      </form>
+      <p class="mt-4 text-sm">
+        El pago se realiza de forma segura con Stripe. Tras completarlo, verás una página privada con tus descargas.
+      </p>
+    </div>
+  </aside>
+</section>
+{% endblock %}

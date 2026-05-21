@@ -1,0 +1,46 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>Descarga tu pack | Clases de Apoyo</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block pageTitle %}
+Descarga tu pack
+{% endblock %}
+
+{% block pageContent %}
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-8">
+    <h2 class="h2 mb-4">{{ product.title }}</h2>
+
+    {% if purchase.paid %}
+      <p class="text-lg mb-8">
+        Tu pago se ha confirmado. Puedes descargar los archivos desde esta página.
+      </p>
+      <div class="list-group">
+        {% for file in product.files %}
+          <a
+            class="list-group-item"
+            href="{{ path('product_purchase_download', {token: purchase.downloadToken, fileKey: file.key}) }}"
+            rel="nofollow"
+          >
+            <span>{{ file.label }}</span>
+            <span class="list-group-item-badge"><i class="icon-download"></i></span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="simple-box">
+        <h3 class="h3 mb-4">Estamos confirmando el pago</h3>
+        <p class="mb-4">
+          Stripe todavía no ha notificado la confirmación del pago. Normalmente tarda unos segundos.
+        </p>
+        <a class="btn btn-secondary inline-block" href="{{ path('product_purchase_success', {token: purchase.downloadToken}) }}" rel="nofollow">
+          Actualizar
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+product_show:
+    path: /packs/{slug}
+    controller: App\Controller\ProductController::show
+    methods: [GET]
+
+product_checkout:
+    path: /packs/{slug}/checkout
+    controller: App\Controller\ProductController::checkout
+    methods: [POST]
+
+product_purchase_success:
+    path: /packs/compra/{token}/exito
+    controller: App\Controller\ProductController::success
+    methods: [GET]
+
+product_purchase_download:
+    path: /packs/compra/{token}/descargar/{fileKey}
+    controller: App\Controller\ProductController::download
+    methods: [GET]
