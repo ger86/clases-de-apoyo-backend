@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use App\Service\Product\ProductDownloadStorage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,7 +17,8 @@ class SeedMadridMathPackProductCommand extends Command
 
     public function __construct(
         private ProductRepository $productRepository,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private ProductDownloadStorage $downloadStorage
     ) {
         parent::__construct();
     }
@@ -59,24 +61,34 @@ HTML)
                     'key' => 'complete',
                     'label' => 'Pack completo: exámenes y soluciones',
                     'description' => '943 páginas.',
-                    'path' => 'var/product-downloads/pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-examenes-y-soluciones.pdf',
+                    'path' => 'pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-examenes-y-soluciones.pdf',
                     'filename' => 'PAU-Matematicas-II-Madrid-1994-2025-examenes-y-soluciones.pdf',
                 ],
                 [
                     'key' => 'enunciados',
                     'label' => 'Solo enunciados',
                     'description' => '194 páginas.',
-                    'path' => 'var/product-downloads/pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-enunciados.pdf',
+                    'path' => 'pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-enunciados.pdf',
                     'filename' => 'PAU-Matematicas-II-Madrid-1994-2025-enunciados.pdf',
                 ],
                 [
                     'key' => 'soluciones',
                     'label' => 'Solo soluciones',
                     'description' => '749 páginas.',
-                    'path' => 'var/product-downloads/pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-soluciones.pdf',
+                    'path' => 'pau-matematicas-ii-madrid-1994-2025/PAU-Matematicas-II-Madrid-1994-2025-soluciones.pdf',
                     'filename' => 'PAU-Matematicas-II-Madrid-1994-2025-soluciones.pdf',
                 ],
             ]);
+
+        $missingFiles = $this->downloadStorage->findMissingFiles($product);
+        if ($missingFiles !== []) {
+            $output->writeln(\sprintf('<error>No se puede activar el producto. Faltan archivos en %s:</error>', $this->downloadStorage->getRootDir()));
+            foreach ($missingFiles as $missingFile) {
+                $output->writeln(\sprintf(' - %s', $missingFile));
+            }
+
+            return Command::FAILURE;
+        }
 
         $this->entityManager->persist($product);
         $this->entityManager->flush();

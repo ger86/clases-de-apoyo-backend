@@ -2,6 +2,7 @@
 
 namespace App\Service\Product;
 
+use App\Entity\ProductPurchase;
 use App\Repository\ProductPurchaseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
@@ -35,19 +36,53 @@ final class CompleteProductPurchaseFromStripeSession
             throw new \RuntimeException(\sprintf('Stripe checkout session %s does not match product purchase %d.', $session->id, $purchase->getId()));
         }
 
+        if ($session->payment_status === 'paid') {
+            $this->assertSessionMatchesPurchase($session, $purchase, $metadata);
+            $purchase->markPaid();
+        }
+
         $purchase
             ->setStripeCheckoutSessionId($session->id)
             ->setEmail($session->customer_details?->email ?? $session->customer_email)
             ->setStripePaymentIntentId($this->normalizeStripeId($session->payment_intent))
-            ->setStripeCustomerId($this->normalizeStripeId($session->customer))
-            ->setAmountTotal($session->amount_total ?? $purchase->getProduct()->getPriceCents())
-            ->setCurrency($session->currency ?? $purchase->getProduct()->getCurrency());
-
-        if ($session->payment_status === 'paid') {
-            $purchase->markPaid();
-        }
+            ->setStripeCustomerId($this->normalizeStripeId($session->customer));
 
         $this->entityManager->flush();
+    }
+
+    /**
+     * @param array<string,mixed> $metadata
+     */
+    private function assertSessionMatchesPurchase(Session $session, ProductPurchase $purchase, array $metadata): void
+    {
+        $product = $purchase->getProduct();
+        if ($session->amount_total !== $purchase->getAmountTotal()) {
+            throw new \RuntimeException(\sprintf(
+                'Stripe checkout session %s amount %s does not match product purchase %d amount %d.',
+                $session->id,
+                (string) $session->amount_total,
+                $purchase->getId(),
+                $purchase->getAmountTotal()
+            ));
+        }
+
+        if (strtolower((string) $session->currency) !== $purchase->getCurrency()) {
+            throw new \RuntimeException(\sprintf(
+                'Stripe checkout session %s currency %s does not match product purchase %d currency %s.',
+                $session->id,
+                (string) $session->currency,
+                $purchase->getId(),
+                $purchase->getCurrency()
+            ));
+        }
+
+        if (($metadata['product_code'] ?? null) !== $product->getCode()) {
+            throw new \RuntimeException(\sprintf(
+                'Stripe checkout session %s product code does not match product purchase %d.',
+                $session->id,
+                $purchase->getId()
+            ));
+        }
     }
 
     private function normalizeStripeId(mixed $value): ?string

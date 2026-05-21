@@ -26,10 +26,12 @@ final class StripeCreateProductCheckoutSession
         $user = $this->security->getUser();
         $product = $purchase->getProduct();
 
+        $successUrl = $this->urlGenerator->generate('product_purchase_success', [
+            'token' => $purchase->getDownloadToken(),
+        ], UrlGeneratorInterface::ABSOLUTE_URL);
+
         $sessionPayload = [
-            'success_url' => $this->urlGenerator->generate('product_purchase_success', [
-                'token' => $purchase->getDownloadToken(),
-            ], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url' => $successUrl . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => $this->urlGenerator->generate('product_show', [
                 'slug' => $product->getSlug(),
             ], UrlGeneratorInterface::ABSOLUTE_URL),

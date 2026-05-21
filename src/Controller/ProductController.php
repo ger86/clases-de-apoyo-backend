@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Entity\ProductPurchase;
 use App\Repository\ProductPurchaseRepository;
 use App\Repository\ProductRepository;
+use App\Service\Product\CompleteProductPurchaseFromStripeSession;
+use App\Service\Product\ProductDownloadStorage;
 use App\Service\Security;
 use App\Service\Stripe\StripeCreateProductCheckoutSession;
+use App\Service\Stripe\StripeRetrieveCheckoutSession;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -62,11 +65,26 @@ class ProductController extends AbstractController
         return new RedirectResponse((string) $session->url);
     }
 
-    public function success(string $token, ProductPurchaseRepository $purchaseRepository): Response
+    public function success(
+        string $token,
+        Request $request,
+        ProductPurchaseRepository $purchaseRepository,
+        StripeRetrieveCheckoutSession $retrieveCheckoutSession,
+        CompleteProductPurchaseFromStripeSession $completeProductPurchase
+    ): Response
     {
         $purchase = $purchaseRepository->findOneBy(['downloadToken' => $token]);
         if ($purchase === null) {
             throw $this->createNotFoundException('No existe esa compra');
+        }
+
+        $sessionId = (string) $request->query->get('session_id');
+        if (!$purchase->isPaid() && $sessionId !== '') {
+            if ($purchase->getStripeCheckoutSessionId() !== $sessionId) {
+                throw $this->createAccessDeniedException('La sesión de pago no coincide con esta compra.');
+            }
+
+            ($completeProductPurchase)(($retrieveCheckoutSession)($sessionId));
         }
 
         return $this->render('views/products/success.html.twig', [
@@ -79,7 +97,7 @@ class ProductController extends AbstractController
         string $token,
         string $fileKey,
         ProductPurchaseRepository $purchaseRepository,
-        string $projectDir
+        ProductDownloadStorage $downloadStorage
     ): BinaryFileResponse {
         $purchase = $purchaseRepository->findPaidByToken($token);
         if ($purchase === null) {
@@ -91,8 +109,8 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException('No existe ese archivo.');
         }
 
-        $path = $projectDir . '/' . ltrim($productFile['path'], '/');
-        if (!is_file($path)) {
+        $path = $downloadStorage->resolveReadablePath($productFile);
+        if ($path === null) {
             throw $this->createNotFoundException('El archivo todavía no está disponible.');
         }
 
