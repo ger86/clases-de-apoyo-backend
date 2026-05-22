@@ -15,15 +15,18 @@ Reference implementation files:
 - `src/Entity/Product.php`
 - `src/Entity/ProductPurchase.php`
 - `src/Controller/ProductController.php`
-- `src/Command/SeedMadridMathPackProductCommand.php`
-- `src/Command/VerifyMadridMathPackProductCommand.php`
+- `src/Command/SeedPauBundleProductCommand.php`
+- `src/Command/VerifyPauBundleProductCommand.php`
+- `src/Command/SeedMadridMathPackProductCommand.php` (legacy first-pack command)
+- `src/Command/VerifyMadridMathPackProductCommand.php` (legacy first-pack command)
+- `src/Service/Product/PauBundleProductCatalog.php`
 - `src/Service/Product/ProductDownloadStorage.php`
 - `src/Service/Product/CompleteProductPurchaseFromStripeSession.php`
 - `src/Service/Stripe/StripeCreateProductCheckoutSession.php`
 - `src/Service/Stripe/StripeRetrieveCheckoutSession.php`
 - `templates/views/products/show.html.twig`
 - `templates/views/products/success.html.twig`
-- `templates/common/products/madrid_math_pack_promo.html.twig`
+- `templates/common/products/pau_bundle_pack_promo.html.twig`
 
 ## Product Design Checklist
 
@@ -154,32 +157,34 @@ Webhook completion validates amount, currency, product code, and checkout sessio
 
 ## Product Seed And Verify
 
-The current seed/verify commands are specific to the Madrid Matematicas II pack:
+The generic seed/verify commands work for every configured pack in `PauBundleProductCatalog`:
 
 ```bash
-php bin/console app:product:seed-madrid-math-pack \
+php bin/console app:product:seed-pau-bundle \
+  --product-code=<product_code> \
   --stripe-product-id=<stripe_product_id> \
   --stripe-price-id=<stripe_price_id> \
   --env=prod
 ```
 
 ```bash
-php bin/console app:product:verify-madrid-math-pack \
+php bin/console app:product:verify-pau-bundle \
+  --product-code=<product_code> \
   --stripe-product-id=<stripe_product_id> \
   --stripe-price-id=<stripe_price_id> \
   --env=prod
 ```
 
-For a second pack, either:
+For another pack:
 
-- generalize these commands so they accept a product config, or
-- add a new pair of product-specific seed/verify commands.
+- Add the product definition to `PauBundleProductCatalog`.
+- Generate and upload the PDFs to the S3 paths declared in that definition.
+- Create the Stripe Product and Price.
+- Run the generic seed and verify commands with the new `product-code`.
 
-Preferred direction:
+Preferred future direction:
 
-- Move product definitions into structured config or a small catalog service.
-- Make one generic seed command validate Stripe IDs, local price/currency, product metadata, and S3 files for any configured pack.
-- Make one generic verify command usable in deployments and smoke tests.
+- Move product definitions from PHP code into structured config if the catalog grows beyond a few packs.
 
 Minimum requirements for any new seed command:
 
@@ -203,7 +208,7 @@ For each bundle, decide how targeted visitors discover it.
 
 Reference for Madrid Matematicas II:
 
-- `src/Service/Product/MadridMathPackContext.php` detects the target context.
+- `src/Service/Product/PauBundleProductCatalog.php` detects configured pack contexts.
 - `src/Service/PremiumService.php` applies file-level access behavior.
 - `src/TwigExtension/PremiumExtension.php` exposes Twig helpers.
 - `templates/views/knowledge_tests/exam/exam.html.twig` routes locked target files to the pack.
@@ -231,7 +236,7 @@ git pull
 composer install --no-dev --optimize-autoloader
 php bin/console doctrine:migrations:migrate --no-interaction --env=prod
 php bin/console cache:clear --env=prod
-php bin/console app:product:verify-madrid-math-pack --env=prod
+php bin/console app:product:verify-pau-bundle --product-code=<product_code> --env=prod
 ```
 
 Adapt the final verify command for the product being deployed.
@@ -290,4 +295,3 @@ For each new bundle, add or update a record under `docs/agent-records/` with:
 - Deployment date and smoke-test results.
 - Any access-control or promotion changes.
 - Open risks and follow-ups.
-

@@ -1,0 +1,180 @@
+# PAU Madrid Physics Pack Record
+
+Date: 2026-05-22
+Project: Clases de Apoyo backend
+Status: generated locally, uploaded to S3, Stripe product/price created, backend implementation in progress
+Primary product: `pau-fisica-madrid-1996-2025`
+
+## Purpose
+
+This document records the second paid PAU bundle product, created by repeating and generalizing the Matemáticas II Madrid process. Use `docs/runbooks/create-pau-bundle.md` as the repeatable process and this file as the Física-specific trace record.
+
+## Product
+
+- Product code: `pau_fisica_madrid_1996_2025`
+- Slug: `pau-fisica-madrid-1996-2025`
+- Title: `Pack PAU Física Madrid 1996-2025`
+- Price: `9.99 EUR`
+- Target: PAU/Selectividad, Madrid, 2o Bachillerato, Física
+- Positioning: focused one-time PDF download for students who only want Madrid Física PAU material.
+
+## Source Data Audit
+
+Production data was used because the local database was stale.
+
+Connection used:
+
+```bash
+ssh -o "IdentitiesOnly yes" -i /Users/gerardofernandez/Projects/ClasesDeApoyo/clasesdeapoyo.pem ubuntu@35.180.205.41
+```
+
+Production query exported `App\Entity\File` rows for:
+
+- community slug: `madrid`
+- subject slug: `fisica`
+- ordered by year, exam weight, and file weight
+
+Result:
+
+- 148 source files.
+- Years: 1996-2025.
+- 78 enunciado/enunciados files.
+- 70 solucion/soluciones files.
+
+Important data detail:
+
+- Some Física file names use singular labels such as `Enunciado` and `Solución`. The free-sample access logic was broadened from exact `enunciados` to names starting with `enunciado`.
+
+## Generated Files
+
+Local working paths:
+
+```text
+var/generated-bundles/PAU-Fisica-Madrid-1996-2025-manifest.json
+var/generated-bundles/PAU-Fisica-Madrid-1996-2025-examenes-y-soluciones.pdf
+var/generated-bundles/PAU-Fisica-Madrid-1996-2025-enunciados.pdf
+var/generated-bundles/PAU-Fisica-Madrid-1996-2025-soluciones.pdf
+var/product-downloads/pau-fisica-madrid-1996-2025/
+```
+
+Page counts:
+
+- Complete PDF: 786 pages.
+- Enunciados PDF: 170 pages.
+- Soluciones PDF: 616 pages.
+
+The PDFs were merged locally with `qpdf` from source PDFs downloaded from production S3. The EC2 instance was not used for heavy PDF generation.
+
+## S3
+
+Uploaded to both buckets so local and production verification can work:
+
+- `s3://clasesdeapoyodev/product-downloads/pau-fisica-madrid-1996-2025/`
+- `s3://clasesdeapoyosf/product-downloads/pau-fisica-madrid-1996-2025/`
+
+Object keys:
+
+```text
+product-downloads/pau-fisica-madrid-1996-2025/PAU-Fisica-Madrid-1996-2025-examenes-y-soluciones.pdf
+product-downloads/pau-fisica-madrid-1996-2025/PAU-Fisica-Madrid-1996-2025-enunciados.pdf
+product-downloads/pau-fisica-madrid-1996-2025/PAU-Fisica-Madrid-1996-2025-soluciones.pdf
+```
+
+Uploaded sizes:
+
+- Enunciados: 8,844,573 bytes.
+- Complete: 21,808,913 bytes.
+- Soluciones: 12,958,194 bytes.
+
+## Stripe
+
+Live Stripe Product:
+
+- Product ID: `prod_UYyVHdqXdv3nAk`
+- Name: `Pack PAU Física Madrid 1996-2025`
+- Metadata: `product_code=pau_fisica_madrid_1996_2025`
+
+Live Stripe Price:
+
+- Price ID: `price_1TZqYaBuKHqaI230iRwSlLnq`
+- Amount: `999 eur`
+- Type: one-time
+- Active: yes
+- Metadata: `product_code=pau_fisica_madrid_1996_2025`
+
+## Backend Changes
+
+The second bundle triggered a small generalization:
+
+- Added `PauBundleProductDefinition`.
+- Added `PauBundleProductCatalog`.
+- Added generic commands:
+  - `app:product:seed-pau-bundle`
+  - `app:product:verify-pau-bundle`
+- Added generic Twig/product context helpers.
+- Added generic promo partial:
+  - `templates/common/products/pau_bundle_pack_promo.html.twig`
+- Updated product page copy to use catalog metadata instead of hardcoded Matemáticas II counts.
+- Updated exam/listing/course/file-viewer promotion to use the catalog pack for the current context.
+- Kept legacy Matemáticas commands for backward compatibility.
+
+## Local Seed And Verify
+
+Local commands run successfully:
+
+```bash
+docker-compose exec -T php php bin/console app:product:seed-pau-bundle \
+  --product-code=pau_fisica_madrid_1996_2025 \
+  --stripe-product-id=prod_UYyVHdqXdv3nAk \
+  --stripe-price-id=price_1TZqYaBuKHqaI230iRwSlLnq \
+  --no-interaction
+
+docker-compose exec -T php php bin/console app:product:verify-pau-bundle \
+  --product-code=pau_fisica_madrid_1996_2025 \
+  --stripe-product-id=prod_UYyVHdqXdv3nAk \
+  --stripe-price-id=price_1TZqYaBuKHqaI230iRwSlLnq \
+  --no-interaction
+```
+
+Verification output:
+
+- Product ready: `pau-fisica-madrid-1996-2025`.
+- Files: 3.
+- Storage: `s3://clasesdeapoyodev`.
+
+## Local Render Checks
+
+Checked through `http://localhost:8080`:
+
+- `/packs/pau-fisica-madrid-1996-2025` showed Física, 1996-2025, 9,99 EUR, 786/170/616 page counts, and checkout CTA.
+- `/s/selectividad/madrid/fisica` showed the PAU Física pack promo and suppressed the generic Premium box.
+- `/s/selectividad/madrid/fisica/2021-modelo` showed locked file CTAs pointing to the Física pack.
+- `/s/selectividad/madrid/quimica/2021-modelo` kept the generic Premium/register flow.
+
+## Production Seed Command
+
+After deployment, seed and verify production with:
+
+```bash
+php bin/console app:product:seed-pau-bundle \
+  --product-code=pau_fisica_madrid_1996_2025 \
+  --stripe-product-id=prod_UYyVHdqXdv3nAk \
+  --stripe-price-id=price_1TZqYaBuKHqaI230iRwSlLnq \
+  --env=prod \
+  --no-interaction
+
+php bin/console app:product:verify-pau-bundle \
+  --product-code=pau_fisica_madrid_1996_2025 \
+  --stripe-product-id=prod_UYyVHdqXdv3nAk \
+  --stripe-price-id=price_1TZqYaBuKHqaI230iRwSlLnq \
+  --env=prod \
+  --no-interaction
+```
+
+## Follow-Ups
+
+- Add automated tests for catalog-based pack context detection.
+- Add tests for singular/plural free-sample names.
+- Consider moving the catalog from PHP code into structured config if a third pack is added.
+- Monitor whether Física converts similarly to Matemáticas before creating more packs.
+

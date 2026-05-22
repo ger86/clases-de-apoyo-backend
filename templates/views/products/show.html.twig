@@ -1,8 +1,13 @@
 {% extends 'container_layout.html.twig' %}
 
+{% set pauBundlePack = getPauBundlePackForProduct(product) %}
+
 {% block metatags %}
 {% set metaTitle = product.title ~ ' | Clases de Apoyo' %}
-{% set metaDescription = 'Descarga el pack completo de exámenes y soluciones de PAU/EvAU Matemáticas II Madrid desde 1994 hasta 2025.' %}
+{% set metaDescription = pauBundlePack
+  ? 'Descarga el pack completo de exámenes y soluciones de PAU/EvAU ' ~ pauBundlePack.subjectName ~ ' ' ~ pauBundlePack.communityName ~ ' ' ~ pauBundlePack.yearRange ~ '.'
+  : product.title
+%}
 <title>{{ metaTitle }}</title>
 <meta name="description" content="{{ metaDescription }}"/>
 <meta property="og:title" content="{{ metaTitle }}" />
@@ -24,24 +29,37 @@
     <div class="simple-box mb-8">
       <h2 class="h2 mb-4">Qué incluye</h2>
       <ul class="list-disc list-inside text-lg">
-        <li>88 enunciados de Matemáticas II de la PAU/EvAU de Madrid.</li>
-        <li>81 documentos de soluciones.</li>
-        <li>PDF completo de 943 páginas con exámenes y soluciones.</li>
-        <li>Archivos separados de enunciados y soluciones para estudiar con más comodidad.</li>
+        {% if pauBundlePack %}
+          <li>{{ pauBundlePack.statementCount }} documentos de enunciados de {{ pauBundlePack.subjectName }} de la PAU/EvAU de {{ pauBundlePack.communityName }}.</li>
+          <li>{{ pauBundlePack.solutionCount }} documentos de soluciones.</li>
+          <li>PDF completo de {{ pauBundlePack.completePages }} páginas con exámenes y soluciones.</li>
+          <li>Archivos separados de enunciados y soluciones para estudiar con más comodidad.</li>
+        {% else %}
+          <li>Pack descargable con los archivos indicados más abajo.</li>
+          <li>Pago único, sin suscripción.</li>
+        {% endif %}
       </ul>
     </div>
 
     <div class="simple-box mb-8">
       <h2 class="h2 mb-4">Antes de comprar</h2>
       <p class="text-lg">
-        Puedes probar gratis los enunciados más recientes en la web. Este pack está pensado para ahorrar tiempo cuando ya sabes que vas a practicar Matemáticas II Madrid en serio: todo el histórico descargable y organizado, con soluciones, en un solo lugar.
+        {% if pauBundlePack %}
+          Puedes probar gratis los enunciados más recientes en la web. Este pack está pensado para ahorrar tiempo cuando ya sabes que vas a practicar {{ pauBundlePack.subjectName }} {{ pauBundlePack.communityName }} en serio: todo el histórico descargable y organizado, con soluciones, en un solo lugar.
+        {% else %}
+          Este pack está pensado para ahorrar tiempo: material descargable y organizado en un solo lugar.
+        {% endif %}
       </p>
     </div>
 
     <div class="simple-box mb-8">
       <h2 class="h2 mb-4">Pack o Premium</h2>
       <p class="text-lg mb-4">
-        El pack es la mejor opción si solo quieres preparar Matemáticas II Madrid y conservar todos los exámenes y soluciones en PDF.
+        {% if pauBundlePack %}
+          El pack es la mejor opción si solo quieres preparar {{ pauBundlePack.subjectName }} {{ pauBundlePack.communityName }} y conservar todos los exámenes y soluciones en PDF.
+        {% else %}
+          El pack es la mejor opción si solo quieres conservar este material en PDF.
+        {% endif %}
       </p>
       <p class="text-lg">
         Si quieres acceder a toda la plataforma, usar el tutor IA y navegar sin anuncios, puedes hacerte Premium desde {{ subscriptionMonthlyPrice }} o {{ subscriptionYearlyPrice }}.

@@ -3,9 +3,13 @@
 namespace App\Service;
 
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use App\Entity\CommunityTestCourseSubject;
+use App\Entity\CourseSubject;
 use App\Entity\Exam;
 use App\Entity\File;
-use App\Service\Product\MadridMathPackContext;
+use App\Entity\Product;
+use App\Service\Product\PauBundleProductCatalog;
+use App\Service\Product\PauBundleProductDefinition;
 
 class PremiumService
 {
@@ -13,7 +17,7 @@ class PremiumService
     public function __construct(
         private AuthorizationCheckerInterface $authChecker,
         private Security $security,
-        private MadridMathPackContext $madridMathPackContext
+        private PauBundleProductCatalog $pauBundleProductCatalog
     )
     {
     }
@@ -61,7 +65,7 @@ class PremiumService
             return true;
         }
 
-        if (!$this->madridMathPackContext->supportsExam($exam)) {
+        if ($this->pauBundleProductCatalog->findByExam($exam) === null) {
             return $exam->canSee($user);
         }
 
@@ -70,16 +74,41 @@ class PremiumService
 
     public function isMadridMathPackExam(Exam $exam): bool
     {
-        return $this->madridMathPackContext->supportsExam($exam);
+        return $this->pauBundleProductCatalog->findByExam($exam) !== null;
     }
 
     public function isMadridMathPackFile(File $file): bool
     {
-        return $this->madridMathPackContext->supportsFile($file);
+        return $this->pauBundleProductCatalog->findByFile($file) !== null;
+    }
+
+    public function getPauBundlePackForExam(Exam $exam): ?PauBundleProductDefinition
+    {
+        return $this->pauBundleProductCatalog->findByExam($exam);
+    }
+
+    public function getPauBundlePackForFile(File $file): ?PauBundleProductDefinition
+    {
+        return $this->pauBundleProductCatalog->findByFile($file);
+    }
+
+    public function getPauBundlePackForCommunityTestCourseSubject(CommunityTestCourseSubject $communityTestCourseSubject): ?PauBundleProductDefinition
+    {
+        return $this->pauBundleProductCatalog->findByCommunityTestCourseSubject($communityTestCourseSubject);
+    }
+
+    public function getPauBundlePackForProduct(Product $product): ?PauBundleProductDefinition
+    {
+        return $this->pauBundleProductCatalog->findByProduct($product);
+    }
+
+    public function getPauBundlePackForCourseSubject(CourseSubject $courseSubject): ?PauBundleProductDefinition
+    {
+        return $this->pauBundleProductCatalog->findByCourseSubject($courseSubject);
     }
 
     private function isFreeExamSampleFile(File $file): bool
     {
-        return mb_strtolower(trim((string) $file->getName())) === 'enunciados';
+        return str_starts_with(mb_strtolower(trim((string) $file->getName())), 'enunciado');
     }
 }

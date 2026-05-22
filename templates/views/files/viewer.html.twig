@@ -20,13 +20,8 @@
 {% block pageContent %}
 {% set premiumUser = isPremium() %}
 {% set exam = file.exam %}
-{% set chapter = file.chapter %}
-{% set chapterCourseSubject = chapter and chapter.chapterBlock ? chapter.chapterBlock.courseSubject : null %}
-{% set showMadridMathPackPromo = isMadridMathPackFile(file)
-  or (chapterCourseSubject
-    and chapterCourseSubject.course.slug == '2o-bachillerato'
-    and chapterCourseSubject.subjectSlug == 'matematicas')
-%}
+{% set pauBundlePack = getPauBundlePackForFile(file) %}
+{% set showPauBundlePackPromo = pauBundlePack is not null %}
 {% if premiumUser %}
 <div
   class="file-ai-root"
@@ -51,8 +46,9 @@
   </div>
   <div class="col-span-12 lg:col-span-4">
     <div class="sticky">
-      {% if showMadridMathPackPromo %}
-        {% include 'common/products/madrid_math_pack_promo.html.twig' with {
+      {% if showPauBundlePackPromo %}
+        {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
+          pack: pauBundlePack,
           compact: true,
           event_label: exam ? 'file-viewer-exam-sidebar' : 'file-viewer-course-sidebar'
         } %}
@@ -86,7 +82,7 @@
       </div>
       {% endif %}
 
-      {% if not premiumUser and not showMadridMathPackPromo %}
+      {% if not premiumUser and not showPauBundlePackPromo %}
       <div class="simple-box">
         <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h4>
         <p>Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones

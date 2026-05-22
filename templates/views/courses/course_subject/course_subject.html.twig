@@ -25,8 +25,10 @@ Apuntes de {{ courseSubject.subjectName|lower }} de {{ courseSubject.course.name
 
 {% block pageContent %}
 <section class="course-subject">
-  {% if courseSubject.course.slug == '2o-bachillerato' and courseSubject.subjectSlug == 'matematicas' %}
-    {% include 'common/products/madrid_math_pack_promo.html.twig' with {
+  {% set pauBundlePack = getPauBundlePackForCourseSubject(courseSubject) %}
+  {% if pauBundlePack %}
+    {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
+      pack: pauBundlePack,
       event_label: 'course-subject'
     } %}
   {% endif %}

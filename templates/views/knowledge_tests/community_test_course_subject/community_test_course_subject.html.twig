@@ -2,7 +2,8 @@
 
 {% set communityTest = communityTestCourseSubject.communityTest %}
 {% set courseSubject = communityTestCourseSubject.courseSubject %}
-{% set showMadridMathPackPromo = communityTest.community.slug == 'madrid' and communityTest.knowledgeTest.slug == 'selectividad' and courseSubject.course.slug == '2o-bachillerato' and courseSubject.subjectSlug == 'matematicas' %}
+{% set pauBundlePack = getPauBundlePackForCommunityTestCourseSubject(communityTestCourseSubject) %}
+{% set showPauBundlePackPromo = pauBundlePack is not null %}
 
 {% block metatags %}
   {% set metaTitle = "Exámenes de selectividad resueltos de " ~ courseSubject.subjectName ~ " en " ~ communityTest.community.name ~  " | Clases de Apoyo" %}
@@ -25,7 +26,7 @@ Exámenes de {{ communityTest.knowledgeTest.name|lower ~ ' resueltos de ' ~ cour
 
 {% block pageContent %}
 <section class="community-test-course-subject">
-  {% if not isPremium() and not showMadridMathPackPromo %}
+  {% if not isPremium() and not showPauBundlePackPromo %}
   <div class="simple-box mb-4">
     <h3 class="mb-4 h3">¿Quieres acceder a más contenido aún?</h3>
     <p class="mb-4">Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
@@ -43,8 +44,9 @@ Exámenes de {{ communityTest.knowledgeTest.name|lower ~ ' resueltos de ' ~ cour
     </a>
   </div>
   {% endif %}
-  {% if showMadridMathPackPromo %}
-    {% include 'common/products/madrid_math_pack_promo.html.twig' with {
+  {% if showPauBundlePackPromo %}
+    {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
+      pack: pauBundlePack,
       event_label: 'community-test-course-subject'
     } %}
     <p class="mb-4 text-sm text-gray-600">
