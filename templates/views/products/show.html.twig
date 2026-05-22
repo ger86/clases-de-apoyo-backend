@@ -100,3 +100,25 @@
   </aside>
 </section>
 {% endblock %}
+
+{% block javascripts %}
+<script type="application/ld+json">
+{{ {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.title,
+  description: product.description|striptags,
+  brand: {
+    '@type': 'Brand',
+    name: 'Clases de Apoyo'
+  },
+  offers: {
+    '@type': 'Offer',
+    url: url('product_show', {slug: product.slug}),
+    priceCurrency: product.currency|upper,
+    price: (product.priceCents / 100)|number_format(2, '.', ''),
+    availability: 'https://schema.org/InStock'
+  }
+}|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+</script>
+{% endblock %}

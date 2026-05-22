@@ -18,6 +18,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends AbstractController
 {
+    public function index(ProductRepository $productRepository): Response
+    {
+        return $this->render('views/products/index.html.twig', [
+            'products' => $productRepository->findBy(['enabled' => true], ['title' => 'ASC']),
+        ]);
+    }
+
     public function show(string $slug, ProductRepository $productRepository): Response
     {
         $product = $productRepository->findEnabledBySlug($slug);

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>{{ url('product_index') }}</loc>
+  <changefreq>monthly</changefreq>
+</url>
+{% for product in products %}
+<url>
+  <loc>{{ url('product_show', { 'slug' : product.slug })}}</loc>
+  <lastmod>{{ product.updatedAt|date('c')}}</lastmod>
+  <changefreq>monthly</changefreq>
+</url>
+{% endfor %}
+</urlset>

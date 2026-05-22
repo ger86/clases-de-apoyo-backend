@@ -3,19 +3,22 @@
   {% for c in courses %}
     {% set sitemapXml = 'sitemap_' ~ c.slug ~ '.xml' %}
     <sitemap>
-        <loc>{{ absolute_url(asset(sitemapXml, 'sitemap')) }}</loc>
+        <loc>{{ absolute_url('/sitemap/' ~ sitemapXml) }}</loc>
     </sitemap>
   {% endfor %}
   {% for t in knowledgeTests %}
     {% set sitemapXml = 'sitemap_' ~ t.slug ~ '.xml' %}
     <sitemap>
-        <loc>{{ absolute_url(asset(sitemapXml, 'sitemap')) }}</loc>
+        <loc>{{ absolute_url('/sitemap/' ~ sitemapXml) }}</loc>
     </sitemap>
   {% endfor %}
   <sitemap>
-      <loc>{{ absolute_url(asset('blog.xml', 'sitemap')) }}</loc>
+      <loc>{{ absolute_url('/sitemap/blog.xml') }}</loc>
   </sitemap>
   <sitemap>
-      <loc>{{ absolute_url(asset('videos.xml', 'sitemap')) }}</loc>
+      <loc>{{ absolute_url('/sitemap/videos.xml') }}</loc>
+  </sitemap>
+  <sitemap>
+      <loc>{{ absolute_url('/sitemap/products.xml') }}</loc>
   </sitemap>
 </sitemapindex>

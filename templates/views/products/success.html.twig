@@ -44,3 +44,26 @@ Descarga tu pack
   </div>
 </section>
 {% endblock %}
+
+{% block javascripts %}
+{% if purchase.paid %}
+<script>
+  window.cdaPendingGtagEvents = window.cdaPendingGtagEvents || [];
+  window.cdaPendingGtagEvents.push({
+    name: 'purchase',
+    storageKey: 'product_purchase_{{ purchase.id }}',
+    params: {
+      transaction_id: '{{ purchase.id }}',
+      value: {{ (purchase.amountTotal / 100)|number_format(2, '.', '') }},
+      currency: '{{ purchase.currency|upper }}',
+      items: [{
+        item_id: '{{ product.code }}',
+        item_name: '{{ product.title|e('js') }}',
+        price: {{ (product.priceCents / 100)|number_format(2, '.', '') }},
+        quantity: 1
+      }]
+    }
+  });
+</script>
+{% endif %}
+{% endblock %}

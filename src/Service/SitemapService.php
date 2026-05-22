@@ -5,6 +5,7 @@ namespace App\Service;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Repository\ArticleRepository;
 use App\Repository\CourseRepository;
+use App\Repository\ProductRepository;
 use App\Repository\KnowledgeTestRepository;
 use App\Repository\YoutubeVideoRepository;
 use Twig\Environment;
@@ -18,6 +19,7 @@ class SitemapService
         private KnowledgeTestRepository $knowledgeTestRepository,
         private ArticleRepository $articleRepository,
         private YoutubeVideoRepository $youtubeVideoRepository,
+        private ProductRepository $productRepository,
         private Environment $twig,
         private Filesystem $filesystem,
         private string $sitemapDir,
@@ -40,6 +42,7 @@ class SitemapService
         $this->buildKnowledgeTestsSitemap();
         $this->buildBlogSitemap();
         $this->buildVideosSitemap();
+        $this->buildProductsSitemap();
     }
 
     public function buildCoursesSitemap(): void
@@ -84,5 +87,15 @@ class SitemapService
         ]);
         $filename = "{$this->sitemapDir}/videos.xml";
         $this->filesystem->dumpFile($filename, $videoSitemap);
+    }
+
+    public function buildProductsSitemap(): void
+    {
+        $products = $this->productRepository->findBy(['enabled' => true], ['title' => 'ASC']);
+        $productsSitemap = $this->twig->render('sitemap/products.xml.twig', [
+            'products' => $products,
+        ]);
+        $filename = "{$this->sitemapDir}/products.xml";
+        $this->filesystem->dumpFile($filename, $productsSitemap);
     }
 }

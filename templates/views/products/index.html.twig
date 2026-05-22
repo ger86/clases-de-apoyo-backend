@@ -1,0 +1,55 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+{% set metaTitle = 'Packs PAU descargables | Clases de Apoyo' %}
+{% set metaDescription = 'Packs descargables de exámenes PAU/EvAU con enunciados y soluciones organizados por años.' %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ url('product_index') }}">
+{% endblock %}
+
+{% block pageTitle %}
+Packs PAU descargables
+{% endblock %}
+
+{% block pageContent %}
+<section>
+  <div class="mb-8 text-lg">
+    <p>
+      Packs de exámenes reales PAU/EvAU con enunciados y soluciones en PDF. Pago único, descarga inmediata y sin suscripción.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {% for product in products %}
+      {% set pauBundlePack = getPauBundlePackForProduct(product) %}
+      <article class="simple-box">
+        <p class="mb-2 text-sm font-bold uppercase text-green-700">Pack PAU</p>
+        <h2 class="h3 mb-4">{{ product.title }}</h2>
+        <div class="mb-4">
+          {{ product.description|raw }}
+        </div>
+        {% if pauBundlePack %}
+          <ul class="list-disc list-inside mb-6">
+            <li>{{ pauBundlePack.statementCount }} documentos de enunciados.</li>
+            <li>{{ pauBundlePack.solutionCount }} documentos de soluciones.</li>
+            <li>{{ pauBundlePack.completePages }} páginas en el PDF completo.</li>
+          </ul>
+        {% endif %}
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-2xl font-bold">{{ product.formattedPrice }}</p>
+          <a class="btn btn-secondary block text-center" href="{{ path('product_show', {slug: product.slug}) }}">
+            Ver pack
+          </a>
+        </div>
+      </article>
+    {% else %}
+      <div class="simple-box">
+        <p>Ahora mismo no hay packs disponibles.</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

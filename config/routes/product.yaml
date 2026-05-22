@@ -1,3 +1,8 @@
+product_index:
+    path: /packs
+    controller: App\Controller\ProductController::index
+    methods: [GET]
+
 product_show:
     path: /packs/{slug}
     controller: App\Controller\ProductController::show
