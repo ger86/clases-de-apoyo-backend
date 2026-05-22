@@ -96,3 +96,14 @@ Important rules:
 - Keep Stripe amount/currency/product-code validation intact.
 - Run the product seed and verify commands before advertising a bundle.
 - Keep access-control restrictions scoped to the exact bundle context.
+
+## Production deployments
+
+Production deployments must run through the EC2 deployment wrapper:
+
+```bash
+cd /var/www
+./prepare_cda_coffe
+```
+
+Do not manually run deployment steps such as `git pull`, `composer install`, service restarts, cache clears, asset installs, or `npm run build` inside `/var/www/clasesdeapoyo`. The wrapper is the repository convention for production deployment and should be used by agents before any post-deploy seed/verify command.

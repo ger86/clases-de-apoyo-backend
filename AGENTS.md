@@ -44,6 +44,17 @@ docs/agent-records/2026-05-22-pau-madrid-math-pack.md
 
 Do not expose production MySQL publicly, do not rely on ignored `var/` files for paid downloads, and verify the product row, Stripe price, and S3 files before advertising or enabling a new bundle.
 
+### Production deployments
+
+Agents must deploy production by connecting to the EC2 instance and running the deployment wrapper:
+
+```
+cd /var/www
+./prepare_cda_coffe
+```
+
+Do not deploy production by manually running `git pull`, `composer install`, cache clears, service restarts, or asset builds inside `/var/www/clasesdeapoyo`. The wrapper is the project convention and prevents agents from tripping over direct-copy production changes or leaving deployment steps incomplete.
+
 ## Guidelines
 
 ### Run commands
@@ -55,4 +66,3 @@ The project contains a docker-compose setup for local development described in t
    ```bash
    docker-compose exec php composer ci
    ```
-

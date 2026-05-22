@@ -228,26 +228,29 @@ If multiple packs exist, avoid a growing set of hard-coded `*PackContext` servic
 
 ## Deployment
 
-Standard production deployment checklist:
+Standard production deployment must use the EC2 wrapper script:
+
+```bash
+cd /var/www
+./prepare_cda_coffe
+```
+
+Do not replace this with manual `git pull`, `composer install`, migrations, cache clears, service restarts, asset installs, or `npm run build` commands inside `/var/www/clasesdeapoyo`. The wrapper is the production deployment convention and exists so direct-copy production changes do not block or confuse future agent deployments.
+
+After the wrapper succeeds, run the product-specific verification command:
 
 ```bash
 cd /var/www/clasesdeapoyo
-git pull
-composer install --no-dev --optimize-autoloader
-php bin/console doctrine:migrations:migrate --no-interaction --env=prod
-php bin/console cache:clear --env=prod
 php bin/console app:product:verify-pau-bundle --product-code=<product_code> --env=prod
 ```
-
-Adapt the final verify command for the product being deployed.
 
 If the product has not been seeded in production yet:
 
 1. Upload PDFs to S3.
 2. Create Stripe Product and Price.
-3. Run the seed command with production Stripe IDs.
-4. Run the verify command.
-5. Clear production cache.
+3. Run `/var/www/prepare_cda_coffe`.
+4. Run the seed command with production Stripe IDs.
+5. Run the verify command.
 6. Smoke-test the product page and checkout start.
 
 ## Production Smoke Tests
