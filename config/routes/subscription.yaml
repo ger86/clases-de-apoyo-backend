@@ -9,6 +9,7 @@ app_subscription_payment_success:
 app_subscription_create_checkout_session:
     path:     /u/suscripcion/checkout-session
     controller: App\Controller\Subscription\SubscriptionCreateCheckoutSessionController
+    methods: [POST]
 
 app_subscription_create_billing_portal_session:
     path:     /usuario/billing-portal-session

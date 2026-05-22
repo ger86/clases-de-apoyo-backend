@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class VerifyMadridMathPackProductCommand extends Command
 {
     private const PRODUCT_CODE = 'pau_matematicas_ii_madrid_1994_2025';
-    private const EXPECTED_PRICE_CENTS = 1499;
+    private const EXPECTED_PRICE_CENTS = 999;
     private const EXPECTED_CURRENCY = 'eur';
 
     public function __construct(

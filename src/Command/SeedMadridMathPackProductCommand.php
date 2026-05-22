@@ -53,7 +53,7 @@ class SeedMadridMathPackProductCommand extends Command
 HTML)
             ->setStripeProductId($stripeProductId)
             ->setStripePriceId($stripePriceId)
-            ->setPriceCents(1499)
+            ->setPriceCents(999)
             ->setCurrency('eur')
             ->setEnabled(true)
             ->setFiles([

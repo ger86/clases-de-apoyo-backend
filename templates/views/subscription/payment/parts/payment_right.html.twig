@@ -1,13 +1,23 @@
-<div class="simple-box mb-8">
-  <div class="text-lg font-bold mb-8">
-      {{ subscriptionDefaultPrice }}
-  </div>
-  <div class="">
-    <form action="{{ path('app_subscription_create_checkout_session') }}" method="POST">
-      <input type="hidden" name="priceId" value="{{ stripePriceId }}" />
-      <button class="btn-primary w-full" type="submit">Pagar</button>
-    </form>
-  </div>
+<div class="simple-box mb-4">
+  <p class="text-sm font-bold uppercase text-primary mb-2">Premium mensual</p>
+  <div class="text-3xl font-bold mb-4">{{ subscriptionMonthlyPrice }}</div>
+  <p class="mb-6">Acceso completo a la plataforma, tutor IA y navegación sin anuncios. Puedes cancelar cuando quieras.</p>
+  <form action="{{ path('app_subscription_create_checkout_session') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token('subscription_checkout') }}" />
+    <input type="hidden" name="plan" value="monthly" />
+    <button class="btn-primary w-full" type="submit">Pagar mensual</button>
+  </form>
+</div>
+
+<div class="simple-box mb-8 border border-green-200 bg-green-50">
+  <p class="text-sm font-bold uppercase text-green-700 mb-2">Premium anual</p>
+  <div class="text-3xl font-bold mb-4">{{ subscriptionYearlyPrice }}</div>
+  <p class="mb-6">La mejor opción si quieres usar Clases de Apoyo durante el curso completo.</p>
+  <form action="{{ path('app_subscription_create_checkout_session') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token('subscription_checkout') }}" />
+    <input type="hidden" name="plan" value="yearly" />
+    <button class="btn btn-secondary w-full" type="submit">Pagar anual</button>
+  </form>
 </div>
 
 <p>
