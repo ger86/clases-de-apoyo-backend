@@ -2,7 +2,7 @@
 
 Date: 2026-05-22
 Project: Clases de Apoyo backend
-Status: generated locally, uploaded to S3, Stripe product/price created, backend implementation in progress
+Status: generated locally, uploaded to S3, Stripe product/price created, deployed to production, and verified
 Primary product: `pau-fisica-madrid-1996-2025`
 
 ## Purpose
@@ -118,6 +118,12 @@ The second bundle triggered a small generalization:
 - Updated exam/listing/course/file-viewer promotion to use the catalog pack for the current context.
 - Kept legacy Matemáticas commands for backward compatibility.
 
+Committed and pushed:
+
+```text
+c9fd61b Add Madrid Physics PAU bundle
+```
+
 ## Local Seed And Verify
 
 Local commands run successfully:
@@ -151,9 +157,38 @@ Checked through `http://localhost:8080`:
 - `/s/selectividad/madrid/fisica/2021-modelo` showed locked file CTAs pointing to the Física pack.
 - `/s/selectividad/madrid/quimica/2021-modelo` kept the generic Premium/register flow.
 
-## Production Seed Command
+## Production Deployment
 
-After deployment, seed and verify production with:
+Production was deployed from Git after pushing commit `c9fd61b`.
+
+Initial production pull was blocked because the EC2 checkout still had tracked local modifications from a previous direct-copy pricing deployment. To avoid overwriting or losing those files, the tracked production changes were stashed before pulling:
+
+```bash
+git stash push -m before-fisica-bundle-deploy
+git pull --ff-only
+composer install --no-dev --optimize-autoloader --no-interaction
+php bin/console cache:clear --env=prod --no-interaction
+```
+
+After `composer install` / cache clear, production generated a tracked change in `config/reference.php`. That generated tracked change was also stashed to prevent future `git pull` operations from being blocked:
+
+```bash
+git stash push -m after-fisica-bundle-composer-reference -- config/reference.php
+```
+
+Production still had untracked backup/resource files, including `.env.local.pricing-backup-*`, `.env.save`, macOS `._*` files, and `public/.well-known/`. They were left untouched because they were unrelated to the bundle deployment and untracked files do not block normal pulls unless paths collide with committed files.
+
+Final production Git state:
+
+- HEAD: `c9fd61b`
+- Tracked working tree: clean after stashing `config/reference.php`.
+- Stashes kept as safety backups:
+  - `before-fisica-bundle-deploy`
+  - `after-fisica-bundle-composer-reference`
+
+## Production Seed And Verify
+
+The production product row was seeded and verified with:
 
 ```bash
 php bin/console app:product:seed-pau-bundle \
@@ -171,10 +206,56 @@ php bin/console app:product:verify-pau-bundle \
   --no-interaction
 ```
 
+Production verification output:
+
+- Product ready: `pau-fisica-madrid-1996-2025`.
+- Física product verified.
+- Files: 3.
+- Storage: `s3://clasesdeapoyosf`.
+
+Matemáticas was also re-verified in production after the catalog generalization:
+
+```bash
+php bin/console app:product:verify-pau-bundle \
+  --product-code=pau_matematicas_ii_madrid_1994_2025 \
+  --stripe-product-id=prod_UYi73Jy72QltbK \
+  --stripe-price-id=price_1TZpXeBuKHqaI2304ibQ6s3a \
+  --env=prod \
+  --no-interaction
+```
+
+## Production Smoke Checks
+
+Checked live URLs under `https://www.clasesdeapoyo.com`:
+
+- `/packs/pau-fisica-madrid-1996-2025` showed Física, 1996-2025, 9,99 EUR, 78/70 document counts, 786/170/616 page counts, and the checkout CTA.
+- `/s/selectividad/madrid/fisica` showed the PAU Física pack promo and free-sample copy.
+- `/s/selectividad/madrid/fisica/2021-modelo` showed locked file CTAs pointing to the Física pack.
+- `/s/selectividad/madrid/quimica/2021-modelo` kept the generic Premium/register flow.
+
+No real Stripe purchase was made during this deployment.
+
+## Quality Gates
+
+Local checks run before commit/deploy:
+
+```bash
+docker-compose exec -T php php bin/console lint:twig templates --no-interaction
+docker-compose exec -T php composer stan
+docker-compose exec -T php composer ci
+```
+
+Result:
+
+- Twig lint passed.
+- PHPStan passed.
+- `composer ci` passed.
+- PHPUnit ran but reported `No tests executed!`, matching the current project state.
+
 ## Follow-Ups
 
 - Add automated tests for catalog-based pack context detection.
 - Add tests for singular/plural free-sample names.
 - Consider moving the catalog from PHP code into structured config if a third pack is added.
 - Monitor whether Física converts similarly to Matemáticas before creating more packs.
-
+- Later maintenance can remove or archive the old production stash entries and untracked backup/resource files once they are confirmed unnecessary.
