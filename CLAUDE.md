@@ -82,3 +82,17 @@ ngrok http -host-header=rewrite dev.clasesdeapoyo.com:8888
 ```
 
 Test cards: `4000 0072 4000 0007`, `4000 0566 5566 5556`.
+
+## Paid PAU bundle products
+
+Paid downloadable PAU packs are one-off Stripe Checkout products backed by S3 downloads. Before creating another bundle, read [docs/runbooks/create-pau-bundle.md](docs/runbooks/create-pau-bundle.md).
+
+The first product implementation and business decisions are recorded in [docs/agent-records/2026-05-22-pau-madrid-math-pack.md](docs/agent-records/2026-05-22-pau-madrid-math-pack.md).
+
+Important rules:
+
+- Do not expose production MySQL publicly for bundle generation; use SSH and S3.
+- Do not depend on ignored local `var/` files for paid downloads; production files belong in S3 under `product-downloads/...`.
+- Keep Stripe amount/currency/product-code validation intact.
+- Run the product seed and verify commands before advertising a bundle.
+- Keep access-control restrictions scoped to the exact bundle context.

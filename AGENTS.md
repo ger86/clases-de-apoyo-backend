@@ -28,6 +28,22 @@ composer ci
 
 This command runs all quality checks, including code style, static analysis, schema validation, container validation, Twig and YAML linting, and PHPUnit tests. It is mandatory to ensure that this command does not produce any errors before submitting a pull request.
 
+### Paid PAU bundle products
+
+When creating or updating a paid downloadable PAU bundle, follow the repeatable runbook:
+
+```
+docs/runbooks/create-pau-bundle.md
+```
+
+The historical record for the first bundle is:
+
+```
+docs/agent-records/2026-05-22-pau-madrid-math-pack.md
+```
+
+Do not expose production MySQL publicly, do not rely on ignored `var/` files for paid downloads, and verify the product row, Stripe price, and S3 files before advertising or enabling a new bundle.
+
 ## Guidelines
 
 ### Run commands
@@ -39,5 +55,4 @@ The project contains a docker-compose setup for local development described in t
    ```bash
    docker-compose exec php composer ci
    ```
-
 

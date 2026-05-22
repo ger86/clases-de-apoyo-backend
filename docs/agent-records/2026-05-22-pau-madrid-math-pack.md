@@ -2,7 +2,7 @@
 
 Date: 2026-05-22  
 Project: Clases de Apoyo backend  
-Status: implemented and deployed by the user, with follow-up CRO changes committed  
+Status: implemented, deployed to production, and committed
 Primary product: `pau-matematicas-ii-madrid-1994-2025`
 
 ## Purpose
@@ -11,6 +11,8 @@ This document records the monetization decisions, implementation work, deploymen
 
 Use this document as a navigation index. The implementation source of truth remains the code, commits, production environment, Stripe dashboard, and S3 bucket.
 
+For the repeatable process to create the next bundle, use `docs/runbooks/create-pau-bundle.md`.
+
 ## Final Business Direction
 
 We decided to monetize the existing PAU material with a low-cost one-off digital product instead of pushing the existing subscription as the primary offer.
@@ -18,7 +20,8 @@ We decided to monetize the existing PAU material with a low-cost one-off digital
 Chosen first product:
 
 - Pack: PAU / EvAU Matematicas II Madrid 1994-2025.
-- Price: `14.99 EUR`.
+- Initial launch price: `14.99 EUR`.
+- Current closeout price after pricing refactor: `9.99 EUR`.
 - Delivery: downloadable PDF files after Stripe Checkout payment.
 - Included files:
   - Complete PDF: exams and solutions.
@@ -33,6 +36,14 @@ Rejected or deferred alternatives:
 - Keeping paid files only on the EC2 `var/` folder. Rejected after review because deployments could lose or miss ignored local files.
 - Making the current subscription the main offer for this use case. Rejected because it was too cheap and could distract students from the concrete pack purchase.
 - Ads/social automation were discussed as promotion options, but implementation focus moved first to on-site conversion.
+
+Current Premium positioning after closeout:
+
+- New Premium monthly price: `15.00 EUR / month`.
+- New Premium yearly price: `59.00 EUR / year`.
+- Existing subscribers remain grandfathered on the old `5.00 EUR / month` Stripe Price as long as their current subscription remains active.
+- Premium is positioned as broad platform access: all content, tutor IA, and no ads.
+- The pack is positioned as the focused, cheaper option for students who only want downloadable Madrid Matematicas II PAU material.
 
 ## Key Decisions
 
@@ -192,6 +203,30 @@ Implemented CRO follow-up:
 - Suppressed generic Premium CTAs in the exact pack context.
 - Clarified product page copy: free sample exists, one-time payment, no subscription.
 
+### `60ba055 feat: refactor subscription pricing and payment options; update environment variables and templates for monthly and yearly plans`
+
+Closed the feature by separating the focused pack purchase from the Premium subscription:
+
+- Changed the pack seed/verify expected price from `1499` cents to `999` cents.
+- Replaced the single `STRIPE_PRICE_ID` config with:
+  - `STRIPE_MONTHLY_PRICE_ID`
+  - `STRIPE_YEARLY_PRICE_ID`
+- Added public Twig globals:
+  - `subscriptionMonthlyPrice`
+  - `subscriptionYearlyPrice`
+- Changed Premium checkout from a hidden posted `priceId` to a server-side allowlisted `plan` value:
+  - `monthly`
+  - `yearly`
+- Added CSRF validation to subscription checkout.
+- Updated registration, subscription payment, pack page, listing CTA, and locked-file CTA copy.
+- Added a "Pack o Premium" explanation to the pack page to make the choice explicit.
+
+Important behavior:
+
+- Users cannot submit arbitrary Stripe Price IDs through the subscription checkout form.
+- Existing Premium users remain blocked from checkout because the controller still denies access when `user->isPremium()` is true.
+- Webhook handling did not need schema changes because Stripe invoices continue to drive `premiumUntil` from the invoice line period.
+
 ## Stripe State And Operational Notes
 
 The user created a production restricted Stripe token and placed it in a local file for agent use during setup. Do not commit or document secrets.
@@ -199,6 +234,23 @@ The user created a production restricted Stripe token and placed it in a local f
 The user also enabled webhook endpoints.
 
 The product and price were created in Stripe before deployment. Future agents should verify current production IDs from environment/Stripe/dashboard or from the seeded product row, not from this document.
+
+Closeout Stripe live state on 2026-05-22:
+
+| Purpose | Stripe Price ID | Amount | Interval | Active |
+| --- | --- | ---: | --- | --- |
+| Premium monthly for new users | `price_1TZpXdBuKHqaI230Tmc0AZ8L` | `1500 eur` | `month` | yes |
+| Premium yearly for new users | `price_1TZpXeBuKHqaI230dc8DIdjU` | `5900 eur` | `year` | yes |
+| PAU Madrid Matematicas II pack | `price_1TZpXeBuKHqaI2304ibQ6s3a` | `999 eur` | one-time | yes |
+| Old Premium monthly | `price_1Kj3LmBuKHqaI230EnGul39y` | `500 eur` | `month` | no |
+| Old pack price | `price_1TZagsBuKHqaI230ul1iOilq` | `1499 eur` | one-time | no |
+
+Associated Stripe Products:
+
+- Premium: `prod_LPt8Z3W5bExOTD`
+- PAU Madrid Matematicas II pack: `prod_UYi73Jy72QltbK`
+
+The old Premium Price was deactivated only for new purchases. Stripe subscriptions already attached to that old Price were intentionally not modified, migrated, cancelled, or repriced.
 
 Required product seed command format:
 
@@ -267,6 +319,28 @@ If the product has not been seeded in that environment, run the seed command bef
 
 No new migration was needed for commit `d3f6ff2`; the product tables came from `f766d82`.
 
+Closeout deployment note:
+
+- Pricing refactor files were first copied directly from the local working tree to production using `tar | ssh` into `/var/www/clasesdeapoyo`.
+- Production `.env.local` was backed up and updated from the old `STRIPE_PRICE_ID` to `STRIPE_MONTHLY_PRICE_ID` and `STRIPE_YEARLY_PRICE_ID`.
+- Production pack product was reseeded with:
+
+```bash
+php bin/console app:product:seed-madrid-math-pack \
+  --stripe-product-id=prod_UYi73Jy72QltbK \
+  --stripe-price-id=price_1TZpXeBuKHqaI2304ibQ6s3a \
+  --no-interaction
+```
+
+- Production pack product was verified with the matching verify command.
+- Production cache was cleared with:
+
+```bash
+php bin/console cache:clear --env=prod --no-interaction
+```
+
+- The local repository later showed commit `60ba055` on `master` / `origin/master`, so the production state is no longer only an uncommitted direct-copy deployment.
+
 ## Production Testing Notes
 
 The product canonical URL is:
@@ -331,9 +405,29 @@ Result:
 
 Local HTTP render checks were also made against `http://localhost:8080`:
 
-- Madrid Matematicas 2021 exam page showed pack CTAs and `14,99 EUR`.
+- Madrid Matematicas 2021 exam page showed pack CTAs and `9,99 EUR`.
 - Madrid Fisica 2021 exam page kept the generic Premium path.
 - Product page showed `Antes de comprar`, `Pago unico`, `Comprar y descargar`, and `Sin suscripcion`.
+
+Closeout live render checks were made against `https://www.clasesdeapoyo.com`:
+
+- Product page showed `9,99 EUR`, `15,00 EUR / mes`, `59,00 EUR / ano`, and `Comprar y descargar`.
+- Madrid Matematicas 2021 exam page showed `9,99 EUR` pack CTAs.
+- Registration page showed `15,00 EUR / mes` and `59,00 EUR / ano`.
+
+Closeout local verification commands:
+
+```bash
+docker-compose exec -T php composer cs
+docker-compose exec -T php composer stan
+docker-compose exec -T php bin/console lint:twig templates
+docker-compose exec -T php bin/console lint:yaml config --parse-tags
+docker-compose exec -T php bin/console lint:container
+docker-compose exec -T php bin/console app:product:seed-madrid-math-pack --stripe-product-id=prod_UYi73Jy72QltbK --stripe-price-id=price_1TZpXeBuKHqaI2304ibQ6s3a --no-interaction
+docker-compose exec -T php bin/console app:product:verify-madrid-math-pack --stripe-product-id=prod_UYi73Jy72QltbK --stripe-price-id=price_1TZpXeBuKHqaI2304ibQ6s3a --no-interaction
+```
+
+All closeout checks passed.
 
 ## Open Follow-Ups
 
@@ -352,9 +446,11 @@ Prioritized next steps:
    - Checkout started.
    - Purchase completed.
    - Download clicked.
-4. Verify production webhook delivery in Stripe after real deployment.
-5. Consider a second pack only after measuring this first one.
-6. If paid acquisition is tested, start with low-budget search ads for high-intent queries rather than broad social ads.
+4. Verify production webhook delivery in Stripe after the first real pack purchase and the first new Premium subscription.
+5. Monitor whether `9,99 EUR` pack conversion improves enough to offset the reduction from `14,99 EUR`.
+6. Monitor whether `15 EUR / month` Premium reduces one-month cannibalization without materially hurting broader Premium signups.
+7. Consider a second pack only after measuring this first one.
+8. If paid acquisition is tested, start with low-budget search ads for high-intent queries rather than broad social ads.
 
 ## Agent Guidance For Future Work
 
@@ -402,3 +498,12 @@ For CRO and on-site promotion:
 - `templates/views/files/viewer.html.twig`
 - `templates/views/products/show.html.twig`
 
+For Premium pricing and checkout:
+
+- `src/Controller/Subscription/SubscriptionCreateCheckoutSessionController.php`
+- `src/Service/Stripe/StripeCreateCheckoutSession.php`
+- `templates/views/subscription/payment/parts/payment_left.html.twig`
+- `templates/views/subscription/payment/parts/payment_right.html.twig`
+- `templates/views/registration/register.html.twig`
+- `config/services.yaml`
+- `config/packages/twig.yaml`
