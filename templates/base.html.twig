@@ -1,4 +1,3 @@
-{% set adsense_client_id = 'ca-pub-7118030026178745' %}
 <!doctype html>
 <html lang="es">
   <head>
@@ -26,10 +25,6 @@
     <meta property="og:country_name" content="Spain" />
     <meta property="og:email" content="info@clasesdeapoyo.com" />
     <meta property="og:phone_number" content="91 212 32 11" />
-    {% if app.environment != 'dev' %}
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ adsense_client_id }}"
-     crossorigin="anonymous"></script>
-    {% endif %}
     {% block metatags %}{% endblock %}
     {{ encore_entry_link_tags('app') }}
     {% block stylesheets %}{% endblock %} 
@@ -41,7 +36,7 @@
     data-ga-enabled="{{ analytics_enabled ? '1' : '0' }}"
     data-ga-id="{{ analytics_enabled ? 'G-20GQFJDF5H' : '' }}"
     data-google-ads-enabled="{{ google_ads_enabled ? '1' : '0' }}"
-    data-google-ads-client="{{ google_ads_enabled ? adsense_client_id : '' }}"
+    data-google-ads-client="{{ google_ads_enabled ? 'ca-pub-7198950640550751' : '' }}"
   >
     {{ renderHeader() }}
     {% block body %}{% endblock %}
