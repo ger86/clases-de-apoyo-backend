@@ -185,52 +185,9 @@ const cookies = {
     window.gtag('config', this.gaId, { anonymize_ip: true });
 
     this.state.analyticsLoaded = true;
-    this.flushPendingGtagEvents();
 
     if (document.body) {
       document.body.classList.add('analytic-cookies-accepted');
-    }
-  },
-
-  flushPendingGtagEvents() {
-    if (typeof window.gtag !== 'function') {
-      return;
-    }
-
-    const pendingEvents = Array.isArray(window.cdaPendingGtagEvents)
-      ? window.cdaPendingGtagEvents
-      : [];
-
-    pendingEvents.forEach((event) => {
-      if (!event || !event.name || !event.params) {
-        return;
-      }
-
-      if (event.storageKey && this.hasTrackedEvent(event.storageKey)) {
-        return;
-      }
-
-      window.gtag('event', event.name, event.params);
-
-      if (event.storageKey) {
-        this.markEventTracked(event.storageKey);
-      }
-    });
-  },
-
-  hasTrackedEvent(storageKey) {
-    try {
-      return window.sessionStorage.getItem(`cda_gtag_${storageKey}`) === '1';
-    } catch (error) {
-      return false;
-    }
-  },
-
-  markEventTracked(storageKey) {
-    try {
-      window.sessionStorage.setItem(`cda_gtag_${storageKey}`, '1');
-    } catch (error) {
-      // Ignore storage failures so analytics cannot break the purchase page.
     }
   },
 

@@ -48,11 +48,9 @@ Descarga tu pack
 {% block javascripts %}
 {% if purchase.paid %}
 <script>
-  window.cdaPendingGtagEvents = window.cdaPendingGtagEvents || [];
-  window.cdaPendingGtagEvents.push({
-    name: 'purchase',
-    storageKey: 'product_purchase_{{ purchase.id }}',
-    params: {
+  (function trackProductPurchase() {
+    var storageKey = 'cda_gtag_product_purchase_{{ purchase.id }}';
+    var eventParams = {
       transaction_id: '{{ purchase.id }}',
       value: {{ (purchase.amountTotal / 100)|number_format(2, '.', '') }},
       currency: '{{ purchase.currency|upper }}',
@@ -62,8 +60,45 @@ Descarga tu pack
         price: {{ (product.priceCents / 100)|number_format(2, '.', '') }},
         quantity: 1
       }]
+    };
+    var attempts = 0;
+
+    function wasTracked() {
+      try {
+        return window.sessionStorage.getItem(storageKey) === '1';
+      } catch (error) {
+        return false;
+      }
     }
-  });
+
+    function markTracked() {
+      try {
+        window.sessionStorage.setItem(storageKey, '1');
+      } catch (error) {
+        // Ignore storage failures so analytics cannot break the purchase page.
+      }
+    }
+
+    function sendWhenAnalyticsIsReady() {
+      attempts += 1;
+
+      if (wasTracked()) {
+        return;
+      }
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'purchase', eventParams);
+        markTracked();
+        return;
+      }
+
+      if (attempts < 60) {
+        window.setTimeout(sendWhenAnalyticsIsReady, 500);
+      }
+    }
+
+    sendWhenAnalyticsIsReady();
+  }());
 </script>
 {% endif %}
 {% endblock %}
