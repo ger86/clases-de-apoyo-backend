@@ -23,7 +23,7 @@ class FileAccessResolver
         }
 
         $exam = $file->getExam();
-        if ($exam !== null && !$this->premiumService->canSeeExam($exam)) {
+        if ($exam !== null && !$this->premiumService->canSeeExamFile($file)) {
             throw new AccessDeniedHttpException('No puedes ver ese archivo');
         }
 

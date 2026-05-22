@@ -21,14 +21,8 @@
 {% set premiumUser = isPremium() %}
 {% set exam = file.exam %}
 {% set chapter = file.chapter %}
-{% set examCourseSubject = exam ? exam.testYear.communityTestCourseSubject : null %}
-{% set examCommunityTest = examCourseSubject ? examCourseSubject.communityTest : null %}
 {% set chapterCourseSubject = chapter and chapter.chapterBlock ? chapter.chapterBlock.courseSubject : null %}
-{% set showMadridMathPackPromo = (examCommunityTest
-  and examCommunityTest.community.slug == 'madrid'
-  and examCommunityTest.knowledgeTest.slug == 'selectividad'
-  and examCourseSubject.courseSubject.course.slug == '2o-bachillerato'
-  and examCourseSubject.courseSubject.subjectSlug == 'matematicas')
+{% set showMadridMathPackPromo = isMadridMathPackFile(file)
   or (chapterCourseSubject
     and chapterCourseSubject.course.slug == '2o-bachillerato'
     and chapterCourseSubject.subjectSlug == 'matematicas')
@@ -92,7 +86,7 @@
       </div>
       {% endif %}
 
-      {% if not premiumUser %}
+      {% if not premiumUser and not showMadridMathPackPromo %}
       <div class="simple-box">
         <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h4>
         <p>Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones

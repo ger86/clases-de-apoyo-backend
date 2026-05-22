@@ -3,11 +3,7 @@
 {% set communityTestCourseSubject = exam.testYear.communityTestCourseSubject %}
 {% set communityTest = communityTestCourseSubject.communityTest %}
 {% set courseSubject = communityTestCourseSubject.courseSubject %}
-{% set showMadridMathPackPromo = communityTest.community.slug == 'madrid'
-  and communityTest.knowledgeTest.slug == 'selectividad'
-  and courseSubject.course.slug == '2o-bachillerato'
-  and courseSubject.subjectSlug == 'matematicas'
-%}
+{% set showMadridMathPackPromo = isMadridMathPackExam(exam) %}
 
 {% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
     courseSubject.subjectName ~ ' ' ~ exam.name %}
@@ -37,7 +33,7 @@
       <h2 class="h2 mb-4">Ver archivos de este examen</h2>
       <div class="mb-4 list-group">
         {% for file in exam.files %}
-          {% if canSeeExam(exam) %}
+          {% if canSeeExamFile(file) %}
             <a href="{{ path('file', {'fileId': file.id}) }}" 
               class="list-group-item"
               title="{{ file.name }}"
@@ -49,6 +45,17 @@
               <span>Ver {{ file.name }}</span>
               <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
             </a>
+          {% elseif showMadridMathPackPromo %}
+          <a href="{{ path('product_show', {slug: 'pau-matematicas-ii-madrid-1994-2025'}) }}"
+            class="list-group-item"
+            onclick="gtag('event', 'click', {
+              'event_category': 'product-pack',
+              'event_label': 'locked-exam-file'
+            });"
+          >
+            <span>Ver {{ file.name }} en el pack PAU Matemáticas II Madrid</span>
+            <span class="list-group-item-badge">14,99 € <i class="icon-angle-right"></i></span>
+          </a>
           {% else %}
           <a href="{{path('app_register')}}" 
             class="list-group-item"
@@ -77,7 +84,7 @@
           event_label: 'exam-sidebar'
         } %}
       {% endif %}
-      {% if not app.user and not canSeeExam(exam) %}
+      {% if not app.user and not canSeeExam(exam) and not showMadridMathPackPromo %}
       <div class="simple-box mb-8">
         <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h3>
         <p class="mb-4">Con Clases de Apoyo Premium podrás acceder a los exámenes de selectividad resueltos de todos los años, a las soluciones
