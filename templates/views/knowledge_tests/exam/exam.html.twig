@@ -3,6 +3,11 @@
 {% set communityTestCourseSubject = exam.testYear.communityTestCourseSubject %}
 {% set communityTest = communityTestCourseSubject.communityTest %}
 {% set courseSubject = communityTestCourseSubject.courseSubject %}
+{% set showMadridMathPackPromo = communityTest.community.slug == 'madrid'
+  and communityTest.knowledgeTest.slug == 'selectividad'
+  and courseSubject.course.slug == '2o-bachillerato'
+  and courseSubject.subjectSlug == 'matematicas'
+%}
 
 {% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
     courseSubject.subjectName ~ ' ' ~ exam.name %}
@@ -66,6 +71,12 @@
       <div class="simple-box mb-8 font-bold text-2xl">
         Dificultad: {{ exam.difficulty }}
       </div>
+      {% if showMadridMathPackPromo %}
+        {% include 'common/products/madrid_math_pack_promo.html.twig' with {
+          compact: true,
+          event_label: 'exam-sidebar'
+        } %}
+      {% endif %}
       {% if not app.user and not canSeeExam(exam) %}
       <div class="simple-box mb-8">
         <h4 class="h4 mb-4">¿Quieres acceder a más contenido aún?</h3>

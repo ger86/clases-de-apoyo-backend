@@ -1,0 +1,20 @@
+{% set eventLabel = event_label|default('contextual') %}
+{% set compact = compact|default(false) %}
+
+<div class="simple-box mb-4 border border-green-200 bg-green-50">
+  <p class="mb-2 text-sm font-bold uppercase text-green-700">Pack PAU Madrid</p>
+  <h3 class="{{ compact ? 'h4' : 'h3' }} mb-3">Matemáticas II 1994-2025</h3>
+  <p class="mb-4">
+    Todos los exámenes y soluciones de Matemáticas II de Madrid en un único PDF descargable para practicar por años.
+  </p>
+  <a
+    class="btn btn-secondary block text-center"
+    href="{{ path('product_show', {slug: 'pau-matematicas-ii-madrid-1994-2025'}) }}"
+    onclick="gtag('event', 'click', {
+      'event_category': 'product-pack',
+      'event_label': '{{ eventLabel }}'
+    });"
+  >
+    Ver pack por 14,99 €
+  </a>
+</div>

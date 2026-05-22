@@ -19,6 +19,20 @@
 
 {% block pageContent %}
 {% set premiumUser = isPremium() %}
+{% set exam = file.exam %}
+{% set chapter = file.chapter %}
+{% set examCourseSubject = exam ? exam.testYear.communityTestCourseSubject : null %}
+{% set examCommunityTest = examCourseSubject ? examCourseSubject.communityTest : null %}
+{% set chapterCourseSubject = chapter and chapter.chapterBlock ? chapter.chapterBlock.courseSubject : null %}
+{% set showMadridMathPackPromo = (examCommunityTest
+  and examCommunityTest.community.slug == 'madrid'
+  and examCommunityTest.knowledgeTest.slug == 'selectividad'
+  and examCourseSubject.courseSubject.course.slug == '2o-bachillerato'
+  and examCourseSubject.courseSubject.subjectSlug == 'matematicas')
+  or (chapterCourseSubject
+    and chapterCourseSubject.course.slug == '2o-bachillerato'
+    and chapterCourseSubject.subjectSlug == 'matematicas')
+%}
 {% if premiumUser %}
 <div
   class="file-ai-root"
@@ -43,6 +57,12 @@
   </div>
   <div class="col-span-12 lg:col-span-4">
     <div class="sticky">
+      {% if showMadridMathPackPromo %}
+        {% include 'common/products/madrid_math_pack_promo.html.twig' with {
+          compact: true,
+          event_label: exam ? 'file-viewer-exam-sidebar' : 'file-viewer-course-sidebar'
+        } %}
+      {% endif %}
       {% if premiumUser %}
       <div class="simple-box mb-4">
         <h4 class="h4 mb-4">Preguntar a la IA sobre este PDF</h4>
