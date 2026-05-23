@@ -198,6 +198,52 @@ HTML,
                     ],
                 ]
             ),
+            new PauBundleProductDefinition(
+                code: 'pau_quimica_madrid_1996_2025',
+                slug: 'pau-quimica-madrid-1996-2025',
+                title: 'Pack PAU Química Madrid 1996-2025',
+                subjectSlug: 'quimica',
+                subjectName: 'Química',
+                communitySlug: 'madrid',
+                communityName: 'Madrid',
+                knowledgeTestSlug: 'selectividad',
+                courseSlug: '2o-bachillerato',
+                yearRange: '1996-2025',
+                priceCents: 999,
+                currency: 'eur',
+                description: <<<HTML
+<p>Prepara la PAU/EvAU de Química de Madrid con un único pack descargable que reúne exámenes reales desde 1996 hasta 2025.</p>
+<p>Incluye enunciados, soluciones y un PDF completo para estudiar de forma intensiva sin tener que navegar año por año.</p>
+HTML,
+                statementCount: 74,
+                solutionCount: 65,
+                completePages: 708,
+                statementPages: 168,
+                solutionPages: 540,
+                files: [
+                    [
+                        'key' => 'complete',
+                        'label' => 'Pack completo: exámenes y soluciones',
+                        'description' => '708 páginas.',
+                        'path' => 'product-downloads/pau-quimica-madrid-1996-2025/PAU-Quimica-Madrid-1996-2025-examenes-y-soluciones.pdf',
+                        'filename' => 'PAU-Quimica-Madrid-1996-2025-examenes-y-soluciones.pdf',
+                    ],
+                    [
+                        'key' => 'enunciados',
+                        'label' => 'Solo enunciados',
+                        'description' => '168 páginas.',
+                        'path' => 'product-downloads/pau-quimica-madrid-1996-2025/PAU-Quimica-Madrid-1996-2025-enunciados.pdf',
+                        'filename' => 'PAU-Quimica-Madrid-1996-2025-enunciados.pdf',
+                    ],
+                    [
+                        'key' => 'soluciones',
+                        'label' => 'Solo soluciones',
+                        'description' => '540 páginas.',
+                        'path' => 'product-downloads/pau-quimica-madrid-1996-2025/PAU-Quimica-Madrid-1996-2025-soluciones.pdf',
+                        'filename' => 'PAU-Quimica-Madrid-1996-2025-soluciones.pdf',
+                    ],
+                ]
+            ),
         ];
 
         $indexedDefinitions = [];
