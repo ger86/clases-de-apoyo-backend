@@ -2,7 +2,7 @@
 
 Date: 2026-05-23
 Project: Clases de Apoyo backend
-Status: generated locally, uploaded to S3, Stripe product/price created, local seed verified, production deployment pending
+Status: generated locally, uploaded to S3, Stripe product/price created, deployed to production, and verified
 Primary product: `pau-quimica-madrid-1996-2025`
 
 ## Purpose
@@ -144,19 +144,79 @@ Checked through `http://localhost:8080`:
 
 ## Production Deployment
 
-Pending.
+Production was deployed from Git after pushing commit `b5f7061`.
+
+Production deployment used the project wrapper:
+
+```bash
+cd /var/www
+./prepare_cda_coffe
+```
+
+Wrapper result:
+
+- Fast-forwarded production from `4377ecd` to `b5f7061`.
+- Composer install had nothing to install or update.
+- Doctrine migrations were already at latest version `DoctrineMigrations\Version20260521135500`.
+- Production cache clear succeeded.
+- Symfony assets installed successfully.
+- The wrapper printed `npm: command not found` during the npm step but continued and exited successfully after generating optimized autoload files and dumping `.env.local.php`.
 
 ## Production Seed And Verify
 
-Pending.
+The production product row was seeded and verified with:
+
+```bash
+php bin/console app:product:seed-pau-bundle \
+  --product-code=pau_quimica_madrid_1996_2025 \
+  --stripe-product-id=prod_UZIKuvCNWrX18q \
+  --stripe-price-id=price_1Ta9k9BuKHqaI230rcvRoyS1 \
+  --env=prod \
+  --no-interaction
+
+php bin/console app:product:verify-pau-bundle \
+  --product-code=pau_quimica_madrid_1996_2025 \
+  --stripe-product-id=prod_UZIKuvCNWrX18q \
+  --stripe-price-id=price_1Ta9k9BuKHqaI230rcvRoyS1 \
+  --env=prod \
+  --no-interaction
+```
+
+Production verification output:
+
+- Product ready: `pau-quimica-madrid-1996-2025`.
+- Product verified: `pau-quimica-madrid-1996-2025`.
+- Files: 3.
+- Storage: `s3://clasesdeapoyosf`.
 
 ## Production Smoke Checks
 
-Pending.
+Checked live URLs under `https://www.clasesdeapoyo.com`:
+
+- `/packs/pau-quimica-madrid-1996-2025` showed Química, 1996-2025, 9,99 EUR, 74/65 document counts, 708/168/540 page counts, and checkout CTA.
+- `/s/selectividad/madrid/quimica` showed the PAU Química pack promo.
+- `/s/selectividad/madrid/quimica/2021-modelo` showed locked file CTAs pointing to the Química pack.
+- A valid CSRF checkout POST redirected to Stripe Checkout for a live checkout session.
+
+No real Stripe purchase was made during this deployment.
 
 ## Quality Gates
 
-Pending.
+Local checks run before commit/deploy:
+
+```bash
+docker-compose exec -T php composer ci
+```
+
+Result:
+
+- ECS passed.
+- PHPStan passed.
+- Doctrine mapping and schema validation passed.
+- Container lint passed.
+- Twig lint passed.
+- YAML lint passed.
+- PHPUnit ran but reported `No tests executed!`, matching the current project state.
 
 ## Follow-Ups
 
