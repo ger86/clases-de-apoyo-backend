@@ -593,13 +593,13 @@ final class EnhancedExamPageCatalog
                 'La prueba dura 90 minutos y reparte la puntuación entre los ejercicios indicados en el enunciado oficial. En esta página puedes abrir el enunciado, revisar los temas de cada bloque y acceder al pack PAU de Matemáticas II Madrid.',
             ],
             'solutionCta' => [
-                'eyebrow' => 'Solución de ' . $call,
+                'eyebrow' => $hasSolution ? 'Solución de ' . $call : 'Pack PAU Matemáticas II Madrid',
                 'title' => $hasSolution ? 'Corrige este examen con la solución completa' : 'Practica este examen con el pack completo',
                 'text' => $hasSolution
                     ? 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.'
                     : 'El pack PAU {subjectName} {communityName} reúne el histórico {yearRange} de enunciados y soluciones disponibles para practicar sin buscar año por año.',
                 'priceText' => 'Pago único de {formattedPrice}, sin suscripción.',
-                'buttonLabel' => 'Ver solución y pack completo',
+                'buttonLabel' => $hasSolution ? 'Ver solución y pack completo' : 'Ver pack completo',
                 'eventLabel' => 'exam-main-solution-cta-seo-madrid-math-' . $slug,
             ],
             'statementTitle' => $hasSolution ? 'Enunciado y solución' : 'Enunciado oficial',
@@ -644,7 +644,9 @@ final class EnhancedExamPageCatalog
                 'Tiempo: 90 minutos',
             ],
             'educationalLevel' => '2º Bachillerato',
-            'learningResourceTypes' => ['Examen PAU', 'Examen de selectividad', 'Solución de examen'],
+            'learningResourceTypes' => $hasSolution
+                ? ['Examen PAU', 'Examen de selectividad', 'Solución de examen']
+                : ['Examen PAU', 'Examen de selectividad', 'Enunciado de examen'],
             'schemaAbout' => array_merge([
                 'PAU Madrid',
                 'EvAU Madrid',
