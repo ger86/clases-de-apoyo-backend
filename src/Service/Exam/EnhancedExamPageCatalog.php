@@ -471,7 +471,7 @@ final class EnhancedExamPageCatalog
     }
 
     /**
-     * @return list<array{0: string, 1: string, 2: string, 3: string, 4: string, 5: list<array{0: string, 1: string, 2: string, 3: string}>}>
+     * @return list<array{0: string, 1: string, 2: string, 3: string, 4: string, 5: list<array{0: string, 1: string, 2: string, 3: string}>, 6?: bool}>
      */
     private function madridMatematicasHistoricEntries(): array
     {
@@ -508,10 +508,41 @@ final class EnhancedExamPageCatalog
             ['2005-modelo', '2005 modelo', '2004/2005', 'Modelo 2005', 'modelo'],
             ['2005-septiembre', '2005 Septiembre', '2004/2005', 'Septiembre 2005', 'extraordinaria'],
             ['2005-junio', '2005 Junio', '2004/2005', 'Junio 2005', 'ordinaria'],
+            ['2004-modelo', '2004 modelo', '2003/2004', 'Modelo 2004', 'modelo'],
+            ['2004-septiembre', '2004 Septiembre', '2003/2004', 'Septiembre 2004', 'extraordinaria'],
+            ['2004-junio', '2004 Junio', '2003/2004', 'Junio 2004', 'ordinaria'],
+            ['2003-septiembre', '2003 Septiembre', '2002/2003', 'Septiembre 2003', 'extraordinaria'],
+            ['2003-junio', '2003 Junio', '2002/2003', 'Junio 2003', 'ordinaria'],
+            ['2002-septiembre', '2002 Septiembre', '2001/2002', 'Septiembre 2002', 'extraordinaria'],
+            ['2002-junio', '2002 Junio', '2001/2002', 'Junio 2002', 'ordinaria'],
+            ['2001-junio', '2001 Junio', '2000/2001', 'Junio 2001', 'ordinaria'],
+            ['2001-septiembre', '2001 Septiembre', '2000/2001', 'Septiembre 2001', 'extraordinaria'],
+            ['2000-septiembre', '2000 Septiembre', '1999/2000', 'Septiembre 2000', 'extraordinaria'],
+            ['2000-junio', '2000 Junio', '1999/2000', 'Junio 2000', 'ordinaria'],
+            ['1999-septiembre', '1999 Septiembre', '1998/1999', 'Septiembre 1999', 'extraordinaria'],
+            ['1999-junio', '1999 Junio', '1998/1999', 'Junio 1999', 'ordinaria', false],
+            ['1998-junio', '1998 Junio', '1997/1998', 'Junio 1998', 'ordinaria', false],
+            ['1998-septiembre', '1998 Septiembre', '1997/1998', 'Septiembre 1998', 'extraordinaria', false],
+            ['1997-septiembre', '1997 Septiembre', '1996/1997', 'Septiembre 1997', 'extraordinaria', false],
+            ['1997-junio', '1997 Junio', '1996/1997', 'Junio 1997', 'ordinaria'],
+            ['1996-septiembre', '1996 Septiembre', '1995/1996', 'Septiembre 1996', 'extraordinaria'],
+            ['1996-junio', '1996 Junio', '1995/1996', 'Junio 1996', 'ordinaria', false],
+            ['1995-septiembre', '1995 Septiembre', '1994/1995', 'Septiembre 1995', 'extraordinaria', false],
+            ['1995-junio', '1995 Junio', '1994/1995', 'Junio 1995', 'ordinaria'],
+            ['1994-septiembre', '1994 Septiembre', '1993/1994', 'Septiembre 1994', 'extraordinaria'],
+            ['1994-junio', '1994 Junio', '1993/1994', 'Junio 1994', 'ordinaria'],
         ];
 
         return array_map(
-            fn (array $row): array => [...$row, $this->madridMatematicasHistoricQuestions()],
+            fn (array $row): array => [
+                $row[0],
+                $row[1],
+                $row[2],
+                $row[3],
+                $row[4],
+                $this->madridMatematicasHistoricQuestions(),
+                $row[5] ?? true,
+            ],
             $rows
         );
     }
@@ -547,15 +578,19 @@ final class EnhancedExamPageCatalog
         $questionsTitle = 'Preguntas de PAU Madrid ' . $name . ' de Matemáticas II';
         $topicSummary = implode(', ', array_slice($topicLabels, 0, 4));
         $callLower = mb_strtolower($call);
+        $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
+        $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';
 
         return [
-            'metaTitle' => 'PAU Madrid ' . $name . ' Matemáticas II | Enunciado y solución',
-            'title' => 'PAU Madrid ' . $name . ' Matemáticas II: enunciado, temas y solución',
-            'metaDescription' => 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Matemáticas II: enunciado, datos del examen, bloques, temas, dificultad y acceso a la solución.',
+            'metaTitle' => 'PAU Madrid ' . $name . ' Matemáticas II | ' . $metaTitleEnding,
+            'title' => 'PAU Madrid ' . $name . ' Matemáticas II: ' . $titleEnding,
+            'metaDescription' => $hasSolution
+                ? 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Matemáticas II: enunciado, datos del examen, bloques, temas, dificultad y acceso a la solución.'
+                : 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Matemáticas II: enunciado, datos del examen, bloques, temas y dificultad.',
             'summaryTitle' => 'Resumen del examen',
             'summaryParagraphs' => [
-                'Este examen PAU/EvAU de Matemáticas II de Madrid corresponde a ' . $callLower . ' del curso ' . $course . '. Reúne ejercicios de ' . $topicSummary . ', con la estructura habitual de álgebra, análisis, geometría y probabilidad.',
-                'La prueba dura 90 minutos y cada pregunta se califica sobre 2,5 puntos. En esta página puedes abrir el enunciado, revisar los temas de cada bloque y acceder a la solución dentro del pack PAU de Matemáticas II Madrid.',
+                'Este examen PAU/EvAU de Matemáticas II de Madrid corresponde a ' . $callLower . ' del curso ' . $course . '. Reúne ejercicios de ' . $topicSummary . ', con la estructura habitual de álgebra, análisis y geometría, y probabilidad en las convocatorias donde aparece.',
+                'La prueba dura 90 minutos y reparte la puntuación entre los ejercicios indicados en el enunciado oficial. En esta página puedes abrir el enunciado, revisar los temas de cada bloque y acceder al pack PAU de Matemáticas II Madrid.',
             ],
             'solutionCta' => [
                 'eyebrow' => 'Solución de ' . $call,
@@ -567,7 +602,7 @@ final class EnhancedExamPageCatalog
                 'buttonLabel' => 'Ver solución y pack completo',
                 'eventLabel' => 'exam-main-solution-cta-seo-madrid-math-' . $slug,
             ],
-            'statementTitle' => 'Enunciado y solución',
+            'statementTitle' => $hasSolution ? 'Enunciado y solución' : 'Enunciado oficial',
             'visibleFileLabel' => 'Ver enunciado oficial de ' . $call,
             'visibleFileTitle' => 'Ver el enunciado de PAU Madrid ' . $name . ' de Matemáticas II',
             'lockedFileLabel' => 'Ver solución completa en el pack PAU {subjectName} {communityName}',
@@ -579,7 +614,7 @@ final class EnhancedExamPageCatalog
                 ['label' => 'Curso', 'value' => $course],
                 ['label' => 'Convocatoria', 'value' => $call],
                 ['label' => 'Duración', 'value' => '90 minutos'],
-                ['label' => 'Calificación', 'value' => $kind === 'modelo' ? '4 preguntas a elegir entre 8, con 2,5 puntos por pregunta' : 'Preguntas de 2,5 puntos dentro de los bloques del examen'],
+                ['label' => 'Calificación', 'value' => 'Consulta la puntuación de cada ejercicio en el enunciado oficial'],
                 ['label' => 'Dificultad estimada', 'value' => '{difficulty}/10'],
             ],
             'questionsTitle' => $questionsTitle,
