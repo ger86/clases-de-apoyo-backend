@@ -248,6 +248,247 @@ final class EnhancedExamPageCatalog
                 'authorName' => 'Juan Carlos Rojo',
                 'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
             ],
+        ] + $this->madridMatematicasPages();
+    }
+
+    /**
+     * @return array<string, array<string, mixed>>
+     */
+    private function madridMatematicasPages(): array
+    {
+        $entries = [
+            ['2025-junio-1', '2025 Junio', '2024/2025', 'Junio 2025', 'ordinaria', [
+                ['1', 'Álgebra', 'Problemas de sistemas lineales aplicados a tiros de baloncesto y matrices con polinomio característico.', 'Sistemas lineales, matrices y autovalores'],
+                ['2', 'Análisis', 'Analizar una función trigonométrica en un muro, estudiar extremos y calcular áreas mediante integrales.', 'Funciones trigonométricas, extremos e integrales'],
+                ['3', 'Geometría', 'Resolver cuestiones de rectas, planos, distancias, perpendicularidad y áreas en el espacio.', 'Rectas, planos y distancias'],
+                ['4', 'Probabilidad', 'Calcular probabilidades en un espacio finito y aplicar probabilidad total y condicionada a hábitos lectores.', 'Probabilidad y sucesos condicionados'],
+            ]],
+            ['2025-julio-extraordinaria-1', '2025 Julio Extraordinaria', '2024/2025', 'Julio extraordinaria 2025', 'extraordinaria', [
+                ['1', 'Álgebra', 'Discutir un sistema lineal con parámetro y trabajar con potencias de una matriz.', 'Sistemas con parámetro y matrices'],
+                ['2', 'Análisis', 'Modelizar una parcela con restricciones geométricas y optimizar mediante derivadas.', 'Optimización y derivadas'],
+                ['3', 'Geometría', 'Estudiar puntos, rectas, planos, áreas y posiciones relativas en el espacio.', 'Geometría analítica en el espacio'],
+                ['4', 'Probabilidad', 'Resolver una normal aplicada a masas corporales y un problema de probabilidad condicionada con lluvia.', 'Normal y probabilidad condicionada'],
+            ]],
+            ['2024-modelo-2', '2024 modelo', '2023/2024', 'Modelo 2024', 'modelo', [
+                ['A/B1', 'Álgebra', 'Resolver un sistema de intérpretes y estudiar matrices, rangos e inversas con parámetro.', 'Sistemas, matrices y rango'],
+                ['A/B2', 'Análisis', 'Calcular límites, áreas, dominio, asíntotas, extremos y rectas tangentes.', 'Límites, integrales y funciones racionales'],
+                ['A/B3', 'Geometría', 'Trabajar con rectas, planos, tetraedros, ángulos, áreas y volúmenes.', 'Rectas, planos y volúmenes'],
+                ['A/B4', 'Probabilidad', 'Resolver problemas de probabilidad condicionada en fútbol y sucesos incompatibles o independientes.', 'Probabilidad condicionada e independencia'],
+            ]],
+            ['2024-junio-2', '2024 Junio', '2023/2024', 'Junio 2024', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Plantear sistemas de longitudes y estudiar matrices con determinantes, inversas y parámetros.', 'Sistemas y matrices'],
+                ['A/B2', 'Análisis', 'Resolver cuestiones de polinomios, integrales, límites trigonométricos y crecimiento.', 'Polinomios, límites e integrales'],
+                ['A/B3', 'Geometría', 'Analizar puntos y tetraedros en el espacio con distancias, áreas y volúmenes.', 'Geometría 3D y tetraedros'],
+                ['A/B4', 'Probabilidad', 'Calcular probabilidades con operaciones de sucesos y un juego de dados.', 'Sucesos y probabilidad discreta'],
+            ]],
+            ['2024-julio-extraordinaria-2', '2024 Julio Extraordinaria', '2023/2024', 'Julio extraordinaria 2024', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir un sistema lineal con parámetro y razonar propiedades de determinantes.', 'Sistemas y determinantes'],
+                ['A/B2', 'Análisis', 'Construir funciones polinómicas y estudiar la función cúbica x^3 - 3x.', 'Polinomios y análisis de funciones'],
+                ['A/B3', 'Geometría', 'Resolver ejercicios de puntos, rectas, planos y posiciones relativas.', 'Rectas, planos y puntos'],
+                ['A/B4', 'Probabilidad', 'Trabajar con sucesos incompatibles y un problema de lanzamientos alternos a una diana.', 'Probabilidad y sucesos'],
+            ]],
+            ['2023-junio', '2023 Junio', '2022/2023', 'Junio 2023', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Modelizar transportes con sistemas y discutir sistemas lineales con parámetro.', 'Sistemas lineales'],
+                ['A/B2', 'Análisis', 'Estudiar funciones, derivadas, áreas y funciones definidas a trozos.', 'Derivadas, áreas y continuidad'],
+                ['A/B3', 'Geometría', 'Resolver problemas con puntos, rectas, planos, proyecciones y posiciones relativas.', 'Geometría analítica'],
+                ['A/B4', 'Probabilidad', 'Calcular probabilidades de sucesos y aplicar una distribución normal a longitudes.', 'Sucesos y distribución normal'],
+            ]],
+            ['2023-julio-extraordinaria', '2023 Julio Extraordinaria', '2022/2023', 'Julio extraordinaria 2023', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Operar con matrices y discutir un sistema lineal con parámetro.', 'Matrices y sistemas'],
+                ['A/B2', 'Análisis', 'Analizar una función de consumo y comparar funciones mediante áreas e intersecciones.', 'Funciones, áreas y optimización'],
+                ['A/B3', 'Geometría', 'Trabajar con planos, rectas, puntos, proyecciones y distancias.', 'Planos, rectas y proyecciones'],
+                ['A/B4', 'Probabilidad', 'Resolver operaciones de sucesos y una binomial aplicada a una prueba de conducir.', 'Probabilidad y binomial'],
+            ]],
+            ['2023-modelo', '2023 modelo', '2022/2023', 'Modelo 2023', 'modelo', [
+                ['A/B1', 'Álgebra', 'Resolver un reparto de jugadores y estudiar matrices reales con parámetros.', 'Sistemas y matrices'],
+                ['A/B2', 'Análisis', 'Calcular derivadas, integrales y optimización de una zona rectangular.', 'Derivadas, integrales y optimización'],
+                ['A/B3', 'Geometría', 'Resolver geometría de un depósito, rectas, ángulos y proyecciones.', 'Geometría analítica 3D'],
+                ['A/B4', 'Probabilidad', 'Aplicar la distribución normal y calcular probabilidades de sucesos.', 'Normal y sucesos'],
+            ]],
+            ['2022-modelo-2', '2022 modelo', '2021/2022', 'Modelo 2022', 'modelo', [
+                ['A/B1', 'Álgebra', 'Plantear un sistema de alumnos por idioma y estudiar matrices con parámetro.', 'Sistemas, matrices e inversas'],
+                ['A/B2', 'Análisis', 'Estudiar continuidad, derivabilidad, extremos y áreas de funciones definidas a trozos.', 'Continuidad, derivabilidad e integrales'],
+                ['A/B3', 'Geometría', 'Resolver trayectoria de una sonda, planos perpendiculares, cubos y simetrías.', 'Planos, distancias y simetrías'],
+                ['A/B4', 'Probabilidad', 'Calcular probabilidades con urnas y características genéticas independientes.', 'Urnas, independencia y binomial'],
+            ]],
+            ['2022-junio-3', '2022 Junio', '2021/2022', 'Junio 2022', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir sistemas con parámetro y resolver un reparto proporcional de edades.', 'Sistemas con parámetro'],
+                ['A/B2', 'Análisis', 'Estudiar funciones exponenciales o racionales, Bolzano, extremos y áreas.', 'Bolzano, extremos e integrales'],
+                ['A/B3', 'Geometría', 'Analizar trayectorias, planos, rectas y distancias en el espacio.', 'Rectas, planos y distancias'],
+                ['A/B4', 'Probabilidad', 'Resolver problemas de distribución binomial y probabilidad condicionada con sombreros y pañuelos.', 'Binomial y probabilidad condicionada'],
+            ]],
+            ['2022-julio-extraordinaria-3', '2022 Julio Extraordinaria', '2021/2022', 'Julio extraordinaria 2022', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Modelizar libros de una biblioteca y estudiar matrices con parámetro.', 'Sistemas y matrices'],
+                ['A/B2', 'Análisis', 'Estudiar funciones definidas a trozos, logarítmicas, continuidad y derivabilidad.', 'Funciones a trozos y logaritmos'],
+                ['A/B3', 'Geometría', 'Resolver ejercicios con planos, puntos, rectas y posiciones relativas.', 'Planos y rectas'],
+                ['A/B4', 'Probabilidad', 'Aplicar binomial y probabilidad total a alumnado y exportación de productos.', 'Binomial y probabilidad total'],
+            ]],
+            ['2021-modelo', '2021 modelo', '2020/2021', 'Modelo 2021', 'modelo', [
+                ['A/B1', 'Álgebra', 'Estudiar matrices, inversas, potencias y sistemas con parámetros.', 'Matrices y sistemas'],
+                ['A/B2', 'Análisis', 'Analizar funciones logarítmicas o polinómicas, asíntotas, extremos y áreas.', 'Asíntotas, extremos e integrales'],
+                ['A/B3', 'Geometría', 'Resolver ejercicios de puntos, rectas, intersecciones, ángulos y planos.', 'Rectas, planos y ángulos'],
+                ['A/B4', 'Probabilidad', 'Trabajar con una binomial de baloncesto y una normal de temperaturas máximas.', 'Binomial y normal'],
+            ]],
+            ['2021-junio', '2021 Junio', '2020/2021', 'Junio 2021', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Resolver sistemas aplicados a acciones y discutir sistemas dependientes de parámetro.', 'Sistemas lineales'],
+                ['A/B2', 'Análisis', 'Calcular áreas entre parábolas y estudiar funciones trigonométricas o exponenciales.', 'Áreas, continuidad y derivabilidad'],
+                ['A/B3', 'Geometría', 'Trabajar con rectas, planos, intersecciones y relaciones de perpendicularidad.', 'Rectas y planos'],
+                ['A/B4', 'Probabilidad', 'Aplicar una normal a vida animal y probabilidad condicionada a mediciones de calidad del aire.', 'Normal y probabilidad condicionada'],
+            ]],
+            ['2021-julio-extraordinaria', '2021 Julio Extraordinaria', '2020/2021', 'Julio extraordinaria 2021', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Modelizar seguidores en redes sociales y construir sistemas lineales.', 'Sistemas lineales'],
+                ['A/B2', 'Análisis', 'Calcular límites, continuidad, derivabilidad, extremos y áreas.', 'Límites, derivadas e integrales'],
+                ['A/B3', 'Geometría', 'Resolver problemas de punto, recta, plano, ángulos y posiciones relativas.', 'Geometría analítica'],
+                ['A/B4', 'Probabilidad', 'Resolver una urna con reposición parcial y una binomial aplicada a lluvia.', 'Urnas y binomial'],
+            ]],
+            ['2020-modelo', '2020 modelo', '2019/2020', 'Modelo 2020', 'modelo', [
+                ['A/B1', 'Álgebra', 'Resolver una mezcla de gases para un invernadero y un sistema matricial con parámetro.', 'Sistemas, mezclas y matrices'],
+                ['A/B2', 'Análisis', 'Estudiar exponenciales y funciones racionales con tangentes, límites, áreas y asíntotas.', 'Tangentes, límites e integrales'],
+                ['A/B3', 'Geometría', 'Analizar rectas, planos, distancias, áreas y ángulos en el espacio.', 'Rectas, planos y distancias'],
+                ['A/B4', 'Probabilidad', 'Calcular probabilidades de sucesos y aplicar una normal a temperaturas máximas.', 'Sucesos y distribución normal'],
+            ]],
+            ['2020-junio', '2020 Junio', '2019/2020', 'Junio 2020', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir sistemas con parámetro y resolver un sistema aplicado a precios de pescado.', 'Sistemas lineales'],
+                ['A/B2', 'Análisis', 'Aplicar teoremas de funciones, rectas tangentes, integrales y funciones a trozos.', 'Teoremas, derivadas e integrales'],
+                ['A/B3', 'Geometría', 'Estudiar rectas, planos, posiciones relativas y proyecciones.', 'Rectas y planos'],
+                ['A/B4', 'Probabilidad', 'Resolver probabilidades de tiro con arco, sucesos e independencia.', 'Probabilidad, binomial e independencia'],
+            ]],
+            ['2020-septiembre', '2020 Septiembre', '2019/2020', 'Septiembre 2020', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Construir matrices con condiciones de rango y operar con matrices e inversas.', 'Matrices, rango e inversas'],
+                ['A/B2', 'Análisis', 'Estudiar continuidad, derivabilidad, crecimiento y optimización de potencia.', 'Continuidad, derivadas y optimización'],
+                ['A/B3', 'Geometría', 'Resolver ejercicios con punto, recta, paralelogramo, planos y distancias.', 'Geometría analítica'],
+                ['A/B4', 'Probabilidad', 'Aplicar probabilidad total con urnas y estudiar sucesos independientes.', 'Urnas e independencia'],
+            ]],
         ];
+
+        $pages = [];
+        foreach ($entries as [$slug, $name, $course, $call, $kind, $questions]) {
+            $pages['selectividad/madrid/matematicas/' . $slug] = $this->madridMatematicasPage(
+                $slug,
+                $name,
+                $course,
+                $call,
+                $kind,
+                $questions
+            );
+        }
+
+        return $pages;
+    }
+
+    /**
+     * @param list<array{0: string, 1: string, 2: string, 3: string}> $questions
+     *
+     * @return array<string, mixed>
+     */
+    private function madridMatematicasPage(
+        string $slug,
+        string $name,
+        string $course,
+        string $call,
+        string $kind,
+        array $questions
+    ): array {
+        $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
+        $questionsTitle = 'Preguntas de PAU Madrid ' . $name . ' de Matemáticas II';
+        $topicSummary = implode(', ', array_slice($topicLabels, 0, 4));
+        $callLower = mb_strtolower($call);
+
+        return [
+            'metaTitle' => 'PAU Madrid ' . $name . ' Matemáticas II | Enunciado y solución',
+            'title' => 'PAU Madrid ' . $name . ' Matemáticas II: enunciado, temas y solución',
+            'metaDescription' => 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Matemáticas II: enunciado, datos del examen, bloques, temas, dificultad y acceso a la solución.',
+            'summaryTitle' => 'Resumen del examen',
+            'summaryParagraphs' => [
+                'Este examen PAU/EvAU de Matemáticas II de Madrid corresponde a ' . $callLower . ' del curso ' . $course . '. Reúne ejercicios de ' . $topicSummary . ', con la estructura habitual de álgebra, análisis, geometría y probabilidad.',
+                'La prueba dura 90 minutos y cada pregunta se califica sobre 2,5 puntos. En esta página puedes abrir el enunciado, revisar los temas de cada bloque y acceder a la solución dentro del pack PAU de Matemáticas II Madrid.',
+            ],
+            'solutionCta' => [
+                'eyebrow' => 'Solución de ' . $call,
+                'title' => 'Corrige este examen con la solución completa',
+                'text' => 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.',
+                'priceText' => 'Pago único de {formattedPrice}, sin suscripción.',
+                'buttonLabel' => 'Ver solución y pack completo',
+                'eventLabel' => 'exam-main-solution-cta-seo-madrid-math-' . $slug,
+            ],
+            'statementTitle' => 'Enunciado y solución',
+            'visibleFileLabel' => 'Ver enunciado oficial de ' . $call,
+            'visibleFileTitle' => 'Ver el enunciado de PAU Madrid ' . $name . ' de Matemáticas II',
+            'lockedFileLabel' => 'Ver solución completa en el pack PAU {subjectName} {communityName}',
+            'premiumFileLabel' => 'Ver {fileName} con Premium',
+            'examDataTitle' => 'Datos del examen',
+            'examData' => [
+                ['label' => 'Prueba', 'value' => 'PAU/EvAU Madrid'],
+                ['label' => 'Asignatura', 'value' => 'Matemáticas II'],
+                ['label' => 'Curso', 'value' => $course],
+                ['label' => 'Convocatoria', 'value' => $call],
+                ['label' => 'Duración', 'value' => '90 minutos'],
+                ['label' => 'Calificación', 'value' => $kind === 'modelo' ? '4 preguntas a elegir entre 8, con 2,5 puntos por pregunta' : 'Preguntas de 2,5 puntos dentro de los bloques del examen'],
+                ['label' => 'Dificultad estimada', 'value' => '{difficulty}/10'],
+            ],
+            'questionsTitle' => $questionsTitle,
+            'questions' => array_map(static fn (array $question): array => [
+                'block' => $question[0],
+                'question' => $question[1],
+                'task' => $question[2],
+                'topic' => $question[3],
+            ], $questions),
+            'topicsTitle' => 'Temas que aparecen',
+            'topics' => array_map(static fn (string $topic): string => $topic . '.', $topicLabels),
+            'practiceTitle' => 'Cómo practicar este examen',
+            'practiceSteps' => [
+                'Haz una selección de preguntas respetando el límite de 90 minutos.',
+                'Comprueba si los fallos son de planteamiento, cálculo o interpretación del enunciado.',
+                'Corrige el examen con la solución y repite los bloques donde pierdas más puntuación.',
+                'Refuerza los mismos temas con otros exámenes de Matemáticas II de Madrid.',
+            ],
+            'relatedTitle' => 'Exámenes relacionados',
+            'relatedExams' => $this->madridMatematicasRelatedExams($slug),
+            'quickFactsTitle' => 'Ficha rápida',
+            'quickFacts' => [
+                'Comunidad: Madrid',
+                'Asignatura: Matemáticas II',
+                'Convocatoria: ' . $call,
+                'Nivel: 2º Bachillerato',
+                'Tiempo: 90 minutos',
+            ],
+            'educationalLevel' => '2º Bachillerato',
+            'learningResourceTypes' => ['Examen PAU', 'Examen de selectividad', 'Solución de examen'],
+            'schemaAbout' => array_merge([
+                'PAU Madrid',
+                'EvAU Madrid',
+                'Matemáticas II',
+            ], $topicLabels),
+            'analyticsLabel' => 'exam-seo-madrid-math-' . $slug,
+            'sidebarPackEventLabel' => 'exam-sidebar-seo-madrid-math-' . $slug,
+            'authorName' => 'Juan Carlos Rojo',
+            'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
+        ];
+    }
+
+    /**
+     * @return list<array{label: string, type: string, examSlug?: string}>
+     */
+    private function madridMatematicasRelatedExams(string $currentSlug): array
+    {
+        $relatedExams = [
+            ['label' => 'Todos los exámenes de PAU Matemáticas II Madrid', 'type' => 'subject'],
+        ];
+
+        foreach ([
+            ['label' => 'Modelo PAU Madrid 2025 Matemáticas II', 'type' => 'exam', 'examSlug' => '2025-modelo'],
+            ['label' => 'PAU Madrid 2025 Matemáticas II junio', 'type' => 'exam', 'examSlug' => '2025-junio-1'],
+            ['label' => 'PAU Madrid 2024 Matemáticas II junio', 'type' => 'exam', 'examSlug' => '2024-junio-2'],
+        ] as $candidate) {
+            if ($candidate['examSlug'] !== $currentSlug) {
+                $relatedExams[] = $candidate;
+            }
+
+            if (\count($relatedExams) === 3) {
+                break;
+            }
+        }
+
+        return $relatedExams;
     }
 }
