@@ -450,6 +450,7 @@ final class EnhancedExamPageCatalog
                 ['A/B4', 'Probabilidad', 'Resolver ejercicios de probabilidad dentro de la opción correspondiente.', 'Probabilidad'],
             ]],
         ];
+        $entries = array_merge($entries, $this->madridMatematicasHistoricEntries());
 
         $pages = [];
         foreach ($entries as $entry) {
@@ -467,6 +468,65 @@ final class EnhancedExamPageCatalog
         }
 
         return $pages;
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string, 4: string, 5: list<array{0: string, 1: string, 2: string, 3: string}>}>
+     */
+    private function madridMatematicasHistoricEntries(): array
+    {
+        $rows = [
+            ['2014-septiembre', '2014 Septiembre', '2013/2014', 'Septiembre 2014', 'extraordinaria'],
+            ['2014-junio', '2014 Junio', '2013/2014', 'Junio 2014', 'ordinaria'],
+            ['2014-modelo', '2014 modelo', '2013/2014', 'Modelo 2014', 'modelo'],
+            ['2013-septiembre', '2013 Septiembre', '2012/2013', 'Septiembre 2013', 'extraordinaria'],
+            ['2013-junio', '2013 Junio', '2012/2013', 'Junio 2013', 'ordinaria'],
+            ['2013-modelo', '2013 modelo', '2012/2013', 'Modelo 2013', 'modelo'],
+            ['2012-septiembre', '2012 Septiembre', '2011/2012', 'Septiembre 2012', 'extraordinaria'],
+            ['2012-junio', '2012 Junio', '2011/2012', 'Junio 2012', 'ordinaria'],
+            ['2012-modelo', '2012 modelo', '2011/2012', 'Modelo 2012', 'modelo'],
+            ['2011-modelo', '2011 modelo', '2010/2011', 'Modelo 2011', 'modelo'],
+            ['2011-septiembre', '2011 Septiembre', '2010/2011', 'Septiembre 2011', 'extraordinaria'],
+            ['2011-junio', '2011 Junio', '2010/2011', 'Junio 2011', 'ordinaria'],
+            ['2010-septiembre-f-m', '2010 Septiembre - F.M.', '2009/2010', 'Septiembre F.M. 2010', 'extraordinaria'],
+            ['2010-modelo', '2010 modelo', '2009/2010', 'Modelo 2010', 'modelo'],
+            ['2010-septiembre-f-g', '2010 Septiembre - F.G.', '2009/2010', 'Septiembre F.G. 2010', 'extraordinaria'],
+            ['2010-junio-f-m', '2010 Junio - F.M.', '2009/2010', 'Junio F.M. 2010', 'ordinaria'],
+            ['2010-junio-f-g', '2010 Junio - F.G.', '2009/2010', 'Junio F.G. 2010', 'ordinaria'],
+            ['2009-junio', '2009 Junio', '2008/2009', 'Junio 2009', 'ordinaria'],
+            ['2009-modelo', '2009 modelo', '2008/2009', 'Modelo 2009', 'modelo'],
+            ['2009-septiembre', '2009 Septiembre', '2008/2009', 'Septiembre 2009', 'extraordinaria'],
+            ['2008-septiembre', '2008 Septiembre', '2007/2008', 'Septiembre 2008', 'extraordinaria'],
+            ['2008-junio', '2008 Junio', '2007/2008', 'Junio 2008', 'ordinaria'],
+            ['2008-modelo', '2008 modelo', '2007/2008', 'Modelo 2008', 'modelo'],
+            ['2007-septiembre', '2007 Septiembre', '2006/2007', 'Septiembre 2007', 'extraordinaria'],
+            ['2007-modelo', '2007 modelo', '2006/2007', 'Modelo 2007', 'modelo'],
+            ['2007-junio', '2007 Junio', '2006/2007', 'Junio 2007', 'ordinaria'],
+            ['2006-junio', '2006 Junio', '2005/2006', 'Junio 2006', 'ordinaria'],
+            ['2006-modelo', '2006 modelo', '2005/2006', 'Modelo 2006', 'modelo'],
+            ['2006-septiembre', '2006 Septiembre', '2005/2006', 'Septiembre 2006', 'extraordinaria'],
+            ['2005-modelo', '2005 modelo', '2004/2005', 'Modelo 2005', 'modelo'],
+            ['2005-septiembre', '2005 Septiembre', '2004/2005', 'Septiembre 2005', 'extraordinaria'],
+            ['2005-junio', '2005 Junio', '2004/2005', 'Junio 2005', 'ordinaria'],
+        ];
+
+        return array_map(
+            fn (array $row): array => [...$row, $this->madridMatematicasHistoricQuestions()],
+            $rows
+        );
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridMatematicasHistoricQuestions(): array
+    {
+        return [
+            ['A/B1', 'Álgebra', 'Resolver ejercicios de sistemas lineales, matrices, determinantes o discusión con parámetros.', 'Sistemas, matrices y determinantes'],
+            ['A/B2', 'Análisis', 'Estudiar funciones, límites, derivadas, asíntotas, tangentes, áreas o integrales.', 'Funciones, derivadas e integrales'],
+            ['A/B3', 'Geometría', 'Trabajar con rectas, planos, puntos, distancias, ángulos, áreas o volúmenes en el espacio.', 'Geometría analítica en el espacio'],
+            ['A/B4', 'Cierre de opción', 'Completar la opción con el ejercicio final de álgebra, análisis, geometría o probabilidad según la convocatoria.', 'Problemas finales de opción'],
+        ];
     }
 
     /**
