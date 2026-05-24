@@ -5,18 +5,32 @@
 {% set courseSubject = communityTestCourseSubject.courseSubject %}
 {% set pauBundlePack = getPauBundlePackForExam(exam) %}
 {% set showPauBundlePackPromo = pauBundlePack is not null %}
+{% set isMadridMath2025Modelo = communityTest.knowledgeTest.slug == 'selectividad'
+    and communityTest.community.slug == 'madrid'
+    and courseSubject.subjectSlug == 'matematicas'
+    and exam.slug == '2025-modelo'
+%}
 
-{% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
-    courseSubject.subjectName ~ ' ' ~ exam.name %}
-{% set title =  communityTest.knowledgeTest.name|lower ~ ' de ' ~ communityTest.community.name ~ ': ' ~ 
-    courseSubject.subjectName ~ ' ' ~ exam.name %}
-{% set metaDescription = "Descarga el examen de " ~ communityTest.knowledgeTest.name ~ " resuelto de " ~ courseSubject.subjectName ~ ". Año: " ~ exam.name  %}
+{% if isMadridMath2025Modelo %}
+  {% set metaTitle = 'PAU Madrid 2025 Modelo Matemáticas II | Enunciado y solución' %}
+  {% set title = 'PAU Madrid 2025 Modelo Matemáticas II: enunciado, temas y solución' %}
+  {% set metaDescription = 'Consulta el modelo PAU/EvAU Madrid 2025 de Matemáticas II: enunciado, datos del examen, bloques, preguntas, temas, dificultad y acceso a la solución.' %}
+{% else %}
+  {% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~
+      courseSubject.subjectName ~ ' ' ~ exam.name %}
+  {% set title =  communityTest.knowledgeTest.name|lower ~ ' de ' ~ communityTest.community.name ~ ': ' ~
+      courseSubject.subjectName ~ ' ' ~ exam.name %}
+  {% set metaDescription = "Descarga el examen de " ~ communityTest.knowledgeTest.name ~ " resuelto de " ~ courseSubject.subjectName ~ ". Año: " ~ exam.name  %}
+{% endif %}
 
 {% block metatags %}
 <title>{{ metaTitle }}</title>
 <meta name="description" content="{{ metaDescription }}" />
 <meta property="og:title" content="{{ metaTitle }}" />
 <meta property="og:description" content="{{ metaDescription }}" />
+{% if isMadridMath2025Modelo %}
+<link rel="canonical" href="{{ getCanonicalUrl() }}">
+{% endif %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -28,6 +42,9 @@
 {% endblock %}
 
 {% block pageContent %}
+{% if isMadridMath2025Modelo %}
+  {% include 'views/knowledge_tests/exam/seo/madrid_matematicas_2025_modelo.html.twig' %}
+{% else %}
 <section>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
     <div class="col-span-12 lg:col-span-8">
@@ -109,6 +126,7 @@
     </aside>
   </div>
 </section>
+{% endif %}
 {% endblock %}
 
 {% block stylesheets %}
@@ -117,6 +135,99 @@
 
 
 {% block javascripts %}
+{% if isMadridMath2025Modelo %}
+<script type="application/ld+json">
+{{ {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      '@id': getCanonicalUrl() ~ '#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: url('home')
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Exámenes de selectividad',
+          item: url('knowledge_test', {testSlug: communityTest.knowledgeTest.slug})
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Madrid',
+          item: url('community_test', {testSlug: communityTest.knowledgeTest.slug, communitySlug: communityTest.community.slug})
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Matemáticas II',
+          item: url('community_test_course_subject', {
+            testSlug: communityTest.knowledgeTest.slug,
+            communitySlug: communityTest.community.slug,
+            courseSubjectSlug: courseSubject.subjectSlug
+          })
+        },
+        {
+          '@type': 'ListItem',
+          position: 5,
+          name: 'Modelo 2025',
+          item: getCanonicalUrl()
+        }
+      ]
+    },
+    {
+      '@type': ['Article', 'LearningResource'],
+      '@id': getCanonicalUrl() ~ '#exam',
+      headline: metaTitle,
+      name: title,
+      description: metaDescription,
+      url: getCanonicalUrl(),
+      inLanguage: 'es',
+      datePublished: exam.createdAt|date('Y-m-d'),
+      dateModified: exam.updatedAt|date('Y-m-d'),
+      educationalLevel: '2º Bachillerato',
+      learningResourceType: ['Examen PAU', 'Modelo de examen', 'Solución de examen'],
+      about: [
+        'PAU Madrid',
+        'EvAU Madrid',
+        'Matemáticas II',
+        'Matrices y sistemas de ecuaciones',
+        'Continuidad e integrales',
+        'Geometría analítica en el espacio',
+        'Probabilidad binomial y aproximación normal'
+      ],
+      author: {
+        '@type': 'Person',
+        name: 'Juan Carlos Rojo',
+        jobTitle: 'Profesor de apoyo especializado en PAU, Bachillerato y ESO'
+      },
+      publisher: {
+        '@type': 'Organization',
+        '@id': app.request.getSchemeAndHttpHost() ~ '#organization',
+        name: 'Clases de Apoyo',
+        url: app.request.getSchemeAndHttpHost(),
+        logo: app.request.getSchemeAndHttpHost() ~ asset('build/images/logo.png'),
+        sameAs: [
+          'https://www.instagram.com/clases_de_apoyo/',
+          'https://www.youtube.com/channel/UC_7mMMKSQSrXrNmpVScQPJQ',
+          'https://twitter.com/clasesdeapoyo',
+          'https://www.facebook.com/clasesdeapoyo/'
+        ]
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': getCanonicalUrl()
+      }
+    }
+  ]
+}|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+</script>
+{% else %}
 <script type="application/ld+json">
 { "@context": "http://schema.org", 
  "@type": "ScholarlyArticle",
@@ -131,4 +242,5 @@
  "description": "{{ metaDescription }}"
  }
 </script>
+{% endif %}
 {% endblock javascripts %}

@@ -1,0 +1,245 @@
+<section>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <article class="col-span-12 lg:col-span-8">
+      <div class="simple-box mb-8">
+        <h2 class="h2 mb-4">Resumen del examen</h2>
+        <p class="text-lg mb-4">
+          Este modelo PAU/EvAU de Matemáticas II de Madrid para el curso 2024/2025 reúne cuatro bloques: matrices y sistemas de ecuaciones, análisis de funciones e integrales, geometría analítica en el espacio y probabilidad. El examen dura 90 minutos y cada bloque cuenta 2,5 puntos.
+        </p>
+        <p class="text-lg">
+          Los tres primeros bloques ofrecen dos preguntas alternativas y el cuarto bloque incluye una pregunta obligatoria de probabilidad binomial con aproximación normal. En esta página puedes abrir el enunciado, revisar los temas de cada apartado y acceder a la solución dentro del pack PAU de Matemáticas II Madrid.
+        </p>
+      </div>
+
+      {% if showPauBundlePackPromo %}
+        <div class="simple-box mb-8 border border-green-200 bg-green-50">
+          <p class="mb-2 text-sm font-bold uppercase text-green-700">Solución del modelo 2025</p>
+          <h2 class="h2 mb-4">Corrige este examen con la solución completa</h2>
+          <p class="text-lg mb-4">
+            El pack PAU {{ pauBundlePack.subjectName }} {{ pauBundlePack.communityName }} incluye la solución de este modelo y el histórico {{ pauBundlePack.yearRange }} de enunciados y soluciones para practicar sin buscar año por año.
+          </p>
+          <p class="mb-4 text-sm font-bold text-green-800">Pago único de {{ pauBundlePack.formattedPrice }}, sin suscripción.</p>
+          <a
+            class="btn btn-secondary inline-block text-center"
+            href="{{ path('product_show', {slug: pauBundlePack.slug}) }}"
+            onclick="gtag('event', 'click', {
+              'event_category': 'product-pack',
+              'event_label': 'exam-main-solution-cta-seo-madrid-math-2025-modelo'
+            });"
+          >
+            Ver solución y pack completo
+          </a>
+        </div>
+      {% endif %}
+
+      <h2 class="h2 mb-4">Enunciado y solución</h2>
+      <div class="mb-8 list-group">
+        {% for file in exam.files %}
+          {% if canSeeExamFile(file) %}
+            <a href="{{ path('file', {'fileId': file.id}) }}"
+              class="list-group-item"
+              title="Ver el enunciado del modelo PAU Madrid 2025 de Matemáticas II"
+              onclick="gtag('event', 'click', {
+                'event_category': 'view-file',
+                'event_label': 'exam-seo-madrid-math-2025-modelo'
+              });"
+            >
+              <span>Ver enunciado oficial del modelo 2025</span>
+              <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+            </a>
+          {% elseif showPauBundlePackPromo %}
+            <a href="{{ path('product_show', {slug: pauBundlePack.slug}) }}"
+              class="list-group-item"
+              onclick="gtag('event', 'click', {
+                'event_category': 'product-pack',
+                'event_label': 'exam-seo-madrid-math-2025-modelo'
+              });"
+            >
+              <span>Ver solución completa en el pack PAU {{ pauBundlePack.subjectName }} {{ pauBundlePack.communityName }}</span>
+              <span class="list-group-item-badge">{{ pauBundlePack.formattedPrice }} <i class="icon-angle-right"></i></span>
+            </a>
+          {% else %}
+            <a href="{{ path('app_register') }}"
+              class="list-group-item"
+              rel="nofollow"
+              onclick="gtag('event', 'click', {
+                'event_category': 'premium-box',
+                'event_label': 'exam-seo-madrid-math-2025-modelo'
+              });"
+            >
+              <span>Ver {{ file.name }} con Premium</span>
+              <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <h2 class="h2 mb-4">Datos del examen</h2>
+      <div class="mb-8">
+        <table class="border-collapse table-auto w-full">
+          <tbody>
+            <tr>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Prueba</th>
+              <td class="border-b p-4 text-body">PAU/EvAU Madrid</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Asignatura</th>
+              <td class="border-b p-4 text-body">Matemáticas II</td>
+            </tr>
+            <tr>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Curso</th>
+              <td class="border-b p-4 text-body">2024/2025</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Convocatoria</th>
+              <td class="border-b p-4 text-body">Modelo</td>
+            </tr>
+            <tr>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Duración</th>
+              <td class="border-b p-4 text-body">90 minutos</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Calificación</th>
+              <td class="border-b p-4 text-body">4 bloques de 2,5 puntos cada uno</td>
+            </tr>
+            <tr>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Dificultad estimada</th>
+              <td class="border-b p-4 text-body">{{ exam.difficulty }}/10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="h2 mb-4">Preguntas del modelo PAU Madrid 2025 de Matemáticas II</h2>
+      <div class="mb-8">
+        <table class="border-collapse table-auto w-full">
+          <thead class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left bg-slate-200 rounded">
+            <tr>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Bloque</th>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Pregunta</th>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Qué pide</th>
+              <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Tema</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">1</td>
+              <td class="border-b border-slate-300 p-4 text-body">1.1</td>
+              <td class="border-b border-slate-300 p-4 text-body">Estudiar la inversa de AB, el rango de BA y discutir un sistema con parámetros.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Matrices, rango y sistemas</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">1</td>
+              <td class="border-b border-slate-300 p-4 text-body">1.2</td>
+              <td class="border-b border-slate-300 p-4 text-body">Plantear y resolver un sistema de ecuaciones sobre capacidades de garrafas y un aljibe.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Sistemas lineales aplicados</td>
+            </tr>
+            <tr>
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">2</td>
+              <td class="border-b border-slate-300 p-4 text-body">2.1</td>
+              <td class="border-b border-slate-300 p-4 text-body">Estudiar continuidad, extremos relativos y área bajo una función definida a trozos.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Funciones, derivadas e integrales</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">2</td>
+              <td class="border-b border-slate-300 p-4 text-body">2.2</td>
+              <td class="border-b border-slate-300 p-4 text-body">Analizar una función trigonométrica, calcular un límite y resolver una integral por partes.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Trigonometría, límites e integración</td>
+            </tr>
+            <tr>
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">3</td>
+              <td class="border-b border-slate-300 p-4 text-body">3.1</td>
+              <td class="border-b border-slate-300 p-4 text-body">Hallar un plano de simetría, un plano que contiene una recta y una recta paralela dada.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Geometría analítica en el espacio</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">3</td>
+              <td class="border-b border-slate-300 p-4 text-body">3.2</td>
+              <td class="border-b border-slate-300 p-4 text-body">Calcular ángulos entre planos, intersección de tres planos y proyecciones ortogonales.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Planos, ángulos y proyecciones</td>
+            </tr>
+            <tr>
+              <td class="border-b border-slate-300 p-4 text-gray-600 font-bold">4</td>
+              <td class="border-b border-slate-300 p-4 text-body">4</td>
+              <td class="border-b border-slate-300 p-4 text-body">Resolver probabilidades con vacunación de gripe, reuniones de 5 y 7 personas, y aproximación normal para una muestra de 500.</td>
+              <td class="border-b border-slate-300 p-4 text-body">Distribución binomial y normal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="h2 mb-4">Temas que aparecen</h2>
+      <ul class="list-disc list-inside text-lg mb-8">
+        <li>Matrices con parámetro, existencia de inversa, rango y discusión de sistemas.</li>
+        <li>Modelización mediante sistemas de ecuaciones lineales.</li>
+        <li>Continuidad, extremos relativos y cálculo de áreas con integrales definidas.</li>
+        <li>Funciones trigonométricas, paridad, límites e integración por partes.</li>
+        <li>Planos, rectas, simetrías, ángulos e intersecciones en el espacio.</li>
+        <li>Probabilidad binomial, restricciones por probabilidad y aproximación normal.</li>
+      </ul>
+
+      <h2 class="h2 mb-4">Cómo practicar este examen</h2>
+      <ol class="list-decimal list-inside text-lg mb-8">
+        <li>Haz primero una pregunta de cada bloque respetando el límite de 90 minutos.</li>
+        <li>Marca los apartados en los que dependes de una fórmula o de un procedimiento que no recuerdas.</li>
+        <li>Corrige el examen con la solución y repite solo los bloques con errores de planteamiento.</li>
+        <li>Refuerza matrices, análisis, geometría y probabilidad con otros modelos de Madrid.</li>
+      </ol>
+
+      <h2 class="h2 mb-4">Exámenes relacionados</h2>
+      <div class="list-group">
+        <a class="list-group-item" href="{{ path('community_test_course_subject', {
+          testSlug: communityTest.knowledgeTest.slug,
+          communitySlug: communityTest.community.slug,
+          courseSubjectSlug: courseSubject.subjectSlug
+        }) }}">
+          <span>Todos los exámenes de PAU Matemáticas II Madrid</span>
+          <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+        </a>
+        <a class="list-group-item" href="{{ path('exam', {
+          testSlug: communityTest.knowledgeTest.slug,
+          communitySlug: communityTest.community.slug,
+          courseSubjectSlug: courseSubject.subjectSlug,
+          examSlug: '2025-junio-1'
+        }) }}">
+          <span>PAU Madrid 2025 Matemáticas II junio</span>
+          <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+        </a>
+        <a class="list-group-item" href="{{ path('exam', {
+          testSlug: communityTest.knowledgeTest.slug,
+          communitySlug: communityTest.community.slug,
+          courseSubjectSlug: courseSubject.subjectSlug,
+          examSlug: '2024-modelo-2'
+        }) }}">
+          <span>Modelo PAU Madrid 2024 Matemáticas II</span>
+          <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
+        </a>
+      </div>
+    </article>
+
+    <aside class="col-span-12 lg:col-span-4" role="complementary">
+      <div class="simple-box mb-8 font-bold text-2xl">
+        Dificultad: {{ exam.difficulty }}/10
+      </div>
+      <div class="simple-box mb-8">
+        <h2 class="h4 mb-4">Ficha rápida</h2>
+        <ul class="list-disc list-inside">
+          <li>Comunidad: Madrid</li>
+          <li>Asignatura: Matemáticas II</li>
+          <li>Convocatoria: Modelo 2025</li>
+          <li>Nivel: 2º Bachillerato</li>
+          <li>Tiempo: 90 minutos</li>
+        </ul>
+      </div>
+      {% if showPauBundlePackPromo %}
+        {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
+          pack: pauBundlePack,
+          compact: true,
+          event_label: 'exam-sidebar-seo-madrid-math-2025-modelo'
+        } %}
+      {% endif %}
+      {% include 'ads/sidebar_ad.html.twig' with { 'mb': 'mb-8'} %}
+      {% include 'common/elements/youtube_box.html.twig' %}
+    </aside>
+  </div>
+</section>
