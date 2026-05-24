@@ -5,16 +5,12 @@
 {% set courseSubject = communityTestCourseSubject.courseSubject %}
 {% set pauBundlePack = getPauBundlePackForExam(exam) %}
 {% set showPauBundlePackPromo = pauBundlePack is not null %}
-{% set isMadridMath2025Modelo = communityTest.knowledgeTest.slug == 'selectividad'
-    and communityTest.community.slug == 'madrid'
-    and courseSubject.subjectSlug == 'matematicas'
-    and exam.slug == '2025-modelo'
-%}
+{% set hasEnhancedExamPage = enhancedExamPage is defined and enhancedExamPage is not null %}
 
-{% if isMadridMath2025Modelo %}
-  {% set metaTitle = 'PAU Madrid 2025 Modelo Matemáticas II | Enunciado y solución' %}
-  {% set title = 'PAU Madrid 2025 Modelo Matemáticas II: enunciado, temas y solución' %}
-  {% set metaDescription = 'Consulta el modelo PAU/EvAU Madrid 2025 de Matemáticas II: enunciado, datos del examen, bloques, preguntas, temas, dificultad y acceso a la solución.' %}
+{% if hasEnhancedExamPage %}
+  {% set metaTitle = enhancedExamPage.metaTitle %}
+  {% set title = enhancedExamPage.title %}
+  {% set metaDescription = enhancedExamPage.metaDescription %}
 {% else %}
   {% set metaTitle =  communityTest.knowledgeTest.name ~ ' de ' ~ communityTest.community.name ~ ': ' ~
       courseSubject.subjectName ~ ' ' ~ exam.name %}
@@ -28,13 +24,17 @@
 <meta name="description" content="{{ metaDescription }}" />
 <meta property="og:title" content="{{ metaTitle }}" />
 <meta property="og:description" content="{{ metaDescription }}" />
-{% if isMadridMath2025Modelo %}
+{% if hasEnhancedExamPage %}
 <link rel="canonical" href="{{ getCanonicalUrl() }}">
 {% endif %}
 {% endblock %}
 
 {% block pageTitle %}
-  Examen de {{ title }}
+  {% if hasEnhancedExamPage %}
+    {{ title }}
+  {% else %}
+    Examen de {{ title }}
+  {% endif %}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -42,8 +42,8 @@
 {% endblock %}
 
 {% block pageContent %}
-{% if isMadridMath2025Modelo %}
-  {% include 'views/knowledge_tests/exam/seo/madrid_matematicas_2025_modelo.html.twig' %}
+{% if hasEnhancedExamPage %}
+  {% include 'views/knowledge_tests/exam/seo/enhanced_exam.html.twig' %}
 {% else %}
 <section>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -135,7 +135,7 @@
 
 
 {% block javascripts %}
-{% if isMadridMath2025Modelo %}
+{% if hasEnhancedExamPage %}
 <script type="application/ld+json">
 {{ {
   '@context': 'https://schema.org',
@@ -165,7 +165,7 @@
         {
           '@type': 'ListItem',
           position: 4,
-          name: 'Matemáticas II',
+          name: courseSubject.subjectName,
           item: url('community_test_course_subject', {
             testSlug: communityTest.knowledgeTest.slug,
             communitySlug: communityTest.community.slug,
@@ -175,7 +175,7 @@
         {
           '@type': 'ListItem',
           position: 5,
-          name: 'Modelo 2025',
+          name: exam.name,
           item: getCanonicalUrl()
         }
       ]
@@ -190,21 +190,13 @@
       inLanguage: 'es',
       datePublished: exam.createdAt|date('Y-m-d'),
       dateModified: exam.updatedAt|date('Y-m-d'),
-      educationalLevel: '2º Bachillerato',
-      learningResourceType: ['Examen PAU', 'Modelo de examen', 'Solución de examen'],
-      about: [
-        'PAU Madrid',
-        'EvAU Madrid',
-        'Matemáticas II',
-        'Matrices y sistemas de ecuaciones',
-        'Continuidad e integrales',
-        'Geometría analítica en el espacio',
-        'Probabilidad binomial y aproximación normal'
-      ],
+      educationalLevel: enhancedExamPage.educationalLevel,
+      learningResourceType: enhancedExamPage.learningResourceTypes,
+      about: enhancedExamPage.schemaAbout,
       author: {
         '@type': 'Person',
-        name: 'Juan Carlos Rojo',
-        jobTitle: 'Profesor de apoyo especializado en PAU, Bachillerato y ESO'
+        name: enhancedExamPage.authorName,
+        jobTitle: enhancedExamPage.authorJobTitle
       },
       publisher: {
         '@type': 'Organization',

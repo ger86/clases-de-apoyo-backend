@@ -7,6 +7,7 @@ use App\Repository\KnowledgeTestRepository;
 use App\Repository\CommunityTestRepository;
 use App\Repository\CommunityTestCourseSubjectRepository;
 use App\Repository\ExamRepository;
+use App\Service\Exam\EnhancedExamPageCatalog;
 use Symfony\Component\HttpFoundation\Response;
 
 class KnowledgeTestController extends AbstractController
@@ -63,7 +64,8 @@ class KnowledgeTestController extends AbstractController
         string $communitySlug,
         string $courseSubjectSlug,
         string $examSlug,
-        ExamRepository $examRepository
+        ExamRepository $examRepository,
+        EnhancedExamPageCatalog $enhancedExamPageCatalog
     ): Response {
         $exam = $examRepository->findByCriteria(
             $testSlug,
@@ -78,7 +80,10 @@ class KnowledgeTestController extends AbstractController
 
         return $this->render(
             'views/knowledge_tests/exam/exam.html.twig',
-            ['exam' => $exam]
+            [
+                'exam' => $exam,
+                'enhancedExamPage' => $enhancedExamPageCatalog->findForExam($exam),
+            ]
         );
     }
 }
