@@ -359,17 +359,110 @@ final class EnhancedExamPageCatalog
                 ['A/B3', 'Geometría', 'Resolver ejercicios con punto, recta, paralelogramo, planos y distancias.', 'Geometría analítica'],
                 ['A/B4', 'Probabilidad', 'Aplicar probabilidad total con urnas y estudiar sucesos independientes.', 'Urnas e independencia'],
             ]],
+            ['2019-modelo', '2019 modelo', '2018/2019', 'Modelo 2019', 'modelo', [
+                ['A/B1', 'Álgebra', 'Construir matrices 3x3 con condiciones de rango y discutir sistemas lineales con parámetro.', 'Matrices, rango y sistemas'],
+                ['A/B2', 'Análisis', 'Modelizar contaminación con una función, leer una gráfica y calcular integrales.', 'Funciones, gráficas e integrales'],
+                ['A/B3', 'Geometría', 'Calcular planos, distancias y posiciones relativas de rectas en el espacio.', 'Planos, rectas y distancias'],
+                ['A/B4', 'Probabilidad', 'Aplicar aproximación normal a una binomial y probabilidad condicionada en un grupo de idiomas.', 'Normal, binomial y probabilidad condicionada'],
+            ], false],
+            ['2019-junio', '2019 Junio', '2018/2019', 'Junio 2019', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Estudiar el rango de una matriz con parámetro y resolver un sistema aplicado a precios de cafetería.', 'Matrices, rango y sistemas'],
+                ['A/B2', 'Análisis', 'Analizar funciones con asíntotas, tangentes, crecimiento y límites laterales.', 'Asíntotas, derivadas y límites'],
+                ['A/B3', 'Geometría', 'Calcular distancias de puntos a planos, puntos más próximos y posiciones relativas.', 'Planos, distancias y geometría 3D'],
+                ['A/B4', 'Probabilidad', 'Resolver probabilidad total y condicionada en un estudio farmacéutico.', 'Probabilidad total y condicionada'],
+            ]],
+            ['2019-julio-extraordinaria', '2019 Julio Extraordinaria', '2018/2019', 'Julio extraordinaria 2019', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir sistemas lineales y operar con matrices 2x2 con parámetro.', 'Sistemas, matrices y parámetros'],
+                ['A/B2', 'Análisis', 'Usar regla de la cadena, integrales y modelos de propagación mediante derivadas.', 'Derivadas, regla de la cadena e integrales'],
+                ['A/B3', 'Geometría', 'Resolver planos por tres puntos, simetrías y rectas paralelas a planos.', 'Planos, rectas y simetrías'],
+                ['A/B4', 'Probabilidad', 'Aplicar binomial y probabilidad condicionada a selección de personal y defectos de vehículos.', 'Binomial y probabilidad condicionada'],
+            ]],
+            ['2018-julio-extraordinaria', '2018 Julio Extraordinaria', '2017/2018', 'Julio extraordinaria 2018', 'extraordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir matrices y sistemas, y plantear un sistema aplicado a viajes por países.', 'Matrices y sistemas lineales'],
+                ['A/B2', 'Análisis', 'Estudiar continuidad, asíntotas, áreas y la interpretación de una gráfica.', 'Continuidad, asíntotas e integrales'],
+                ['A/B3', 'Geometría', 'Calcular planos, distancias y relaciones entre puntos y rectas.', 'Planos, rectas y distancias'],
+                ['A/B4', 'Probabilidad', 'Trabajar con una distribución normal y con probabilidad condicionada.', 'Distribución normal y probabilidad'],
+            ]],
+            ['2018-junio-ordinaria', '2018 Junio Ordinaria', '2017/2018', 'Junio ordinaria 2018', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir sistemas con parámetro y estudiar matrices invertibles.', 'Sistemas, matrices e inversas'],
+                ['A/B2', 'Análisis', 'Aplicar el valor medio, estudiar asíntotas y calcular áreas de funciones racionales.', 'Valor medio, asíntotas e integrales'],
+                ['A/B3', 'Geometría', 'Calcular distancias, posiciones relativas y rectas en el espacio.', 'Rectas, planos y distancias'],
+                ['A/B4', 'Probabilidad', 'Resolver probabilidad condicionada y control de calidad en productos.', 'Probabilidad condicionada'],
+            ]],
+            ['2018-modelo', '2018 modelo', '2017/2018', 'Modelo 2018', 'modelo', [
+                ['A/B1', 'Álgebra', 'Estudiar matrices, inversas y un sistema lineal AX = B dependiente de parámetro.', 'Matrices y sistemas con parámetro'],
+                ['A/B2', 'Análisis', 'Resolver tangentes, áreas, asíntotas y optimización sobre funciones.', 'Tangentes, integrales y asíntotas'],
+                ['A/B3', 'Geometría', 'Resolver puntos equidistantes, rectas contenidas en planos y ángulos entre planos.', 'Planos, rectas y ángulos'],
+                ['A/B4', 'Probabilidad', 'Aplicar una normal a pesos de estudiantes y probabilidad con extracciones sucesivas.', 'Normal y extracciones'],
+            ]],
+            ['2017-junio', '2017 Junio', '2016/2017', 'Junio 2017', 'ordinaria', [
+                ['A/B1', 'Álgebra', 'Discutir un sistema de ecuaciones con parámetro y operar con matrices diagonalizables.', 'Sistemas y matrices'],
+                ['A/B2', 'Análisis', 'Calcular límites, rectas tangentes, áreas y estudiar funciones.', 'Límites, derivadas e integrales'],
+                ['A/B3', 'Geometría', 'Estudiar rectas por puntos, posiciones relativas y áreas de triángulos.', 'Rectas y geometría vectorial'],
+                ['A/B4', 'Probabilidad', 'Resolver probabilidad total y condicionada en hábitos de ocio.', 'Probabilidad total y condicionada'],
+            ]],
+            ['2017-modelo', '2017 modelo', '2016/2017', 'Modelo 2017', 'modelo', [
+                ['A/B1', 'Geometría y álgebra', 'Calcular distancia entre rectas que se cruzan y estudiar rangos de matrices.', 'Rectas, matrices y rango'],
+                ['A/B2', 'Análisis', 'Optimizar ingresos de una rifa, estudiar exponenciales y calcular áreas.', 'Optimización, exponenciales e integrales'],
+                ['A/B3', 'Álgebra y geometría', 'Resolver un sistema de flores y distancias de puntos a rectas.', 'Sistemas, puntos y rectas'],
+                ['A/B4', 'Probabilidad', 'Aplicar probabilidad total y condicionada a población animal y sucesos.', 'Probabilidad condicionada'],
+            ]],
+            ['2017-septiembre', '2017 Septiembre', '2016/2017', 'Septiembre 2017', 'extraordinaria', [
+                ['A/B1', 'Análisis y álgebra', 'Estudiar continuidad y derivabilidad de funciones a trozos y calcular rangos de matrices.', 'Funciones a trozos, matrices y rango'],
+                ['A/B2', 'Geometría', 'Calcular distancias entre rectas y planos que contienen puntos o rectas.', 'Rectas, planos y distancias'],
+                ['A/B3', 'Álgebra aplicada', 'Resolver mezclas de aleaciones y operaciones matriciales.', 'Sistemas y matrices'],
+                ['A/B4', 'Geometría', 'Calcular distancias de puntos a rectas y ángulos de triángulos.', 'Geometría analítica'],
+            ]],
+            ['2016-septiembre', '2016 Septiembre', '2015/2016', 'Septiembre 2016', 'extraordinaria', [
+                ['A/B1', 'Análisis y álgebra', 'Estudiar una función exponencial y discutir un sistema lineal con parámetro.', 'Funciones exponenciales y sistemas'],
+                ['A/B2', 'Geometría y análisis', 'Resolver distancias entre rectas y estudiar funciones a trozos.', 'Rectas, distancias y funciones'],
+                ['A/B3', 'Álgebra y geometría', 'Resolver problemas de determinantes y calcular volúmenes de tetraedros.', 'Determinantes y volúmenes'],
+                ['A/B4', 'Geometría', 'Calcular puntos de un plano más cercanos al origen y posiciones relativas.', 'Planos y distancias'],
+            ]],
+            ['2016-junio', '2016 Junio', '2015/2016', 'Junio 2016', 'ordinaria', [
+                ['A/B1', 'Análisis y álgebra', 'Estudiar continuidad de funciones logarítmicas y discutir sistemas con parámetro.', 'Continuidad y sistemas lineales'],
+                ['A/B2', 'Álgebra y geometría', 'Resolver ecuaciones matriciales y calcular áreas de paralelogramos.', 'Matrices y geometría vectorial'],
+                ['A/B3', 'Análisis', 'Determinar polinomios mediante derivadas e integrales.', 'Derivadas e integrales'],
+                ['A/B4', 'Probabilidad', 'Resolver cuestiones de probabilidad y distribuciones asociadas.', 'Probabilidad'],
+            ]],
+            ['2016-modelo', '2016 modelo', '2015/2016', 'Modelo 2016', 'modelo', [
+                ['A/B1', 'Álgebra y geometría', 'Discutir sistemas lineales y resolver problemas de planos.', 'Sistemas, planos y vectores'],
+                ['A/B2', 'Análisis', 'Estudiar extremos, pendientes máximas e integrales de funciones.', 'Extremos, derivadas e integrales'],
+                ['A/B3', 'Álgebra', 'Resolver sistemas matriciales con valores propios y parámetros.', 'Matrices, parámetros y sistemas'],
+                ['A/B4', 'Probabilidad', 'Trabajar con probabilidad de sucesos y distribuciones.', 'Probabilidad'],
+            ]],
+            ['2015-junio', '2015 Junio', '2014/2015', 'Junio 2015', 'ordinaria', [
+                ['A/B1', 'Análisis y geometría', 'Estudiar una función logarítmica y resolver proyecciones de puntos sobre rectas.', 'Logaritmos, tangentes y geometría'],
+                ['A/B2', 'Geometría y análisis', 'Calcular volúmenes vectoriales, derivabilidad e integrales.', 'Vectores, derivadas e integrales'],
+                ['A/B3', 'Álgebra', 'Resolver ecuaciones matriciales y trabajar con determinantes.', 'Matrices y determinantes'],
+                ['A/B4', 'Álgebra', 'Calcular valores de parámetros en matrices y sistemas.', 'Parámetros y sistemas'],
+            ]],
+            ['2015-modelo', '2015 modelo', '2014/2015', 'Modelo 2015', 'modelo', [
+                ['A/B1', 'Álgebra y geometría', 'Estudiar rangos de matrices con parámetro y distancias entre rectas.', 'Matrices, rango y rectas'],
+                ['A/B2', 'Análisis', 'Resolver crecimiento, decrecimiento, áreas, límites e integrales.', 'Crecimiento, límites e integrales'],
+                ['A/B3', 'Álgebra', 'Resolver sistemas matriciales y matrices invertibles.', 'Sistemas matriciales'],
+                ['A/B4', 'Álgebra', 'Discutir sistemas lineales y casos compatibles indeterminados.', 'Sistemas lineales'],
+            ]],
+            ['2015-septiembre', '2015 Septiembre', '2014/2015', 'Septiembre 2015', 'extraordinaria', [
+                ['A/B1', 'Álgebra y análisis', 'Discutir un sistema lineal con parámetro y estudiar continuidad de una función a trozos.', 'Sistemas y funciones a trozos'],
+                ['A/B2', 'Geometría', 'Calcular distancias entre rectas, planos y proyecciones de puntos.', 'Rectas, planos y distancias'],
+                ['A/B3', 'Álgebra', 'Aplicar propiedades de determinantes y resolver cálculos matriciales.', 'Determinantes y matrices'],
+                ['A/B4', 'Probabilidad', 'Resolver ejercicios de probabilidad dentro de la opción correspondiente.', 'Probabilidad'],
+            ]],
         ];
 
         $pages = [];
-        foreach ($entries as [$slug, $name, $course, $call, $kind, $questions]) {
+        foreach ($entries as $entry) {
+            [$slug, $name, $course, $call, $kind, $questions] = $entry;
+
             $pages['selectividad/madrid/matematicas/' . $slug] = $this->madridMatematicasPage(
                 $slug,
                 $name,
                 $course,
                 $call,
                 $kind,
-                $questions
+                $questions,
+                $entry[6] ?? true
             );
         }
 
@@ -387,7 +480,8 @@ final class EnhancedExamPageCatalog
         string $course,
         string $call,
         string $kind,
-        array $questions
+        array $questions,
+        bool $hasSolution
     ): array {
         $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
         $questionsTitle = 'Preguntas de PAU Madrid ' . $name . ' de Matemáticas II';
@@ -405,8 +499,10 @@ final class EnhancedExamPageCatalog
             ],
             'solutionCta' => [
                 'eyebrow' => 'Solución de ' . $call,
-                'title' => 'Corrige este examen con la solución completa',
-                'text' => 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.',
+                'title' => $hasSolution ? 'Corrige este examen con la solución completa' : 'Practica este examen con el pack completo',
+                'text' => $hasSolution
+                    ? 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.'
+                    : 'El pack PAU {subjectName} {communityName} reúne el histórico {yearRange} de enunciados y soluciones disponibles para practicar sin buscar año por año.',
                 'priceText' => 'Pago único de {formattedPrice}, sin suscripción.',
                 'buttonLabel' => 'Ver solución y pack completo',
                 'eventLabel' => 'exam-main-solution-cta-seo-madrid-math-' . $slug,
