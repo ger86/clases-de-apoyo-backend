@@ -691,12 +691,7 @@ final class EnhancedExamPageCatalog
     private function madridFisicaPages(): array
     {
         $entries = [
-            ['2025-junio-2', '2025 Junio', '2024/2025', 'Junio 2025', 'ordinaria', [
-                ['1', 'Campo gravitatorio', 'Resolver una pregunta obligatoria de gravitación con órbitas, velocidades o energía gravitatoria.', 'Campo gravitatorio'],
-                ['2.A/2.B', 'Campo electromagnético', 'Elegir entre electrostática, campos magnéticos, fuerzas sobre cargas o inducción electromagnética.', 'Campo electromagnético'],
-                ['3.A/3.B', 'Vibraciones y ondas', 'Elegir entre sonido, ondas mecánicas, lentes u otros fenómenos ondulatorios y ópticos.', 'Vibraciones, ondas y óptica'],
-                ['4.A/4.B', 'Física moderna', 'Elegir entre efecto fotoeléctrico, física relativista, desintegración nuclear o partículas.', 'Física cuántica, nuclear y relativista'],
-            ]],
+            ['2025-junio-2', '2025 Junio', '2024/2025', 'Junio 2025', 'ordinaria', $this->madridFisicaPau2025Questions()],
             ['2024-julio-extraordinaria-3', '2024 Julio Extraordinaria', '2023/2024', 'Julio extraordinaria 2024', 'extraordinaria', $this->madridFisicaClassicQuestions()],
             ['2024-junio-3', '2024 Junio', '2023/2024', 'Junio 2024', 'ordinaria', $this->madridFisicaClassicQuestions()],
             ['2024-modelo-3', '2024 modelo', '2023/2024', 'Modelo 2024', 'modelo', $this->madridFisicaClassicQuestions()],
@@ -771,11 +766,32 @@ final class EnhancedExamPageCatalog
     private function madridFisicaClassicQuestions(): array
     {
         return [
-            ['A/B1', 'Campo gravitatorio', 'Resolver problemas de masas, satélites, órbitas, velocidades de escape, energía o campo gravitatorio.', 'Campo gravitatorio'],
-            ['A/B2', 'Vibraciones y ondas', 'Trabajar con ondas mecánicas, sonido, niveles de intensidad sonora, interferencia o movimiento armónico.', 'Vibraciones, ondas y sonido'],
-            ['A/B3', 'Campo electromagnético', 'Calcular campos eléctricos o magnéticos, potenciales, fuerzas, corrientes, flujo o inducción.', 'Campo eléctrico, magnético e inducción'],
-            ['A/B4', 'Óptica', 'Resolver ejercicios de lentes, espejos, prismas, refracción, reflexión total o sistemas ópticos.', 'Óptica geométrica'],
-            ['A/B5', 'Física moderna', 'Aplicar efecto fotoeléctrico, física cuántica, relatividad, radiactividad o desintegración nuclear.', 'Física cuántica, nuclear y relativista'],
+            ['Opción A', 'Pregunta 1', 'Resolver un ejercicio de gravitación con masas, satélites, órbitas, energía o velocidad de escape.', 'Campo gravitatorio'],
+            ['Opción A', 'Pregunta 2', 'Trabajar una cuestión de vibraciones, ondas mecánicas, sonido, intensidad sonora o movimiento armónico.', 'Vibraciones, ondas y sonido'],
+            ['Opción A', 'Pregunta 3', 'Calcular campos eléctricos o magnéticos, potenciales, fuerzas sobre cargas, corrientes, flujo o inducción.', 'Campo eléctrico, magnético e inducción'],
+            ['Opción A', 'Pregunta 4', 'Resolver un apartado de óptica con lentes, espejos, prismas, refracción, reflexión total o sistemas ópticos.', 'Óptica geométrica'],
+            ['Opción A', 'Pregunta 5', 'Aplicar física moderna: efecto fotoeléctrico, física cuántica, relatividad, radiactividad o desintegración nuclear.', 'Física cuántica, nuclear y relativista'],
+            ['Opción B', 'Pregunta 1', 'Resolver la alternativa de gravitación de la segunda opción del enunciado oficial.', 'Campo gravitatorio'],
+            ['Opción B', 'Pregunta 2', 'Resolver la alternativa de vibraciones, ondas o sonido de la segunda opción.', 'Vibraciones, ondas y sonido'],
+            ['Opción B', 'Pregunta 3', 'Resolver la alternativa de campo eléctrico, campo magnético o inducción electromagnética.', 'Campo eléctrico, magnético e inducción'],
+            ['Opción B', 'Pregunta 4', 'Resolver la alternativa de óptica geométrica de la segunda opción.', 'Óptica geométrica'],
+            ['Opción B', 'Pregunta 5', 'Resolver la alternativa de física cuántica, nuclear, relativista o de partículas.', 'Física cuántica, nuclear y relativista'],
+        ];
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridFisicaPau2025Questions(): array
+    {
+        return [
+            ['Obligatoria', 'Pregunta 1', 'Resolver la pregunta obligatoria de campo gravitatorio con órbitas, velocidades o energía gravitatoria.', 'Campo gravitatorio'],
+            ['A elegir', 'Pregunta 2.A', 'Resolver una alternativa del bloque de campo electromagnético.', 'Campo electromagnético'],
+            ['A elegir', 'Pregunta 2.B', 'Resolver la segunda alternativa del bloque de campo electromagnético.', 'Campo electromagnético'],
+            ['A elegir', 'Pregunta 3.A', 'Resolver una alternativa del bloque de vibraciones, ondas u óptica.', 'Vibraciones, ondas y óptica'],
+            ['A elegir', 'Pregunta 3.B', 'Resolver la segunda alternativa del bloque de vibraciones, ondas u óptica.', 'Vibraciones, ondas y óptica'],
+            ['A elegir', 'Pregunta 4.A', 'Resolver una alternativa de física relativista, cuántica, nuclear o de partículas.', 'Física cuántica, nuclear y relativista'],
+            ['A elegir', 'Pregunta 4.B', 'Resolver la segunda alternativa de física relativista, cuántica, nuclear o de partículas.', 'Física cuántica, nuclear y relativista'],
         ];
     }
 
@@ -785,9 +801,16 @@ final class EnhancedExamPageCatalog
     private function madridFisicaQuestionProblemQuestions(): array
     {
         return [
-            ['Opción A/B', 'Cuestiones 1-3', 'Elegir una opción completa y resolver tres cuestiones teórico-prácticas con razonamiento, fórmulas y unidades.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
-            ['Opción A/B', 'Problema 1', 'Desarrollar un problema largo con varios apartados, planteamiento físico y cálculo numérico.', 'Mecánica, gravitación, ondas u óptica'],
-            ['Opción A/B', 'Problema 2', 'Desarrollar el segundo problema largo de la misma opción, sin mezclar ejercicios de opciones distintas.', 'Electromagnetismo, óptica, física cuántica o nuclear'],
+            ['Opción A', 'Cuestión 1', 'Resolver la primera cuestión teórico-práctica de la opción A con razonamiento, fórmulas y unidades.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción A', 'Cuestión 2', 'Resolver la segunda cuestión teórico-práctica de la opción A.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción A', 'Cuestión 3', 'Resolver la tercera cuestión teórico-práctica de la opción A.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción A', 'Problema 1', 'Desarrollar el primer problema largo de la opción A con varios apartados.', 'Mecánica, gravitación, ondas u óptica'],
+            ['Opción A', 'Problema 2', 'Desarrollar el segundo problema largo de la opción A.', 'Electromagnetismo, óptica, física cuántica o nuclear'],
+            ['Opción B', 'Cuestión 1', 'Resolver la primera cuestión teórico-práctica de la opción B.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción B', 'Cuestión 2', 'Resolver la segunda cuestión teórico-práctica de la opción B.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción B', 'Cuestión 3', 'Resolver la tercera cuestión teórico-práctica de la opción B.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción B', 'Problema 1', 'Desarrollar el primer problema largo de la opción B con varios apartados.', 'Mecánica, gravitación, ondas u óptica'],
+            ['Opción B', 'Problema 2', 'Desarrollar el segundo problema largo de la opción B.', 'Electromagnetismo, óptica, física cuántica o nuclear'],
         ];
     }
 
