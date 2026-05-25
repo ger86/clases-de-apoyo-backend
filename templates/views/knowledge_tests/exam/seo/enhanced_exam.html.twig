@@ -49,16 +49,19 @@
       <h2 class="h2 mb-4">{{ enhancedExamPage.statementTitle }}</h2>
       <div class="mb-8 list-group">
         {% for file in exam.files %}
+          {% set normalizedFileName = file.name|default('')|lower|trim %}
+          {% set isStatementFile = normalizedFileName starts with 'enunciado' %}
+          {% set isSolutionFile = normalizedFileName starts with 'solucion' or normalizedFileName starts with 'solución' %}
           {% if canSeeExamFile(file) %}
             <a href="{{ path('file', {'fileId': file.id}) }}"
               class="list-group-item"
-              title="{{ enhancedExamPage.visibleFileTitle|default(file.name) }}"
+              title="{{ isStatementFile ? enhancedExamPage.visibleFileTitle|default(file.name) : file.name }}"
               onclick="gtag('event', 'click', {
                 'event_category': 'view-file',
                 'event_label': '{{ enhancedExamPage.analyticsLabel }}'
               });"
             >
-              <span>{{ enhancedExamPage.visibleFileLabel }}</span>
+              <span>{{ isStatementFile ? enhancedExamPage.visibleFileLabel : 'Ver ' ~ file.name }}</span>
               <span class="list-group-item-badge"><i class="icon-angle-right"></i></span>
             </a>
           {% elseif showPauBundlePackPromo %}
@@ -69,7 +72,13 @@
                 'event_label': '{{ enhancedExamPage.analyticsLabel }}'
               });"
             >
-              <span>{{ enhancedExam.fillPlaceholders(enhancedExamPage.lockedFileLabel, exam, pauBundlePack) }}</span>
+              <span>
+                {% if isSolutionFile %}
+                  {{ enhancedExam.fillPlaceholders(enhancedExamPage.lockedFileLabel, exam, pauBundlePack) }}
+                {% else %}
+                  Ver {{ file.name }} en el pack PAU {{ pauBundlePack.subjectName }} {{ pauBundlePack.communityName }}
+                {% endif %}
+              </span>
               <span class="list-group-item-badge">{{ pauBundlePack.formattedPrice }} <i class="icon-angle-right"></i></span>
             </a>
           {% else %}

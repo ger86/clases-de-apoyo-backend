@@ -69,7 +69,11 @@ class PremiumService
             return $exam->canSee($user);
         }
 
-        return $exam->canSee(null) && $this->isFreeExamSampleFile($file);
+        if ($this->isFreeExamSampleFile($file)) {
+            return true;
+        }
+
+        return false;
     }
 
     public function isMadridMathPackExam(Exam $exam): bool
