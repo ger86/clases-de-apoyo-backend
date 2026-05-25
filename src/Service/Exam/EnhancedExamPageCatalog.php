@@ -248,7 +248,7 @@ final class EnhancedExamPageCatalog
                 'authorName' => 'Juan Carlos Rojo',
                 'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
             ],
-        ] + $this->madridMatematicasPages() + $this->madridFisicaPages();
+        ] + $this->madridMatematicasPages() + $this->madridFisicaPages() + $this->madridQuimicaPages();
     }
 
     /**
@@ -967,6 +967,193 @@ final class EnhancedExamPageCatalog
             ['label' => 'PAU Madrid 2025 Física junio', 'type' => 'exam', 'examSlug' => '2025-junio-2'],
             ['label' => 'PAU Madrid 2024 Física junio', 'type' => 'exam', 'examSlug' => '2024-junio-3'],
             ['label' => 'Modelo PAU Madrid 2024 Física', 'type' => 'exam', 'examSlug' => '2024-modelo-3'],
+        ] as $candidate) {
+            if ($candidate['examSlug'] !== $currentSlug) {
+                $relatedExams[] = $candidate;
+            }
+
+            if (\count($relatedExams) === 3) {
+                break;
+            }
+        }
+
+        return $relatedExams;
+    }
+
+    /**
+     * @return array<string, array<string, mixed>>
+     */
+    private function madridQuimicaPages(): array
+    {
+        $entries = [
+            ['2022-modelo', '2022 modelo', '2021/2022', 'Modelo 2022', 'modelo'],
+            ['2021-julio-extraordinaria', '2021 Julio Extraordinaria', '2020/2021', 'Julio extraordinaria 2021', 'extraordinaria'],
+            ['2021-junio', '2021 Junio', '2020/2021', 'Junio 2021', 'ordinaria'],
+            ['2021-modelo', '2021 modelo', '2020/2021', 'Modelo 2021', 'modelo'],
+            ['2020-modelo', '2020 modelo', '2019/2020', 'Modelo 2020', 'modelo'],
+            ['2020-junio', '2020 Junio', '2019/2020', 'Junio 2020', 'ordinaria'],
+            ['2020-septiembre', '2020 Septiembre', '2019/2020', 'Septiembre 2020', 'extraordinaria'],
+            ['2019-modelo', '2019 modelo', '2018/2019', 'Modelo 2019', 'modelo', false],
+            ['2019-junio-ordinaria', '2019 Junio Ordinaria', '2018/2019', 'Junio ordinaria 2019', 'ordinaria'],
+            ['2019-julio-extraordinaria', '2019 Julio Extraordinaria', '2018/2019', 'Julio extraordinaria 2019', 'extraordinaria'],
+            ['2018-modelo', '2018 modelo', '2017/2018', 'Modelo 2018', 'modelo'],
+            ['2018-junio', '2018 Junio', '2017/2018', 'Junio 2018', 'ordinaria'],
+            ['2018-julio-extraordinaria', '2018 Julio Extraordinaria', '2017/2018', 'Julio extraordinaria 2018', 'extraordinaria'],
+            ['2017-junio', '2017 Junio', '2016/2017', 'Junio 2017', 'ordinaria'],
+            ['2017-septiembre', '2017 Septiembre', '2016/2017', 'Septiembre 2017', 'extraordinaria'],
+            ['2016-septiembre', '2016 Septiembre', '2015/2016', 'Septiembre 2016', 'extraordinaria'],
+            ['2016-junio', '2016 Junio', '2015/2016', 'Junio 2016', 'ordinaria'],
+            ['2016-modelo', '2016 modelo', '2015/2016', 'Modelo 2016', 'modelo'],
+            ['2015-junio', '2015 Junio', '2014/2015', 'Junio 2015', 'ordinaria'],
+            ['2015-modelo', '2015 modelo', '2014/2015', 'Modelo 2015', 'modelo'],
+            ['2015-septiembre', '2015 Septiembre', '2014/2015', 'Septiembre 2015', 'extraordinaria'],
+        ];
+
+        $pages = [];
+        foreach ($entries as $entry) {
+            [$slug, $name, $course, $call, $kind] = $entry;
+
+            $pages['selectividad/madrid/quimica/' . $slug] = $this->madridQuimicaPage(
+                $slug,
+                $name,
+                $course,
+                $call,
+                $kind,
+                $entry[5] ?? true
+            );
+        }
+
+        return $pages;
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridQuimicaQuestions(): array
+    {
+        return [
+            ['Opción A', 'Pregunta A1', 'Resolver una cuestión de estructura atómica, configuración electrónica, tabla periódica, enlace o geometría molecular.', 'Estructura atómica, tabla periódica y enlace'],
+            ['Opción A', 'Pregunta A2', 'Trabajar con equilibrio químico, cinética, solubilidad, ácido-base, formulación o química orgánica.', 'Equilibrio, cinética, solubilidad, ácido-base y orgánica'],
+            ['Opción A', 'Pregunta A3', 'Resolver un ejercicio de cálculo químico con equilibrio, pH, precipitación, redox, termoquímica o velocidad de reacción.', 'Cálculo químico y razonamiento experimental'],
+            ['Opción A', 'Pregunta A4', 'Aplicar formulación, nomenclatura, reacciones orgánicas, electroquímica, pilas o electrólisis.', 'Formulación, orgánica y electroquímica'],
+            ['Opción A', 'Pregunta A5', 'Resolver el último bloque de la opción A, normalmente con redox, equilibrio, ácido-base, orgánica o electroquímica.', 'Redox, equilibrio y química aplicada'],
+            ['Opción B', 'Pregunta B1', 'Resolver la alternativa de estructura, enlace, propiedades periódicas o geometría molecular de la opción B.', 'Estructura atómica, tabla periódica y enlace'],
+            ['Opción B', 'Pregunta B2', 'Resolver la alternativa de cinética, equilibrio, formulación, ácido-base u orgánica de la opción B.', 'Equilibrio, cinética, solubilidad, ácido-base y orgánica'],
+            ['Opción B', 'Pregunta B3', 'Resolver la alternativa de cálculo químico, estequiometría, solubilidad, redox o termoquímica.', 'Cálculo químico y razonamiento experimental'],
+            ['Opción B', 'Pregunta B4', 'Resolver la alternativa de electroquímica, equilibrio, ácido-base, orgánica o formulación.', 'Formulación, orgánica y electroquímica'],
+            ['Opción B', 'Pregunta B5', 'Resolver el último bloque de la opción B, normalmente con redox, equilibrio, ácido-base, orgánica o electroquímica.', 'Redox, equilibrio y química aplicada'],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function madridQuimicaPage(
+        string $slug,
+        string $name,
+        string $course,
+        string $call,
+        string $kind,
+        bool $hasSolution
+    ): array {
+        $questions = $this->madridQuimicaQuestions();
+        $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
+        $topicSummary = implode(', ', array_slice($topicLabels, 0, 5));
+        $callLower = mb_strtolower($call);
+        $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
+        $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';
+
+        return [
+            'metaTitle' => 'PAU Madrid ' . $name . ' Química | ' . $metaTitleEnding,
+            'title' => 'PAU Madrid ' . $name . ' Química: ' . $titleEnding,
+            'metaDescription' => $hasSolution
+                ? 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Química: enunciado, datos del examen, opciones, temas, dificultad y acceso a la solución.'
+                : 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Química: enunciado, datos del examen, opciones, temas y dificultad.',
+            'summaryTitle' => 'Resumen del examen',
+            'summaryParagraphs' => [
+                'Este examen PAU/EvAU de Química de Madrid corresponde a ' . $callLower . ' del curso ' . $course . '. Reúne ejercicios de ' . $topicSummary . ', con cuestiones de razonamiento químico y problemas de cálculo.',
+                'La prueba dura 90 minutos y reparte la puntuación entre las preguntas indicadas en el enunciado oficial. En esta página puedes abrir el enunciado, revisar las opciones y acceder al pack PAU de Química Madrid.',
+            ],
+            'solutionCta' => [
+                'eyebrow' => $hasSolution ? 'Solución de ' . $call : 'Pack PAU Química Madrid',
+                'title' => $hasSolution ? 'Corrige este examen con la solución completa' : 'Practica este examen con el pack completo',
+                'text' => $hasSolution
+                    ? 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.'
+                    : 'El pack PAU {subjectName} {communityName} reúne el histórico {yearRange} de enunciados y soluciones disponibles para practicar sin buscar año por año.',
+                'priceText' => 'Pago único de {formattedPrice}, sin suscripción.',
+                'buttonLabel' => $hasSolution ? 'Ver solución y pack completo' : 'Ver pack completo',
+                'eventLabel' => 'exam-main-solution-cta-seo-madrid-chemistry-' . $slug,
+            ],
+            'statementTitle' => $hasSolution ? 'Enunciado y solución' : 'Enunciado oficial',
+            'visibleFileLabel' => 'Ver enunciado oficial de ' . $call,
+            'visibleFileTitle' => 'Ver el enunciado de PAU Madrid ' . $name . ' de Química',
+            'lockedFileLabel' => 'Ver solución completa en el pack PAU {subjectName} {communityName}',
+            'premiumFileLabel' => 'Ver {fileName} con Premium',
+            'examDataTitle' => 'Datos del examen',
+            'examData' => [
+                ['label' => 'Prueba', 'value' => 'PAU/EvAU Madrid'],
+                ['label' => 'Asignatura', 'value' => 'Química'],
+                ['label' => 'Curso', 'value' => $course],
+                ['label' => 'Convocatoria', 'value' => $call],
+                ['label' => 'Duración', 'value' => '90 minutos'],
+                ['label' => 'Calificación', 'value' => $kind === 'modelo' ? 'Consulta la puntuación y la opcionalidad en el modelo oficial' : 'Consulta la puntuación de cada pregunta en el enunciado oficial'],
+                ['label' => 'Dificultad estimada', 'value' => '{difficulty}/10'],
+            ],
+            'questionsTitle' => 'Preguntas de PAU Madrid ' . $name . ' de Química',
+            'questions' => array_map(static fn (array $question): array => [
+                'block' => $question[0],
+                'question' => $question[1],
+                'task' => $question[2],
+                'topic' => $question[3],
+            ], $questions),
+            'topicsTitle' => 'Temas que aparecen',
+            'topics' => array_map(static fn (string $topic): string => $topic . '.', $topicLabels),
+            'practiceTitle' => 'Cómo practicar este examen',
+            'practiceSteps' => [
+                'Lee primero la opcionalidad del enunciado y decide si vas a practicar una opción completa o preguntas alternas.',
+                'Resuelve cada pregunta escribiendo el razonamiento químico, las ecuaciones ajustadas, las unidades y los datos usados.',
+                'Corrige con la solución y separa los fallos de formulación, planteamiento, cálculo y justificación.',
+                'Refuerza los bloques repetidos con otros exámenes de Química de Madrid.',
+            ],
+            'relatedTitle' => 'Exámenes relacionados',
+            'relatedExams' => $this->madridQuimicaRelatedExams($slug),
+            'quickFactsTitle' => 'Ficha rápida',
+            'quickFacts' => [
+                'Comunidad: Madrid',
+                'Asignatura: Química',
+                'Convocatoria: ' . $call,
+                'Nivel: 2º Bachillerato',
+                'Tiempo: 90 minutos',
+            ],
+            'educationalLevel' => '2º Bachillerato',
+            'learningResourceTypes' => $hasSolution
+                ? ['Examen PAU', 'Examen de selectividad', 'Solución de examen']
+                : ['Examen PAU', 'Examen de selectividad', 'Enunciado de examen'],
+            'schemaAbout' => array_merge([
+                'PAU Madrid',
+                'EvAU Madrid',
+                'Química',
+            ], $topicLabels),
+            'analyticsLabel' => 'exam-seo-madrid-chemistry-' . $slug,
+            'sidebarPackEventLabel' => 'exam-sidebar-seo-madrid-chemistry-' . $slug,
+            'authorName' => 'Juan Carlos Rojo',
+            'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
+        ];
+    }
+
+    /**
+     * @return list<array{label: string, type: string, examSlug?: string}>
+     */
+    private function madridQuimicaRelatedExams(string $currentSlug): array
+    {
+        $relatedExams = [
+            ['label' => 'Todos los exámenes de PAU Química Madrid', 'type' => 'subject'],
+        ];
+
+        foreach ([
+            ['label' => 'Modelo PAU Madrid 2022 Química', 'type' => 'exam', 'examSlug' => '2022-modelo'],
+            ['label' => 'PAU Madrid 2021 Química junio', 'type' => 'exam', 'examSlug' => '2021-junio'],
+            ['label' => 'Modelo PAU Madrid 2021 Química', 'type' => 'exam', 'examSlug' => '2021-modelo'],
         ] as $candidate) {
             if ($candidate['examSlug'] !== $currentSlug) {
                 $relatedExams[] = $candidate;
