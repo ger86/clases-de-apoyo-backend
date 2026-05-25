@@ -718,6 +718,33 @@ final class EnhancedExamPageCatalog
             ['2018-modelo', '2018 modelo', '2017/2018', 'Modelo 2018', 'modelo', $this->madridFisicaClassicQuestions()],
             ['2018-julio-extraordinaria', '2018 Julio Extraordinaria', '2017/2018', 'Julio extraordinaria 2018', 'extraordinaria', $this->madridFisicaClassicQuestions()],
             ['2018-junio-ordinaria', '2018 Junio Ordinaria', '2017/2018', 'Junio ordinaria 2018', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2017-septiembre', '2017 Septiembre', '2016/2017', 'Septiembre 2017', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2017-junio', '2017 Junio', '2016/2017', 'Junio 2017', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2016-modelo', '2016 modelo', '2015/2016', 'Modelo 2016', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2016-septiembre', '2016 Septiembre', '2015/2016', 'Septiembre 2016', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2016-junio', '2016 Junio', '2015/2016', 'Junio 2016', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2015-septiembre', '2015 Septiembre', '2014/2015', 'Septiembre 2015', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2015-junio', '2015 Junio', '2014/2015', 'Junio 2015', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2015-modelo', '2015 modelo', '2014/2015', 'Modelo 2015', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2014-junio', '2014 Junio', '2013/2014', 'Junio 2014', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2014-modelo', '2014 modelo', '2013/2014', 'Modelo 2014', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2014-septiembre', '2014 Septiembre', '2013/2014', 'Septiembre 2014', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2013-septiembre', '2013 Septiembre', '2012/2013', 'Septiembre 2013', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2013-junio', '2013 Junio', '2012/2013', 'Junio 2013', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2013-modelo', '2013 modelo', '2012/2013', 'Modelo 2013', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2012-modelo', '2012 modelo', '2011/2012', 'Modelo 2012', 'modelo', $this->madridFisicaQuestionProblemQuestions()],
+            ['2012-junio', '2012 Junio', '2011/2012', 'Junio 2012', 'ordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2012-septiembre', '2012 Septiembre', '2011/2012', 'Septiembre 2012', 'extraordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2011-modelo', '2011 modelo', '2010/2011', 'Modelo 2011', 'modelo', $this->madridFisicaQuestionProblemQuestions()],
+            ['2011-junio', '2011 Junio', '2010/2011', 'Junio 2011', 'ordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2010-modelo', '2010 modelo', '2009/2010', 'Modelo 2010', 'modelo', $this->madridFisicaQuestionProblemQuestions()],
+            ['2010-junio-f-g', '2010 Junio - F.G.', '2009/2010', 'Junio F.G. 2010', 'ordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2010-junio-f-m', '2010 Junio - F.M.', '2009/2010', 'Junio F.M. 2010', 'ordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2010-septiembre-f-g', '2010 Septiembre - F.G.', '2009/2010', 'Septiembre F.G. 2010', 'extraordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2010-septiembre-f-m', '2010 Septiembre - F.M.', '2009/2010', 'Septiembre F.M. 2010', 'extraordinaria', $this->madridFisicaQuestionProblemQuestions()],
+            ['2009-modelo', '2009 modelo', '2008/2009', 'Modelo 2009', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2009-junio', '2009 Junio', '2008/2009', 'Junio 2009', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2009-septiembre', '2009 Septiembre', '2008/2009', 'Septiembre 2009', 'extraordinaria', $this->madridFisicaLogseQuestions()],
         ];
 
         $pages = [];
@@ -749,6 +776,30 @@ final class EnhancedExamPageCatalog
             ['A/B3', 'Campo electromagnético', 'Calcular campos eléctricos o magnéticos, potenciales, fuerzas, corrientes, flujo o inducción.', 'Campo eléctrico, magnético e inducción'],
             ['A/B4', 'Óptica', 'Resolver ejercicios de lentes, espejos, prismas, refracción, reflexión total o sistemas ópticos.', 'Óptica geométrica'],
             ['A/B5', 'Física moderna', 'Aplicar efecto fotoeléctrico, física cuántica, relatividad, radiactividad o desintegración nuclear.', 'Física cuántica, nuclear y relativista'],
+        ];
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridFisicaQuestionProblemQuestions(): array
+    {
+        return [
+            ['Opción A/B', 'Cuestiones 1-3', 'Elegir una opción completa y resolver tres cuestiones teórico-prácticas con razonamiento, fórmulas y unidades.', 'Gravitación, ondas, óptica, electromagnetismo o física moderna'],
+            ['Opción A/B', 'Problema 1', 'Desarrollar un problema largo con varios apartados, planteamiento físico y cálculo numérico.', 'Mecánica, gravitación, ondas u óptica'],
+            ['Opción A/B', 'Problema 2', 'Desarrollar el segundo problema largo de la misma opción, sin mezclar ejercicios de opciones distintas.', 'Electromagnetismo, óptica, física cuántica o nuclear'],
+        ];
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridFisicaLogseQuestions(): array
+    {
+        return [
+            ['Primera parte', 'Cuestiones 1-5', 'Responder tres de cinco cuestiones teóricas, conceptuales o teórico-prácticas.', 'Gravitación, ondas, óptica, electromagnetismo y física moderna'],
+            ['Segunda parte', 'Repertorio A', 'Elegir el repertorio A y resolver sus dos problemas completos.', 'Problemas de cálculo y razonamiento físico'],
+            ['Segunda parte', 'Repertorio B', 'Elegir el repertorio B y resolver sus dos problemas completos como alternativa al repertorio A.', 'Problemas de cálculo y razonamiento físico'],
         ];
     }
 
