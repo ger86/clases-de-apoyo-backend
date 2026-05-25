@@ -740,6 +740,34 @@ final class EnhancedExamPageCatalog
             ['2009-modelo', '2009 modelo', '2008/2009', 'Modelo 2009', 'modelo', $this->madridFisicaLogseQuestions()],
             ['2009-junio', '2009 Junio', '2008/2009', 'Junio 2009', 'ordinaria', $this->madridFisicaLogseQuestions()],
             ['2009-septiembre', '2009 Septiembre', '2008/2009', 'Septiembre 2009', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2008-modelo', '2008 modelo', '2007/2008', 'Modelo 2008', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2008-junio', '2008 Junio', '2007/2008', 'Junio 2008', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2008-septiembre', '2008 Septiembre', '2007/2008', 'Septiembre 2008', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2007-modelo', '2007 modelo', '2006/2007', 'Modelo 2007', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2007-junio', '2007 Junio', '2006/2007', 'Junio 2007', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2007-septiembre', '2007 Septiembre', '2006/2007', 'Septiembre 2007', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2006-modelo', '2006 modelo', '2005/2006', 'Modelo 2006', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2006-junio', '2006 Junio', '2005/2006', 'Junio 2006', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2006-septiembre', '2006 Septiembre', '2005/2006', 'Septiembre 2006', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2005-modelo', '2005 modelo', '2004/2005', 'Modelo 2005', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2005-junio', '2005 Junio', '2004/2005', 'Junio 2005', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2005-septiembre', '2005 Septiembre', '2004/2005', 'Septiembre 2005', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2004-modelo', '2004 modelo', '2003/2004', 'Modelo 2004', 'modelo', $this->madridFisicaLogseQuestions()],
+            ['2004-junio', '2004 Junio', '2003/2004', 'Junio 2004', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2004-septiembre', '2004 Septiembre', '2003/2004', 'Septiembre 2004', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2003-junio', '2003 Junio', '2002/2003', 'Junio 2003', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2003-septiembre', '2003 Septiembre', '2002/2003', 'Septiembre 2003', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2002-junio', '2002 Junio', '2001/2002', 'Junio 2002', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2002-septiembre', '2002 Septiembre', '2001/2002', 'Septiembre 2002', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2001-junio', '2001 Junio', '2000/2001', 'Junio 2001', 'ordinaria', $this->madridFisicaLogseQuestions()],
+            ['2000-septiembre', '2000 Septiembre', '1999/2000', 'Septiembre 2000', 'extraordinaria', $this->madridFisicaLogseQuestions()],
+            ['2000-junio', '2000 Junio', '1999/2000', 'Junio 2000', 'ordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1999-junio', '1999 Junio', '1998/1999', 'Junio 1999', 'ordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1999-septiembre', '1999 Septiembre', '1998/1999', 'Septiembre 1999', 'extraordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1998-junio', '1998 Junio', '1997/1998', 'Junio 1998', 'ordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1997-junio', '1997 Junio', '1996/1997', 'Junio 1997', 'ordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1996-junio', '1996 Junio', '1995/1996', 'Junio 1996', 'ordinaria', $this->madridFisicaLogseQuestions(), false],
+            ['1996-septiembre', '1996 Septiembre', '1995/1996', 'Septiembre 1996', 'extraordinaria', $this->madridFisicaLogseQuestions(), false],
         ];
 
         $pages = [];
@@ -821,8 +849,10 @@ final class EnhancedExamPageCatalog
     {
         return [
             ['Primera parte', 'Cuestiones 1-5', 'Responder tres de cinco cuestiones teóricas, conceptuales o teórico-prácticas.', 'Gravitación, ondas, óptica, electromagnetismo y física moderna'],
-            ['Segunda parte', 'Repertorio A', 'Elegir el repertorio A y resolver sus dos problemas completos.', 'Problemas de cálculo y razonamiento físico'],
-            ['Segunda parte', 'Repertorio B', 'Elegir el repertorio B y resolver sus dos problemas completos como alternativa al repertorio A.', 'Problemas de cálculo y razonamiento físico'],
+            ['Repertorio A', 'Problema 1', 'Resolver el primer problema del repertorio A, elegido como bloque completo de la segunda parte.', 'Problemas de cálculo y razonamiento físico'],
+            ['Repertorio A', 'Problema 2', 'Resolver el segundo problema del repertorio A, sin mezclarlo con el repertorio B.', 'Problemas de cálculo y razonamiento físico'],
+            ['Repertorio B', 'Problema 1', 'Resolver el primer problema del repertorio B como alternativa completa al repertorio A.', 'Problemas de cálculo y razonamiento físico'],
+            ['Repertorio B', 'Problema 2', 'Resolver el segundo problema del repertorio B como alternativa completa al repertorio A.', 'Problemas de cálculo y razonamiento físico'],
         ];
     }
 
