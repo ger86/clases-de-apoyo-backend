@@ -248,7 +248,7 @@ final class EnhancedExamPageCatalog
                 'authorName' => 'Juan Carlos Rojo',
                 'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
             ],
-        ] + $this->madridMatematicasPages();
+        ] + $this->madridMatematicasPages() + $this->madridFisicaPages();
     }
 
     /**
@@ -672,6 +672,197 @@ final class EnhancedExamPageCatalog
             ['label' => 'Modelo PAU Madrid 2025 Matemáticas II', 'type' => 'exam', 'examSlug' => '2025-modelo'],
             ['label' => 'PAU Madrid 2025 Matemáticas II junio', 'type' => 'exam', 'examSlug' => '2025-junio-1'],
             ['label' => 'PAU Madrid 2024 Matemáticas II junio', 'type' => 'exam', 'examSlug' => '2024-junio-2'],
+        ] as $candidate) {
+            if ($candidate['examSlug'] !== $currentSlug) {
+                $relatedExams[] = $candidate;
+            }
+
+            if (\count($relatedExams) === 3) {
+                break;
+            }
+        }
+
+        return $relatedExams;
+    }
+
+    /**
+     * @return array<string, array<string, mixed>>
+     */
+    private function madridFisicaPages(): array
+    {
+        $entries = [
+            ['2025-junio-2', '2025 Junio', '2024/2025', 'Junio 2025', 'ordinaria', [
+                ['1', 'Campo gravitatorio', 'Resolver una pregunta obligatoria de gravitación con órbitas, velocidades o energía gravitatoria.', 'Campo gravitatorio'],
+                ['2.A/2.B', 'Campo electromagnético', 'Elegir entre electrostática, campos magnéticos, fuerzas sobre cargas o inducción electromagnética.', 'Campo electromagnético'],
+                ['3.A/3.B', 'Vibraciones y ondas', 'Elegir entre sonido, ondas mecánicas, lentes u otros fenómenos ondulatorios y ópticos.', 'Vibraciones, ondas y óptica'],
+                ['4.A/4.B', 'Física moderna', 'Elegir entre efecto fotoeléctrico, física relativista, desintegración nuclear o partículas.', 'Física cuántica, nuclear y relativista'],
+            ]],
+            ['2024-julio-extraordinaria-3', '2024 Julio Extraordinaria', '2023/2024', 'Julio extraordinaria 2024', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2024-junio-3', '2024 Junio', '2023/2024', 'Junio 2024', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2024-modelo-3', '2024 modelo', '2023/2024', 'Modelo 2024', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2023-modelo-1', '2023 modelo', '2022/2023', 'Modelo 2023', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2023-junio-1', '2023 Junio', '2022/2023', 'Junio 2023', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2023-julio-extraordinaria-1', '2023 Julio Extraordinaria', '2022/2023', 'Julio extraordinaria 2023', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2022-junio', '2022 Junio', '2021/2022', 'Junio 2022', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2022-modelo-1', '2022 modelo', '2021/2022', 'Modelo 2022', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2022-julio-extraordinaria', '2022 Julio Extraordinaria', '2021/2022', 'Julio extraordinaria 2022', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2021-junio', '2021 Junio', '2020/2021', 'Junio 2021', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2021-modelo', '2021 modelo', '2020/2021', 'Modelo 2021', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2021-julio-extraordinaria', '2021 Julio Extraordinaria', '2020/2021', 'Julio extraordinaria 2021', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2020-septiembre', '2020 Septiembre', '2019/2020', 'Septiembre 2020', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2020-junio', '2020 Junio', '2019/2020', 'Junio 2020', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2020-modelo', '2020 modelo', '2019/2020', 'Modelo 2020', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2019-modelo', '2019 modelo', '2018/2019', 'Modelo 2019', 'modelo', $this->madridFisicaClassicQuestions(), false],
+            ['2019-julio-extraordinaria', '2019 Julio Extraordinaria', '2018/2019', 'Julio extraordinaria 2019', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2019-junio', '2019 Junio', '2018/2019', 'Junio 2019', 'ordinaria', $this->madridFisicaClassicQuestions()],
+            ['2018-modelo', '2018 modelo', '2017/2018', 'Modelo 2018', 'modelo', $this->madridFisicaClassicQuestions()],
+            ['2018-julio-extraordinaria', '2018 Julio Extraordinaria', '2017/2018', 'Julio extraordinaria 2018', 'extraordinaria', $this->madridFisicaClassicQuestions()],
+            ['2018-junio-ordinaria', '2018 Junio Ordinaria', '2017/2018', 'Junio ordinaria 2018', 'ordinaria', $this->madridFisicaClassicQuestions()],
+        ];
+
+        $pages = [];
+        foreach ($entries as $entry) {
+            [$slug, $name, $course, $call, $kind, $questions] = $entry;
+
+            $pages['selectividad/madrid/fisica/' . $slug] = $this->madridFisicaPage(
+                $slug,
+                $name,
+                $course,
+                $call,
+                $kind,
+                $questions,
+                $entry[6] ?? true
+            );
+        }
+
+        return $pages;
+    }
+
+    /**
+     * @return list<array{0: string, 1: string, 2: string, 3: string}>
+     */
+    private function madridFisicaClassicQuestions(): array
+    {
+        return [
+            ['A/B1', 'Campo gravitatorio', 'Resolver problemas de masas, satélites, órbitas, velocidades de escape, energía o campo gravitatorio.', 'Campo gravitatorio'],
+            ['A/B2', 'Vibraciones y ondas', 'Trabajar con ondas mecánicas, sonido, niveles de intensidad sonora, interferencia o movimiento armónico.', 'Vibraciones, ondas y sonido'],
+            ['A/B3', 'Campo electromagnético', 'Calcular campos eléctricos o magnéticos, potenciales, fuerzas, corrientes, flujo o inducción.', 'Campo eléctrico, magnético e inducción'],
+            ['A/B4', 'Óptica', 'Resolver ejercicios de lentes, espejos, prismas, refracción, reflexión total o sistemas ópticos.', 'Óptica geométrica'],
+            ['A/B5', 'Física moderna', 'Aplicar efecto fotoeléctrico, física cuántica, relatividad, radiactividad o desintegración nuclear.', 'Física cuántica, nuclear y relativista'],
+        ];
+    }
+
+    /**
+     * @param list<array{0: string, 1: string, 2: string, 3: string}> $questions
+     *
+     * @return array<string, mixed>
+     */
+    private function madridFisicaPage(
+        string $slug,
+        string $name,
+        string $course,
+        string $call,
+        string $kind,
+        array $questions,
+        bool $hasSolution
+    ): array {
+        $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
+        $topicSummary = implode(', ', array_slice($topicLabels, 0, 5));
+        $callLower = mb_strtolower($call);
+        $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
+        $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';
+
+        return [
+            'metaTitle' => 'PAU Madrid ' . $name . ' Física | ' . $metaTitleEnding,
+            'title' => 'PAU Madrid ' . $name . ' Física: ' . $titleEnding,
+            'metaDescription' => $hasSolution
+                ? 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Física: enunciado, datos del examen, bloques, temas, dificultad y acceso a la solución.'
+                : 'Consulta el examen PAU/EvAU Madrid ' . $name . ' de Física: enunciado, datos del examen, bloques, temas y dificultad.',
+            'summaryTitle' => 'Resumen del examen',
+            'summaryParagraphs' => [
+                'Este examen PAU/EvAU de Física de Madrid corresponde a ' . $callLower . ' del curso ' . $course . '. Reúne ejercicios de ' . $topicSummary . ', con problemas numéricos y cuestiones de razonamiento físico.',
+                'La prueba dura 90 minutos y reparte la puntuación entre los ejercicios indicados en el enunciado oficial. En esta página puedes abrir el enunciado, revisar los temas de cada bloque y acceder al pack PAU de Física Madrid.',
+            ],
+            'solutionCta' => [
+                'eyebrow' => $hasSolution ? 'Solución de ' . $call : 'Pack PAU Física Madrid',
+                'title' => $hasSolution ? 'Corrige este examen con la solución completa' : 'Practica este examen con el pack completo',
+                'text' => $hasSolution
+                    ? 'El pack PAU {subjectName} {communityName} incluye la solución de este examen y el histórico {yearRange} de enunciados y soluciones para practicar sin buscar año por año.'
+                    : 'El pack PAU {subjectName} {communityName} reúne el histórico {yearRange} de enunciados y soluciones disponibles para practicar sin buscar año por año.',
+                'priceText' => 'Pago único de {formattedPrice}, sin suscripción.',
+                'buttonLabel' => $hasSolution ? 'Ver solución y pack completo' : 'Ver pack completo',
+                'eventLabel' => 'exam-main-solution-cta-seo-madrid-physics-' . $slug,
+            ],
+            'statementTitle' => $hasSolution ? 'Enunciado y solución' : 'Enunciado oficial',
+            'visibleFileLabel' => 'Ver enunciado oficial de ' . $call,
+            'visibleFileTitle' => 'Ver el enunciado de PAU Madrid ' . $name . ' de Física',
+            'lockedFileLabel' => 'Ver solución completa en el pack PAU {subjectName} {communityName}',
+            'premiumFileLabel' => 'Ver {fileName} con Premium',
+            'examDataTitle' => 'Datos del examen',
+            'examData' => [
+                ['label' => 'Prueba', 'value' => 'PAU/EvAU Madrid'],
+                ['label' => 'Asignatura', 'value' => 'Física'],
+                ['label' => 'Curso', 'value' => $course],
+                ['label' => 'Convocatoria', 'value' => $call],
+                ['label' => 'Duración', 'value' => '90 minutos'],
+                ['label' => 'Calificación', 'value' => $kind === 'modelo' ? 'Consulta la puntuación y la opcionalidad en el modelo oficial' : 'Consulta la puntuación de cada ejercicio en el enunciado oficial'],
+                ['label' => 'Dificultad estimada', 'value' => '{difficulty}/10'],
+            ],
+            'questionsTitle' => 'Preguntas de PAU Madrid ' . $name . ' de Física',
+            'questions' => array_map(static fn (array $question): array => [
+                'block' => $question[0],
+                'question' => $question[1],
+                'task' => $question[2],
+                'topic' => $question[3],
+            ], $questions),
+            'topicsTitle' => 'Temas que aparecen',
+            'topics' => array_map(static fn (string $topic): string => $topic . '.', $topicLabels),
+            'practiceTitle' => 'Cómo practicar este examen',
+            'practiceSteps' => [
+                'Haz primero una pregunta de cada bloque respetando el límite de 90 minutos.',
+                'Anota las fórmulas usadas, las unidades y los cambios de escala antes de corregir.',
+                'Corrige el examen con la solución y separa los fallos de concepto, planteamiento y cálculo.',
+                'Refuerza los mismos bloques con otros exámenes de Física de Madrid.',
+            ],
+            'relatedTitle' => 'Exámenes relacionados',
+            'relatedExams' => $this->madridFisicaRelatedExams($slug),
+            'quickFactsTitle' => 'Ficha rápida',
+            'quickFacts' => [
+                'Comunidad: Madrid',
+                'Asignatura: Física',
+                'Convocatoria: ' . $call,
+                'Nivel: 2º Bachillerato',
+                'Tiempo: 90 minutos',
+            ],
+            'educationalLevel' => '2º Bachillerato',
+            'learningResourceTypes' => $hasSolution
+                ? ['Examen PAU', 'Examen de selectividad', 'Solución de examen']
+                : ['Examen PAU', 'Examen de selectividad', 'Enunciado de examen'],
+            'schemaAbout' => array_merge([
+                'PAU Madrid',
+                'EvAU Madrid',
+                'Física',
+            ], $topicLabels),
+            'analyticsLabel' => 'exam-seo-madrid-physics-' . $slug,
+            'sidebarPackEventLabel' => 'exam-sidebar-seo-madrid-physics-' . $slug,
+            'authorName' => 'Juan Carlos Rojo',
+            'authorJobTitle' => 'Profesor de apoyo especializado en PAU, Bachillerato y ESO',
+        ];
+    }
+
+    /**
+     * @return list<array{label: string, type: string, examSlug?: string}>
+     */
+    private function madridFisicaRelatedExams(string $currentSlug): array
+    {
+        $relatedExams = [
+            ['label' => 'Todos los exámenes de PAU Física Madrid', 'type' => 'subject'],
+        ];
+
+        foreach ([
+            ['label' => 'PAU Madrid 2025 Física junio', 'type' => 'exam', 'examSlug' => '2025-junio-2'],
+            ['label' => 'PAU Madrid 2024 Física junio', 'type' => 'exam', 'examSlug' => '2024-junio-3'],
+            ['label' => 'Modelo PAU Madrid 2024 Física', 'type' => 'exam', 'examSlug' => '2024-modelo-3'],
         ] as $candidate) {
             if ($candidate['examSlug'] !== $currentSlug) {
                 $relatedExams[] = $candidate;
