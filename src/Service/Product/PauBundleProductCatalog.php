@@ -199,6 +199,52 @@ HTML,
                 ]
             ),
             new PauBundleProductDefinition(
+                code: 'pau_matematicas_ccss_madrid_1995_2025',
+                slug: 'pau-matematicas-ccss-madrid-1995-2025',
+                title: 'Pack PAU Matemáticas CCSS Madrid 1995-2025',
+                subjectSlug: 'matematicas-cc-ss',
+                subjectName: 'Matemáticas CCSS',
+                communitySlug: 'madrid',
+                communityName: 'Madrid',
+                knowledgeTestSlug: 'selectividad',
+                courseSlug: '2o-bachillerato',
+                yearRange: '1995-2025',
+                priceCents: 999,
+                currency: 'eur',
+                description: <<<HTML
+<p>Prepara la PAU/EvAU de Matemáticas aplicadas a las Ciencias Sociales de Madrid con un único pack descargable que reúne exámenes reales desde 1995 hasta 2025.</p>
+<p>Incluye enunciados, soluciones y un PDF completo para estudiar de forma intensiva sin tener que navegar año por año.</p>
+HTML,
+                statementCount: 74,
+                solutionCount: 62,
+                completePages: 696,
+                statementPages: 165,
+                solutionPages: 531,
+                files: [
+                    [
+                        'key' => 'complete',
+                        'label' => 'Pack completo: exámenes y soluciones',
+                        'description' => '696 páginas.',
+                        'path' => 'product-downloads/pau-matematicas-ccss-madrid-1995-2025/PAU-Matematicas-CCSS-Madrid-1995-2025-examenes-y-soluciones.pdf',
+                        'filename' => 'PAU-Matematicas-CCSS-Madrid-1995-2025-examenes-y-soluciones.pdf',
+                    ],
+                    [
+                        'key' => 'enunciados',
+                        'label' => 'Solo enunciados',
+                        'description' => '165 páginas.',
+                        'path' => 'product-downloads/pau-matematicas-ccss-madrid-1995-2025/PAU-Matematicas-CCSS-Madrid-1995-2025-enunciados.pdf',
+                        'filename' => 'PAU-Matematicas-CCSS-Madrid-1995-2025-enunciados.pdf',
+                    ],
+                    [
+                        'key' => 'soluciones',
+                        'label' => 'Solo soluciones',
+                        'description' => '531 páginas.',
+                        'path' => 'product-downloads/pau-matematicas-ccss-madrid-1995-2025/PAU-Matematicas-CCSS-Madrid-1995-2025-soluciones.pdf',
+                        'filename' => 'PAU-Matematicas-CCSS-Madrid-1995-2025-soluciones.pdf',
+                    ],
+                ]
+            ),
+            new PauBundleProductDefinition(
                 code: 'pau_quimica_madrid_1996_2025',
                 slug: 'pau-quimica-madrid-1996-2025',
                 title: 'Pack PAU Química Madrid 1996-2025',
