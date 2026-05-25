@@ -2,7 +2,7 @@
 
 Date: 2026-05-25
 Project: Clases de Apoyo backend
-Status: generated locally, uploaded to S3, Stripe product/price created, and verified locally
+Status: generated locally, uploaded to S3, Stripe product/price created, deployed to production, and verified
 Primary product: `pau-matematicas-ccss-madrid-1995-2025`
 
 ## Purpose
@@ -143,7 +143,7 @@ Rendered locally:
 
 ## Production Seed Command
 
-After deployment, run:
+Production commands run successfully after deployment:
 
 ```bash
 cd /var/www/clasesdeapoyo
@@ -161,3 +161,39 @@ php bin/console app:product:verify-pau-bundle \
   --env=prod \
   --no-interaction
 ```
+
+Verification output:
+
+```text
+Producto listo: pau-matematicas-ccss-madrid-1995-2025
+Producto verificado: pau-matematicas-ccss-madrid-1995-2025
+Archivos: 3
+Almacenamiento: s3://clasesdeapoyosf
+```
+
+The production sitemap was rebuilt with:
+
+```bash
+php bin/console app:sitemap:build --env=prod --no-interaction
+```
+
+## Production Smoke Tests
+
+Verified on the canonical `www` URLs:
+
+- `/packs/pau-matematicas-ccss-madrid-1995-2025` showed the product title, `9,99`, one-time payment copy, and page counts.
+- `/packs` showed the product card.
+- `/s/selectividad/madrid/matematicas-cc-ss` showed the pack promo with `1995-2025` and `Ver pack por 9,99`.
+- `/sitemap/products.xml` included `/packs/pau-matematicas-ccss-madrid-1995-2025`.
+
+Deployment used the standard wrapper:
+
+```bash
+cd /var/www
+./prepare_cda_coffe
+```
+
+Post-deploy cleanup:
+
+- Stashed only the generated tracked `config/reference.php` diff on EC2.
+- Left unrelated untracked server files untouched.
