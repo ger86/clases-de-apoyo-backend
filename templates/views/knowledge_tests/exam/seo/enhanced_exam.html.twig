@@ -99,7 +99,15 @@
 
       <h2 class="h2 mb-4">{{ enhancedExamPage.examDataTitle|default('Datos del examen') }}</h2>
       <div class="mb-8">
-        <table class="border-collapse table-auto w-full">
+        <dl class="md:hidden divide-y divide-slate-200 border-y border-slate-200">
+          {% for row in enhancedExamPage.examData %}
+            <div class="py-3">
+              <dt class="mb-1 text-sm font-bold text-slate-700">{{ row.label }}</dt>
+              <dd class="text-body break-words">{{ enhancedExam.fillPlaceholders(row.value, exam, pauBundlePack) }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+        <table class="hidden md:table border-collapse table-auto w-full">
           <tbody>
             {% for row in enhancedExamPage.examData %}
               <tr{% if loop.index is even %} class="bg-gray-50"{% endif %}>
@@ -113,7 +121,19 @@
 
       <h2 class="h2 mb-4">{{ enhancedExamPage.questionsTitle }}</h2>
       <div class="mb-8">
-        <table class="border-collapse table-auto w-full">
+        <div class="md:hidden divide-y divide-slate-200 border-y border-slate-200">
+          {% for question in enhancedExamPage.questions %}
+            <section class="py-4">
+              <div class="mb-2 flex flex-wrap items-center gap-2">
+                <span class="text-sm font-bold text-slate-700">{{ question.block }}</span>
+                <span class="text-sm text-slate-500">{{ question.question }}</span>
+              </div>
+              <p class="mb-2 text-body break-words">{{ question.task }}</p>
+              <p class="text-sm font-bold text-slate-700 break-words">{{ question.topic }}</p>
+            </section>
+          {% endfor %}
+        </div>
+        <table class="hidden md:table border-collapse table-auto w-full">
           <thead class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left bg-slate-200 rounded">
             <tr>
               <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Bloque</th>
