@@ -94,6 +94,7 @@ Run before handing the deploy to a human, all read-only against production plus 
 - **migrations:migrate.** Production is already at the latest version, 13 executed of 13 available, and these commits add no migration, so the step is a no-op.
 - **cache:clear and assets:install.** Both were run locally in the `prod` environment with debug off. The production container compiles, `lint:container --env=prod` passes, and assets install.
 - **npm run build.** `package.json` is untouched by this update, and `yarn build` still compiles locally ("webpack compiled successfully").
+- **composer auto-scripts.** `composer install` also runs the `auto-scripts` block, whose `ckeditor:install` step downloads CKEditor over the network, so it can fail even when the lock installs cleanly. Running `composer run-script auto-scripts` in the container returns `[OK]` for `cache:clear`, `ckeditor:install` and `assets:install public`.
 
 Runtime rehearsal in the `prod` environment, debug off, against a copy of the database: 15 public pages return 200 (home, blog index and article, packs index and pack detail, login, register, reset password, contact, course, course subject, chapter, video, exam, community test), `/admin/dashboard` returns 302 to the login form, and `/api/courses` returns 200 with a JSON body. The Gedmo sluggable and timestampable listeners are both registered in the compiled prod container.
 
