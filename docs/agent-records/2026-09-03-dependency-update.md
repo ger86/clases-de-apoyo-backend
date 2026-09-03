@@ -2,7 +2,7 @@
 
 Date: 2026-09-03
 Project: Clases de Apoyo backend
-Status: implemented, verified locally, deployed to production
+Status: implemented, verified locally, committed and pushed. Not yet deployed: the deploy wrapper still has to be run on the EC2 instance
 Scope: PHP dependencies only. `package.json` and the JavaScript build were not touched.
 
 ## What changed
