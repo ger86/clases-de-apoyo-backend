@@ -42,17 +42,24 @@ Regression test: `tests/Doctrine/SlugMappingTest.php` reflects over `src/Entity/
 
 ## Verification
 
-Behaviour was checked on the real database inside transactions that were rolled back, so no data was mutated:
+Behaviour was checked against the production database after deploying, inside a transaction that was rolled back, so no data was mutated:
 
 ```
-1) create, slug box blank      -> 'curso-de-prueba-zz'
+sluggable alive: yes
+timestampable alive: yes
+
+1) create, slug box blank      -> 'curso-de-prueba-zz-borrar'
 2) title edited, slug kept     -> '4o-eso' -> '4o-eso'
-3) title edited, slug cleared  -> '4o-eso' -> '4o-e-s-o-zz'
-4) chapter slug cleared        -> 'numeros-reales' -> 'numeros-reales'
-5) exam create                 -> '2018-modelo-1'
+3) title edited, slug cleared  -> '4o-eso' -> '4o-e-s-o-zz-yy'
+4) slug cleared, title kept    -> 'curso-de-prueba-zz-borrar' -> 'curso-de-prueba-zz-borrar'
+5) exam create                 -> '2025-julio-extraordinaria-2'
+
+updatedAt moved on edit: yes
 ```
 
-Case 4 is the important one to read correctly. The chapter title was not touched, so regeneration produced the same value it had before. The slug did not stay null, which is what the old code did and what made `getSlug()` throw a TypeError. In `SluggableListener::generateSlug` the skip for a non-updatable slug only applies when the slug field is absent from the Doctrine changeset, so clearing the field always reaches the generator, and a cleared slug marks the entity as needing a new one even when no source field changed.
+Case 4 is the important one to read correctly. The title was not touched, so regeneration produced the same value the row already had. The slug did not stay null, which is what the old code did and what made `getSlug()` throw a TypeError. In `SluggableListener::generateSlug` the skip for a non-updatable slug only applies when the slug field is absent from the Doctrine changeset, so clearing the field always reaches the generator, and a cleared slug marks the entity as needing a new one even when no source field changed.
+
+Case 3 also shows that a hand written slug does not always match what Gedmo would generate. `4o Eso` was stored by hand against the name `4o E.S.O.`, so clearing that field replaced it with `4o-e-s-o-zz-yy`. Clearing a slug is a deliberate URL change, not a refresh.
 
 ## Notes for future agents
 
