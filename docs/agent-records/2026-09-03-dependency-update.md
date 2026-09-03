@@ -2,7 +2,7 @@
 
 Date: 2026-09-03
 Project: Clases de Apoyo backend
-Status: implemented, verified locally, committed and pushed. Not yet deployed: the deploy wrapper still has to be run on the EC2 instance
+Status: implemented, verified, deployed to production on 2026-09-03.
 Scope: PHP dependencies only. `package.json` and the JavaScript build were not touched.
 
 ## What changed
@@ -106,4 +106,12 @@ Payment and mail paths, checked offline because no test covers them:
 
 Not verified, and not verifiable without live traffic: actually sending an email, a real Stripe charge or webhook delivery, and a real S3 download. These are patch-level or transitive changes, but they are the residual risk.
 
-Rollback: on the instance, `git reset --hard 8cef6da` followed by `composer install` restores the exact dependency set that is live today.
+## Deploy result
+
+Deployed on 2026-09-03 at about 12:41 UTC through `prepare_cda_coffe`. Fast-forward `8cef6da..747a115`, 4 installs, 100 updates, 1 removal, migrations already at the latest version, prod cache cleared, assets installed, webpack "Compiled successfully", `.env.local.php` dumped.
+
+One unexpected warning appeared four times during the run: `Some commands could not be registered: Class "Symfony\UX\StimulusBundle\Twig\UxControllersTwigExtension" not found`. It comes from the old compiled prod container, which was built against stimulus-bundle 2.x, where that class still existed. It only affects the console command list, never a web request, and it stops after the wrapper's `cache:clear`. Confirmed after the deploy: `bin/console list --env=prod` is clean.
+
+Post-deploy verification against the live site: home, `/blog`, a blog article, `/packs`, both pack detail pages, `/login`, `/register`, `/reset-password`, `/contacto`, `/c/2o-bachillerato`, `/c/2o-bachillerato/quimica`, `/s/selectividad`, `/s/selectividad/madrid`, `/s/selectividad/madrid/matematicas` and an exam page all return 200. `/admin/dashboard` returns 302 to the login form and `/api/courses` returns 200. `var/log/prod.log` has no entry at all after the deploy.
+
+Rollback: on the instance, `git reset --hard 8cef6da` followed by `composer install` restores the dependency set that was live before this deploy.
