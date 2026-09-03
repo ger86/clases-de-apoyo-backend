@@ -35,8 +35,8 @@ class Course
     private ?string $descriptionRaw = null;
 
     #[ORM\Column(length: 256, unique: true)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true)]
-    private string $slug = '';
+    #[Gedmo\Slug(fields: ['name'], updatable: false)]
+    private ?string $slug = null;
 
     /** @var Collection<int,CourseSubject> */
     #[ORM\OneToMany(targetEntity: CourseSubject::class, mappedBy: 'course')]
@@ -87,14 +87,14 @@ class Course
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

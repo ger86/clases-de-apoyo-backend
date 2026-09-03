@@ -22,7 +22,7 @@ class Article
     private string $title = '';
 
     #[ORM\Column(length: 256, unique: true, nullable: true)]
-    #[Gedmo\Slug(fields: ['title'])]
+    #[Gedmo\Slug(fields: ['title'], updatable: false)]
     private ?string $slug = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -73,9 +73,9 @@ class Article
         return $this->title;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

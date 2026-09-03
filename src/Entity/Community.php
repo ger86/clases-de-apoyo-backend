@@ -20,8 +20,8 @@ class Community
     private string $name = '';
 
     #[ORM\Column(length: 256, unique: true)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true)]
-    private string $slug = '';
+    #[Gedmo\Slug(fields: ['name'], updatable: false)]
+    private ?string $slug = null;
 
     /** @var Collection<int,CommunityTest> */
     #[ORM\OneToMany(targetEntity: CommunityTest::class, mappedBy: 'community')]
@@ -76,14 +76,14 @@ class Community
         return $this->communityTests;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

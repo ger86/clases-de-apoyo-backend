@@ -19,7 +19,11 @@ class ChapterAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name', TextType::class, ['label' => 'Nombre'])
-            ->add('slug', TextType::class, ['label' => 'Slug', 'required' => false])
+            ->add('slug', TextType::class, [
+                'label' => 'Slug',
+                'help' => 'Dejar en blanco para que se genere automáticamente',
+                'required' => false
+            ])
             ->add('format_type', FormatterType::class, [
                 'required'             => false,
                 'source_field'         => 'descriptionRaw',

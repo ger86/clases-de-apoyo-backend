@@ -19,3 +19,11 @@ parameters:
             path: %rootDir%/../../../src
         -
             identifier: missingType.iterableValue
+        # Gedmo reads a null slug as "regenerate me from the source field", which is how the
+        # admin's "leave blank to auto-generate" option works. The null never reaches the
+        # database: SluggableListener fills it in on flush, and the NOT NULL column stays as the
+        # guard that makes a dead listener fail loudly instead of silently.
+        -
+            identifier: doctrine.columnType
+            message: '#^Property App\\Entity\\\w+::\$slug type mapping mismatch: property can contain string\|null but database expects string\.$#'
+            path: %rootDir%/../../../src/Entity

@@ -23,7 +23,11 @@ class ArticleAdmin extends AbstractAdmin
         $formMapper
             ->with('Contenido')
             ->add('title', TextType::class, ['label' => 'Título'])
-            ->add('slug', TextType::class, ['label' => 'Slug', 'required' => false])
+            ->add('slug', TextType::class, [
+                'label' => 'Slug',
+                'help' => 'Dejar en blanco para que se genere automáticamente',
+                'required' => false
+            ])
             ->add('excerpt', TextType::class, ['required' => true, 'label' => 'Resumen'])
             ->add('format_type', FormatterType::class, [
                 'required'             => false,

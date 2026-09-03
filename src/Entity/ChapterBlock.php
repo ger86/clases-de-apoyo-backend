@@ -25,8 +25,8 @@ class ChapterBlock
     private ?string $description;
 
     #[ORM\Column(length: 128, unique: true)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true)]
-    private string $slug = '';
+    #[Gedmo\Slug(fields: ['name'], updatable: false)]
+    private ?string $slug = null;
 
     #[ORM\ManyToOne(targetEntity: CourseSubject::class, inversedBy: 'chapterBlocks')]
     #[ORM\JoinColumn(name: 'course_subject_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
@@ -92,14 +92,14 @@ class ChapterBlock
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

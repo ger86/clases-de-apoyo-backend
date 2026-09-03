@@ -20,8 +20,8 @@ class Book
     private string $title = '';
 
     #[ORM\Column(length: 128, unique: true)]
-    #[Gedmo\Slug(fields: ['title'])]
-    private string $slug = '';
+    #[Gedmo\Slug(fields: ['title'], updatable: false)]
+    private ?string $slug = null;
 
     #[ORM\Column(type: 'float')]
     private float $price = 0.0;
@@ -113,14 +113,14 @@ class Book
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

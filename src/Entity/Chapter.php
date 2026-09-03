@@ -34,7 +34,7 @@ class Chapter
     private ?int $weight = null;
 
     #[ORM\Column(length: 256, unique: true, nullable: true)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true)]
+    #[Gedmo\Slug(fields: ['name'], updatable: false)]
     private ?string $slug = null;
 
     #[ORM\ManyToOne(targetEntity: ChapterBlock::class, inversedBy: 'chapters')]
@@ -105,14 +105,14 @@ class Chapter
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
     public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

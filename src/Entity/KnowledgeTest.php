@@ -22,8 +22,8 @@ class KnowledgeTest
     private string $name = '';
 
     #[ORM\Column(length: 256, unique: true)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true)]
-    private string $slug = '';
+    #[Gedmo\Slug(fields: ['name'], updatable: false)]
+    private ?string $slug = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
@@ -97,14 +97,14 @@ class KnowledgeTest
         return $this->communityTests;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

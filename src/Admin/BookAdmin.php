@@ -19,7 +19,11 @@ class BookAdmin extends AbstractAdmin
         $formMapper
             ->with('Contenido')
             ->add('title', TextType::class, ['label' => 'Título'])
-            ->add('slug', TextType::class, ['required' => false])
+            ->add('slug', TextType::class, [
+                'label' => 'Slug',
+                'help' => 'Dejar en blanco para que se genere automáticamente',
+                'required' => false
+            ])
             ->add('price', NumberType::class, ['required' => true, 'label' => 'Precio'])
             ->add('format_type', FormatterType::class, [
                 'required'             => false,

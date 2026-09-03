@@ -38,8 +38,8 @@ class Exam
     private ?int $difficulty;
 
     #[ORM\Column(length: 256, unique: false)]
-    #[Gedmo\Slug(fields: ['name'], updatable: true, unique: true)]
-    private $slug;
+    #[Gedmo\Slug(fields: ['name'], updatable: false, unique: true)]
+    private ?string $slug = null;
 
     /** @var Collection<int,File> */
     #[ORM\OneToMany(targetEntity: File::class, mappedBy: 'exam', cascade: ['all'])]
@@ -103,14 +103,14 @@ class Exam
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }

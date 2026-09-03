@@ -23,8 +23,8 @@ class YoutubeVideo
     private string $title;
 
     #[ORM\Column(length: 256, unique: true)]
-    #[Gedmo\Slug(fields: ['title'], updatable: true)]
-    private string $slug;
+    #[Gedmo\Slug(fields: ['title'], updatable: false)]
+    private ?string $slug = null;
 
     #[ORM\Column(type: 'string', length: 1024)]
     private string $youtubeId;
@@ -205,14 +205,14 @@ class YoutubeVideo
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
-        $this->slug = $slug;
+        $this->slug = '' === $slug ? null : $slug;
 
         return $this;
     }
