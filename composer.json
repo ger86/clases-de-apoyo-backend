@@ -10,7 +10,7 @@
     "doctrine/dbal": "^4.4",
     "doctrine/doctrine-bundle": "^3.2",
     "doctrine/doctrine-migrations-bundle": "^4.0",
-    "doctrine/orm": "^3.6",
+    "doctrine/orm": "^3.6 <3.6.8",
     "friendsofsymfony/ckeditor-bundle": "^2.8",
     "friendsofsymfony/rest-bundle": "^3.9",
     "gedmo/doctrine-extensions": "^3.22",
@@ -73,6 +73,14 @@
       "symfony/flex": true,
       "phpstan/extension-installer": true,
       "symfony/runtime": true
+    },
+    "audit": {
+      "ignore": {
+        "PKSA-y6py-qpv1-h52p": "symfony/http-foundation. Frozen by sonata-project/formatter-bundle, which requires the exact version \"8.0\" instead of \"^8.0\" on every Symfony component, so these packages cannot leave v8.0.0 until upstream fixes that. Remove this entry when it is fixed. Not applicable here: the app sets no trusted proxies and never calls IpUtils.",
+        "PKSA-365x-2zjk-pt47": "symfony/http-foundation. Frozen by sonata-project/formatter-bundle, which requires the exact version \"8.0\" instead of \"^8.0\" on every Symfony component, so these packages cannot leave v8.0.0 until upstream fixes that. Remove this entry when it is fixed.",
+        "PKSA-b35n-565h-rs4q": "symfony/http-foundation. Frozen by sonata-project/formatter-bundle, which requires the exact version \"8.0\" instead of \"^8.0\" on every Symfony component, so these packages cannot leave v8.0.0 until upstream fixes that. Remove this entry when it is fixed.",
+        "PKSA-dw7n-x7f5-zf63": "symfony/http-kernel. Frozen by sonata-project/formatter-bundle, which requires the exact version \"8.0\" instead of \"^8.0\" on every Symfony component, so these packages cannot leave v8.0.0 until upstream fixes that. Remove this entry when it is fixed. Not applicable here: the app declares no IsGranted attribute in src/, which is what this advisory affects."
+      }
     }
   },
   "autoload": {
