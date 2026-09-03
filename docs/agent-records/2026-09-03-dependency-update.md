@@ -82,3 +82,27 @@ Production PHP is 8.4.21 and Composer is 2.9.5, so the new lock installs there.
 ## Reproducing the smoke harness
 
 The script is not in the repository. To rebuild it: clone the dev database into `clasesdeapoyo_test` (the test environment appends `_test` to the database name), then boot `new Kernel('test', true)` with `DATABASE_URL` pointed at that copy, and drive it with `Symfony\Bundle\FrameworkBundle\KernelBrowser` plus `loginUser()` on a row from the user table that has `ROLE_ADMIN`. Iterate the Sonata admins with `$pool->getAdminServiceIds()` and `$admin->generateUrl('list'|'create'|'edit')`. Save the output, update, run it again, and diff.
+
+## Pre-deploy checks
+
+Run before handing the deploy to a human, all read-only against production plus local rehearsals of each wrapper step.
+
+`prepare_cda_coffe` runs: `git pull origin master`, `composer install`, `doctrine:migrations:migrate`, nginx restart, php8.4-fpm restart, `cache:clear`, `assets:install`, `npm run build`, `dump-autoload --optimize --no-dev --classmap-authoritative`, `dump-env prod`. Each step was checked:
+
+- **git pull.** Production is on `master` at `8cef6da` with only `config/reference.php` modified, plus untracked junk (`._` AppleDouble files, `.env.save`). The incoming commits touch `composer.json`, `composer.lock`, `symfony.lock` and `docs/`, so nothing overlaps and the pull cannot conflict.
+- **composer install.** `composer validate` reports no lock mismatch, and `composer install --dry-run` says "Verifying lock file contents can be installed on current platform. Nothing to install, update or remove". Platform requirements were extracted from both locks and compared: the only new one is `ext-filter`, which production already loads. Every other required extension is present, and the highest PHP floor in the lock is `>=8.4.1` against production's 8.4.21. Note that the wrapper installs with dev dependencies, so phpunit, phpstan and ECS are installed too; their platform requirements were included in this comparison.
+- **migrations:migrate.** Production is already at the latest version, 13 executed of 13 available, and these commits add no migration, so the step is a no-op.
+- **cache:clear and assets:install.** Both were run locally in the `prod` environment with debug off. The production container compiles, `lint:container --env=prod` passes, and assets install.
+- **npm run build.** `package.json` is untouched by this update, and `yarn build` still compiles locally ("webpack compiled successfully").
+
+Runtime rehearsal in the `prod` environment, debug off, against a copy of the database: 15 public pages return 200 (home, blog index and article, packs index and pack detail, login, register, reset password, contact, course, course subject, chapter, video, exam, community test), `/admin/dashboard` returns 302 to the login form, and `/api/courses` returns 200 with a JSON body. The Gedmo sluggable and timestampable listeners are both registered in the compiled prod container.
+
+Payment and mail paths, checked offline because no test covers them:
+
+- `Stripe\Webhook::constructEvent()` verifies a self-signed payload on 19.4.1, and `Stripe\StripeClient` constructs.
+- The `MAILER_DSN` still resolves to `GmailSmtpTransport`.
+- S3 presigning produces a correct host, `X-Amz-Signature` and `X-Amz-Expires=1800` under guzzle 8.
+
+Not verified, and not verifiable without live traffic: actually sending an email, a real Stripe charge or webhook delivery, and a real S3 download. These are patch-level or transitive changes, but they are the residual risk.
+
+Rollback: on the instance, `git reset --hard 8cef6da` followed by `composer install` restores the exact dependency set that is live today.
