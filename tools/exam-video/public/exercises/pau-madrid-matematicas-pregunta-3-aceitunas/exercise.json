@@ -1,0 +1,471 @@
+{
+  "slug": "pau-madrid-matematicas-pregunta-3-aceitunas",
+  "exam": {
+    "label": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+    "question": "Pregunta 3",
+    "topic": "Binomial y aproximación normal",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "6xftrpatV0jGmFHxDjUv",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Binomial": "teal",
+    "Parte b · Normal": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Dos partes, dos distribuciones",
+      "narration": "[energetic] Pregunta 3. Aceitunas, un hongo y dos distribuciones. Este problema tiene dos partes, y cada una se resuelve con una herramienta distinta. Primero una binomial, y después una normal. Vamos a ver cómo se pasa de la una a la otra.",
+      "tail": 0.5,
+      "body": {
+        "type": "hook",
+        "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II · Pregunta 3",
+        "title": "Dos partes, dos distribuciones:\nprimero *binomial*, después *normal*",
+        "tex": "B(n,\\,p) \\;\\longrightarrow\\; N(\\mu,\\,\\sigma)",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Planteamiento",
+      "heading": "Cada aceituna está enferma con probabilidad 1/20",
+      "narration": "[didactic] Cada bolsa lleva doce aceitunas. Una de cada veinte tiene la enfermedad, el escudete. Es decir, cada aceituna está enferma con probabilidad un veinteavo, y sana con probabilidad diecinueve veinteavos. Y esto ocurre de forma independiente en cada aceituna.",
+      "captions": [
+        "Cada bolsa lleva 12 aceitunas.",
+        "Una de cada 20 tiene la enfermedad, el escudete.",
+        "Cada aceituna está enferma con probabilidad 1/20, y sana con probabilidad 19/20.",
+        "Y esto ocurre de forma independiente en cada aceituna."
+      ],
+      "body": {
+        "type": "dots",
+        "count": 12,
+        "columns": 6,
+        "color": "#6f9a3c",
+        "chips": [
+          {
+            "text": "12 aceitunas por bolsa",
+            "color": "given"
+          },
+          {
+            "tex": "P(\\text{enferma}) = \\tfrac{1}{20}",
+            "color": "danger"
+          },
+          {
+            "tex": "P(\\text{sana}) = \\tfrac{19}{20}",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-modelo-a",
+      "phase": "Parte a · Binomial",
+      "heading": "X cuenta aceitunas enfermas: es una binomial",
+      "narration": "[confident] Llamamos X al número de aceitunas enfermas en una bolsa. Repetimos doce veces la misma prueba, con la misma probabilidad de éxito y de forma independiente. Eso es exactamente una binomial, de parámetros n igual a doce y p igual a un veinteavo.",
+      "captions": [
+        "Llamamos X al número de aceitunas enfermas en una bolsa.",
+        "Repetimos 12 veces la misma prueba, con la misma probabilidad de éxito y de forma independiente.",
+        "Eso es exactamente una binomial, de parámetros n = 12 y p = 1/20."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "X \\equiv \\text{n\\'umero de aceitunas enfermas en una bolsa}",
+            "size": 44
+          },
+          {
+            "label": "Modelo",
+            "tex": "X \\sim B\\!\\left(12,\\ \\tfrac{1}{20}\\right)",
+            "color": "teal",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "tex": "n = 12",
+            "color": "given"
+          },
+          {
+            "tex": "p = \\tfrac{1}{20}",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-formula",
+      "phase": "Parte a · Binomial",
+      "heading": "La fórmula de la binomial",
+      "narration": "[didactic] La probabilidad de obtener k éxitos en una binomial es: número combinatorio n sobre k, por p elevado a k, por uno menos p elevado a n menos k. En nuestro caso, doce sobre k, por un veinteavo elevado a k, por diecinueve veinteavos elevado a doce menos k.",
+      "captions": [
+        "P(X = k) = C(n, k) · p^k · (1 − p)^(n − k).",
+        "En nuestro caso: C(12, k) · (1/20)^k · (19/20)^(12 − k)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(X = k) = \\binom{n}{k}\\, p^{\\,k}\\,(1-p)^{\\,n-k}",
+            "size": 66
+          },
+          {
+            "tex": "P(X = k) = \\binom{12}{k}\\left(\\tfrac{1}{20}\\right)^{k}\\left(\\tfrac{19}{20}\\right)^{12-k}",
+            "size": 58,
+            "color": "inkSoft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-calculo-a",
+      "phase": "Parte a · Binomial",
+      "heading": "Ninguna aceituna enferma: X = 0",
+      "narration": "Queremos que ninguna aceituna esté enferma, es decir, X igual a cero. Doce sobre cero vale uno, y un veinteavo elevado a cero también vale uno. Solo queda diecinueve veinteavos elevado a doce, que es cero coma noventa y cinco elevado a doce. Da aproximadamente cero coma cinco cuatro cero cuatro. Algo más de la mitad de las bolsas están limpias.",
+      "captions": [
+        "Queremos que ninguna aceituna esté enferma, es decir, X = 0.",
+        "C(12, 0) = 1, y (1/20)^0 = 1.",
+        "Solo queda (19/20)^12 = 0,95^12.",
+        "Da aproximadamente 0,5404.",
+        "Algo más de la mitad de las bolsas están limpias."
+      ],
+      "tail": 0.5,
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(X = 0) = \\binom{12}{0}\\left(\\tfrac{1}{20}\\right)^{0}\\left(\\tfrac{19}{20}\\right)^{12}",
+            "size": 54
+          },
+          {
+            "tex": "\\binom{12}{0} = 1, \\qquad \\left(\\tfrac{1}{20}\\right)^{0} = 1",
+            "size": 46,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "P(X = 0) = \\left(\\tfrac{19}{20}\\right)^{12} = 0{,}95^{12} \\approx 0{,}5404",
+            "size": 56,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(ninguna enferma) ≈ 0,5404",
+          "sub": "algo más de la mitad de las bolsas están limpias",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "06-puente",
+      "phase": "Parte b · Normal",
+      "heading": "La respuesta de a) es el dato de b)",
+      "narration": "[didactic] Ahora cambiamos de escala y pensamos en bolsas. Una bolsa tiene alguna aceituna con escudete cuando no ocurre lo anterior: es el suceso contrario. Su probabilidad es uno menos cero coma cinco cuatro cero cuatro, es decir, cero coma cuatro cinco nueve seis. Este número va a ser la p de la segunda parte.",
+      "captions": [
+        "Ahora cambiamos de escala y pensamos en bolsas.",
+        "Una bolsa tiene alguna aceituna con escudete cuando no ocurre lo anterior: es el suceso contrario.",
+        "Su probabilidad es 1 − 0,5404 = 0,4596.",
+        "Este número va a ser la p de la segunda parte."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Bolsa limpia",
+            "tex": "P(X = 0) \\approx 0{,}5404",
+            "color": "given"
+          },
+          {
+            "label": "Bolsa con escudete",
+            "tex": "p = 1 - 0{,}5404 = 0{,}4596",
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "suceso contrario",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-modelo-b",
+      "phase": "Parte b · Normal",
+      "heading": "Y cuenta bolsas contaminadas: otra binomial",
+      "narration": "Llamamos Y al número de bolsas con alguna aceituna enferma, entre las cien bolsas distribuidas. Otra vez es una binomial, ahora con n igual a cien y p igual a cero coma cuatro cinco nueve seis.",
+      "captions": [
+        "Llamamos Y al número de bolsas con alguna aceituna enferma, entre las 100 bolsas distribuidas.",
+        "Otra vez es una binomial, ahora con n = 100 y p = 0,4596."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "Y \\equiv \\text{n\\'umero de bolsas con escudete entre 100}",
+            "size": 44
+          },
+          {
+            "label": "Modelo",
+            "tex": "Y \\sim B(100,\\ 0{,}4596)",
+            "color": "indet",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "tex": "n = 100",
+            "color": "given"
+          },
+          {
+            "tex": "p = 0{,}4596",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-aproximacion",
+      "phase": "Parte b · Normal",
+      "heading": "Con n = 100 aproximamos por una normal",
+      "narration": "Con cien pruebas, calcular la binomial directamente es muy pesado. Como n es grande, aproximamos por una distribución normal. Su media es n por p: cuarenta y cinco coma noventa y seis. Su desviación típica es la raíz de n por p por uno menos p, que da aproximadamente cuatro coma noventa y ocho. Así que Y se aproxima por una normal de media cuarenta y cinco coma noventa y seis y desviación cuatro coma noventa y ocho.",
+      "captions": [
+        "Con 100 pruebas, calcular la binomial directamente es muy pesado.",
+        "Como n es grande, aproximamos por una distribución normal.",
+        "Su media es n · p = 45,96.",
+        "Su desviación típica es √(n · p · (1 − p)) ≈ 4,98.",
+        "Así que Y ≈ N(45,96, 4,98)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "n \\text{ grande} \\;\\Rightarrow\\; B(n,\\,p) \\approx N(\\mu,\\,\\sigma)",
+            "size": 52
+          },
+          {
+            "label": "Media",
+            "tex": "\\mu = n \\cdot p = 100 \\cdot 0{,}4596 = 45{,}96",
+            "color": "given",
+            "size": 48
+          },
+          {
+            "label": "Desv. típica",
+            "tex": "\\sigma = \\sqrt{n\\,p\\,(1-p)} = \\sqrt{100 \\cdot 0{,}4596 \\cdot 0{,}5404} \\approx 4{,}98",
+            "color": "given",
+            "size": 46
+          },
+          {
+            "tex": "Y \\approx N(45{,}96,\\ 4{,}98)",
+            "color": "indet",
+            "size": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-pregunta",
+      "phase": "Parte b · Normal",
+      "heading": "Al menos el 60 % de las bolsas: P(Y ≥ 60)",
+      "narration": "Nos piden que al menos el sesenta por ciento de las bolsas tengan alguna aceituna enferma. El sesenta por ciento de cien son sesenta bolsas, así que buscamos la probabilidad de que Y sea mayor o igual que sesenta. Fíjate en la campana: sesenta está en la cola derecha, bastante lejos de la media. Ya intuimos que va a salir una probabilidad pequeña.",
+      "captions": [
+        "Nos piden que al menos el 60 % de las bolsas tengan alguna aceituna enferma.",
+        "El 60 % de 100 son 60 bolsas, así que buscamos P(Y ≥ 60).",
+        "Fíjate en la campana: 60 está en la cola derecha, bastante lejos de la media.",
+        "Ya intuimos que va a salir una probabilidad pequeña."
+      ],
+      "body": {
+        "type": "normal",
+        "mu": 45.96,
+        "sigma": 4.98,
+        "cut": 60,
+        "tail": "right",
+        "cutLabel": "60",
+        "areaLabel": "P(Y ≥ 60)",
+        "lead": {
+          "tex": "60\\% \\text{ de } 100 = 60 \\text{ bolsas} \\;\\Rightarrow\\; P(Y \\geq 60)",
+          "size": 48
+        }
+      }
+    },
+    {
+      "id": "10-correccion",
+      "phase": "Parte b · Normal",
+      "heading": "Corrección por continuidad",
+      "narration": "Cuidado con un detalle. Y es discreta, pero la normal es continua. Por eso aplicamos la corrección por continuidad y ampliamos medio punto. Mayor o igual que sesenta se convierte en mayor o igual que cincuenta y nueve coma cinco.",
+      "captions": [
+        "Cuidado con un detalle.",
+        "Y es discreta, pero la normal es continua.",
+        "Por eso aplicamos la corrección por continuidad y ampliamos medio punto.",
+        "Y ≥ 60 se convierte en Y′ ≥ 59,5."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "text": "Y es discreta; la normal es continua",
+            "color": "inkSoft",
+            "size": 50
+          },
+          {
+            "tex": "P(Y \\geq 60) \\;\\approx\\; P(Y' \\geq 59{,}5)",
+            "size": 64,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "corrección por continuidad: ± 0,5",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-tipificar",
+      "phase": "Parte b · Normal",
+      "heading": "Tipificamos para usar la tabla N(0, 1)",
+      "narration": "Tipificamos: restamos la media y dividimos por la desviación típica. Cincuenta y nueve coma cinco menos cuarenta y cinco coma noventa y seis, entre cuatro coma noventa y ocho, da dos coma setenta y dos. Así que buscamos la probabilidad de que Z sea mayor o igual que dos coma setenta y dos.",
+      "captions": [
+        "Tipificamos: restamos la media y dividimos por la desviación típica.",
+        "(59,5 − 45,96) / 4,98 ≈ 2,72.",
+        "Así que buscamos P(Z ≥ 2,72)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "Z = \\dfrac{Y' - \\mu}{\\sigma}",
+            "size": 54
+          },
+          {
+            "tex": "z = \\dfrac{59{,}5 - 45{,}96}{4{,}98} = \\dfrac{13{,}54}{4{,}98} \\approx 2{,}72",
+            "size": 56,
+            "color": "indet"
+          },
+          {
+            "tex": "P(Y' \\geq 59{,}5) = P(Z \\geq 2{,}72)",
+            "size": 52
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-resultado",
+      "phase": "Resultado",
+      "heading": "La tabla acumula por la izquierda: usamos el complementario",
+      "narration": "La tabla de la normal da probabilidades acumuladas por la izquierda, así que usamos el suceso complementario. Uno menos la probabilidad de que Z sea menor que dos coma setenta y dos. La tabla da cero coma nueve nueve seis siete. Y el resultado es cero coma cero cero tres tres. Un cero coma tres por ciento: es un suceso muy raro.",
+      "captions": [
+        "La tabla de la normal da probabilidades acumuladas por la izquierda, así que usamos el suceso complementario.",
+        "1 − P(Z < 2,72).",
+        "La tabla da 0,9967.",
+        "Y el resultado es 0,0033.",
+        "Un 0,3 %: es un suceso muy raro."
+      ],
+      "tail": 0.6,
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(Z \\geq 2{,}72) = 1 - P(Z < 2{,}72)",
+            "size": 56
+          },
+          {
+            "tex": "= 1 - 0{,}9967",
+            "size": 56,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "= 0{,}0033",
+            "size": 66,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(Y ≥ 60) ≈ 0,0033",
+          "sub": "un 0,33 %: un suceso muy raro",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "13-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "narration": "[calm] Resumen. Probabilidad de que una bolsa esté limpia: cero coma cinco cuatro cero cuatro. Probabilidad de que al menos sesenta de las cien bolsas estén contaminadas: cero coma cero cero tres tres. Y la clave del problema: la respuesta de la parte a se convierte en el parámetro p de la parte b. Binomial para una bolsa, normal para cien bolsas.",
+      "captions": [
+        "Resumen.",
+        "Probabilidad de que una bolsa esté limpia: 0,5404.",
+        "Probabilidad de que al menos 60 de las 100 bolsas estén contaminadas: 0,0033.",
+        "La respuesta de la parte a se convierte en el parámetro p de la parte b.",
+        "Binomial para una bolsa, normal para 100 bolsas."
+      ],
+      "tail": 1.0,
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Bolsa sin escudete",
+            "tex": "P(X = 0) = \\left(\\tfrac{19}{20}\\right)^{12} \\approx 0{,}5404",
+            "color": "solved"
+          },
+          {
+            "label": "b) Al menos 60 de 100 bolsas",
+            "tex": "P(Y \\geq 60) \\approx P(Z \\geq 2{,}72) \\approx 0{,}0033",
+            "color": "solved"
+          },
+          {
+            "label": "La clave",
+            "text": "1 − 0,5404 = 0,4596 es la p de la parte b",
+            "color": "teal"
+          }
+        ],
+        "closing": "Binomial para una bolsa, normal para cien bolsas."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Binomial y Normal | Modelo PAU Madrid 2025/2026, Matemáticas II, Pregunta 3 resuelta",
+    "description": "Resolvemos paso a paso la Pregunta 3 del examen modelo de Selectividad (PAU/EvAU) de la Comunidad de Madrid, Matemáticas II (Bachillerato de Ciencias), curso 2025/2026. El enunciado: una envasadora de aceitunas, un hongo que afecta a 1 de cada 20 aceitunas y dos apartados que se resuelven con dos distribuciones distintas.\n\na) Probabilidad de que una bolsa de 12 aceitunas no tenga ninguna enferma: distribución binomial B(12, 1/20). Resultado: (19/20)^12 ≈ 0,5404.\nb) Se distribuyen 100 bolsas. Probabilidad de que al menos el 60 % tenga alguna aceituna con escudete: binomial B(100, 0,4596) aproximada por una normal N(45,96, 4,98), con corrección por continuidad y tipificación. Resultado: P(Z ≥ 2,72) = 1 − 0,9967 = 0,0033.\n\nLo que vas a aprender:\n• Cuándo una variable sigue una distribución binomial.\n• Cómo usar la fórmula de la binomial y el suceso contrario.\n• Cómo aproximar una binomial por una normal (media y desviación típica).\n• Por qué se aplica la corrección por continuidad (±0,5).\n• Cómo tipificar y leer la tabla N(0, 1) con el complementario.\n\nEnunciado y solución en PDF del examen modelo de Matemáticas II 2025/2026 de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Probabilidad #Binomial #DistribuciónNormal",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "examen modelo",
+      "modelo 2025 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "probabilidad",
+      "distribución binomial",
+      "distribución normal",
+      "aproximación normal",
+      "corrección por continuidad",
+      "tipificar",
+      "tabla normal",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+      "line1": "Binomial\ny Normal",
+      "line2": "Aceitunas con hongo,\nresuelto paso a paso",
+      "tex": "B(n,p) \\longrightarrow N(\\mu,\\sigma)",
+      "badge": "P = 0,0033"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+node_modules/
+output/
+public/exercises/*/audio/
+public/exercises/*/props.json

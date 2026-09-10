@@ -97,6 +97,10 @@ Important rules:
 - Run the product seed and verify commands before advertising a bundle.
 - Keep access-control restrictions scoped to the exact bundle context.
 
+## Exam explainer videos
+
+Explainer videos for exam exercises are produced with the Remotion tool in [tools/exam-video/](tools/exam-video/). Follow [docs/runbooks/create-exam-video.md](docs/runbooks/create-exam-video.md). Audio, props and rendered files are ignored; only `exercise.json` files are tracked.
+
 ## Production deployments
 
 Production deployments must run through the EC2 deployment wrapper:

@@ -1,0 +1,673 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2025-2026-pregunta-2-valor-absoluto",
+  "exam": {
+    "label": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+    "question": "Pregunta 2",
+    "topic": "Valor absoluto, extremos e integral",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "6xftrpatV0jGmFHxDjUv",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Parte a · Paridad": "teal",
+    "Parte a · Extremos": "teal",
+    "Parte b · Integral": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Valor absoluto, extremos e integral | Modelo PAU Madrid 2025/2026, Matemáticas II, Pregunta 2",
+    "description": "Resolvemos paso a paso la Pregunta 2 del examen modelo de Selectividad (PAU/EvAU) de la Comunidad de Madrid, Matemáticas II (Bachillerato de Ciencias), curso 2025/2026. La función es f(x) = (x² + 1) / (|x| + 1), con un valor absoluto en el denominador.\n\na) Paridad y extremos relativos. f(−x) = f(x), así que la función es par. Definimos f a trozos para quitar el valor absoluto, derivamos con la regla del cociente, igualamos a cero y estudiamos el signo de f′ en una tabla. Mínimos relativos y absolutos en x = 1 − √2 y x = −1 + √2, con valor 2√2 − 2. Máximo relativo en (0, 1), donde la función no es derivable.\nb) La integral de f entre −1 y 0. En ese intervalo |x| = −x. Hacemos la división polinómica (x² + 1) : (x − 1) = x + 1 con resto 2, integramos y evaluamos. Resultado: 2·ln 2 − 1/2 = ln 4 − 1/2 ≈ 0,89.\n\nLo que vas a aprender:\n• Cómo comprobar la paridad de una función.\n• Cómo quitar un valor absoluto definiendo la función a trozos.\n• Regla del cociente y tabla de signos de la derivada.\n• Por qué en x = 0 hay un máximo aunque la función no sea derivable.\n• División polinómica para integrar una fracción racional.\n• Cómo comprobar el valor de una integral definida con una estimación del área.\n\nEnunciado y solución en PDF del examen modelo de Matemáticas II 2025/2026 de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Derivadas #Integrales #ValorAbsoluto",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "examen modelo",
+      "modelo 2025 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "valor absoluto",
+      "función a trozos",
+      "paridad",
+      "función par",
+      "extremos relativos",
+      "regla del cociente",
+      "tabla de signos",
+      "integral definida",
+      "división polinómica",
+      "logaritmo neperiano",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+      "line1": "Valor absoluto\ny extremos",
+      "line2": "Paridad, extremos e\nintegral, paso a paso",
+      "tex": "f(x)=\\dfrac{x^2+1}{|x|+1}",
+      "badge": "∫ = ln 4 − 1/2"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Un valor absoluto en el denominador",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta 2. Una función con un valor absoluto en el denominador. Nos piden tres cosas: la paridad, los extremos relativos, y una integral definida. La clave de todo el ejercicio es la misma: quitar el valor absoluto definiendo la función a trozos.",
+      "body": {
+        "type": "hook",
+        "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II · Pregunta 2",
+        "title": "Un valor absoluto en el denominador:\n*paridad*, *extremos* e *integral*",
+        "tex": "f(x) = \\dfrac{x^2+1}{\\lvert x\\rvert+1}",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-paridad",
+      "phase": "Parte a · Paridad",
+      "heading": "Paridad: calculamos f(−x)",
+      "narration": "Empezamos por la paridad. Calculamos f de menos x. Menos x al cuadrado es x al cuadrado, y el valor absoluto de menos x es el valor absoluto de x. Así que f de menos x es igual a f de x: la función es par, simétrica respecto del eje de ordenadas.",
+      "captions": [
+        "Empezamos por la paridad.",
+        "Calculamos f(−x).",
+        "(−x)² = x², y |−x| = |x|.",
+        "f(−x) = f(x): la función es par, simétrica respecto del eje OY."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f(-x) = \\dfrac{(-x)^2+1}{\\lvert -x\\rvert+1}",
+            "size": 56
+          },
+          {
+            "tex": "= \\dfrac{x^2+1}{\\lvert x\\rvert+1} = f(x)",
+            "size": 56,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "(-x)^2 = x^2",
+            "color": "given"
+          },
+          {
+            "tex": "\\lvert -x\\rvert = \\lvert x\\rvert",
+            "color": "given"
+          }
+        ],
+        "badge": {
+          "text": "Función par",
+          "sub": "simétrica respecto del eje OY",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "03-trozos",
+      "phase": "Parte a · Extremos",
+      "heading": "Quitamos el valor absoluto: función a trozos",
+      "narration": "Para estudiar los extremos necesitamos derivar, y con el valor absoluto no se puede derivar directamente. Definimos la función a trozos. Si x es negativo, el valor absoluto de x es menos x. Si x es mayor o igual que cero, el valor absoluto de x es x.",
+      "captions": [
+        "Para estudiar los extremos necesitamos derivar, y con el valor absoluto no se puede derivar directamente.",
+        "Definimos la función a trozos.",
+        "Si x < 0, |x| = −x.",
+        "Si x ≥ 0, |x| = x."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f(x) = \\dfrac{x^2+1}{\\lvert x\\rvert+1} = \\begin{cases} \\dfrac{x^2+1}{-x+1} & \\text{si } x < 0 \\\\[14pt] \\dfrac{x^2+1}{x+1} & \\text{si } x \\geq 0 \\end{cases}",
+            "size": 54
+          }
+        ],
+        "chips": [
+          {
+            "tex": "x<0:\\ \\lvert x\\rvert = -x",
+            "color": "danger"
+          },
+          {
+            "tex": "x \\geq 0:\\ \\lvert x\\rvert = x",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-derivada-izquierda",
+      "phase": "Parte a · Extremos",
+      "heading": "Derivamos el trozo x < 0 con la regla del cociente",
+      "narration": "Derivamos cada trozo por separado con la regla del cociente. Para x negativo: derivada del numerador por el denominador, menos numerador por derivada del denominador, partido por el denominador al cuadrado. Simplificando el numerador queda menos x al cuadrado más dos x más uno.",
+      "captions": [
+        "Derivamos cada trozo por separado con la regla del cociente.",
+        "Para x < 0: (2x·(−x+1) − (x²+1)·(−1)) / (−x+1)².",
+        "Simplificando el numerador queda −x² + 2x + 1."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x < 0",
+            "tex": "\\left(\\dfrac{x^2+1}{-x+1}\\right)' = \\dfrac{2x\\,(-x+1) - (x^2+1)\\,(-1)}{(-x+1)^2}",
+            "size": 46
+          },
+          {
+            "tex": "= \\dfrac{-x^2+2x+1}{(-x+1)^2}",
+            "size": 58,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-derivada-derecha",
+      "phase": "Parte a · Extremos",
+      "heading": "El trozo x > 0 y la derivada completa",
+      "narration": "Para x positivo hacemos lo mismo y queda x al cuadrado más dos x menos uno, partido por x más uno al cuadrado. Fíjate en que la derivada se define en intervalos abiertos: en x igual a cero la función cambia de expresión y no es derivable. Ese punto lo estudiaremos aparte.",
+      "captions": [
+        "Para x > 0 queda (x² + 2x − 1) / (x + 1)².",
+        "La derivada se define en intervalos abiertos: en x = 0 la función cambia de expresión y no es derivable.",
+        "Ese punto lo estudiaremos aparte."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x > 0",
+            "tex": "\\left(\\dfrac{x^2+1}{x+1}\\right)' = \\dfrac{2x\\,(x+1) - (x^2+1)}{(x+1)^2} = \\dfrac{x^2+2x-1}{(x+1)^2}",
+            "size": 40,
+            "color": "indet"
+          },
+          {
+            "tex": "f'(x) = \\begin{cases} \\dfrac{-x^2+2x+1}{(-x+1)^2} & \\text{si } x < 0 \\\\[14pt] \\dfrac{x^2+2x-1}{(x+1)^2} & \\text{si } x > 0 \\end{cases}",
+            "size": 40
+          }
+        ],
+        "chips": [
+          {
+            "text": "en x = 0 no existe f′(0)",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-ceros",
+      "phase": "Parte a · Extremos",
+      "heading": "Igualamos a cero y comprobamos el intervalo",
+      "narration": "Igualamos a cero cada expresión y comprobamos si las soluciones caen en su intervalo. En el trozo negativo, menos x al cuadrado más dos x más uno igual a cero da x igual a uno más menos raíz de dos. Solo uno menos raíz de dos es negativo, así que nos quedamos con ese. En el trozo positivo, x al cuadrado más dos x menos uno igual a cero da x igual a menos uno más menos raíz de dos. Solo menos uno más raíz de dos es positivo.",
+      "captions": [
+        "Igualamos a cero cada expresión y comprobamos si las soluciones caen en su intervalo.",
+        "Para x < 0: −x² + 2x + 1 = 0 da x = 1 ± √2.",
+        "Solo 1 − √2 ≈ −0,41 es negativo, así que nos quedamos con ese.",
+        "Para x > 0: x² + 2x − 1 = 0 da x = −1 ± √2.",
+        "Solo −1 + √2 ≈ 0,41 es positivo."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x < 0",
+            "tex": "-x^2+2x+1 = 0 \\;\\Rightarrow\\; x = 1 \\pm \\sqrt{2}",
+            "size": 48
+          },
+          {
+            "tex": "x = 1-\\sqrt{2} \\approx -0{,}41 \\in (-\\infty,0)\\ \\checkmark \\qquad x = 1+\\sqrt{2} \\approx 2{,}41 \\notin (-\\infty,0)",
+            "size": 38,
+            "color": "inkSoft"
+          },
+          {
+            "label": "x > 0",
+            "tex": "x^2+2x-1 = 0 \\;\\Rightarrow\\; x = -1 \\pm \\sqrt{2}",
+            "size": 48
+          },
+          {
+            "tex": "x = -1+\\sqrt{2} \\approx 0{,}41 \\in (0,\\infty)\\ \\checkmark \\qquad x = -1-\\sqrt{2} \\approx -2{,}41 \\notin (0,\\infty)",
+            "size": 38,
+            "color": "inkSoft"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "x = 1-\\sqrt{2}",
+            "color": "solved"
+          },
+          {
+            "tex": "x = -1+\\sqrt{2}",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-tabla",
+      "phase": "Parte a · Extremos",
+      "heading": "Tabla de signos de f′, con el punto frontera x = 0",
+      "narration": "Estudiamos el signo de la derivada en cada intervalo, usando los ceros y el punto frontera x igual a cero. Antes de uno menos raíz de dos la derivada es negativa, y la función decrece. Entre uno menos raíz de dos y cero es positiva: la función crece. Entre cero y menos uno más raíz de dos vuelve a ser negativa, y a partir de ahí, positiva.",
+      "captions": [
+        "Estudiamos el signo de f′ en cada intervalo, usando los ceros y el punto frontera x = 0.",
+        "Antes de 1 − √2 la derivada es negativa: f decrece.",
+        "Entre 1 − √2 y 0 es positiva: f crece.",
+        "Entre 0 y −1 + √2 vuelve a ser negativa, y a partir de ahí, positiva."
+      ],
+      "body": {
+        "type": "table",
+        "columns": [
+          "(-\\infty,\\,1-\\sqrt2)",
+          "1-\\sqrt2",
+          "(1-\\sqrt2,\\,0)",
+          "0",
+          "(0,\\,-1+\\sqrt2)",
+          "-1+\\sqrt2",
+          "(-1+\\sqrt2,\\,\\infty)"
+        ],
+        "rows": [
+          {
+            "label": "f'(x)",
+            "cells": [
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "0",
+                "color": "indet"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "∄",
+                "color": "warn"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "0",
+                "color": "indet"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              }
+            ]
+          },
+          {
+            "label": "f(x)",
+            "cells": [
+              {
+                "text": "↘",
+                "color": "danger"
+              },
+              {
+                "text": "mín",
+                "color": "solved"
+              },
+              {
+                "text": "↗",
+                "color": "solved"
+              },
+              {
+                "text": "máx",
+                "color": "teal"
+              },
+              {
+                "text": "↘",
+                "color": "danger"
+              },
+              {
+                "text": "mín",
+                "color": "solved"
+              },
+              {
+                "text": "↗",
+                "color": "solved"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-extremos",
+      "phase": "Parte a · Extremos",
+      "heading": "Extremos: dos mínimos y un máximo",
+      "narration": "Con esto ya tenemos los extremos. En x igual a uno menos raíz de dos, y en x igual a menos uno más raíz de dos, la función pasa de decrecer a crecer: son mínimos relativos, y también absolutos. El valor de la función en ambos es dos raíz de dos menos dos. En x igual a cero pasa de crecer a decrecer: es un máximo relativo, con f de cero igual a uno. Mira la gráfica: es simétrica, como corresponde a una función par.",
+      "captions": [
+        "Con esto ya tenemos los extremos.",
+        "En x = 1 − √2 y en x = −1 + √2 la función pasa de decrecer a crecer: son mínimos relativos, y también absolutos.",
+        "El valor de la función en ambos es 2√2 − 2 ≈ 0,83.",
+        "En x = 0 pasa de crecer a decrecer: es un máximo relativo, con f(0) = 1.",
+        "Mira la gráfica: es simétrica, como corresponde a una función par."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "(x*x+1)/(Math.abs(x)+1)",
+        "xMin": -3,
+        "xMax": 3,
+        "yMin": -0.3,
+        "yMax": 2.6,
+        "xTicks": [
+          {
+            "x": -1,
+            "label": "−1"
+          },
+          {
+            "x": 1,
+            "label": "1"
+          },
+          {
+            "x": -0.41421356237309515,
+            "label": "1−√2"
+          },
+          {
+            "x": 0.41421356237309515,
+            "label": "−1+√2"
+          }
+        ],
+        "points": [
+          {
+            "x": -0.41421356237309515,
+            "y": 0.8284271247461903,
+            "label": "mín",
+            "color": "solved"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "label": "máx",
+            "color": "teal"
+          },
+          {
+            "x": 0.41421356237309515,
+            "y": 0.8284271247461903,
+            "label": "mín",
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\text{mínimos: } (1-\\sqrt2,\\ 2\\sqrt2-2),\\ (-1+\\sqrt2,\\ 2\\sqrt2-2)",
+            "color": "solved"
+          },
+          {
+            "tex": "\\text{máximo relativo: } (0,\\,1)",
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-integral",
+      "phase": "Parte b · Integral",
+      "heading": "En [−1, 0] el valor absoluto vale −x",
+      "narration": "Apartado b. La integral va de menos uno a cero, y en ese intervalo x es negativo. Así que el valor absoluto de x es menos x, y la función es x al cuadrado más uno partido por menos x más uno. Sacando un signo menos, la escribimos como menos, x al cuadrado más uno partido por x menos uno.",
+      "captions": [
+        "Apartado b.",
+        "La integral va de −1 a 0, y en ese intervalo x es negativo.",
+        "Así que |x| = −x, y la función es (x² + 1) / (−x + 1).",
+        "Sacando un signo menos: −(x² + 1) / (x − 1)."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "(x*x+1)/(Math.abs(x)+1)",
+        "xMin": -2.2,
+        "xMax": 2.2,
+        "yMin": -0.3,
+        "yMax": 2.2,
+        "lead": {
+          "tex": "\\int_{-1}^{0} f(x)\\,dx = \\int_{-1}^{0} \\dfrac{x^2+1}{-x+1}\\,dx = \\int_{-1}^{0} -\\dfrac{x^2+1}{x-1}\\,dx",
+          "size": 40
+        },
+        "xTicks": [
+          {
+            "x": -1,
+            "label": "−1"
+          },
+          {
+            "x": 1,
+            "label": "1"
+          }
+        ],
+        "shade": {
+          "from": -1,
+          "to": 0,
+          "color": "indet",
+          "label": "∫"
+        },
+        "chips": [
+          {
+            "tex": "x \\in [-1,0] \\Rightarrow \\lvert x\\rvert = -x",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-division",
+      "phase": "Parte b · Integral",
+      "heading": "División polinómica: (x² + 1) : (x − 1)",
+      "narration": "El numerador tiene mayor grado que el denominador, así que hacemos la división polinómica. La división de x al cuadrado más uno entre x menos uno da cociente x más uno y resto dos. Por tanto la fracción es x más uno, más dos partido por x menos uno. Comprobación: x menos uno por x más uno es x al cuadrado menos uno, y sumando dos recuperamos x al cuadrado más uno.",
+      "captions": [
+        "El numerador tiene mayor grado que el denominador, así que hacemos la división polinómica.",
+        "(x² + 1) : (x − 1) da cociente x + 1 y resto 2.",
+        "Por tanto (x² + 1) / (x − 1) = x + 1 + 2 / (x − 1).",
+        "Comprobación: (x − 1)(x + 1) + 2 = x² − 1 + 2 = x² + 1."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "text": "Grado del numerador ≥ grado del denominador: dividimos",
+            "color": "inkSoft",
+            "size": 44
+          },
+          {
+            "tex": "x^2 + 1 = (x-1)(x+1) + 2",
+            "size": 54
+          },
+          {
+            "tex": "\\dfrac{x^2+1}{x-1} = x + 1 + \\dfrac{2}{x-1}",
+            "size": 60,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "cociente x + 1",
+            "color": "given"
+          },
+          {
+            "text": "resto 2",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-primitiva",
+      "phase": "Parte b · Integral",
+      "heading": "Integramos término a término",
+      "narration": "Integramos término a término. La integral de x es x al cuadrado partido por dos, la de uno es x, y la de dos partido por x menos uno es dos por el logaritmo neperiano del valor absoluto de x menos uno. Todo con el signo menos delante, y evaluado entre menos uno y cero.",
+      "captions": [
+        "Integramos término a término.",
+        "∫x dx = x²/2, ∫1 dx = x, y ∫2/(x − 1) dx = 2·ln|x − 1|.",
+        "Todo con el signo menos delante, y evaluado entre −1 y 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\int_{-1}^{0} -\\dfrac{x^2+1}{x-1}\\,dx = -\\int_{-1}^{0}\\left(x + 1 + \\dfrac{2}{x-1}\\right)dx",
+            "size": 46
+          },
+          {
+            "tex": "= -\\left[\\dfrac{x^2}{2} + x + 2\\ln\\lvert x-1\\rvert\\right]_{-1}^{0}",
+            "size": 56,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\int \\dfrac{2}{x-1}\\,dx = 2\\ln\\lvert x-1\\rvert",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-evaluar",
+      "phase": "Resultado",
+      "heading": "Evaluamos entre −1 y 0",
+      "tail": 0.6,
+      "narration": "Evaluamos. En cero: cero más cero más dos logaritmo de uno, que es cero. En menos uno: un medio, menos uno, más dos logaritmo de dos, es decir, menos un medio más dos logaritmo de dos. Restamos y cambiamos el signo: el resultado es dos logaritmo de dos menos un medio, que también se escribe logaritmo de cuatro menos un medio. Aproximadamente cero coma ochenta y nueve.",
+      "captions": [
+        "Evaluamos.",
+        "En x = 0: 0 + 0 + 2·ln 1 = 0.",
+        "En x = −1: 1/2 − 1 + 2·ln 2 = −1/2 + 2·ln 2.",
+        "Restamos y cambiamos el signo: 2·ln 2 − 1/2, que también se escribe ln 4 − 1/2.",
+        "Aproximadamente 0,89."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x = 0",
+            "tex": "\\dfrac{0^2}{2} + 0 + 2\\ln\\lvert 0-1\\rvert = 2\\ln 1 = 0",
+            "size": 44
+          },
+          {
+            "label": "x = −1",
+            "tex": "\\dfrac{(-1)^2}{2} - 1 + 2\\ln\\lvert -1-1\\rvert = -\\dfrac{1}{2} + 2\\ln 2",
+            "size": 44
+          },
+          {
+            "tex": "-\\Big[\\,0 - \\Big(-\\dfrac{1}{2} + 2\\ln 2\\Big)\\Big] = 2\\ln 2 - \\dfrac{1}{2}",
+            "size": 50,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "∫₋₁⁰ f(x) dx = 2·ln 2 − 1/2 = ln 4 − 1/2",
+          "sub": "≈ 0,886",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "13-comprobacion",
+      "phase": "Resultado",
+      "heading": "Comprobación rápida con el área",
+      "narration": "Un truco para comprobar el resultado. En el intervalo de menos uno a cero la función vale uno en los extremos y baja como mucho hasta cero coma ochenta y tres. El área bajo la curva en un intervalo de longitud uno tiene que estar cerca de cero coma nueve. Y eso es justo lo que hemos obtenido.",
+      "captions": [
+        "Un truco para comprobar el resultado.",
+        "En [−1, 0] la función vale 1 en los extremos y baja como mucho hasta 0,83.",
+        "El área bajo la curva en un intervalo de longitud 1 tiene que estar cerca de 0,9.",
+        "Y eso es justo lo que hemos obtenido."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "(x*x+1)/(Math.abs(x)+1)",
+        "xMin": -1.6,
+        "xMax": 0.6,
+        "yMin": -0.2,
+        "yMax": 1.4,
+        "xTicks": [
+          {
+            "x": -1,
+            "label": "−1"
+          },
+          {
+            "x": -0.41421356237309515,
+            "label": "1−√2"
+          }
+        ],
+        "points": [
+          {
+            "x": -1,
+            "y": 1,
+            "label": "f(−1) = 1",
+            "color": "given"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "label": "f(0) = 1",
+            "color": "given"
+          },
+          {
+            "x": -0.41421356237309515,
+            "y": 0.8284271247461903,
+            "label": "0,83",
+            "color": "solved"
+          }
+        ],
+        "shade": {
+          "from": -1,
+          "to": 0,
+          "color": "indet",
+          "label": "≈ 0,89"
+        },
+        "chips": [
+          {
+            "text": "base 1 × altura entre 0,83 y 1  ⇒  área ≈ 0,9",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. La función es par. Tiene mínimos en uno menos raíz de dos y en menos uno más raíz de dos, con valor dos raíz de dos menos dos, y un máximo relativo en el punto de abscisa cero, con valor uno. La integral entre menos uno y cero vale dos logaritmo de dos menos un medio. Y la idea que lo ordena todo: quita el valor absoluto definiendo la función a trozos, y el resto es rutina.",
+      "captions": [
+        "Resumen.",
+        "La función es par.",
+        "Mínimos en x = 1 − √2 y x = −1 + √2, con valor 2√2 − 2, y máximo relativo en (0, 1).",
+        "∫₋₁⁰ f(x) dx = 2·ln 2 − 1/2.",
+        "Quita el valor absoluto definiendo la función a trozos, y el resto es rutina."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Paridad",
+            "tex": "f(-x) = f(x) \\;\\Rightarrow\\; \\text{función par}",
+            "color": "teal"
+          },
+          {
+            "label": "Mínimos (relativos y absolutos)",
+            "tex": "(1-\\sqrt2,\\ 2\\sqrt2-2),\\quad (-1+\\sqrt2,\\ 2\\sqrt2-2)",
+            "color": "solved"
+          },
+          {
+            "label": "Máximo relativo",
+            "tex": "(0,\\,1)",
+            "color": "teal"
+          },
+          {
+            "label": "b) Integral",
+            "tex": "\\int_{-1}^{0} f(x)\\,dx = 2\\ln 2 - \\tfrac{1}{2} \\approx 0{,}89",
+            "color": "solved"
+          }
+        ],
+        "closing": "Quita el valor absoluto definiendo a trozos: el resto es rutina."
+      }
+    }
+  ]
+}
