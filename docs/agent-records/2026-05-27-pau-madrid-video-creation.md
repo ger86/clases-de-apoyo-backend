@@ -213,6 +213,89 @@ Validation performed:
 
 This candidate is mainly a visual/style test bed until the chosen ElevenLabs library voice is available through the API.
 
+## v4 Design Rebuild (Remotion + motion)
+
+The v3 static frames were correct but **dull**: with hard cuts and no in-scene
+motion, nothing directs the student's attention and the slides read like a
+corporate deck (two oversized white boxes, Arial math, lots of dead space). One
+slide even shipped a bug — the summary frame printed the literal placeholder
+word `Resumen` because summary slides had no `formula` field and the renderer
+fell back to it.
+
+v4 keeps the **narration unchanged** (voice is out of design scope; the 12
+existing ElevenLabs MP3s are reused as-is) and rebuilds only the **visuals** as a
+motion-driven explainer using Remotion (React). This was a deliberate scope
+choice: progressive reveal — each algebra line appearing as it is spoken, active
+terms lighting up — is the single biggest attention driver for math video, and it
+needs a real animation framework. The static SVG→PNG pipeline cannot do it.
+
+### v4 design system
+
+- **Dark "studio" theme** (near-black teal, layered radial gradients + faint
+  grid) so formulas and color-coded results pop, like premium math channels.
+- **Real math typesetting** via KaTeX rendered in Chromium — proper brackets,
+  superscripts, `·`, `λ`, `≠` — replacing Arial glyphs and the ambiguous `*`.
+- **A persistent `k` number-line** as the spine of the whole video: ticks at
+  `-1` and `0`, three regions that light up per case and tie the 12 scenes into
+  one journey. Semantic color is consistent everywhere:
+  - teal = given/neutral, **pink = incompatible** (`k = -1`),
+    **cyan = indeterminado** (`k = 0`), **green = determinado / final answer**.
+- **Progressive reveal**: headings, formula rows, chips and result badges spring
+  in line-by-line (no fake camera drift — purposeful build-on only). Active
+  values (`k`, `(k+1)`, the danger points) are color-emphasised.
+- **Burned-in captions** (sentence-level, distributed across each narration
+  segment), a real **hook** (system matrix → `|A|` spotlight) and a **branded
+  outro** (number-line "full map" + `clasesdeapoyo.com` CTA).
+- 16:9, 1920×1080, 30 fps, ~3:17, sync-timed to the narration MP3 durations.
+
+### v4 file structure
+
+Lives under the ignored `var/` tree (not committed; `node_modules` ≈ 683 MB):
+
+```text
+remotion/
+  package.json  tsconfig.json  remotion.config.ts
+  public/audio/                 # the 12 ElevenLabs MP3s, copied from work/audio-elevenlabs-v3
+  scripts/stills.mjs            # bundle once, render one still per scene (review)
+  src/
+    index.ts  Root.tsx  PauVideo.tsx   # entry, composition, sequence+audio stitching
+    theme.ts                           # colors / fonts / semantic palette
+    timeline.ts                        # 12 scenes: durations, captions, k-number-line state
+    math.tsx                           # <Tex> (KaTeX) + reveal/pop spring helpers
+    ui.tsx                             # Background, TopBar, Heading, Captions, ResultBadge, NumberLineK, Footer
+    scenes.tsx                         # 12 scene bodies + router + shared chrome
+  output/
+    pau-madrid-2025-matematicas-pregunta-1-1-remotion.mp4   # rendered video
+    stills/                            # one review still per scene
+```
+
+`timeline.ts` is the per-exercise input: swap durations, captions, headings and
+the math TeX strings to retarget another question. The 12 scene component types
+in `scenes.tsx` (hook, system, method, determinant, general, two cases ×
+matrix/result, solve, solution, summary) are the reusable templates.
+
+### v4 commands
+
+From the `remotion/` directory:
+
+```bash
+npm install                       # first time only (also fetches headless Chrome on first render)
+node scripts/stills.mjs           # render review stills (fast, no audio)
+npx remotion studio               # interactive preview / scrubbing
+npm run render                    # full MP4 -> output/pau-...-remotion.mp4
+```
+
+If the narration is ever regenerated (e.g. the ElevenLabs library voice becomes
+available), recopy the MP3s into `public/audio/` and update the matching
+`durSec` values in `timeline.ts`, then re-render.
+
+### v4 validation
+
+- H.264, 1920×1080, AAC stereo, duration 3:17.
+- `ffmpeg -v error -f null -` decodes clean; audio mean ≈ −22.7 dB (not silent).
+- 12 review stills + frames extracted from the encoded video confirm the
+  progressive reveal and layout on every scene type.
+
 ## Commands To Resume
 
 From `clases-de-apoyo-backend`:
@@ -254,10 +337,10 @@ ffmpeg -y -v error -ss 00:02:45 -i var/generated-videos/madrid-matematicas-2025-
 Before scaling to more exercises:
 
 1. Upgrade or configure ElevenLabs so library voice `6xftrpatV0jGmFHxDjUv` can be used through the API, or choose another API-available Spain-accent voice.
-2. Regenerate only the audio with the selected voice and reassemble the existing v3 frames.
+2. When the voice is settled, recopy the new MP3s into `remotion/public/audio/`, update the `durSec` values in `timeline.ts`, and re-render the v4 Remotion video.
 3. Review the final voice by ear before producing more videos.
-4. Decide whether to keep the current static-frame template or move to a reusable HTML/Remotion/Hyperframes template.
-5. If scaling, move the scripts out of `var/generated-videos/.../work/` into a reusable repo tool and make `video_plan_v3.json` the per-exercise input.
+4. ~~Decide whether to keep the static-frame template or move to Remotion/Hyperframes.~~ **Done — moved to a Remotion motion design (v4); see "v4 Design Rebuild" above.**
+5. If scaling, promote the v4 Remotion project out of `var/generated-videos/.../remotion/` into a reusable repo tool, with `timeline.ts` (durations + captions + math TeX) as the per-exercise input.
 
 ## Important Caveats
 
