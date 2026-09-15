@@ -1,0 +1,369 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-4-2-probabilidad-condicionada",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 4.2",
+    "topic": "Probabilidad condicionada"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · P(A) y P(A∩B)": "teal",
+    "Parte b · Condicionada": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Probabilidad condicionada con tres datos | PAU Madrid Junio 2026, Matemáticas II, Pregunta 4.2",
+    "description": "Resolvemos paso a paso la Pregunta 4.2 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Datos: P(B) = 0,4, la probabilidad del contrario de A∪B es 0,4 y P(B|A) = 0,2.\n\na) Calcular P(A) y P(A∩B). Del suceso contrario sale P(A∪B) = 0,6. Escribimos P(A∩B) = P(A)·P(B|A) = 0,2·P(A) y lo llevamos a la regla de la unión: 0,6 = P(A) + 0,4 − 0,2·P(A), de donde P(A) = 0,25 y P(A∩B) = 0,05.\nb) Calcular P((A∩B)|(A∪B)). Como A∩B está contenido en A∪B, su intersección es A∩B, y la condicionada vale 0,05/0,6 = 0,0833.\n\nLo que vas a aprender:\n• Cómo usar el suceso contrario para obtener P(A∪B).\n• Cómo combinar la regla de la unión con la definición de probabilidad condicionada.\n• Cómo plantear y resolver una ecuación con una probabilidad desconocida.\n• Por qué la intersección de A∩B con A∪B es A∩B.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Probabilidad #ProbabilidadCondicionada",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "probabilidad",
+      "probabilidad condicionada",
+      "suceso contrario",
+      "regla de la unión",
+      "intersección de sucesos",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Probabilidad\ncondicionada",
+      "line2": "Tres datos, dos incógnitas,\npaso a paso",
+      "tex": "P(B\\mid A) = \\dfrac{P(A \\cap B)}{P(A)}",
+      "badge": "P(A) = 0,25"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Tres datos y dos fórmulas",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cuatro punto dos. Nos dan tres datos sobre dos sucesos A y B, y nos piden probabilidades que no aparecen directamente. Todo sale de dos fórmulas: la regla de la unión y la definición de probabilidad condicionada.",
+      "captions": [
+        "Pregunta 4.2.",
+        "Nos dan tres datos sobre dos sucesos A y B, y nos piden probabilidades que no aparecen directamente.",
+        "Todo sale de dos fórmulas: la regla de la unión y la definición de probabilidad condicionada."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 4.2",
+        "title": "Tres datos, *dos fórmulas*\ny una ecuación",
+        "tex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+        "texSize": 60,
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Planteamiento",
+      "heading": "Los datos del enunciado",
+      "narration": "Los datos son tres. La probabilidad de B es cero coma cuatro. La probabilidad del contrario de A unión B es cero coma cuatro. Y la probabilidad de B condicionada a A es cero coma dos. Nos piden la probabilidad de A, la de la intersección, y una condicionada más complicada.",
+      "captions": [
+        "Los datos son tres.",
+        "P(B) = 0,4.",
+        "P(contrario de A∪B) = 0,4.",
+        "P(B|A) = 0,2.",
+        "Nos piden P(A), P(A∩B), y una condicionada más complicada."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Dato 1",
+            "tex": "P(B) = 0{,}4",
+            "size": 54,
+            "color": "given"
+          },
+          {
+            "label": "Dato 2",
+            "tex": "P\\big(\\overline{A \\cup B}\\big) = 0{,}4",
+            "size": 54,
+            "color": "given"
+          },
+          {
+            "label": "Dato 3",
+            "tex": "P(B \\mid A) = 0{,}2",
+            "size": 54,
+            "color": "given"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\text{a) } P(A),\\ P(A \\cap B)",
+            "color": "warn"
+          },
+          {
+            "tex": "\\text{b) } P\\big((A \\cap B) \\mid (A \\cup B)\\big)",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-union",
+      "phase": "Parte a · P(A) y P(A∩B)",
+      "heading": "Del suceso contrario sale P(A ∪ B)",
+      "narration": "Apartado a. Empezamos por el dato más fácil de convertir. Si el contrario de A unión B tiene probabilidad cero coma cuatro, entonces A unión B tiene probabilidad uno menos cero coma cuatro, es decir, cero coma seis.",
+      "captions": [
+        "Apartado a.",
+        "Empezamos por el dato más fácil de convertir.",
+        "Si P(contrario de A∪B) = 0,4, entonces P(A∪B) = 1 − 0,4 = 0,6."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(A \\cup B) = 1 - P\\big(\\overline{A \\cup B}\\big)",
+            "size": 54
+          },
+          {
+            "tex": "P(A \\cup B) = 1 - 0{,}4 = 0{,}6",
+            "size": 60,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-condicionada",
+      "phase": "Parte a · P(A) y P(A∩B)",
+      "heading": "La condicionada nos da la intersección en función de P(A)",
+      "narration": "Ahora la definición de probabilidad condicionada. B condicionada a A es la intersección partido por la probabilidad de A. Despejando, la intersección es la probabilidad de A por cero coma dos. No conocemos P de A, pero ya tenemos la intersección escrita en función de ella.",
+      "captions": [
+        "Ahora la definición de probabilidad condicionada.",
+        "P(B|A) = P(A∩B) / P(A).",
+        "Despejando, P(A∩B) = P(A) · 0,2.",
+        "No conocemos P(A), pero ya tenemos la intersección escrita en función de ella."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(B \\mid A) = \\dfrac{P(A \\cap B)}{P(A)}",
+            "size": 54
+          },
+          {
+            "tex": "P(A \\cap B) = P(A)\\cdot P(B \\mid A) = 0{,}2\\,P(A)",
+            "size": 54,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-ecuacion",
+      "phase": "Parte a · P(A) y P(A∩B)",
+      "heading": "Regla de la unión: una ecuación con P(A)",
+      "narration": "Llevamos todo a la regla de la unión: la probabilidad de A unión B es la de A más la de B menos la de la intersección. Sustituimos los datos: cero coma seis igual a P de A, más cero coma cuatro, menos cero coma dos por P de A.",
+      "captions": [
+        "Llevamos todo a la regla de la unión: P(A∪B) = P(A) + P(B) − P(A∩B).",
+        "Sustituimos: 0,6 = P(A) + 0,4 − 0,2 · P(A)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+            "size": 52
+          },
+          {
+            "tex": "0{,}6 = P(A) + 0{,}4 - 0{,}2\\,P(A)",
+            "size": 56,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-resolver",
+      "phase": "Parte a · P(A) y P(A∩B)",
+      "heading": "Resolvemos: P(A) = 0,25",
+      "narration": "Agrupamos. Cero coma seis menos cero coma cuatro es cero coma dos, y P de A menos cero coma dos P de A es cero coma ocho P de A. Así que P de A es cero coma dos entre cero coma ocho, igual a cero coma veinticinco.",
+      "captions": [
+        "Agrupamos.",
+        "0,6 − 0,4 = 0,2, y P(A) − 0,2·P(A) = 0,8·P(A).",
+        "P(A) = 0,2 / 0,8 = 0,25."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "0{,}6 - 0{,}4 = P(A)\\,(1 - 0{,}2)",
+            "size": 52
+          },
+          {
+            "tex": "0{,}2 = 0{,}8\\,P(A)",
+            "size": 52,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "P(A) = \\dfrac{0{,}2}{0{,}8} = 0{,}25",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(A) = 0,25",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-interseccion",
+      "phase": "Parte a · P(A) y P(A∩B)",
+      "heading": "Y ahora la intersección",
+      "tail": 0.5,
+      "narration": "Con P de A conocida, la intersección sale directa: cero coma veinticinco por cero coma dos, igual a cero coma cero cinco.",
+      "captions": [
+        "Con P(A) conocida, la intersección sale directa: 0,25 · 0,2 = 0,05."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(A \\cap B) = P(A)\\cdot P(B \\mid A) = 0{,}25 \\cdot 0{,}2 = 0{,}05",
+            "size": 54,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(A ∩ B) = 0,05",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "08-planteo-b",
+      "phase": "Parte b · Condicionada",
+      "heading": "Apartado b: P((A ∩ B) | (A ∪ B))",
+      "narration": "Apartado b. Nos piden la probabilidad de la intersección condicionada a la unión. Aplicamos la definición: probabilidad de la intersección de los dos sucesos, partido por la probabilidad del que condiciona, que es A unión B.",
+      "captions": [
+        "Apartado b.",
+        "Nos piden P((A∩B) | (A∪B)).",
+        "Aplicamos la definición: P((A∩B) ∩ (A∪B)) / P(A∪B)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P\\big((A \\cap B) \\mid (A \\cup B)\\big) = \\dfrac{P\\big((A \\cap B) \\cap (A \\cup B)\\big)}{P(A \\cup B)}",
+            "size": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-inclusion",
+      "phase": "Parte b · Condicionada",
+      "heading": "A ∩ B está contenido en A ∪ B",
+      "narration": "El numerador parece complicado, pero no lo es. Todo elemento de A intersección B está en A, y por tanto también en A unión B. Como A intersección B está contenido en A unión B, la intersección de los dos es simplemente A intersección B.",
+      "captions": [
+        "El numerador parece complicado, pero no lo es.",
+        "Todo elemento de A∩B está en A, y por tanto también en A∪B.",
+        "Como A∩B ⊆ A∪B, la intersección de los dos es simplemente A∩B."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A \\cap B \\subseteq A \\subseteq A \\cup B",
+            "size": 54
+          },
+          {
+            "tex": "(A \\cap B) \\cap (A \\cup B) = A \\cap B",
+            "size": 58,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "si C ⊆ D, entonces C ∩ D = C",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-resultado-b",
+      "phase": "Resultado",
+      "heading": "P((A ∩ B) | (A ∪ B)) = 0,05 / 0,6 ≈ 0,0833",
+      "tail": 0.6,
+      "narration": "Así que la condicionada es la probabilidad de la intersección partido por la de la unión: cero coma cero cinco entre cero coma seis, que da cero coma cero ocho tres tres. Es decir, un doceavo.",
+      "captions": [
+        "La condicionada es P(A∩B) / P(A∪B) = 0,05 / 0,6 ≈ 0,0833.",
+        "Es decir, 1/12."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P\\big((A \\cap B) \\mid (A \\cup B)\\big) = \\dfrac{P(A \\cap B)}{P(A \\cup B)} = \\dfrac{0{,}05}{0{,}6}",
+            "size": 50
+          },
+          {
+            "tex": "= \\dfrac{1}{12} \\approx 0{,}0833",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P((A ∩ B) | (A ∪ B)) ≈ 0,0833",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "11-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. Del contrario sale la unión, cero coma seis. La condicionada escribe la intersección como cero coma dos por P de A. La regla de la unión da una ecuación cuya solución es P de A igual a cero coma veinticinco, y la intersección vale cero coma cero cinco. Y la condicionada del apartado b es cero coma cero cinco entre cero coma seis, cero coma cero ocho tres tres.",
+      "captions": [
+        "Resumen.",
+        "Del contrario sale la unión: P(A∪B) = 0,6.",
+        "La condicionada escribe la intersección como 0,2 · P(A).",
+        "La regla de la unión da una ecuación cuya solución es P(A) = 0,25, y P(A∩B) = 0,05.",
+        "Y la condicionada del apartado b es 0,05 / 0,6 = 0,0833."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Unión",
+            "tex": "P(A \\cup B) = 0{,}6",
+            "color": "teal"
+          },
+          {
+            "label": "a) Apartado a",
+            "tex": "P(A) = 0{,}25,\\quad P(A \\cap B) = 0{,}05",
+            "color": "solved"
+          },
+          {
+            "label": "b) Condicionada",
+            "tex": "\\dfrac{0{,}05}{0{,}6} \\approx 0{,}0833",
+            "color": "solved"
+          }
+        ],
+        "closing": "Contrario, condicionada y regla de la unión."
+      }
+    }
+  ]
+}

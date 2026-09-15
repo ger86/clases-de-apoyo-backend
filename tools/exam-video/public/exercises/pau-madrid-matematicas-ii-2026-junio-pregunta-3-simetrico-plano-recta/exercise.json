@@ -1,0 +1,449 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-3-simetrico-plano-recta",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "question": "Pregunta 3",
+    "topic": "Geometría: simétrico, distancia y plano",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Parte a · Punto simétrico": "teal",
+    "Parte b1 · Distancia": "indet",
+    "Parte b2 · Plano": "pinkSoft",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Simétrico, distancia y plano perpendicular | PAU Madrid Junio 2026, Matemáticas II, Pregunta 3",
+    "description": "Resolvemos paso a paso la Pregunta 3 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Geometría en el espacio con el plano π: 2x + 2y − z = 13 y la recta r: (x − 2)/1 = y/1 = z/4.\n\na) Punto simétrico de P(2, 0, 0) respecto de π. Recta s perpendicular a π por P, intersección M(4, 2, −1) y punto medio: P' = 2M − P = (6, 4, −2).\nb1) Distancia entre π y r. El producto escalar n·d = 0, así que r es paralela a π; como P_r(2, 0, 0) no está en π, la distancia es la de un punto de r al plano: 9/3 = 3 unidades.\nb2) Plano que contiene a r y es perpendicular a π: determinante con la normal de π, el director de r y un punto de r. Resultado: x − y − 2 = 0.\n\nEn el examen solo hay que responder b1 o b2. En el vídeo resolvemos los dos.\n\nLo que vas a aprender:\n• Cómo calcular el simétrico de un punto respecto de un plano en tres pasos.\n• Cómo saber si una recta y un plano son paralelos con el producto escalar.\n• Cómo calcular la distancia de una recta paralela a un plano.\n• Cómo hallar un plano que contiene una recta y es perpendicular a otro plano.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Geometría #Vectores",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "geometría en el espacio",
+      "punto simétrico",
+      "simétrico respecto de un plano",
+      "distancia recta plano",
+      "plano perpendicular",
+      "producto escalar",
+      "vectores",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Punto\nsimétrico",
+      "line2": "Distancia y plano\nperpendicular, paso a paso",
+      "tex": "\\pi: 2x + 2y - z = 13",
+      "badge": "P' = (6, 4, −2)"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Geometría: simétrico, distancia y plano",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta tres. Un plano, una recta y un punto. Nos piden el simétrico del punto respecto del plano, y después elegir entre la distancia de la recta al plano, o un plano que contenga a la recta y sea perpendicular. En el vídeo resolvemos las dos opciones.",
+      "captions": [
+        "Pregunta 3.",
+        "Un plano, una recta y un punto.",
+        "Nos piden el simétrico del punto respecto del plano, y después elegir entre la distancia de la recta al plano, o un plano que contenga a la recta y sea perpendicular.",
+        "En el vídeo resolvemos las dos opciones."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 3",
+        "title": "Un plano, una recta y un punto:\n*simétrico*, *distancia* y *plano*",
+        "tex": "\\pi: 2x + 2y - z = 13,\\qquad r: \\dfrac{x-2}{1} = \\dfrac{y}{1} = \\dfrac{z}{4}",
+        "texSize": 50,
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Parte a · Punto simétrico",
+      "heading": "Los elementos: normal, director y punto",
+      "narration": "Sacamos los datos. La normal del plano son los coeficientes: dos, dos, menos uno. El vector director de la recta son los denominadores: uno, uno, cuatro. Y la recta pasa por el punto dos, cero, cero, que es justo el punto P del enunciado.",
+      "captions": [
+        "Sacamos los datos.",
+        "La normal del plano son los coeficientes: n = (2, 2, −1).",
+        "El vector director de la recta son los denominadores: d = (1, 1, 4).",
+        "La recta pasa por (2, 0, 0), que es justo el punto P del enunciado."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Plano",
+            "tex": "\\pi: 2x + 2y - z = 13 \\;\\Rightarrow\\; \\vec n_\\pi = (2,\\,2,\\,-1)",
+            "size": 48,
+            "color": "teal"
+          },
+          {
+            "label": "Recta",
+            "tex": "r: \\dfrac{x-2}{1} = \\dfrac{y}{1} = \\dfrac{z}{4} \\;\\Rightarrow\\; \\vec d_r = (1,\\,1,\\,4),\\ P_r = (2,\\,0,\\,0)",
+            "size": 44,
+            "color": "indet"
+          },
+          {
+            "label": "Punto",
+            "tex": "P = (2,\\,0,\\,0)",
+            "size": 48
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-plan",
+      "phase": "Parte a · Punto simétrico",
+      "heading": "El simétrico en tres pasos",
+      "narration": "El simétrico de P respecto del plano se calcula en tres pasos. Uno: la recta s perpendicular al plano que pasa por P. Dos: el punto M donde esa recta corta al plano, que es la proyección de P. Tres: P prima, sabiendo que M es el punto medio entre P y P prima.",
+      "captions": [
+        "El simétrico de P respecto del plano se calcula en tres pasos.",
+        "1: la recta s perpendicular al plano que pasa por P.",
+        "2: el punto M donde s corta al plano, la proyección de P.",
+        "3: P′, sabiendo que M es el punto medio entre P y P′."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Paso 1",
+            "tex": "s \\perp \\pi,\\ P \\in s",
+            "size": 50
+          },
+          {
+            "label": "Paso 2",
+            "tex": "M = s \\cap \\pi",
+            "size": 50,
+            "color": "indet"
+          },
+          {
+            "label": "Paso 3",
+            "tex": "M = \\dfrac{P + P'}{2} \\;\\Rightarrow\\; P' = 2M - P",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-recta-s",
+      "phase": "Parte a · Punto simétrico",
+      "heading": "Paso 1: la recta perpendicular por P",
+      "narration": "La recta s es perpendicular al plano, así que su director es la normal del plano: dos, dos, menos uno. Pasa por P. En paramétricas: x igual a dos más dos lambda, y igual a dos lambda, z igual a menos lambda.",
+      "captions": [
+        "La recta s es perpendicular al plano, así que su director es la normal: (2, 2, −1).",
+        "Pasa por P.",
+        "En paramétricas: x = 2 + 2λ, y = 2λ, z = −λ."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\vec d_s = \\vec n_\\pi = (2,\\,2,\\,-1),\\qquad P = (2,\\,0,\\,0) \\in s",
+            "size": 46
+          },
+          {
+            "tex": "s: \\begin{cases} x = 2 + 2\\lambda \\\\ y = 2\\lambda \\\\ z = -\\lambda \\end{cases}",
+            "size": 52,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-punto-m",
+      "phase": "Parte a · Punto simétrico",
+      "heading": "Paso 2: M, la intersección de s con el plano",
+      "narration": "Sustituimos las paramétricas de s en la ecuación del plano. Dos por dos más dos lambda, más dos por dos lambda, menos menos lambda, igual a trece. Operando: cuatro más nueve lambda igual a trece, y lambda vale uno. Con lambda igual a uno, M es el punto cuatro, dos, menos uno.",
+      "captions": [
+        "Sustituimos las paramétricas de s en la ecuación del plano.",
+        "2(2 + 2λ) + 2(2λ) − (−λ) = 13.",
+        "Operando: 4 + 9λ = 13, y λ = 1.",
+        "Con λ = 1, M = (4, 2, −1)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "2\\,(2 + 2\\lambda) + 2\\,(2\\lambda) - (-\\lambda) = 13",
+            "size": 50
+          },
+          {
+            "tex": "4 + 9\\lambda = 13 \\;\\Rightarrow\\; \\lambda = 1",
+            "size": 54,
+            "color": "indet"
+          },
+          {
+            "tex": "M = (2 + 2,\\ 2,\\ -1) = (4,\\,2,\\,-1)",
+            "size": 54,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-simetrico",
+      "phase": "Parte a · Punto simétrico",
+      "heading": "Paso 3: P′ con el punto medio",
+      "tail": 0.5,
+      "narration": "M es el punto medio del segmento P P prima. Despejamos: P prima es dos M menos P. Dos por cuatro, dos, menos uno, menos dos, cero, cero. El simétrico es el punto seis, cuatro, menos dos.",
+      "captions": [
+        "M es el punto medio del segmento PP′.",
+        "Despejamos: P′ = 2M − P.",
+        "2·(4, 2, −1) − (2, 0, 0).",
+        "El simétrico es P′ = (6, 4, −2)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "M = \\dfrac{P + P'}{2} \\;\\Rightarrow\\; P' = 2M - P",
+            "size": 50
+          },
+          {
+            "tex": "P' = 2\\,(4,\\,2,\\,-1) - (2,\\,0,\\,0)",
+            "size": 50,
+            "color": "inkSoft"
+          }
+        ],
+        "badge": {
+          "text": "P′ = (6, 4, −2)",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-paralelismo",
+      "phase": "Parte b1 · Distancia",
+      "heading": "b1) ¿Cómo están la recta y el plano?",
+      "narration": "Apartado b uno, la distancia entre la recta y el plano. Antes de medir, miramos la posición relativa. El producto escalar de la normal por el director es dos más dos menos cuatro, cero. Son perpendiculares, así que la recta es paralela al plano o está contenida en él.",
+      "captions": [
+        "Apartado b1: la distancia entre la recta y el plano.",
+        "Antes de medir, miramos la posición relativa.",
+        "n · d = 2·1 + 2·1 + (−1)·4 = 0.",
+        "La recta es paralela al plano o está contenida en él."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\vec n_\\pi \\cdot \\vec d_r = (2,\\,2,\\,-1)\\cdot(1,\\,1,\\,4) = 2 + 2 - 4 = 0",
+            "size": 48
+          },
+          {
+            "tex": "\\vec n_\\pi \\perp \\vec d_r \\;\\Rightarrow\\; r \\parallel \\pi \\ \\text{ o } \\ r \\subset \\pi",
+            "size": 50,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-no-contenida",
+      "phase": "Parte b1 · Distancia",
+      "heading": "¿Contenida o paralela? Probamos con un punto",
+      "narration": "Para distinguirlo, comprobamos si un punto de la recta está en el plano. Tomamos el dos, cero, cero. Dos por dos más cero menos cero es cuatro, que no es trece. El punto no está en el plano, así que la recta es paralela y no está contenida.",
+      "captions": [
+        "Comprobamos si un punto de la recta está en el plano.",
+        "Tomamos P_r = (2, 0, 0).",
+        "2·2 + 2·0 − 0 = 4 ≠ 13.",
+        "La recta es paralela al plano y no está contenida."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P_r = (2,\\,0,\\,0):\\quad 2\\cdot 2 + 2\\cdot 0 - 0 = 4 \\neq 13",
+            "size": 50
+          },
+          {
+            "tex": "P_r \\notin \\pi \\;\\Rightarrow\\; r \\parallel \\pi",
+            "size": 56,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "r paralela a π, no contenida",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-distancia",
+      "phase": "Parte b1 · Distancia",
+      "heading": "La distancia de la recta al plano",
+      "tail": 0.5,
+      "narration": "Como la recta es paralela, todos sus puntos están a la misma distancia del plano. Basta con calcular la distancia de un punto de la recta al plano con la fórmula: valor absoluto de la ecuación evaluada en el punto, partido por el módulo de la normal. Cuatro menos trece en valor absoluto es nueve, y el módulo de la normal es raíz de nueve, tres. La distancia es tres unidades.",
+      "captions": [
+        "Como r es paralela, todos sus puntos están a la misma distancia del plano.",
+        "Basta con la distancia de un punto de r al plano.",
+        "|4 − 13| = 9, y |n| = √9 = 3.",
+        "La distancia es 3 unidades."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "d(r,\\pi) = d(P_r,\\pi) = \\dfrac{\\lvert 2\\cdot 2 + 2\\cdot 0 - 0 - 13\\rvert}{\\sqrt{2^2 + 2^2 + (-1)^2}}",
+            "size": 48
+          },
+          {
+            "tex": "= \\dfrac{\\lvert -9\\rvert}{3} = 3",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "d(r, π) = 3 u",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "10-plano-idea",
+      "phase": "Parte b2 · Plano",
+      "heading": "b2) Plano que contiene a r y es perpendicular a π",
+      "narration": "Apartado b dos. Buscamos un plano sigma que contenga a la recta y sea perpendicular al plano pi. Un plano queda determinado por un punto y dos vectores. Si contiene a la recta, contiene a su director y a su punto. Y si es perpendicular a pi, la normal de pi es paralela a sigma. Ya tenemos todo.",
+      "captions": [
+        "Apartado b2.",
+        "Buscamos un plano σ que contenga a r y sea perpendicular a π.",
+        "Un plano queda determinado por un punto y dos vectores.",
+        "Si contiene a r, contiene a d_r y a P_r.",
+        "Si es perpendicular a π, la normal n_π es paralela a σ.",
+        "Ya tenemos todo."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Punto",
+            "tex": "P_r = (2,\\,0,\\,0) \\in \\sigma",
+            "size": 48
+          },
+          {
+            "label": "Vector 1",
+            "tex": "\\vec d_r = (1,\\,1,\\,4) \\parallel \\sigma",
+            "size": 48,
+            "color": "indet"
+          },
+          {
+            "label": "Vector 2",
+            "tex": "\\vec n_\\pi = (2,\\,2,\\,-1) \\parallel \\sigma",
+            "size": 48,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-determinante",
+      "phase": "Parte b2 · Plano",
+      "heading": "La ecuación con un determinante",
+      "tail": 0.5,
+      "narration": "Escribimos el determinante con x menos dos, y, z en la primera fila y los dos vectores debajo, e igualamos a cero. Desarrollando sale nueve x menos nueve y menos dieciocho igual a cero. Dividimos por nueve: el plano es x menos y menos dos igual a cero.",
+      "captions": [
+        "Determinante con (x − 2, y, z) en la primera fila y los dos vectores debajo, igualado a cero.",
+        "Desarrollando sale 9x − 9y − 18 = 0.",
+        "Dividimos por 9: σ: x − y − 2 = 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\sigma: \\begin{vmatrix} x-2 & y & z \\\\ 2 & 2 & -1 \\\\ 1 & 1 & 4 \\end{vmatrix} = 0",
+            "size": 50
+          },
+          {
+            "tex": "9x - 9y - 18 = 0",
+            "size": 52,
+            "color": "inkSoft"
+          }
+        ],
+        "badge": {
+          "text": "σ: x − y − 2 = 0",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "12-comprobacion",
+      "phase": "Parte b2 · Plano",
+      "heading": "Comprobación rápida",
+      "narration": "Comprobamos. La normal de sigma es uno, menos uno, cero. Su producto escalar con la normal de pi es dos menos dos, cero: los planos son perpendiculares. Y el punto dos, cero, cero cumple dos menos cero menos dos igual a cero: la recta está en sigma.",
+      "captions": [
+        "Comprobamos.",
+        "La normal de σ es n_σ = (1, −1, 0).",
+        "n_σ · n_π = 2 − 2 + 0 = 0: los planos son perpendiculares.",
+        "P_r = (2, 0, 0) cumple 2 − 0 − 2 = 0: la recta está en σ."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\vec n_\\sigma \\cdot \\vec n_\\pi = (1,\\,-1,\\,0)\\cdot(2,\\,2,\\,-1) = 0 \\;\\Rightarrow\\; \\sigma \\perp \\pi",
+            "size": 46,
+            "color": "solved"
+          },
+          {
+            "tex": "P_r = (2,\\,0,\\,0):\\ 2 - 0 - 2 = 0 \\;\\Rightarrow\\; r \\subset \\sigma",
+            "size": 46,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. El simétrico de P respecto del plano es seis, cuatro, menos dos, pasando por la proyección M. La recta es paralela al plano, a distancia tres. Y el plano que contiene a la recta y es perpendicular a pi es x menos y menos dos igual a cero. Recuerda: en el examen solo tienes que hacer uno de los dos apartados b.",
+      "captions": [
+        "Resumen.",
+        "El simétrico de P respecto del plano es P′ = (6, 4, −2), pasando por la proyección M.",
+        "La recta es paralela al plano, a distancia 3.",
+        "El plano que contiene a r y es perpendicular a π es x − y − 2 = 0.",
+        "En el examen solo tienes que hacer uno de los dos apartados b."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Simétrico",
+            "tex": "M = (4,\\,2,\\,-1),\\quad P' = (6,\\,4,\\,-2)",
+            "color": "solved"
+          },
+          {
+            "label": "b1) Distancia",
+            "tex": "r \\parallel \\pi,\\quad d(r,\\pi) = 3",
+            "color": "indet"
+          },
+          {
+            "label": "b2) Plano",
+            "tex": "\\sigma: x - y - 2 = 0",
+            "color": "pinkSoft"
+          }
+        ],
+        "closing": "Perpendicular por P, corte con el plano, punto medio."
+      }
+    }
+  ]
+}

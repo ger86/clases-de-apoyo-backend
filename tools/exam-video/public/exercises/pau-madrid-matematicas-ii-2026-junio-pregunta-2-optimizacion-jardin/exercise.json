@@ -1,0 +1,394 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-2-optimizacion-jardin",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "question": "Pregunta 2",
+    "topic": "Optimización",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Función objetivo": "teal",
+    "Optimización": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Optimización: el suelo más barato del jardín | PAU Madrid Junio 2026, Matemáticas II, Pregunta 2",
+    "description": "Resolvemos paso a paso la Pregunta 2 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Un problema de optimización con un jardín triangular de catetos 42 m y 56 m y una zona rectangular techada.\n\nPlanteamiento: la zona techada cuesta 30 €/m² y la no techada 50 €/m², así que el coste total es P = 30xy + 50(1176 − xy) = 58800 − 20xy. Por semejanza de triángulos, y = (3/4)(56 − x), y el coste queda en una sola variable: P(x) = 58800 − 15(56x − x²) con 0 ≤ x ≤ 56.\nOptimización: P'(x) = −15(56 − 2x) = 0 da x = 28, y entonces y = 21. P''(28) = 30 > 0, así que es un mínimo. Dimensiones de la zona techada: 28 m × 21 m, con un coste mínimo de 47 040 €.\n\nLo que vas a aprender:\n• Cómo traducir un enunciado con costes a una función de dos variables.\n• Cómo usar la semejanza de triángulos para relacionar x e y.\n• Cómo reducir a una variable y fijar el dominio.\n• Cómo localizar el mínimo con la primera derivada y justificarlo con la segunda.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Optimización #Derivadas",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "optimización",
+      "problemas de optimización",
+      "derivadas",
+      "máximos y mínimos",
+      "semejanza de triángulos",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Optimización\ndel coste",
+      "line2": "Jardín triangular y zona\ntechada, paso a paso",
+      "tex": "P(x) = 58800 - 15\\,(56x - x^2)",
+      "badge": "28 m × 21 m"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Optimización: el suelo más barato",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta dos. Un jardín con forma de triángulo rectángulo, una zona techada rectangular, y dos precios distintos para el suelo. Nos piden las dimensiones de la zona techada que hacen el coste mínimo. Es un problema de optimización clásico, y lo resolvemos en cuatro pasos.",
+      "captions": [
+        "Pregunta 2.",
+        "Un jardín con forma de triángulo rectángulo, una zona techada rectangular, y dos precios distintos para el suelo.",
+        "Nos piden las dimensiones de la zona techada que hacen el coste mínimo.",
+        "Es un problema de optimización clásico, y lo resolvemos en cuatro pasos."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 2",
+        "title": "Optimización:\nel *suelo más barato* para el jardín",
+        "tex": "\\text{coste} \\to \\text{mínimo}",
+        "texSize": 70,
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Planteamiento",
+      "heading": "Los datos del problema",
+      "narration": "El jardín es un triángulo rectángulo de catetos cuarenta y dos y cincuenta y seis metros. Dentro hay un rectángulo techado de lados x e y, con un vértice en el ángulo recto y el opuesto sobre la hipotenusa. La parte techada cuesta treinta euros el metro cuadrado, y la no techada, cincuenta.",
+      "captions": [
+        "El jardín es un triángulo rectángulo de catetos 42 m y 56 m.",
+        "Dentro hay un rectángulo techado de lados x e y, con un vértice en el ángulo recto y el opuesto sobre la hipotenusa.",
+        "La parte techada cuesta 30 €/m², y la no techada, 50 €/m²."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Jardín",
+            "tex": "\\text{catetos } 42 \\text{ m y } 56 \\text{ m}",
+            "size": 50
+          },
+          {
+            "label": "Techado",
+            "tex": "\\text{rectángulo } x \\times y",
+            "size": 50,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "text": "techado: 30 €/m²",
+            "color": "solved"
+          },
+          {
+            "text": "no techado: 50 €/m²",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-areas",
+      "phase": "Planteamiento",
+      "heading": "Las dos áreas",
+      "narration": "El área total del jardín es la del triángulo: cincuenta y seis por cuarenta y dos entre dos, mil ciento setenta y seis metros cuadrados. El área techada es x por y. Y la no techada es la diferencia: mil ciento setenta y seis menos x por y.",
+      "captions": [
+        "El área total del jardín es la del triángulo: 56 · 42 / 2 = 1176 m².",
+        "El área techada es x·y.",
+        "La no techada es la diferencia: 1176 − x·y."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Jardín",
+            "tex": "A_{\\text{jardín}} = \\dfrac{56 \\cdot 42}{2} = 1176 \\text{ m}^2",
+            "size": 50
+          },
+          {
+            "label": "Techado",
+            "tex": "A_{\\text{techado}} = x\\,y",
+            "size": 50,
+            "color": "solved"
+          },
+          {
+            "label": "No techado",
+            "tex": "A_{\\text{no techado}} = 1176 - x\\,y",
+            "size": 50,
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-coste",
+      "phase": "Función objetivo",
+      "heading": "El coste depende de dos variables",
+      "narration": "Multiplicamos cada área por su precio. Treinta por x y, más cincuenta por mil ciento setenta y seis menos x y. Operando, el coste es cincuenta y ocho mil ochocientos menos veinte x y. Pero tiene dos variables, y necesitamos una sola para poder derivar.",
+      "captions": [
+        "Multiplicamos cada área por su precio.",
+        "30·xy + 50·(1176 − xy).",
+        "Operando, el coste es P = 58800 − 20xy.",
+        "Tiene dos variables, y necesitamos una sola para poder derivar."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(x,y) = 30\\,xy + 50\\,(1176 - xy)",
+            "size": 54
+          },
+          {
+            "tex": "P(x,y) = 58800 - 20\\,xy",
+            "size": 62,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "text": "dos variables: hay que relacionar x e y",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-semejanza",
+      "phase": "Función objetivo",
+      "heading": "Semejanza de triángulos: y en función de x",
+      "narration": "El vértice del rectángulo que está sobre la hipotenusa forma un triángulo pequeño semejante al grande. Cuarenta y dos partido por cincuenta y seis es igual a y partido por cincuenta y seis menos x. Despejamos: y es tres cuartos de cincuenta y seis menos x.",
+      "captions": [
+        "El vértice del rectángulo sobre la hipotenusa forma un triángulo pequeño semejante al grande.",
+        "42 / 56 = y / (56 − x).",
+        "Despejamos: y = (3/4)(56 − x)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\dfrac{42}{56} = \\dfrac{y}{56 - x}",
+            "size": 58
+          },
+          {
+            "tex": "y = \\dfrac{42}{56}\\,(56 - x) = \\dfrac{3}{4}\\,(56 - x)",
+            "size": 58,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-una-variable",
+      "phase": "Función objetivo",
+      "heading": "La función de coste en una variable",
+      "narration": "Sustituimos y en el coste. Cincuenta y ocho mil ochocientos menos veinte x por tres cuartos de cincuenta y seis menos x. Veinte por tres cuartos son quince, así que queda cincuenta y ocho mil ochocientos menos quince por cincuenta y seis x menos x al cuadrado. El dominio es de cero a cincuenta y seis, porque x es un cateto del rectángulo dentro del jardín.",
+      "captions": [
+        "Sustituimos y en el coste.",
+        "P(x) = 58800 − 20x · (3/4)(56 − x).",
+        "20 · 3/4 = 15, así que P(x) = 58800 − 15(56x − x²).",
+        "El dominio es 0 ≤ x ≤ 56, porque x está dentro del jardín."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(x) = 58800 - 20\\,x \\cdot \\dfrac{3}{4}\\,(56 - x)",
+            "size": 50
+          },
+          {
+            "tex": "P(x) = 58800 - 15\\,(56x - x^2)",
+            "size": 62,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "0 \\leq x \\leq 56",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-derivada",
+      "phase": "Optimización",
+      "heading": "Derivamos e igualamos a cero",
+      "narration": "Derivamos. La derivada de menos quince por cincuenta y seis x menos x al cuadrado es menos quince por cincuenta y seis menos dos x. La igualamos a cero: cincuenta y seis menos dos x igual a cero, y sale x igual a veintiocho.",
+      "captions": [
+        "Derivamos.",
+        "P'(x) = −15(56 − 2x).",
+        "P'(x) = 0: 56 − 2x = 0, y sale x = 28."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P'(x) = -15\\,(56 - 2x)",
+            "size": 56
+          },
+          {
+            "tex": "P'(x) = 0 \\;\\Rightarrow\\; 56 - 2x = 0 \\;\\Rightarrow\\; x = 28",
+            "size": 56,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-segunda",
+      "phase": "Optimización",
+      "heading": "Segunda derivada: es un mínimo",
+      "narration": "Para comprobar que es un mínimo usamos la segunda derivada. Derivamos otra vez: menos quince por menos dos, que es treinta. Es positiva, así que en x igual a veintiocho la función tiene un mínimo.",
+      "captions": [
+        "Para comprobar que es un mínimo usamos la segunda derivada.",
+        "P''(x) = −15 · (−2) = 30.",
+        "Es positiva, así que en x = 28 hay un mínimo."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P''(x) = -15 \\cdot (-2) = 30 > 0",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "Mínimo en x = 28",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "09-grafica",
+      "phase": "Optimización",
+      "heading": "La gráfica del coste",
+      "narration": "Mira la gráfica del coste entre cero y cincuenta y seis. Es una parábola con las ramas hacia arriba, y su vértice está justo en x igual a veintiocho. En los extremos del dominio, cuando no hay techado o cuando el rectángulo desaparece, el coste es máximo.",
+      "captions": [
+        "Mira la gráfica del coste entre 0 y 56.",
+        "Es una parábola con las ramas hacia arriba, y su vértice está en x = 28.",
+        "En los extremos del dominio el coste es máximo."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "58800-15*(56*x-x*x)",
+        "xMin": -4,
+        "xMax": 60,
+        "yMin": 44000,
+        "yMax": 61000,
+        "xTicks": [
+          {
+            "x": 28,
+            "label": "28"
+          },
+          {
+            "x": 56,
+            "label": "56"
+          }
+        ],
+        "points": [
+          {
+            "x": 28,
+            "y": 47040,
+            "label": "mín: 47 040 €",
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "P(28) = 47040 \\text{ €}",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-dimensiones",
+      "phase": "Resultado",
+      "heading": "Las dimensiones de la zona techada",
+      "tail": 0.6,
+      "narration": "Ya tenemos x. Calculamos y con la relación de semejanza: tres cuartos de cincuenta y seis menos veintiocho, que es veintiuno. La zona techada mide veintiocho por veintiún metros, y el coste mínimo es cuarenta y siete mil cuarenta euros.",
+      "captions": [
+        "Ya tenemos x.",
+        "y = (3/4)(56 − 28) = 21.",
+        "La zona techada mide 28 m × 21 m, y el coste mínimo es 47 040 €."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "y = \\dfrac{3}{4}\\,(56 - 28) = 21",
+            "size": 58
+          },
+          {
+            "tex": "P(28) = 58800 - 15\\,(56 \\cdot 28 - 28^2) = 47040 \\text{ €}",
+            "size": 46,
+            "color": "inkSoft"
+          }
+        ],
+        "badge": {
+          "text": "Zona techada: 28 m × 21 m",
+          "sub": "coste mínimo 47 040 €",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "11-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. Coste en dos variables: cincuenta y ocho mil ochocientos menos veinte x y. Semejanza: y igual a tres cuartos de cincuenta y seis menos x. Derivamos, igualamos a cero, y sale x igual a veintiocho e y igual a veintiuno, con la segunda derivada positiva. Los cuatro pasos de siempre: función, relación, derivada y comprobación.",
+      "captions": [
+        "Resumen.",
+        "Coste en dos variables: P = 58800 − 20xy.",
+        "Semejanza: y = (3/4)(56 − x).",
+        "Derivamos, igualamos a cero, y sale x = 28 e y = 21, con P'' > 0.",
+        "Los cuatro pasos de siempre: función, relación, derivada y comprobación."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Función de coste",
+            "tex": "P(x) = 58800 - 15\\,(56x - x^2)",
+            "color": "teal"
+          },
+          {
+            "label": "Punto crítico",
+            "tex": "P'(x) = 0 \\;\\Rightarrow\\; x = 28,\\quad P''(28) = 30 > 0",
+            "color": "indet"
+          },
+          {
+            "label": "Solución",
+            "tex": "28 \\text{ m} \\times 21 \\text{ m},\\quad P_{\\min} = 47040 \\text{ €}",
+            "color": "solved"
+          }
+        ],
+        "closing": "Función, relación entre variables, derivada y comprobación."
+      }
+    }
+  ]
+}

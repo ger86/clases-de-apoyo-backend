@@ -1,0 +1,403 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-4-1-normal-binomial-baterias",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 4.1",
+    "topic": "Normal y binomial"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Normal": "teal",
+    "Parte b · Binomial": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Normal y binomial: baterías defectuosas | PAU Madrid Junio 2026, Matemáticas II, Pregunta 4.1",
+    "description": "Resolvemos paso a paso la Pregunta 4.1 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). La duración de las baterías de una fábrica de móviles sigue una normal de media 24 horas y desviación típica 3 horas, y una batería es defectuosa si dura menos de 21 horas.\n\na) Probabilidad de que una batería sea defectuosa: X ~ N(24, 3), tipificamos z = (21 − 24)/3 = −1 y, por simetría y complementario, P(Z < −1) = 1 − 0,8413 = 0,1587.\nb) Un lote de 10 teléfonos: probabilidad de que al menos 9 tengan la batería no defectuosa. Y ~ B(10, 0,8413) y P(Y ≥ 9) = P(Y = 9) + P(Y = 10) ≈ 0,5127.\n\nLo que vas a aprender:\n• Cómo tipificar una variable normal y leer la tabla N(0, 1).\n• Cómo usar la simetría de la normal para probabilidades con z negativo.\n• Cuándo una variable sigue una binomial y cómo identificar n y p.\n• Cómo calcular \"al menos k\" sumando los casos que quedan.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Probabilidad #DistribuciónNormal #Binomial",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "probabilidad",
+      "distribución normal",
+      "tipificar",
+      "tabla normal",
+      "distribución binomial",
+      "al menos",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Normal y\nbinomial",
+      "line2": "Baterías defectuosas,\npaso a paso",
+      "tex": "X \\sim N(24,\\,3)",
+      "badge": "P = 0,5127"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Una normal para una batería, una binomial para el lote",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cuatro punto uno. Baterías de móvil, una distribución normal, y un lote de diez teléfonos. Dos apartados y dos herramientas: la normal para una batería, y la binomial para el lote. La respuesta de la primera parte es el dato de la segunda.",
+      "captions": [
+        "Pregunta 4.1.",
+        "Baterías de móvil, una distribución normal, y un lote de 10 teléfonos.",
+        "Dos apartados y dos herramientas: la normal para una batería, y la binomial para el lote.",
+        "La respuesta de la primera parte es el dato de la segunda."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 4.1",
+        "title": "Una *normal* para la batería,\nuna *binomial* para el lote",
+        "tex": "N(24,\\,3) \\;\\longrightarrow\\; B(10,\\,p)",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Planteamiento",
+      "heading": "La duración sigue una normal N(24, 3)",
+      "narration": "Llamamos X a la duración de una batería, en horas. Sigue una distribución normal de media veinticuatro horas y desviación típica tres horas. Una batería es defectuosa si dura menos de veintiuna horas.",
+      "captions": [
+        "Llamamos X a la duración de una batería, en horas.",
+        "X sigue una normal de media 24 horas y desviación típica 3 horas.",
+        "Una batería es defectuosa si dura menos de 21 horas."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "X \\equiv \\text{duración de una batería (horas)}",
+            "size": 44
+          },
+          {
+            "label": "Modelo",
+            "tex": "X \\sim N(24,\\ 3)",
+            "color": "teal",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\mu = 24",
+            "color": "given"
+          },
+          {
+            "tex": "\\sigma = 3",
+            "color": "given"
+          },
+          {
+            "text": "defectuosa si X < 21",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-pregunta-a",
+      "phase": "Parte a · Normal",
+      "heading": "Apartado a: P(X < 21)",
+      "narration": "Apartado a. Queremos la probabilidad de que una batería sea defectuosa, es decir, que X sea menor que veintiuno. Fíjate en la campana: veintiuno está una desviación típica a la izquierda de la media.",
+      "captions": [
+        "Apartado a.",
+        "Queremos la probabilidad de que una batería sea defectuosa: P(X < 21).",
+        "Fíjate en la campana: 21 está una desviación típica a la izquierda de la media."
+      ],
+      "body": {
+        "type": "normal",
+        "mu": 24,
+        "sigma": 3,
+        "cut": 21,
+        "tail": "left",
+        "cutLabel": "21",
+        "areaLabel": "P(X < 21)",
+        "lead": {
+          "tex": "P(\\text{defectuosa}) = P(X < 21)",
+          "size": 48
+        }
+      }
+    },
+    {
+      "id": "04-tipificar",
+      "phase": "Parte a · Normal",
+      "heading": "Tipificamos: z = (21 − 24) / 3 = −1",
+      "narration": "Tipificamos: restamos la media y dividimos por la desviación típica. Veintiuno menos veinticuatro, entre tres, da menos uno. Así que buscamos la probabilidad de que Z sea menor que menos uno.",
+      "captions": [
+        "Tipificamos: restamos la media y dividimos por la desviación típica.",
+        "(21 − 24) / 3 = −1.",
+        "Así que buscamos P(Z < −1)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "Z = \\dfrac{X - \\mu}{\\sigma}",
+            "size": 54
+          },
+          {
+            "tex": "P(X < 21) = P\\!\\left(Z < \\dfrac{21 - 24}{3}\\right) = P(Z < -1)",
+            "size": 52,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-simetria",
+      "phase": "Parte a · Normal",
+      "heading": "Sin negativos en la tabla: simetría y complementario",
+      "narration": "La tabla de la normal solo da probabilidades para z positivo. Usamos la simetría: la probabilidad de que Z sea menor que menos uno es igual a la de que Z sea mayor que uno. Y esa es el complementario de Z menor que uno, que en la tabla vale cero coma ocho cuatro uno tres.",
+      "captions": [
+        "La tabla de la normal solo da probabilidades para z positivo.",
+        "Usamos la simetría: P(Z < −1) = P(Z > 1).",
+        "Y esa es el complementario de P(Z < 1), que en la tabla vale 0,8413."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Simetría",
+            "tex": "P(Z < -1) = P(Z > 1)",
+            "size": 52
+          },
+          {
+            "label": "Complementario",
+            "tex": "P(Z > 1) = 1 - P(Z < 1)",
+            "size": 52
+          },
+          {
+            "label": "Tabla",
+            "tex": "P(Z < 1) = 0{,}8413",
+            "size": 52,
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-resultado-a",
+      "phase": "Parte a · Normal",
+      "heading": "P(defectuosa) = 0,1587",
+      "tail": 0.5,
+      "narration": "Uno menos cero coma ocho cuatro uno tres es cero coma uno cinco ocho siete. Algo menos del dieciséis por ciento de las baterías son defectuosas.",
+      "captions": [
+        "1 − 0,8413 = 0,1587.",
+        "Algo menos del 16 % de las baterías son defectuosas."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(X < 21) = 1 - 0{,}8413 = 0{,}1587",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(defectuosa) = 0,1587",
+          "sub": "algo menos del 16 % de las baterías",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-puente",
+      "phase": "Parte b · Binomial",
+      "heading": "Apartado b: el lote de 10 teléfonos",
+      "narration": "Apartado b. Ahora un distribuidor recibe diez teléfonos. Nos preguntan por baterías no defectuosas, así que el suceso que nos interesa es el contrario al anterior. Su probabilidad es uno menos cero coma uno cinco ocho siete, es decir, cero coma ocho cuatro uno tres. Cada teléfono es un ensayo independiente con esa probabilidad de éxito.",
+      "captions": [
+        "Apartado b.",
+        "Ahora un distribuidor recibe 10 teléfonos.",
+        "Nos preguntan por baterías no defectuosas, así que el suceso que nos interesa es el contrario al anterior.",
+        "Su probabilidad es 1 − 0,1587 = 0,8413.",
+        "Cada teléfono es un ensayo independiente con esa probabilidad de éxito."
+      ],
+      "body": {
+        "type": "dots",
+        "count": 10,
+        "columns": 5,
+        "color": "#19a7cc",
+        "highlight": [
+          3
+        ],
+        "highlightColor": "danger",
+        "chips": [
+          {
+            "text": "10 teléfonos independientes",
+            "color": "given"
+          },
+          {
+            "tex": "p = P(\\text{no defectuosa}) = 1 - 0{,}1587 = 0{,}8413",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-modelo-b",
+      "phase": "Parte b · Binomial",
+      "heading": "Y cuenta baterías no defectuosas: es una binomial",
+      "narration": "Llamamos Y al número de teléfonos con batería no defectuosa en el lote. Diez ensayos independientes con la misma probabilidad de éxito: Y sigue una binomial de parámetros n igual a diez y p igual a cero coma ocho cuatro uno tres.",
+      "captions": [
+        "Llamamos Y al número de teléfonos con batería no defectuosa en el lote.",
+        "10 ensayos independientes con la misma probabilidad de éxito: Y ~ B(10, 0,8413)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "Y \\equiv \\text{n\\'umero de baterías no defectuosas en el lote}",
+            "size": 44
+          },
+          {
+            "label": "Modelo",
+            "tex": "Y \\sim B(10,\\ 0{,}8413)",
+            "color": "indet",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "tex": "n = 10",
+            "color": "given"
+          },
+          {
+            "tex": "p = 0{,}8413",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-formula",
+      "phase": "Parte b · Binomial",
+      "heading": "Al menos 9: sumamos los casos 9 y 10",
+      "narration": "Al menos nueve significa nueve o diez. Sumamos las dos probabilidades con la fórmula de la binomial: combinaciones de n sobre k, por p elevado a k, por uno menos p elevado a n menos k.",
+      "captions": [
+        "Al menos 9 significa 9 o 10.",
+        "Sumamos las dos probabilidades con la fórmula de la binomial."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(Y \\geq 9) = P(Y = 9) + P(Y = 10)",
+            "size": 56
+          },
+          {
+            "tex": "P(Y = k) = \\binom{10}{k}\\, 0{,}8413^{\\,k}\\,(1 - 0{,}8413)^{\\,10-k}",
+            "size": 50,
+            "color": "inkSoft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-calculo-b",
+      "phase": "Parte b · Binomial",
+      "heading": "Calculamos P(Y = 9) y P(Y = 10)",
+      "narration": "Para nueve: diez sobre nueve es diez, por cero coma ocho cuatro uno tres elevado a nueve, por cero coma uno cinco ocho siete. Da aproximadamente cero coma tres tres cinco uno. Para diez: cero coma ocho cuatro uno tres elevado a diez, que da aproximadamente cero coma uno siete siete seis.",
+      "captions": [
+        "P(Y = 9) = 10 · 0,8413⁹ · 0,1587.",
+        "Da aproximadamente 0,3351.",
+        "P(Y = 10) = 0,8413¹⁰ ≈ 0,1776."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "k = 9",
+            "tex": "\\binom{10}{9}\\,0{,}8413^{9}\\cdot 0{,}1587 = 10 \\cdot 0{,}8413^{9}\\cdot 0{,}1587 \\approx 0{,}3351",
+            "size": 46
+          },
+          {
+            "label": "k = 10",
+            "tex": "\\binom{10}{10}\\,0{,}8413^{10}\\cdot 0{,}1587^{0} = 0{,}8413^{10} \\approx 0{,}1776",
+            "size": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-resultado-b",
+      "phase": "Resultado",
+      "heading": "P(Y ≥ 9) ≈ 0,5127",
+      "tail": 0.6,
+      "narration": "Sumamos: cero coma tres tres cinco uno más cero coma uno siete siete seis, aproximadamente cero coma cinco uno dos siete. Algo más de la mitad de los lotes tienen al menos nueve baterías buenas.",
+      "captions": [
+        "Sumamos: 0,3351 + 0,1776 ≈ 0,5127.",
+        "Algo más de la mitad de los lotes tienen al menos 9 baterías buenas."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(Y \\geq 9) \\approx 0{,}3351 + 0{,}1776 = 0{,}5127",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "P(al menos 9 no defectuosas) ≈ 0,5127",
+          "sub": "algo más de la mitad de los lotes",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "12-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. Una batería es defectuosa con probabilidad cero coma uno cinco ocho siete, tipificando y usando la simetría de la normal. En un lote de diez, la probabilidad de que al menos nueve sean buenas es cero coma cinco uno dos siete, con una binomial de p igual a cero coma ocho cuatro uno tres. La normal responde por una batería y la binomial por el lote.",
+      "captions": [
+        "Resumen.",
+        "Una batería es defectuosa con probabilidad 0,1587, tipificando y usando la simetría de la normal.",
+        "En un lote de 10, P(al menos 9 buenas) = 0,5127, con una binomial de p = 0,8413.",
+        "La normal responde por una batería y la binomial por el lote."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Batería defectuosa",
+            "tex": "P(X < 21) = P(Z < -1) = 0{,}1587",
+            "color": "solved"
+          },
+          {
+            "label": "b) Al menos 9 buenas",
+            "tex": "P(Y \\geq 9) \\approx 0{,}5127",
+            "color": "solved"
+          },
+          {
+            "label": "La clave",
+            "text": "p = 1 − 0,1587 = 0,8413",
+            "color": "teal"
+          }
+        ],
+        "closing": "Normal para la batería, binomial para el lote."
+      }
+    }
+  ]
+}

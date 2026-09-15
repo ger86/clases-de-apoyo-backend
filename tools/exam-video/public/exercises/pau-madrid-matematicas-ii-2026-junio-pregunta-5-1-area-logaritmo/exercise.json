@@ -1,0 +1,342 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-5-1-area-logaritmo",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 5.1",
+    "topic": "Área e integración por partes"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Primitiva": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Área bajo ln x con integración por partes | PAU Madrid Junio 2026, Matemáticas II, Pregunta 5.1",
+    "description": "Resolvemos paso a paso la Pregunta 5.1 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Se pide el área de la región limitada por la gráfica de f(x) = ln x, el eje de abscisas y la recta x = e.\n\nPrimero situamos el recinto: ln x corta al eje OX en x = 1 y es positiva en (1, e], así que el área es la integral de ln x entre 1 y e. Calculamos la primitiva por partes, con u = ln x y dv = dx: ∫ ln x dx = x·ln x − x + C. Evaluamos con la regla de Barrow: [x·ln x − x] entre 1 y e = (e − e) − (0 − 1) = 1. El área vale 1 u².\n\nLo que vas a aprender:\n• Cómo localizar el recinto antes de integrar (corte con el eje y signo de la función).\n• Cómo elegir u y dv en la integración por partes.\n• Cómo aplicar la regla de Barrow y comprobar el resultado.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Integrales #Áreas #Logaritmo",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "integral definida",
+      "área bajo la curva",
+      "integración por partes",
+      "logaritmo neperiano",
+      "regla de Barrow",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Área bajo\nln x",
+      "line2": "Integración por partes,\npaso a paso",
+      "tex": "\\int_{1}^{e} \\ln x\\,dx",
+      "badge": "Área = 1 u²"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Área bajo ln x",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cinco punto uno. Nos piden el área encerrada entre la gráfica del logaritmo neperiano, el eje de abscisas y la recta x igual a e. Dos pasos: situar bien el recinto, y calcular una integral por partes.",
+      "captions": [
+        "Pregunta 5.1.",
+        "Nos piden el área encerrada entre la gráfica de ln x, el eje de abscisas y la recta x = e.",
+        "Dos pasos: situar bien el recinto, y calcular una integral por partes."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 5.1",
+        "title": "El área bajo *ln x*\nentre el eje y la recta x = e",
+        "tex": "f(x) = \\ln x",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-recinto",
+      "phase": "Planteamiento",
+      "heading": "Primero situamos el recinto",
+      "narration": "Antes de integrar hay que ver dónde está el recinto. El logaritmo está definido para x positivo y corta al eje de abscisas en x igual a uno, porque logaritmo de uno es cero. A la derecha de uno la función es positiva. Así que el recinto va desde x igual a uno hasta x igual a e, y queda por encima del eje.",
+      "captions": [
+        "Antes de integrar hay que ver dónde está el recinto.",
+        "ln x está definido para x > 0 y corta al eje OX en x = 1, porque ln 1 = 0.",
+        "A la derecha de 1 la función es positiva.",
+        "El recinto va desde x = 1 hasta x = e, y queda por encima del eje."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "Math.log(x)",
+        "xMin": 0.2,
+        "xMax": 3.6,
+        "yMin": -1.4,
+        "yMax": 1.6,
+        "xTicks": [
+          {
+            "x": 2.718281828459045,
+            "label": "e"
+          }
+        ],
+        "points": [
+          {
+            "x": 1,
+            "y": 0,
+            "label": "(1, 0)",
+            "color": "given"
+          },
+          {
+            "x": 2.718281828459045,
+            "y": 1,
+            "label": "(e, 1)",
+            "color": "given"
+          }
+        ],
+        "shade": {
+          "from": 1,
+          "to": 2.718281828459045,
+          "color": "indet",
+          "label": "área"
+        },
+        "chips": [
+          {
+            "tex": "\\ln 1 = 0",
+            "color": "given"
+          },
+          {
+            "tex": "\\ln x > 0 \\text{ si } x > 1",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-integral",
+      "phase": "Planteamiento",
+      "heading": "El área es una integral definida",
+      "narration": "Como la función es positiva en todo el intervalo, el área es directamente la integral de logaritmo de x entre uno y e. No hace falta valor absoluto ni partir el recinto.",
+      "captions": [
+        "Como la función es positiva en todo el intervalo, el área es directamente ∫₁^e ln x dx.",
+        "No hace falta valor absoluto ni partir el recinto."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\text{Área} = \\int_{1}^{e} \\ln x\\,dx",
+            "size": 72,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "text": "f ≥ 0 en [1, e]: sin valor absoluto",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-partes",
+      "phase": "Primitiva",
+      "heading": "Primitiva de ln x: integración por partes",
+      "narration": "El logaritmo no tiene primitiva inmediata. Usamos integración por partes. Elegimos u igual a logaritmo de x, que al derivar se simplifica, y d v igual a d x, que se integra sin problema. Entonces d u es uno partido por x d x, y v es x.",
+      "captions": [
+        "ln x no tiene primitiva inmediata.",
+        "Usamos integración por partes.",
+        "Elegimos u = ln x, que al derivar se simplifica, y dv = dx, que se integra sin problema.",
+        "Entonces du = (1/x) dx, y v = x."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\int u\\,dv = u\\,v - \\int v\\,du",
+            "size": 56
+          },
+          {
+            "tex": "u = \\ln x \\;\\Rightarrow\\; du = \\frac{1}{x}\\,dx \\qquad\\quad dv = dx \\;\\Rightarrow\\; v = x",
+            "size": 46,
+            "color": "inkSoft"
+          }
+        ],
+        "chips": [
+          {
+            "text": "u: lo que se simplifica al derivar",
+            "color": "warn"
+          },
+          {
+            "text": "dv: lo que se integra fácil",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-primitiva",
+      "phase": "Primitiva",
+      "heading": "∫ ln x dx = x·ln x − x + C",
+      "narration": "Aplicamos la fórmula. u por v es x logaritmo de x. Menos la integral de v por d u, que es la integral de x por uno partido por x, es decir, la integral de uno, que vale x. La primitiva es x logaritmo de x menos x, más una constante.",
+      "captions": [
+        "Aplicamos la fórmula: u·v = x·ln x.",
+        "Menos ∫ v du = ∫ x · (1/x) dx = ∫ 1 dx = x.",
+        "La primitiva es x·ln x − x + C."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\int \\ln x\\,dx = x\\ln x - \\int x\\cdot\\frac{1}{x}\\,dx",
+            "size": 54
+          },
+          {
+            "tex": "= x\\ln x - \\int 1\\,dx",
+            "size": 50,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "= x\\ln x - x + C",
+            "size": 64,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-barrow",
+      "phase": "Resultado",
+      "heading": "Regla de Barrow entre 1 y e",
+      "tail": 0.6,
+      "narration": "Evaluamos la primitiva entre uno y e. En e: e por logaritmo de e, menos e. Logaritmo de e es uno, así que queda e menos e, cero. En uno: uno por logaritmo de uno, menos uno, es decir, menos uno. Restamos: cero menos menos uno, igual a uno.",
+      "captions": [
+        "Evaluamos la primitiva entre 1 y e.",
+        "En e: e·ln e − e.",
+        "ln e = 1, así que queda e − e = 0.",
+        "En 1: 1·ln 1 − 1 = −1.",
+        "Restamos: 0 − (−1) = 1."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\int_{1}^{e} \\ln x\\,dx = \\Big[\\,x\\ln x - x\\,\\Big]_{1}^{e}",
+            "size": 52
+          },
+          {
+            "tex": "= (e\\ln e - e) - (1\\cdot\\ln 1 - 1) = (e - e) - (0 - 1)",
+            "size": 46,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "= 0 - (-1) = 1",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "Área = 1 u²",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-comprobacion",
+      "phase": "Resultado",
+      "heading": "Comprobación rápida con la gráfica",
+      "narration": "Tiene sentido. El recinto mide e menos uno de base, aproximadamente uno coma siete, y la altura crece desde cero hasta uno. Un triángulo con esa base y altura uno tendría área cero coma ocho y seis. Como la curva es cóncava, el área real es algo mayor: uno es un valor razonable.",
+      "captions": [
+        "Tiene sentido.",
+        "El recinto mide e − 1 ≈ 1,7 de base, y la altura crece desde 0 hasta 1.",
+        "Un triángulo con esa base y altura 1 tendría área ≈ 0,86.",
+        "Como la curva es cóncava, el área real es algo mayor: 1 es un valor razonable."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "Math.log(x)",
+        "xMin": 0.5,
+        "xMax": 3.3,
+        "yMin": -0.6,
+        "yMax": 1.5,
+        "xTicks": [
+          {
+            "x": 1,
+            "label": "1"
+          },
+          {
+            "x": 2.718281828459045,
+            "label": "e ≈ 2,72"
+          }
+        ],
+        "points": [
+          {
+            "x": 2.718281828459045,
+            "y": 1,
+            "label": "altura 1",
+            "color": "given"
+          }
+        ],
+        "shade": {
+          "from": 1,
+          "to": 2.718281828459045,
+          "color": "indet",
+          "label": "1 u²"
+        },
+        "chips": [
+          {
+            "text": "base e − 1 ≈ 1,72 · altura 1 / 2 ≈ 0,86 < 1",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. El recinto va de x igual a uno a x igual a e, con la función positiva. La primitiva de logaritmo de x, por partes, es x logaritmo de x menos x. Y el área vale exactamente uno.",
+      "captions": [
+        "Resumen.",
+        "El recinto va de x = 1 a x = e, con f positiva.",
+        "∫ ln x dx = x·ln x − x + C, por partes.",
+        "El área vale exactamente 1 u²."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Recinto",
+            "tex": "[1, e],\\quad \\ln x \\geq 0",
+            "color": "teal"
+          },
+          {
+            "label": "Primitiva (por partes)",
+            "tex": "x\\ln x - x + C",
+            "color": "indet"
+          },
+          {
+            "label": "Área",
+            "tex": "\\int_{1}^{e} \\ln x\\,dx = 1\\ \\text{u}^2",
+            "color": "solved"
+          }
+        ],
+        "closing": "Sitúa el recinto antes de integrar: te evita signos y valores absolutos."
+      }
+    }
+  ]
+}

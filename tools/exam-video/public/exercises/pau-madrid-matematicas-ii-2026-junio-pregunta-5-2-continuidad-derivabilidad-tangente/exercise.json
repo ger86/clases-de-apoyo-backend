@@ -1,0 +1,394 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-5-2-continuidad-derivabilidad-tangente",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 5.2",
+    "topic": "Continuidad, derivabilidad y recta tangente"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Parte a · Continuidad": "teal",
+    "Parte a · Derivabilidad": "indet",
+    "Parte b · Recta tangente": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "A trozos: continuidad, derivabilidad y tangente | PAU Madrid Junio 2026, Matemáticas II, P. 5.2",
+    "description": "Resolvemos paso a paso la Pregunta 5.2 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Una función definida a trozos con dos parámetros: f(x) = 3x² − sen(ax) + b si x < 0, y f(x) = 2eˣ/(1 + x²) si x ≥ 0.\n\na) Valores de a y b para que f sea continua y derivable en x = 0. Continuidad: el límite por la izquierda es b y el límite por la derecha es f(0) = 2, así que b = 2. Derivabilidad: derivamos cada trozo (regla del cociente en el segundo, que se simplifica a 2eˣ(1 − x)²/(1 + x²)²), igualamos las derivadas laterales, −a = 2, y sale a = −2.\nb) Recta tangente en x = 2. Con f(2) = 2e²/5 y f'(2) = 2e²/25, la tangente es y − 2e²/5 = (2e²/25)(x − 2).\n\nLo que vas a aprender:\n• Dónde hay que estudiar la continuidad de una función a trozos y cómo plantear los límites laterales.\n• Cómo imponer la derivabilidad con las derivadas laterales.\n• Cómo derivar un cociente con exponencial y simplificarlo.\n• Cómo escribir la recta tangente en forma punto-pendiente.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Derivadas #Continuidad #RectaTangente",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "función a trozos",
+      "continuidad",
+      "derivabilidad",
+      "límites laterales",
+      "regla del cociente",
+      "recta tangente",
+      "parámetros",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Continua y\nderivable",
+      "line2": "Función a trozos con\nparámetros, paso a paso",
+      "tex": "a = -2,\\quad b = 2",
+      "badge": "y − 2e²/5 = (2e²/25)(x − 2)"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Una función a trozos con dos parámetros",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cinco punto dos. Una función definida a trozos con dos parámetros, a y b. Primero ajustamos a y b para que sea continua y derivable en el punto donde cambia de expresión. Después calculamos una recta tangente.",
+      "captions": [
+        "Pregunta 5.2.",
+        "Una función definida a trozos con dos parámetros, a y b.",
+        "Primero ajustamos a y b para que sea continua y derivable en el punto donde cambia de expresión.",
+        "Después calculamos una recta tangente."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 5.2",
+        "title": "Continua y derivable en x = 0:\n*ajustamos a y b*",
+        "tex": "f(x) = \\begin{cases} 3x^2 - \\sin(ax) + b & \\text{si } x < 0 \\\\[10pt] \\dfrac{2e^{x}}{1+x^2} & \\text{si } x \\geq 0 \\end{cases}",
+        "texSize": 50,
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-donde",
+      "phase": "Parte a · Continuidad",
+      "heading": "Solo hay que estudiar x = 0",
+      "narration": "Apartado a. Cada trozo, por separado, es una función continua y derivable en su intervalo: un polinomio con un seno, y un cociente de exponencial y polinomio que nunca se anula en el denominador. El único punto problemático es x igual a cero, donde la función cambia de expresión.",
+      "captions": [
+        "Apartado a.",
+        "Cada trozo, por separado, es continuo y derivable en su intervalo.",
+        "El único punto problemático es x = 0, donde la función cambia de expresión."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f(x) = \\begin{cases} 3x^2 - \\sin(ax) + b & \\text{si } x < 0 \\\\[10pt] \\dfrac{2e^{x}}{1+x^2} & \\text{si } x \\geq 0 \\end{cases}",
+            "size": 46
+          },
+          {
+            "text": "Polinomio + seno y cociente con 1 + x² ≠ 0: continuos y derivables en su trozo",
+            "color": "inkSoft",
+            "size": 40
+          }
+        ],
+        "chips": [
+          {
+            "text": "estudiamos x = 0",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-continuidad",
+      "phase": "Parte a · Continuidad",
+      "heading": "Continuidad en x = 0: límites laterales y f(0)",
+      "narration": "Para que sea continua en cero, los dos límites laterales deben coincidir con el valor de la función. Por la izquierda, tres por cero al cuadrado, menos seno de cero, más b: queda b. Por la derecha, dos por e elevado a cero partido por uno más cero: queda dos. Y f de cero, con la segunda expresión, también vale dos.",
+      "captions": [
+        "Para que sea continua en 0, los límites laterales deben coincidir con f(0).",
+        "Por la izquierda: 3·0² − sen(0) + b = b.",
+        "Por la derecha: 2e⁰/(1 + 0²) = 2.",
+        "Y f(0), con la segunda expresión, también vale 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x → 0⁻",
+            "tex": "\\lim_{x\\to 0^-} f(x) = 3\\cdot 0^2 - \\sin(a\\cdot 0) + b = b",
+            "size": 46
+          },
+          {
+            "label": "x → 0⁺",
+            "tex": "\\lim_{x\\to 0^+} f(x) = \\frac{2e^{0}}{1+0^2} = 2",
+            "size": 46
+          },
+          {
+            "label": "f(0)",
+            "tex": "f(0) = \\frac{2e^{0}}{1+0^2} = 2",
+            "size": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-b",
+      "phase": "Parte a · Continuidad",
+      "heading": "Igualamos: b = 2",
+      "narration": "Igualamos los límites: b igual a dos. Fíjate en que el seno de a por cero es cero para cualquier valor de a, así que la continuidad no nos dice nada sobre a. Para eso necesitamos la derivabilidad.",
+      "captions": [
+        "Igualamos los límites: b = 2.",
+        "sen(a·0) = 0 para cualquier a, así que la continuidad no nos dice nada sobre a.",
+        "Para eso necesitamos la derivabilidad."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "b = 2",
+            "size": 80,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\sin(a\\cdot 0) = 0\\ \\ \\forall a",
+            "color": "warn"
+          }
+        ],
+        "badge": {
+          "text": "Continua en x = 0 si b = 2",
+          "color": "teal"
+        }
+      }
+    },
+    {
+      "id": "05-derivada-izq",
+      "phase": "Parte a · Derivabilidad",
+      "heading": "Derivamos el trozo x < 0",
+      "narration": "Ahora la derivabilidad. Derivamos cada trozo. Para x negativo: la derivada de tres x al cuadrado es seis x, la del seno de a x es a por coseno de a x, y la de b es cero. Queda seis x menos a coseno de a x.",
+      "captions": [
+        "Ahora la derivabilidad.",
+        "Derivamos cada trozo.",
+        "Para x < 0: (3x²)′ = 6x, (sen(ax))′ = a·cos(ax), y b′ = 0.",
+        "Queda 6x − a·cos(ax)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x < 0",
+            "tex": "\\big(3x^2 - \\sin(ax) + b\\big)' = 6x - a\\cos(ax)",
+            "size": 52,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "(\\sin(ax))' = a\\cos(ax)",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-derivada-der",
+      "phase": "Parte a · Derivabilidad",
+      "heading": "Derivamos el trozo x > 0 con la regla del cociente",
+      "narration": "Para x positivo aplicamos la regla del cociente. Derivada del numerador, dos e elevado a x, por el denominador, menos el numerador por la derivada del denominador, dos x, todo partido por el denominador al cuadrado. Sacamos factor común dos e elevado a x, y dentro queda uno menos dos x más x al cuadrado, que es uno menos x al cuadrado.",
+      "captions": [
+        "Para x > 0 aplicamos la regla del cociente.",
+        "(2eˣ·(1 + x²) − 2eˣ·2x) / (1 + x²)².",
+        "Sacamos factor común 2eˣ: dentro queda 1 − 2x + x² = (1 − x)²."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x > 0",
+            "tex": "\\left(\\frac{2e^{x}}{1+x^2}\\right)' = \\frac{2e^{x}(1+x^2) - 2e^{x}\\cdot 2x}{(1+x^2)^2}",
+            "size": 46
+          },
+          {
+            "tex": "= \\frac{2e^{x}\\,(1 - 2x + x^2)}{(1+x^2)^2} = \\frac{2e^{x}(1-x)^2}{(1+x^2)^2}",
+            "size": 48,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-derivabilidad",
+      "phase": "Parte a · Derivabilidad",
+      "heading": "Igualamos las derivadas laterales en x = 0",
+      "narration": "Para que sea derivable en cero, las derivadas laterales deben coincidir. Por la izquierda: seis por cero menos a por coseno de cero, es decir, menos a. Por la derecha: dos por e elevado a cero por uno al cuadrado, partido por uno: dos. Igualamos, menos a igual a dos, y a vale menos dos.",
+      "captions": [
+        "Para que sea derivable en 0, las derivadas laterales deben coincidir.",
+        "Por la izquierda: 6·0 − a·cos(0) = −a.",
+        "Por la derecha: 2e⁰·1² / 1 = 2.",
+        "Igualamos: −a = 2, y a = −2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f'(x) = \\begin{cases} 6x - a\\cos(ax) & \\text{si } x < 0 \\\\[10pt] \\dfrac{2e^{x}(1-x)^2}{(1+x^2)^2} & \\text{si } x > 0 \\end{cases}",
+            "size": 40
+          },
+          {
+            "tex": "\\lim_{x\\to 0^-} f'(x) = -a \\qquad \\lim_{x\\to 0^+} f'(x) = 2",
+            "size": 44,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "-a = 2 \\;\\Rightarrow\\; a = -2",
+            "size": 56,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-funcion",
+      "phase": "Parte a · Derivabilidad",
+      "heading": "La función queda determinada",
+      "narration": "Con a igual a menos dos y b igual a dos la función es continua y derivable en cero. Y como los dos trozos ya lo eran en sus intervalos, es continua y derivable en toda la recta real.",
+      "captions": [
+        "Con a = −2 y b = 2 la función es continua y derivable en 0.",
+        "Como los dos trozos ya lo eran en sus intervalos, es continua y derivable en toda la recta real."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f(x) = \\begin{cases} 3x^2 - \\sin(-2x) + 2 & \\text{si } x < 0 \\\\[10pt] \\dfrac{2e^{x}}{1+x^2} & \\text{si } x \\geq 0 \\end{cases}",
+            "size": 48
+          }
+        ],
+        "badge": {
+          "text": "a = −2, b = 2",
+          "sub": "continua y derivable en todo ℝ",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "09-tangente-plan",
+      "phase": "Parte b · Recta tangente",
+      "heading": "Recta tangente en x = 2: punto y pendiente",
+      "narration": "Apartado b. La recta tangente en x igual a dos, en forma punto pendiente, es y menos f de dos igual a f prima de dos por x menos dos. Como dos es positivo, usamos el segundo trozo, tanto para la función como para la derivada.",
+      "captions": [
+        "Apartado b.",
+        "La tangente en x = 2, en forma punto-pendiente: y − f(2) = f′(2)·(x − 2).",
+        "Como 2 > 0, usamos el segundo trozo, para la función y para la derivada."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "y - f(2) = f'(2)\\,(x - 2)",
+            "size": 62
+          },
+          {
+            "tex": "x = 2 > 0 \\;\\Rightarrow\\; f(x) = \\frac{2e^{x}}{1+x^2},\\quad f'(x) = \\frac{2e^{x}(1-x)^2}{(1+x^2)^2}",
+            "size": 42,
+            "color": "inkSoft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-valores",
+      "phase": "Parte b · Recta tangente",
+      "heading": "Calculamos f(2) y f′(2)",
+      "narration": "Calculamos el punto y la pendiente. El punto: f de dos es dos e al cuadrado partido por uno más cuatro, es decir, dos e al cuadrado partido por cinco. La pendiente: f prima de dos es dos e al cuadrado por uno menos dos al cuadrado, partido por uno más cuatro al cuadrado, es decir, dos e al cuadrado partido por veinticinco.",
+      "captions": [
+        "Calculamos el punto y la pendiente.",
+        "El punto: f(2) = 2e² / (1 + 4) = 2e²/5.",
+        "La pendiente: f′(2) = 2e²·(1 − 2)² / (1 + 4)² = 2e²/25."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Punto",
+            "tex": "f(2) = \\frac{2e^{2}}{1+2^2} = \\frac{2e^{2}}{5}",
+            "size": 50,
+            "color": "teal"
+          },
+          {
+            "label": "Pendiente",
+            "tex": "f'(2) = \\frac{2e^{2}(1-2)^2}{(1+2^2)^2} = \\frac{2e^{2}}{25}",
+            "size": 50,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-recta",
+      "phase": "Parte b · Recta tangente",
+      "heading": "La recta tangente",
+      "tail": 0.6,
+      "narration": "Sustituimos en la forma punto pendiente. y menos dos e al cuadrado partido por cinco, igual a dos e al cuadrado partido por veinticinco, por x menos dos. Esa es la recta tangente pedida.",
+      "captions": [
+        "Sustituimos en la forma punto-pendiente: y − 2e²/5 = (2e²/25)·(x − 2).",
+        "Esa es la recta tangente pedida."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "y - \\frac{2e^{2}}{5} = \\frac{2e^{2}}{25}\\,(x - 2)",
+            "size": 64,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "Recta tangente en x = 2",
+          "sub": "pendiente 2e²/25 ≈ 0,59",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "12-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. La continuidad en cero da b igual a dos. La derivabilidad, igualando las derivadas laterales, da a igual a menos dos. Y la recta tangente en x igual a dos es y menos dos e al cuadrado partido por cinco, igual a dos e al cuadrado partido por veinticinco, por x menos dos.",
+      "captions": [
+        "Resumen.",
+        "La continuidad en 0 da b = 2.",
+        "La derivabilidad, igualando las derivadas laterales, da a = −2.",
+        "La tangente en x = 2: y − 2e²/5 = (2e²/25)(x − 2)."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Continuidad en 0",
+            "tex": "b = 2",
+            "color": "teal"
+          },
+          {
+            "label": "Derivabilidad en 0",
+            "tex": "-a = 2 \\;\\Rightarrow\\; a = -2",
+            "color": "indet"
+          },
+          {
+            "label": "b) Tangente en x = 2",
+            "tex": "y - \\tfrac{2e^{2}}{5} = \\tfrac{2e^{2}}{25}\\,(x-2)",
+            "color": "solved"
+          }
+        ],
+        "closing": "En una función a trozos, todo pasa en el punto donde cambia la expresión."
+      }
+    }
+  ]
+}
