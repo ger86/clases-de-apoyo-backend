@@ -9,7 +9,7 @@
   "voice": {
     "provider": "elevenlabs",
     "model": "eleven_v3",
-    "voiceId": "6xftrpatV0jGmFHxDjUv",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
     "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
   },
   "phaseColors": {

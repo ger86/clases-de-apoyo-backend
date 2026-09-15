@@ -10,7 +10,7 @@ import type { VideoProps } from "./types";
 const DEMO: VideoProps = {
   slug: "demo",
   exam: { label: "PAU · Matemáticas", question: "Pregunta 0", topic: "Demo" },
-  voice: { provider: "elevenlabs", model: "eleven_v3", voiceId: "JBFqnCBsd6RMkjVDRZzb" },
+  voice: { provider: "elevenlabs", model: "eleven_v3", voiceId: "KDuMsTRG03d18osdZP8V" },
   scenes: [
     {
       id: "01-hook",

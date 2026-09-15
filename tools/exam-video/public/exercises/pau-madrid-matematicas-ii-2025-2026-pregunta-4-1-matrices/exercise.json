@@ -1,0 +1,245 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2025-2026-pregunta-4-1-matrices",
+  "exam": {
+    "label": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+    "question": "Pregunta 4.1",
+    "topic": "Matrices con parámetro",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Parte a · A·Aᵗ diagonal": "teal",
+    "Parte b · Igualdad notable": "indet",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Matrices con parámetro: A·Aᵗ diagonal e igualdad notable | Modelo PAU Madrid 2025/2026, Mat II, 4.1",
+    "description": "Resolvemos paso a paso la Pregunta 4.1 del examen modelo de Selectividad (PAU/EvAU) de la Comunidad de Madrid, Matemáticas II (Bachillerato de Ciencias), curso 2025/2026. Dos matrices 2x2, A con un parámetro a y B numérica.\n\na) ¿Para qué valores de a es A·Aᵗ una matriz diagonal? Trasponemos, multiplicamos y anulamos los términos fuera de la diagonal: 2a² − 2 = 0, así que a = ±1.\nb) ¿Para qué valores de a se cumple (A − B)·(A + B) = A² − B²? Al desarrollar aparece A·B − B·A, así que la igualdad notable solo vale si A y B conmutan. Calculamos A·B y B·A, igualamos término a término y las cuatro ecuaciones dan a = 1.\n\nLo que vas a aprender:\n• Cómo trasponer y multiplicar matrices con un parámetro.\n• Qué significa que una matriz sea diagonal.\n• Por qué las igualdades notables no funcionan con matrices en general.\n• Cómo imponer que dos matrices sean iguales término a término.\n\nEnunciado y solución en PDF del examen modelo de Matemáticas II 2025/2026 de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Matrices #Álgebra",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "examen modelo",
+      "modelo 2025 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "matrices",
+      "matriz traspuesta",
+      "matriz diagonal",
+      "producto de matrices",
+      "matrices conmutan",
+      "igualdad notable matrices",
+      "álgebra",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II",
+      "line1": "Matrices\ncon parámetro",
+      "line2": "Diagonal e igualdad\nnotable, paso a paso",
+      "tex": "A=\\begin{pmatrix}2a&-2\\\\a&1\\end{pmatrix}",
+      "badge": "a = ±1  ·  a = 1"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Dos preguntas sobre matrices con un parámetro",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cuatro punto uno. Dos matrices, una con un parámetro a, y dos preguntas: cuándo A por su traspuesta es diagonal, y cuándo se cumple una igualdad notable con matrices.",
+      "captions": [
+        "Pregunta 4.1.",
+        "Dos matrices, una con un parámetro a, y dos preguntas: cuándo A·Aᵗ es diagonal, y cuándo se cumple una igualdad notable con matrices."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Modelo PAU Madrid 2025/2026 · Matemáticas II · Pregunta 4.1",
+        "title": "Dos preguntas sobre matrices\ncon un *parámetro a*",
+        "tex": "A=\\begin{pmatrix}2a&-2\\\\a&1\\end{pmatrix},\\qquad B=\\begin{pmatrix}1&2\\\\-1&2\\end{pmatrix}",
+        "texColor": "teal",
+        "texSize": 60
+      }
+    },
+    {
+      "id": "02-producto",
+      "phase": "Parte a · A·Aᵗ diagonal",
+      "heading": "Trasponemos A y multiplicamos",
+      "narration": "Apartado a. Trasponemos A cambiando filas por columnas, y multiplicamos. Fuera de la diagonal aparece dos a al cuadrado menos dos, en las dos posiciones.",
+      "captions": [
+        "Apartado a.",
+        "Trasponemos A cambiando filas por columnas, y multiplicamos.",
+        "Fuera de la diagonal aparece 2a² − 2, en las dos posiciones."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Traspuesta",
+            "tex": "A^{t} = \\begin{pmatrix}2a&a\\\\-2&1\\end{pmatrix}",
+            "size": 50
+          },
+          {
+            "tex": "A\\cdot A^{t} = \\begin{pmatrix}2a&-2\\\\a&1\\end{pmatrix}\\begin{pmatrix}2a&a\\\\-2&1\\end{pmatrix} = \\begin{pmatrix}4a^2+4 & 2a^2-2\\\\ 2a^2-2 & a^2+1\\end{pmatrix}",
+            "size": 48,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-diagonal",
+      "phase": "Parte a · A·Aᵗ diagonal",
+      "heading": "Diagonal: cero fuera de la diagonal principal",
+      "narration": "Una matriz es diagonal si todo lo que está fuera de la diagonal principal vale cero. Igualamos: dos a al cuadrado menos dos igual a cero, y sale a igual a más menos uno.",
+      "captions": [
+        "Una matriz es diagonal si todo lo que está fuera de la diagonal principal vale cero.",
+        "Igualamos: 2a² − 2 = 0, y sale a = ±1."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{pmatrix}4a^2+4 & \\color{#ff2e6e}{2a^2-2}\\\\ \\color{#ff2e6e}{2a^2-2} & a^2+1\\end{pmatrix}",
+            "size": 50
+          },
+          {
+            "tex": "2a^2 - 2 = 0 \\;\\Rightarrow\\; a^2 = 1 \\;\\Rightarrow\\; a = \\pm 1",
+            "size": 56,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "A·Aᵗ es diagonal para a = ±1",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "04-igualdad",
+      "phase": "Parte b · Igualdad notable",
+      "heading": "(A − B)(A + B) = A² − B² solo si A y B conmutan",
+      "narration": "Apartado b. Desarrollamos el producto: A al cuadrado, más A B, menos B A, menos B al cuadrado. Para que quede A al cuadrado menos B al cuadrado hace falta que A B sea igual a B A. Con matrices, eso no pasa siempre.",
+      "captions": [
+        "Apartado b.",
+        "Desarrollamos: (A − B)(A + B) = A² + AB − BA − B².",
+        "Para que quede A² − B² hace falta que AB = BA.",
+        "Con matrices, eso no pasa siempre."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "(A-B)\\cdot(A+B) = A^2 + AB - BA - B^2",
+            "size": 54
+          },
+          {
+            "tex": "(A-B)\\cdot(A+B) = A^2 - B^2 \\iff AB = BA",
+            "size": 54,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "el producto de matrices no es conmutativo",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-productos",
+      "phase": "Parte b · Igualdad notable",
+      "heading": "Calculamos A·B y B·A",
+      "narration": "Calculamos los dos productos. A por B depende de a en las cuatro posiciones. B por A sale mucho más simple: cuatro a, cero, cero, cuatro.",
+      "captions": [
+        "Calculamos los dos productos.",
+        "A·B depende de a en las cuatro posiciones.",
+        "B·A sale mucho más simple: 4a, 0, 0, 4."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A\\cdot B = \\begin{pmatrix}2a&-2\\\\a&1\\end{pmatrix}\\begin{pmatrix}1&2\\\\-1&2\\end{pmatrix} = \\begin{pmatrix}2a+2 & 4a-4\\\\ a-1 & 2a+2\\end{pmatrix}",
+            "size": 48,
+            "color": "teal"
+          },
+          {
+            "tex": "B\\cdot A = \\begin{pmatrix}1&2\\\\-1&2\\end{pmatrix}\\begin{pmatrix}2a&-2\\\\a&1\\end{pmatrix} = \\begin{pmatrix}4a & 0\\\\ 0 & 4\\end{pmatrix}",
+            "size": 48,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-igualar",
+      "phase": "Parte b · Igualdad notable",
+      "heading": "Igualamos término a término",
+      "tail": 0.6,
+      "narration": "Igualamos término a término. Las cuatro ecuaciones dan la misma solución: a igual a uno. Si alguna hubiera dado otro valor, no existiría ningún a válido.",
+      "captions": [
+        "Igualamos término a término.",
+        "Las cuatro ecuaciones dan la misma solución: a = 1.",
+        "Si alguna hubiera dado otro valor, no existiría ningún a válido."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{cases} 2a+2 = 4a \\\\ 4a-4 = 0 \\\\ a-1 = 0 \\\\ 2a+2 = 4 \\end{cases}",
+            "size": 44
+          },
+          {
+            "tex": "\\Rightarrow\\; a = 1",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "La igualdad notable solo se cumple para a = 1",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. A por su traspuesta es diagonal para a igual a más menos uno. La igualdad notable solo se cumple para a igual a uno, porque exige que A y B conmuten.",
+      "captions": [
+        "Resumen.",
+        "A·Aᵗ es diagonal para a = ±1.",
+        "La igualdad notable solo se cumple para a = 1, porque exige que A y B conmuten."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) A·Aᵗ diagonal",
+            "tex": "2a^2-2 = 0 \\;\\Rightarrow\\; a = \\pm 1",
+            "color": "solved"
+          },
+          {
+            "label": "b) (A − B)(A + B) = A² − B²",
+            "tex": "AB = BA \\;\\Rightarrow\\; a = 1",
+            "color": "solved"
+          }
+        ],
+        "closing": "Con matrices, las igualdades notables exigen que las matrices conmuten."
+      }
+    }
+  ]
+}

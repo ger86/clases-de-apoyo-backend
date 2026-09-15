@@ -46,7 +46,8 @@ const RowView: React.FC<{ row: Row; delay: number; defaultSize?: number }> = ({ 
               fontSize: 22,
               fontWeight: 800,
               letterSpacing: 2,
-              textTransform: "uppercase",
+              // Uppercasing would turn Greek letters such as λ into Λ.
+              textTransform: /^[\x00-\x7F]*$/.test(row.label) ? "uppercase" : "none",
               color: COLORS.muted,
               minWidth: 150,
               textAlign: "right",
@@ -120,7 +121,7 @@ const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body })
               boxShadow: `0 0 60px ${color(body.texColor, COLORS.teal)}33`,
             }}
           >
-            <Tex tex={body.tex} size={100} color={color(body.texColor, COLORS.teal)} />
+            <Tex tex={body.tex} size={body.texSize ?? 100} color={color(body.texColor, COLORS.teal)} />
           </div>
         </RevealUp>
       ) : null}
@@ -133,7 +134,8 @@ const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body })
 const RowsBody: React.FC<{ body: Extract<Body, { type: "rows" }> }> = ({ body }) => {
   const n = body.rows.length;
   // Density: rows plus the space a badge / chip row takes. Dense scenes shrink so nothing touches the heading.
-  const tall = body.rows.filter((r) => r.tex?.includes("\\begin{cases}")).length;
+  // Rows with a cases block or a matrix of 3+ rows take about three lines of height.
+  const tall = body.rows.filter((r) => r.tex && (r.tex.includes("\\begin{cases}") || (r.tex.includes("matrix}") && (r.tex.match(/\\\\/g) ?? []).length >= 2))).length;
   const density = n + tall * 2 + (body.badge ? 2 : 0) + (body.chips?.length ? 1 : 0);
   const scale = density >= 6 ? 0.8 : density >= 5 ? 0.88 : 1;
   const defaultSize = (n >= 5 ? 44 : n === 4 ? 50 : 58) * scale;

@@ -1,0 +1,492 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-junio-pregunta-1-rango-ecuacion-matricial",
+  "exam": {
+    "label": "PAU Madrid · Junio 2026 · Matemáticas II",
+    "question": "Pregunta 1",
+    "topic": "Rango con parámetro y ecuación matricial",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Parte a · Rango": "teal",
+    "Parte b · Ecuación matricial": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "youtube": {
+    "title": "Rango con parámetro y ecuación matricial | PAU Madrid Junio 2026, Matemáticas II, Pregunta 1",
+    "description": "Resolvemos paso a paso la Pregunta 1 del examen de Selectividad (PAU/EvAU) de la Comunidad de Madrid de junio de 2026, Matemáticas II (Bachillerato de Ciencias). Una matriz 3x3 que depende de un parámetro λ.\n\na) Discutir el rango de A en función de λ. Calculamos el determinante reduciéndolo a uno de orden 2 (columna 3 menos columna 1 y desarrollo por la tercera fila): |A| = (λ − 1)(λ − 3). Si λ ≠ 1, 3 el rango es 3. Para λ = 1 y para λ = 3 el determinante se anula y queda un menor de orden 2 no nulo: rango 2.\nb) Para λ = 2, resolver A² − AX = I. Despejamos multiplicando por A⁻¹ por la izquierda (el producto de matrices no es conmutativo): X = A − A⁻¹. Calculamos la inversa con la adjunta, |A| = −1, y obtenemos X = [[2, 0, 0], [1, 0, 0], [0, 0, 2]].\n\nLo que vas a aprender:\n• Cómo simplificar un determinante 3x3 con operaciones entre columnas.\n• Cómo discutir el rango de una matriz con parámetro.\n• Cómo despejar X en una ecuación matricial sin conmutar.\n• Cómo calcular la inversa por la adjunta y comprobarla.\n\nEnunciado y solución en PDF del examen de junio de 2026 de Matemáticas II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasII #Matrices #Determinantes #Rango",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "junio 2026",
+      "Matemáticas II",
+      "matemáticas ciencias",
+      "2º bachillerato",
+      "matrices",
+      "determinantes",
+      "rango de una matriz",
+      "rango con parámetro",
+      "ecuación matricial",
+      "matriz inversa",
+      "matriz adjunta",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Rango con\nparámetro",
+      "line2": "y una ecuación matricial,\npaso a paso",
+      "tex": "|A| = (\\lambda-1)(\\lambda-3)",
+      "badge": "X = A − A⁻¹"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Rango con parámetro y ecuación matricial",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta uno. Una matriz tres por tres que depende de un parámetro lambda. Primero discutimos su rango según el valor de lambda. Después, para lambda igual a dos, resolvemos una ecuación matricial. Vamos paso a paso.",
+      "captions": [
+        "Pregunta 1.",
+        "Una matriz 3×3 que depende de un parámetro λ.",
+        "Primero discutimos su rango según el valor de λ.",
+        "Después, para λ = 2, resolvemos una ecuación matricial.",
+        "Vamos paso a paso."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Junio 2026 · Matemáticas II · Pregunta 1",
+        "title": "Rango con parámetro\ny una *ecuación matricial*",
+        "tex": "A = \\begin{pmatrix}1&\\lambda-2&\\lambda\\\\0&1&\\lambda-1\\\\1&0&1\\end{pmatrix}",
+        "texSize": 64,
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-idea",
+      "phase": "Parte a · Rango",
+      "heading": "El rango de una matriz cuadrada se decide con el determinante",
+      "narration": "Apartado a. A es cuadrada de orden tres. Si su determinante no es cero, el rango es tres, el máximo. Si el determinante es cero, el rango baja. Así que lo primero es ver qué valores de lambda anulan el determinante.",
+      "captions": [
+        "Apartado a.",
+        "A es cuadrada de orden 3.",
+        "Si |A| ≠ 0, el rango es 3, el máximo.",
+        "Si |A| = 0, el rango baja.",
+        "Lo primero es ver qué valores de λ anulan el determinante."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lvert A\\rvert \\neq 0 \\;\\Rightarrow\\; \\operatorname{rg} A = 3",
+            "size": 56,
+            "color": "solved"
+          },
+          {
+            "tex": "\\lvert A\\rvert = 0 \\;\\Rightarrow\\; \\operatorname{rg} A < 3",
+            "size": 56,
+            "color": "danger"
+          }
+        ],
+        "chips": [
+          {
+            "text": "buscamos los λ que anulan |A|",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-determinante",
+      "phase": "Parte a · Rango",
+      "heading": "Simplificamos el determinante: C₃ → C₃ − C₁",
+      "narration": "Calculamos el determinante. La tercera fila tiene dos ceros casi: uno, cero, uno. Si a la tercera columna le restamos la primera, esa fila se queda en uno, cero, cero. Desarrollamos por la tercera fila y solo sobrevive un menor de orden dos.",
+      "captions": [
+        "Calculamos el determinante.",
+        "La tercera fila es 1, 0, 1.",
+        "Si a la tercera columna le restamos la primera, esa fila se queda en 1, 0, 0.",
+        "Desarrollamos por la tercera fila y solo sobrevive un menor de orden 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lvert A\\rvert = \\begin{vmatrix}1&\\lambda-2&\\lambda\\\\0&1&\\lambda-1\\\\1&0&1\\end{vmatrix} \\;\\overset{C_3 - C_1}{=}\\; \\begin{vmatrix}1&\\lambda-2&\\lambda-1\\\\0&1&\\lambda-1\\\\1&0&0\\end{vmatrix}",
+            "size": 44
+          },
+          {
+            "tex": "= 1\\cdot(-1)^{3+1}\\cdot \\begin{vmatrix}\\lambda-2&\\lambda-1\\\\1&\\lambda-1\\end{vmatrix}",
+            "size": 46,
+            "color": "inkSoft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-factorizar",
+      "phase": "Parte a · Rango",
+      "heading": "|A| = (λ − 1)(λ − 3)",
+      "narration": "El menor vale lambda menos dos por lambda menos uno, menos lambda menos uno. Sacamos factor común lambda menos uno y queda lambda menos uno por lambda menos tres. El determinante se anula para lambda igual a uno y para lambda igual a tres.",
+      "captions": [
+        "El menor vale (λ − 2)(λ − 1) − (λ − 1).",
+        "Sacamos factor común (λ − 1): queda (λ − 1)(λ − 3).",
+        "|A| = 0 para λ = 1 y para λ = 3."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "(\\lambda-2)(\\lambda-1) - (\\lambda-1) = (\\lambda-1)\\,\\big[(\\lambda-2) - 1\\big]",
+            "size": 48
+          },
+          {
+            "tex": "\\lvert A\\rvert = (\\lambda-1)(\\lambda-3)",
+            "size": 64,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\lambda = 1",
+            "color": "danger"
+          },
+          {
+            "tex": "\\lambda = 3",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-general",
+      "phase": "Parte a · Rango",
+      "heading": "Caso general: λ ≠ 1 y λ ≠ 3",
+      "narration": "Para cualquier otro valor de lambda el determinante no se anula, y el rango de A es tres.",
+      "captions": [
+        "Para cualquier otro λ el determinante no se anula, y el rango de A es 3."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lambda \\neq 1,\\,3 \\;\\Rightarrow\\; \\lvert A\\rvert \\neq 0",
+            "size": 58
+          }
+        ],
+        "badge": {
+          "text": "rg A = 3",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "06-lambda-1",
+      "phase": "Parte a · Rango",
+      "heading": "Caso λ = 1",
+      "narration": "Para lambda igual a uno sustituimos en la matriz. El determinante es cero, así que el rango es menor que tres. Buscamos un menor de orden dos distinto de cero: el de la esquina superior izquierda vale uno. Por tanto el rango es dos.",
+      "captions": [
+        "Para λ = 1 sustituimos en la matriz.",
+        "|A| = 0, así que el rango es menor que 3.",
+        "Buscamos un menor de orden 2 no nulo: el de la esquina superior izquierda vale 1.",
+        "Por tanto rg A = 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "λ = 1",
+            "tex": "A = \\begin{pmatrix}1&-1&1\\\\0&1&0\\\\1&0&1\\end{pmatrix},\\qquad \\lvert A\\rvert = 0",
+            "size": 48
+          },
+          {
+            "tex": "\\begin{vmatrix}1&-1\\\\0&1\\end{vmatrix} = 1 \\neq 0",
+            "size": 52,
+            "color": "indet"
+          }
+        ],
+        "badge": {
+          "text": "rg A = 2",
+          "color": "indet"
+        }
+      }
+    },
+    {
+      "id": "07-lambda-3",
+      "phase": "Parte a · Rango",
+      "heading": "Caso λ = 3",
+      "narration": "Para lambda igual a tres pasa lo mismo. El determinante es cero, y el menor de la esquina superior izquierda vuelve a valer uno. El rango también es dos.",
+      "captions": [
+        "Para λ = 3 pasa lo mismo.",
+        "|A| = 0, y el menor de la esquina superior izquierda vuelve a valer 1.",
+        "El rango también es 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "λ = 3",
+            "tex": "A = \\begin{pmatrix}1&1&3\\\\0&1&2\\\\1&0&1\\end{pmatrix},\\qquad \\lvert A\\rvert = 0",
+            "size": 48
+          },
+          {
+            "tex": "\\begin{vmatrix}1&1\\\\0&1\\end{vmatrix} = 1 \\neq 0",
+            "size": 52,
+            "color": "indet"
+          }
+        ],
+        "badge": {
+          "text": "rg A = 2",
+          "color": "indet"
+        }
+      }
+    },
+    {
+      "id": "08-discusion",
+      "phase": "Parte a · Rango",
+      "heading": "Discusión completa del rango",
+      "narration": "Resumimos la discusión. Rango tres si lambda es distinto de uno y de tres. Rango dos si lambda vale uno o tres.",
+      "captions": [
+        "Resumimos la discusión.",
+        "Rango 3 si λ ≠ 1, 3.",
+        "Rango 2 si λ = 1 o λ = 3."
+      ],
+      "body": {
+        "type": "table",
+        "columns": [
+          "\\lambda \\neq 1,\\,3",
+          "\\lambda = 1",
+          "\\lambda = 3"
+        ],
+        "rows": [
+          {
+            "label": "\\lvert A\\rvert",
+            "cells": [
+              {
+                "tex": "\\neq 0",
+                "color": "solved"
+              },
+              {
+                "tex": "0",
+                "color": "danger"
+              },
+              {
+                "tex": "0",
+                "color": "danger"
+              }
+            ]
+          },
+          {
+            "label": "\\operatorname{rg} A",
+            "cells": [
+              {
+                "text": "3",
+                "color": "solved"
+              },
+              {
+                "text": "2",
+                "color": "indet"
+              },
+              {
+                "text": "2",
+                "color": "indet"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-lambda-2",
+      "phase": "Parte b · Ecuación matricial",
+      "heading": "Para λ = 2, A tiene inversa",
+      "narration": "Apartado b. Ahora lambda vale dos. Sustituimos y calculamos el determinante con la fórmula que ya tenemos: dos menos uno por dos menos tres, que es menos uno. Es distinto de cero, así que A tiene inversa. Eso es lo que nos va a permitir despejar.",
+      "captions": [
+        "Apartado b.",
+        "Ahora λ = 2.",
+        "|A| = (2 − 1)(2 − 3) = −1.",
+        "Es distinto de cero, así que A tiene inversa.",
+        "Eso es lo que nos va a permitir despejar."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "λ = 2",
+            "tex": "A = \\begin{pmatrix}1&0&2\\\\0&1&1\\\\1&0&1\\end{pmatrix}",
+            "size": 50
+          },
+          {
+            "tex": "\\lvert A\\rvert = (2-1)(2-3) = -1 \\neq 0 \\;\\Rightarrow\\; \\exists\\, A^{-1}",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-despejar",
+      "phase": "Parte b · Ecuación matricial",
+      "heading": "Despejamos X sin conmutar",
+      "narration": "Pasamos la identidad al otro lado: A al cuadrado menos la identidad es igual a A por X. Para despejar X multiplicamos por la inversa de A, y tiene que ser por la izquierda, porque el producto de matrices no es conmutativo. La inversa por A es la identidad, así que X es igual a A menos la inversa de A.",
+      "captions": [
+        "Pasamos la identidad al otro lado: A² − I = A·X.",
+        "Para despejar X multiplicamos por A⁻¹, y tiene que ser por la izquierda, porque el producto de matrices no es conmutativo.",
+        "A⁻¹·A = I, así que X = A − A⁻¹."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^2 - AX = I \\;\\Rightarrow\\; A^2 - I = AX",
+            "size": 50
+          },
+          {
+            "tex": "A^{-1}(A^2 - I) = A^{-1}A\\,X \\;\\Rightarrow\\; A^{-1}A^2 - A^{-1} = X",
+            "size": 46,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "X = A - A^{-1}",
+            "size": 66,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "A⁻¹ por la izquierda en los dos miembros",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-adjunta",
+      "phase": "Parte b · Ecuación matricial",
+      "heading": "La inversa por la adjunta: A⁻¹ = (adj A)ᵗ / |A|",
+      "narration": "Calculamos la inversa con la adjunta. Cada elemento de la adjunta es el menor complementario con su signo. Por ejemplo, el primero es más el determinante de uno, uno, cero, uno, que vale uno. Repetimos con los nueve elementos, y después trasponemos.",
+      "captions": [
+        "Calculamos la inversa con la adjunta.",
+        "Cada elemento de la adjunta es el menor complementario con su signo.",
+        "Por ejemplo, el primero es +|1 1; 0 1| = 1.",
+        "Repetimos con los nueve elementos, y después trasponemos."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A_{11} = +\\begin{vmatrix}1&1\\\\0&1\\end{vmatrix} = 1,\\qquad A_{12} = -\\begin{vmatrix}0&1\\\\1&1\\end{vmatrix} = 1,\\qquad A_{13} = +\\begin{vmatrix}0&1\\\\1&0\\end{vmatrix} = -1",
+            "size": 40,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "\\operatorname{adj} A = \\begin{pmatrix}1&1&-1\\\\0&-1&0\\\\-2&-1&1\\end{pmatrix},\\qquad (\\operatorname{adj} A)^{t} = \\begin{pmatrix}1&0&-2\\\\1&-1&-1\\\\-1&0&1\\end{pmatrix}",
+            "size": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-inversa",
+      "phase": "Parte b · Ecuación matricial",
+      "heading": "Dividimos por |A| = −1",
+      "narration": "Dividimos la adjunta traspuesta por el determinante, que es menos uno. Es decir, cambiamos todos los signos. Antes de seguir conviene comprobar que A por su inversa da la identidad.",
+      "captions": [
+        "Dividimos la adjunta traspuesta por |A| = −1.",
+        "Es decir, cambiamos todos los signos.",
+        "Conviene comprobar que A·A⁻¹ = I."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{-1} = \\frac{1}{\\lvert A\\rvert}\\,(\\operatorname{adj} A)^{t} = \\frac{1}{-1}\\begin{pmatrix}1&0&-2\\\\1&-1&-1\\\\-1&0&1\\end{pmatrix} = \\begin{pmatrix}-1&0&2\\\\-1&1&1\\\\1&0&-1\\end{pmatrix}",
+            "size": 46,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "A\\cdot A^{-1} = I \\;\\checkmark",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-solucion",
+      "phase": "Resultado",
+      "heading": "X = A − A⁻¹",
+      "tail": 0.6,
+      "narration": "Ya solo queda restar. X es igual a A menos la inversa de A: dos, cero, cero; uno, cero, cero; cero, cero, dos. Si sustituyes en la ecuación original, A al cuadrado menos A por X da exactamente la identidad.",
+      "captions": [
+        "Ya solo queda restar.",
+        "X = A − A⁻¹ = [2 0 0; 1 0 0; 0 0 2].",
+        "Si sustituyes en la ecuación original, A² − A·X da exactamente la identidad."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "X = A - A^{-1} = \\begin{pmatrix}1&0&2\\\\0&1&1\\\\1&0&1\\end{pmatrix} - \\begin{pmatrix}-1&0&2\\\\-1&1&1\\\\1&0&-1\\end{pmatrix}",
+            "size": 46
+          },
+          {
+            "tex": "X = \\begin{pmatrix}2&0&0\\\\1&0&0\\\\0&0&2\\end{pmatrix}",
+            "size": 56,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "A² − A·X = I  ✓",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. El determinante factoriza como lambda menos uno por lambda menos tres. Rango tres salvo para lambda igual a uno o tres, donde el rango es dos. Y para lambda igual a dos, la ecuación se resuelve despejando con la inversa por la izquierda: X es A menos la inversa de A.",
+      "captions": [
+        "Resumen.",
+        "|A| = (λ − 1)(λ − 3).",
+        "Rango 3 salvo para λ = 1 o λ = 3, donde el rango es 2.",
+        "Para λ = 2, X = A − A⁻¹, despejando con la inversa por la izquierda."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Determinante",
+            "tex": "\\lvert A\\rvert = (\\lambda-1)(\\lambda-3)",
+            "color": "teal"
+          },
+          {
+            "label": "a) Rango",
+            "tex": "\\operatorname{rg} A = 3 \\text{ si } \\lambda \\neq 1,3;\\quad \\operatorname{rg} A = 2 \\text{ si } \\lambda = 1, 3",
+            "color": "solved"
+          },
+          {
+            "label": "b) Ecuación (λ = 2)",
+            "tex": "X = A - A^{-1} = \\begin{pmatrix}2&0&0\\\\1&0&0\\\\0&0&2\\end{pmatrix}",
+            "color": "solved"
+          }
+        ],
+        "closing": "Con matrices, despeja multiplicando por la inversa por el lado correcto."
+      }
+    }
+  ]
+}

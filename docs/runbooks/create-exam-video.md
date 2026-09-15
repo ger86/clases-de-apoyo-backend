@@ -37,7 +37,7 @@ Fix crowded or wrapped frames now. Frames are free; audio is not.
 node scripts/tts.mjs <slug>
 ```
 
-The script skips scenes that already have an MP3. To redo one scene after a narration change: `--only=<sceneId> --force`. The library voice in `exercise.json` needs a paid ElevenLabs plan; on the free plan the script falls back to `fallbackVoiceId` (George).
+The script skips scenes that already have an MP3. To redo one scene after a narration change: `--only=<sceneId> --force`. The default voice is the cloned voice `KDuMsTRG03d18osdZP8V` (paid plan). If a voice is rejected with 402, the script falls back to `fallbackVoiceId` (George).
 
 ## 5. Build props and render
 

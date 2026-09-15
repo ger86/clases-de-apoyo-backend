@@ -3,10 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { ROOT, propsPath, splitSentences } from "./lib.mjs";
+import { ROOT, propsPath, splitSentences, loadExercise } from "./lib.mjs";
 
 const slug = process.argv[2];
-const props = JSON.parse(fs.readFileSync(propsPath(slug), "utf8"));
+const exercise = loadExercise(slug);
+const props = { ...JSON.parse(fs.readFileSync(propsPath(slug), "utf8")), exam: exercise.exam, youtube: exercise.youtube };
+fs.writeFileSync(propsPath(slug), JSON.stringify(props, null, 2));
 if (!props.youtube) throw new Error('exercise.json has no "youtube" section');
 const outDir = path.join(ROOT, "output", slug);
 fs.mkdirSync(outDir, { recursive: true });

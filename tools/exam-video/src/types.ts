@@ -21,6 +21,7 @@ export type Body =
       title: string; // wrap a fragment in *asterisks* to highlight it
       tex?: string;
       texColor?: string;
+      texSize?: number; // px, default 100
       chips?: Chip[];
     }
   | { type: "rows"; rows: Row[]; chips?: Chip[]; badge?: Badge }
