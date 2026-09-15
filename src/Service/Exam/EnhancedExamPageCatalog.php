@@ -73,7 +73,7 @@ final class EnhancedExamPageCatalog
         }
 
         foreach ($page['relatedExams'] as $relatedExam) {
-            if (is_array($relatedExam) && ($relatedExam['type'] ?? null) === 'exam' && !$this->hasContent($relatedExam, 'examSlug')) {
+            if (\is_array($relatedExam) && ($relatedExam['type'] ?? null) === 'exam' && !$this->hasContent($relatedExam, 'examSlug')) {
                 return false;
             }
         }
@@ -90,11 +90,11 @@ final class EnhancedExamPageCatalog
      */
     private function hasContent(array $page, string $field): bool
     {
-        if (!array_key_exists($field, $page) || $page[$field] === null || $page[$field] === '') {
+        if (!\array_key_exists($field, $page) || $page[$field] === null || $page[$field] === '') {
             return false;
         }
 
-        return !is_array($page[$field]) || $page[$field] !== [];
+        return !\is_array($page[$field]) || $page[$field] !== [];
     }
 
     /**
@@ -103,13 +103,13 @@ final class EnhancedExamPageCatalog
      */
     private function hasRows(array $page, string $field, array $fields): bool
     {
-        if (!$this->hasContent($page, $field) || !is_array($page[$field])) {
+        if (!$this->hasContent($page, $field) || !\is_array($page[$field])) {
             return false;
         }
 
         $rows = $field === 'solutionCta' ? [$page[$field]] : $page[$field];
         foreach ($rows as $row) {
-            if (!is_array($row)) {
+            if (!\is_array($row)) {
                 return false;
             }
 
@@ -576,7 +576,7 @@ final class EnhancedExamPageCatalog
     ): array {
         $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
         $questionsTitle = 'Preguntas de PAU Madrid ' . $name . ' de Matemáticas II';
-        $topicSummary = implode(', ', array_slice($topicLabels, 0, 4));
+        $topicSummary = implode(', ', \array_slice($topicLabels, 0, 4));
         $callLower = mb_strtolower($call);
         $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
         $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';
@@ -871,7 +871,7 @@ final class EnhancedExamPageCatalog
         bool $hasSolution
     ): array {
         $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
-        $topicSummary = implode(', ', array_slice($topicLabels, 0, 5));
+        $topicSummary = implode(', ', \array_slice($topicLabels, 0, 5));
         $callLower = mb_strtolower($call);
         $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
         $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';
@@ -1108,7 +1108,7 @@ final class EnhancedExamPageCatalog
     ): array {
         $questions = $this->madridQuimicaQuestions();
         $topicLabels = array_values(array_unique(array_map(static fn (array $question): string => $question[3], $questions)));
-        $topicSummary = implode(', ', array_slice($topicLabels, 0, 5));
+        $topicSummary = implode(', ', \array_slice($topicLabels, 0, 5));
         $callLower = mb_strtolower($call);
         $titleEnding = $hasSolution ? 'enunciado, temas y solución' : 'enunciado y temas';
         $metaTitleEnding = $hasSolution ? 'Enunciado y solución' : 'Enunciado y temas';

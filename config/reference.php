@@ -707,7 +707,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *             servicename?: scalar|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *             sessionMode?: scalar|null, // The session mode to use for the oci8 driver
  *             server?: scalar|null, // The name of a running database server to connect to for SQL Anywhere.
- *             default_dbname?: scalar|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *             default_dbname?: scalar|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *             sslmode?: scalar|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *             sslrootcert?: scalar|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *             sslcert?: scalar|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -753,7 +753,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *                 servicename?: scalar|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *                 sessionMode?: scalar|null, // The session mode to use for the oci8 driver
  *                 server?: scalar|null, // The name of a running database server to connect to for SQL Anywhere.
- *                 default_dbname?: scalar|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *                 default_dbname?: scalar|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *                 sslmode?: scalar|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *                 sslrootcert?: scalar|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *                 sslcert?: scalar|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -832,7 +832,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *                     lock_path?: scalar|null, // Default: "%kernel.cache_dir%/doctrine/orm/slc/filelock"
  *                     lock_lifetime?: scalar|null, // Default: 60
  *                     type?: scalar|null, // Default: "default"
- *                     lifetime?: scalar|null, // Default: 0
+ *                     lifetime?: scalar|null, // Default: null
  *                     service?: scalar|null,
  *                     name?: scalar|null,
  *                 }>,
@@ -1243,6 +1243,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  * }
  * @psalm-type MonologConfig = array{
  *     use_microseconds?: scalar|null, // Default: true
+ *     timezone?: string, // The timezone used for the timestamp of every log record (e.g. "UTC" or "Europe/Paris"). Defaults to the PHP default timezone. // Default: null
  *     channels?: list<scalar|null>,
  *     handlers?: array<string, array{ // Default: []
  *         type: scalar|null,
@@ -1254,6 +1255,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         interactive_only?: bool, // Default: false
  *         app_name?: scalar|null, // Default: null
  *         include_stacktraces?: bool, // Default: false
+ *         base_path?: scalar|null, // Default: null
  *         process_psr_3_messages?: array{
  *             enabled?: bool|null, // Default: null
  *             date_format?: scalar|null,
@@ -1311,6 +1313,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         connection_timeout?: scalar|null,
  *         persistent?: bool,
  *         message_type?: scalar|null, // Default: 0
+ *         expand_newlines?: bool, // Default: false
  *         parse_mode?: scalar|null, // Default: null
  *         disable_webpage_preview?: bool|null, // Default: null
  *         disable_notification?: bool|null, // Default: null
