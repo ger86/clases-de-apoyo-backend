@@ -39,3 +39,7 @@ export const FONT_UI =
 export const FPS = 30;
 export const WIDTH = 1920;
 export const HEIGHT = 1080;
+
+// Vertical reel for Instagram and TikTok.
+export const REEL_WIDTH = 1080;
+export const REEL_HEIGHT = 1920;

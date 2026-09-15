@@ -6,8 +6,35 @@ export const ROOT = path.resolve(import.meta.dirname, "..");
 export const REPO = path.resolve(ROOT, "../..");
 
 export const exerciseDir = (slug) => path.join(ROOT, "public/exercises", slug);
-export const audioDir = (slug) => path.join(exerciseDir(slug), "audio");
-export const propsPath = (slug) => path.join(exerciseDir(slug), "props.json");
+
+// Every path comes in two flavours: the 16:9 explainer and the 9:16 reel. The
+// reel keeps its own audio folder, props file and output folder so both can
+// exist for the same exercise without overwriting each other.
+export const audioDir = (slug, reel = false) => path.join(exerciseDir(slug), reel ? "audio/reel" : "audio");
+export const audioPathProp = (reel = false) => (reel ? "audio/reel" : "audio");
+export const propsPath = (slug, reel = false) => path.join(exerciseDir(slug), reel ? "props.reel.json" : "props.json");
+export const outputDir = (slug, reel = false) => path.join(ROOT, "output", slug, ...(reel ? ["reel"] : []));
+export const compositionId = (reel = false) => (reel ? "ExamReel" : "ExamVideo");
+export const videoName = (slug, reel = false) => (reel ? `${slug}-reel.mp4` : `${slug}.mp4`);
+
+// Shared "<slug> [--reel] [--flag=value]" parsing.
+export const cli = () => {
+  const args = process.argv.slice(2);
+  return {
+    args,
+    slug: args.find((a) => !a.startsWith("--")),
+    reel: args.includes("--reel"),
+    has: (name) => args.includes(`--${name}`),
+    flag: (name) => args.find((a) => a.startsWith(`--${name}=`))?.split("=")[1],
+  };
+};
+
+// The scenes a command works on: the exercise's own, or the reel's.
+export const scenesOf = (exercise, reel = false) => {
+  if (!reel) return exercise.scenes;
+  if (!exercise.reel?.scenes?.length) throw new Error(`${exercise.slug}: exercise.json has no "reel" section with scenes`);
+  return exercise.reel.scenes;
+};
 
 export const loadExercise = (slug) => {
   if (!slug) throw new Error("Usage: <script> <exercise-slug>");

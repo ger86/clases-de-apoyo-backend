@@ -15,12 +15,13 @@ const DEFAULT_PHASE_COLORS: Record<string, string> = {
 
 const SceneView: React.FC<{ scene: TimedScene; props: VideoProps; total: number }> = ({ scene, props, total }) => {
   const accentName = props.phaseColors?.[scene.phase] ?? DEFAULT_PHASE_COLORS[scene.phase] ?? "tealSoft";
-  const isHook = scene.body.type === "hook";
+  // Hook and CTA scenes are full-bleed: they carry their own title.
+  const bare = scene.body.type === "hook" || scene.body.type === "cta";
   return (
     <AbsoluteFill>
-      {isHook ? null : <Heading phase={scene.phase} heading={scene.heading} accent={color(accentName, COLORS.tealSoft)} />}
+      {bare ? null : <Heading phase={scene.phase} heading={scene.heading} accent={color(accentName, COLORS.tealSoft)} />}
       <SceneBody body={scene.body} />
-      {isHook ? null : <Footer index={scene.index} total={total} question={props.exam.question} topic={props.exam.topic} />}
+      {bare ? null : <Footer index={scene.index} total={total} question={props.exam.question} topic={props.exam.topic} />}
       <Captions captions={scene.captions} narrationFrames={scene.narrationFrames} starts={scene.captionStarts} />
     </AbsoluteFill>
   );
@@ -35,7 +36,7 @@ export const ExamVideo: React.FC<VideoProps> = (props) => {
       <Background />
       {timeline.map((scene) => (
         <Sequence key={scene.id} from={scene.from} durationInFrames={scene.frames} name={scene.id}>
-          {scene.hasAudio ? <Audio src={staticFile(`exercises/${props.slug}/audio/${scene.id}.mp3`)} /> : null}
+          {scene.hasAudio ? <Audio src={staticFile(`exercises/${props.slug}/${props.audioPath ?? "audio"}/${scene.id}.mp3`)} /> : null}
           <SceneView scene={scene} props={props} total={timeline.length} />
         </Sequence>
       ))}

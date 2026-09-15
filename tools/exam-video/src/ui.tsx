@@ -1,65 +1,80 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
-import { COLORS, FONT_UI, WIDTH, FPS, color } from "./theme";
+import { COLORS, FONT_UI, FPS, color } from "./theme";
+import { useLayout } from "./layout";
 import { usePop, useReveal, Tex } from "./math";
 import type { Badge, Chip } from "./types";
 
 // ---------------------------------------------------------------------------
 // Background: layered deep-teal radials + faint grid.
 // ---------------------------------------------------------------------------
-export const Background: React.FC = () => (
-  <AbsoluteFill
-    style={{
-      background: `radial-gradient(1200px 700px at 78% -10%, ${COLORS.bg2}, rgba(0,0,0,0) 60%),
-                   radial-gradient(1100px 800px at 8% 115%, #0c2233, rgba(0,0,0,0) 55%),
-                   linear-gradient(160deg, ${COLORS.bg1} 0%, ${COLORS.bg0} 100%)`,
-    }}
-  >
+export const Background: React.FC = () => {
+  const l = useLayout();
+  return (
     <AbsoluteFill
       style={{
-        backgroundImage: `linear-gradient(${COLORS.grid} 1px, transparent 1px),
-                          linear-gradient(90deg, ${COLORS.grid} 1px, transparent 1px)`,
-        backgroundSize: "64px 64px",
-        maskImage: "radial-gradient(1400px 900px at 50% 42%, black, transparent 78%)",
-        WebkitMaskImage: "radial-gradient(1400px 900px at 50% 42%, black, transparent 78%)",
-        opacity: 0.9,
+        background: `radial-gradient(1200px 700px at 78% -10%, ${COLORS.bg2}, rgba(0,0,0,0) 60%),
+                   radial-gradient(1100px 800px at 8% 115%, #0c2233, rgba(0,0,0,0) 55%),
+                   linear-gradient(160deg, ${COLORS.bg1} 0%, ${COLORS.bg0} 100%)`,
       }}
-    />
-  </AbsoluteFill>
-);
+    >
+      <AbsoluteFill
+        style={{
+          backgroundImage: `linear-gradient(${COLORS.grid} 1px, transparent 1px),
+                          linear-gradient(90deg, ${COLORS.grid} 1px, transparent 1px)`,
+          backgroundSize: "64px 64px",
+          maskImage: `radial-gradient(${l.vertical ? "900px 1500px" : "1400px 900px"} at 50% 42%, black, transparent 78%)`,
+          WebkitMaskImage: `radial-gradient(${l.vertical ? "900px 1500px" : "1400px 900px"} at 50% 42%, black, transparent 78%)`,
+          opacity: 0.9,
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
 
 // ---------------------------------------------------------------------------
 // Top bar: brand wordmark + exam line + overall progress.
+// Vertical stacks the two lines on the left, clear of the app's button column.
 // ---------------------------------------------------------------------------
 export const TopBar: React.FC<{ progress: number; examLabel: string; site: string }> = ({
   progress,
   examLabel,
   site,
 }) => {
+  const l = useLayout();
   const [name, tld] = splitSite(site);
+  const brand = (
+    <div style={{ fontSize: l.barBrandSize, fontWeight: 800, letterSpacing: 0.3 }}>
+      <span style={{ color: COLORS.ink }}>{name}</span>
+      <span style={{ color: COLORS.teal }}>{tld}</span>
+    </div>
+  );
+  const label = (
+    <div style={{ fontSize: l.barLabelSize, fontWeight: 600, color: COLORS.inkSoft, letterSpacing: 0.4 }}>
+      {examLabel}
+    </div>
+  );
   return (
     <div
       style={{
         position: "absolute",
         top: 0,
         left: 0,
-        width: WIDTH,
-        height: 92,
+        width: l.width,
+        height: l.barHeight,
         display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 64px",
+        flexDirection: l.barStacked ? "column" : "row",
+        alignItems: l.barStacked ? "flex-start" : "center",
+        justifyContent: l.barStacked ? "center" : "space-between",
+        gap: l.barStacked ? 8 : 0,
+        paddingLeft: l.barStacked ? l.contentLeft : l.barPadding,
+        paddingRight: l.barStacked ? l.contentRight : l.barPadding,
         fontFamily: FONT_UI,
       }}
     >
-      <div style={{ fontSize: 32, fontWeight: 800, letterSpacing: 0.3 }}>
-        <span style={{ color: COLORS.ink }}>{name}</span>
-        <span style={{ color: COLORS.teal }}>{tld}</span>
-      </div>
-      <div style={{ fontSize: 27, fontWeight: 600, color: COLORS.inkSoft, letterSpacing: 0.4 }}>
-        {examLabel}
-      </div>
-      <div style={{ position: "absolute", left: 0, bottom: 0, width: WIDTH, height: 4, background: "rgba(255,255,255,0.06)" }}>
+      {brand}
+      {label}
+      <div style={{ position: "absolute", left: 0, bottom: 0, width: l.width, height: 4, background: "rgba(255,255,255,0.06)" }}>
         <div
           style={{
             width: `${progress * 100}%`,
@@ -86,10 +101,13 @@ export const Heading: React.FC<{ phase: string; heading: string; accent: string 
   heading,
   accent,
 }) => {
+  const l = useLayout();
   const chip = useReveal(2, { distance: 14 });
   const head = useReveal(7, { distance: 18 });
+  const left = l.vertical ? l.contentLeft : 96;
+  const right = l.vertical ? l.contentRight : 96;
   return (
-    <div style={{ position: "absolute", top: 150, left: 96, right: 96, fontFamily: FONT_UI }}>
+    <div style={{ position: "absolute", top: l.headingTop, left, right, fontFamily: FONT_UI }}>
       <div
         style={{
           ...chip,
@@ -103,7 +121,7 @@ export const Heading: React.FC<{ phase: string; heading: string; accent: string 
         }}
       >
         <span style={{ width: 11, height: 11, borderRadius: 99, background: accent }} />
-        <span style={{ fontSize: 23, fontWeight: 800, letterSpacing: 2.2, textTransform: "uppercase", color: accent }}>
+        <span style={{ fontSize: l.headingChipSize, fontWeight: 800, letterSpacing: 2.2, textTransform: "uppercase", color: accent }}>
           {phase}
         </span>
       </div>
@@ -111,11 +129,11 @@ export const Heading: React.FC<{ phase: string; heading: string; accent: string 
         style={{
           ...head,
           marginTop: 18,
-          fontSize: heading.length > 46 ? 52 : 60,
+          fontSize: heading.length > 46 ? l.headingSizeLong : l.headingSize,
           fontWeight: 800,
           color: COLORS.ink,
           lineHeight: 1.08,
-          maxWidth: 1500,
+          maxWidth: l.vertical ? l.width - left - right : 1500,
           letterSpacing: -0.5,
         }}
       >
@@ -127,12 +145,14 @@ export const Heading: React.FC<{ phase: string; heading: string; accent: string 
 
 // ---------------------------------------------------------------------------
 // Caption band. Uses TTS alignment times when available, else a length-based spread.
+// Vertical pins it to the middle third, where no app interface covers it.
 // ---------------------------------------------------------------------------
 export const Captions: React.FC<{
   captions: string[];
   narrationFrames: number;
   starts?: number[];
 }> = ({ captions, narrationFrames, starts }) => {
+  const l = useLayout();
   const frame = useCurrentFrame();
   let bounds: number[];
   if (starts && starts.length === captions.length) {
@@ -155,31 +175,35 @@ export const Captions: React.FC<{
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
+  const pinned = l.captionTop !== undefined;
   return (
     <div
       style={{
         position: "absolute",
-        left: 0,
-        bottom: 0,
-        width: WIDTH,
-        height: 132,
+        left: pinned ? l.contentLeft : 0,
+        right: pinned ? l.contentRight : 0,
+        ...(pinned ? { top: l.captionTop } : { bottom: 0 }),
+        height: l.captionHeight,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(180deg, rgba(7,15,24,0) 0%, rgba(5,11,18,0.92) 55%)",
+        background: pinned
+          ? "none"
+          : "linear-gradient(180deg, rgba(7,15,24,0) 0%, rgba(5,11,18,0.92) 55%)",
         fontFamily: FONT_UI,
       }}
     >
       <div
         style={{
           opacity: fade,
-          fontSize: 34,
-          fontWeight: 600,
+          fontSize: l.captionSize,
+          fontWeight: pinned ? 800 : 600,
           color: COLORS.ink,
           textAlign: "center",
-          maxWidth: 1480,
-          padding: "0 40px",
-          textShadow: "0 2px 18px rgba(0,0,0,0.6)",
+          maxWidth: pinned ? l.contentWidth : 1480,
+          padding: pinned ? 0 : "0 40px",
+          ...(pinned ? { lineHeight: 1.18 } : {}),
+          textShadow: pinned ? "0 2px 18px rgba(0,0,0,0.85)" : "0 2px 18px rgba(0,0,0,0.6)",
         }}
       >
         {captions[idx]}
@@ -192,6 +216,7 @@ export const Captions: React.FC<{
 // Result badge: the verdict. Pops in, color = meaning.
 // ---------------------------------------------------------------------------
 export const ResultBadge: React.FC<{ badge: Badge; delay?: number }> = ({ badge, delay = 0 }) => {
+  const l = useLayout();
   const pop = usePop(delay);
   const c = color(badge.color);
   return (
@@ -202,7 +227,7 @@ export const ResultBadge: React.FC<{ badge: Badge; delay?: number }> = ({ badge,
         flexDirection: "column",
         alignItems: "center",
         gap: 6,
-        padding: "20px 42px",
+        padding: l.vertical ? "16px 34px" : "20px 42px",
         borderRadius: 20,
         background: `${c}1c`,
         border: `2.5px solid ${c}`,
@@ -210,7 +235,7 @@ export const ResultBadge: React.FC<{ badge: Badge; delay?: number }> = ({ badge,
         fontFamily: FONT_UI,
       }}
     >
-      <span style={{ fontSize: 46, fontWeight: 800, color: c, letterSpacing: -0.4 }}>{badge.text}</span>
+      <span style={{ fontSize: l.vertical ? 42 : 46, fontWeight: 800, color: c, letterSpacing: -0.4 }}>{badge.text}</span>
       {badge.sub ? <span style={{ fontSize: 26, fontWeight: 600, color: COLORS.inkSoft }}>{badge.sub}</span> : null}
     </div>
   );
@@ -218,9 +243,10 @@ export const ResultBadge: React.FC<{ badge: Badge; delay?: number }> = ({ badge,
 
 // Pill chip (a value, a step, a label). Carries semantic color.
 export const ChipView: React.FC<{ chip: Chip; delay?: number }> = ({ chip, delay = 0 }) => {
+  const l = useLayout();
   const pop = usePop(delay);
   const c = color(chip.color);
-  const size = chip.big ? 40 : 30;
+  const size = (chip.big ? 40 : 30) * (l.vertical ? 1.05 : 1);
   return (
     <div
       style={{
@@ -236,6 +262,7 @@ export const ChipView: React.FC<{ chip: Chip; delay?: number }> = ({ chip, delay
         fontFamily: FONT_UI,
         fontWeight: 800,
         fontSize: size,
+        textAlign: "center",
         boxShadow: `0 0 26px ${c}33`,
       }}
     >
@@ -259,27 +286,46 @@ export const Footer: React.FC<{ index: number; total: number; question: string; 
   total,
   question,
   topic,
-}) => (
-  <div
-    style={{
-      position: "absolute",
-      left: 96,
-      right: 96,
-      bottom: 150,
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      fontFamily: FONT_UI,
-      fontSize: 24,
-      fontWeight: 600,
-      color: COLORS.muted,
-    }}
-  >
-    <span>
-      {question} · {topic}
-    </span>
-    <span style={{ color: COLORS.inkSoft, fontWeight: 800 }}>
-      {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-    </span>
-  </div>
+}) => {
+  const l = useLayout();
+  if (!l.showFooter) return null;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: 96,
+        right: 96,
+        bottom: l.footerBottom,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        fontFamily: FONT_UI,
+        fontSize: l.footerSize,
+        fontWeight: 600,
+        color: COLORS.muted,
+      }}
+    >
+      <span>
+        {question} · {topic}
+      </span>
+      <span style={{ color: COLORS.inkSoft, fontWeight: 800 }}>
+        {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+      </span>
+    </div>
+  );
+};
+
+// *highlight* markup, shared by hook titles and the closing call to action.
+export const Highlighted: React.FC<{ text: string }> = ({ text }) => (
+  <>
+    {text.split(/(\*[^*]+\*)/g).map((part, i) =>
+      part.startsWith("*") && part.endsWith("*") ? (
+        <span key={i} style={{ color: COLORS.teal }}>
+          {part.slice(1, -1)}
+        </span>
+      ) : (
+        <React.Fragment key={i}>{part}</React.Fragment>
+      ),
+    )}
+  </>
 );

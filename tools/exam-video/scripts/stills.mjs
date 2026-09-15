@@ -1,19 +1,19 @@
 // Render one review still per scene (post-reveal frame).
-//   node scripts/stills.mjs <slug>
+//   node scripts/stills.mjs <slug> [--reel]
 import fs from "node:fs";
 import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
-import { ROOT, propsPath } from "./lib.mjs";
+import { ROOT, propsPath, outputDir, compositionId, cli } from "./lib.mjs";
 
-const slug = process.argv[2];
-const props = JSON.parse(fs.readFileSync(propsPath(slug), "utf8"));
+const { slug, reel } = cli();
+const props = JSON.parse(fs.readFileSync(propsPath(slug, reel), "utf8"));
 const FPS = 30;
-const outDir = path.join(ROOT, "output", slug, "stills");
+const outDir = path.join(outputDir(slug, reel), "stills");
 fs.mkdirSync(outDir, { recursive: true });
 
 const serveUrl = await bundle({ entryPoint: path.join(ROOT, "src/index.ts") });
-const composition = await selectComposition({ serveUrl, id: "ExamVideo", inputProps: props });
+const composition = await selectComposition({ serveUrl, id: compositionId(reel), inputProps: props });
 
 let from = 0;
 for (const scene of props.scenes) {

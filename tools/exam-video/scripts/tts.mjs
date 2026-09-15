@@ -1,36 +1,41 @@
 // Generate one MP3 (+ character alignment) per scene with ElevenLabs.
-//   node scripts/tts.mjs <slug> [--dry-run] [--force] [--voice=<id>] [--only=<sceneId>]
+//   node scripts/tts.mjs <slug> [--reel] [--dry-run] [--force] [--voice=<id>] [--only=<sceneId>]
 // Skips scenes whose MP3 already exists unless --force. --dry-run only counts characters.
+// --reel works on the "reel" scenes and writes to public/exercises/<slug>/audio/reel/.
 import fs from "node:fs";
 import path from "node:path";
-import { loadExercise, loadEnv, audioDir, splitSentences } from "./lib.mjs";
+import { loadExercise, loadEnv, audioDir, splitSentences, cli, scenesOf } from "./lib.mjs";
 
-const args = process.argv.slice(2);
-const slug = args.find((a) => !a.startsWith("--"));
-const flag = (name) => args.find((a) => a.startsWith(`--${name}=`))?.split("=")[1];
-const dryRun = args.includes("--dry-run");
-const force = args.includes("--force");
+const { slug, reel, flag, has } = cli();
+const dryRun = has("dry-run");
+const force = has("force");
 const only = flag("only");
 
 const exercise = loadExercise(slug);
+const scenes = scenesOf(exercise, reel);
 const env = loadEnv();
 const apiKey = env.ELEVENLABS_API_KEY;
 
 let total = 0;
 const problems = [];
-for (const scene of exercise.scenes) {
+for (const scene of scenes) {
   total += scene.narration.length;
   const sentences = splitSentences(scene.narration);
   if (scene.captions && scene.captions.length !== sentences.length) {
     problems.push(`${scene.id}: ${scene.captions.length} captions but ${sentences.length} narration sentences`);
   }
 }
-console.log(`${exercise.scenes.length} scenes, ${total} characters (credits) in total`);
+console.log(`${reel ? "reel: " : ""}${scenes.length} scenes, ${total} characters (credits) in total`);
 for (const p of problems) console.log(`caption mismatch: ${p}`);
+// A reel has to stay watchable in one scroll: 3 to 5 scenes, 30 to 60 seconds.
+if (reel) {
+  if (scenes.length < 3 || scenes.length > 5) console.log(`aviso: un reel deberia tener de 3 a 5 escenas, tiene ${scenes.length}`);
+  if (total < 300 || total > 600) console.log(`aviso: la narracion del reel deberia medir de 300 a 600 caracteres, mide ${total}`);
+}
 if (dryRun) process.exit(problems.length ? 1 : 0);
 if (!apiKey) throw new Error("Missing ELEVENLABS_API_KEY in .env.local");
 
-const dir = audioDir(slug);
+const dir = audioDir(slug, reel);
 fs.mkdirSync(dir, { recursive: true });
 let voiceId = flag("voice") || env.ELEVENLABS_VOICE_ID || exercise.voice.voiceId;
 
@@ -48,7 +53,7 @@ const synthesize = async (scene, voice, withTimestamps = true) => {
   return res;
 };
 
-for (const scene of exercise.scenes) {
+for (const scene of scenes) {
   if (only && scene.id !== only) continue;
   const mp3 = path.join(dir, `${scene.id}.mp3`);
   if (fs.existsSync(mp3) && !force) {

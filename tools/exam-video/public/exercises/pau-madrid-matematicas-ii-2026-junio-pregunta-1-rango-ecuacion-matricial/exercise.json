@@ -17,7 +17,10 @@
     "Parte a · Rango": "teal",
     "Parte b · Ecuación matricial": "indet",
     "Resultado": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Rango con parámetro y ecuación matricial | PAU Madrid Junio 2026, Matemáticas II, Pregunta 1",
@@ -488,5 +491,153 @@
         "closing": "Con matrices, despeja multiplicando por la inversa por el lado correcto."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "El error de despejar X en A² − AX = I (PAU Madrid, junio 2026, Pregunta 1)",
+    "caption": "Con matrices no puedes despejar como con números.\n\nEn la Pregunta 1 de la PAU de Madrid de junio de 2026 (Matemáticas II) aparece A² − AX = I. Si cancelas la A y escribes A − X = I, te sale X = A − I. Sustituye y compruébalo: obtienes A, no la identidad.\n\nLo correcto es pasar la identidad al otro lado y multiplicar por A⁻¹ por la izquierda, porque el producto de matrices no es conmutativo. Como A⁻¹·A = I, queda X = A − A⁻¹. Para λ = 2 sale X = [[2, 0, 0], [1, 0, 0], [0, 0, 2]].\n\nEl ejercicio completo, con la discusión del rango de A según λ, está resuelto paso a paso en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #matrices #determinantes #algebra #matrizinversa #ecuacionmatricial #rangodeunamatriz #examenresuelto #madrid #mates #clasesdeapoyo #estudiar",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "El error\nal despejar\ncon matrices",
+      "line2": "X = A − A⁻¹",
+      "tex": "A^2 - AX = I",
+      "badge": "✗  A − X = I"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Con matrices no se despeja igual",
+        "tail": 0.4,
+        "narration": "[energetic] Con matrices no puedes despejar como con números. Esta ecuación cayó en Selectividad.",
+        "captions": [
+          "Con matrices no puedes despejar como con números.",
+          "Esta ecuación cayó en Selectividad."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "Con matrices\n*no se despeja*\ncomo con números",
+          "tex": "A^2 - AX = I",
+          "texSize": 76,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Cancelar la A no vale",
+        "tail": 0.4,
+        "narration": "El error típico es cancelar la A y escribir A menos X igual a la identidad. Entonces X sería A menos la identidad, y al sustituir sale A, no la identidad.",
+        "captions": [
+          "El error típico es cancelar la A: A − X = I.",
+          "Entonces X = A − I, y al sustituir sale A, no I."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^2 - AX = I \\;\\xcancel{\\Rightarrow}\\; A - X = I",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "X = A - I",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "A^2 - A(A - I) = A \\neq I",
+              "size": 46,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "La A no se cancela",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "Multiplica por A⁻¹ por la izquierda",
+        "tail": 0.4,
+        "narration": "Lo correcto es pasar la identidad al otro lado y multiplicar por la inversa de A por la izquierda. Ahí X se queda sola.",
+        "captions": [
+          "Pasa I al otro lado y multiplica por A⁻¹ por la izquierda.",
+          "A⁻¹·A = I, y X se queda sola."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^2 - I = AX",
+              "size": 54
+            },
+            {
+              "tex": "A^{-1}(A^2 - I) = \\underbrace{A^{-1}A}_{I}\\,X",
+              "size": 48,
+              "color": "inkSoft"
+            },
+            {
+              "tex": "X = A - A^{-1}",
+              "size": 64,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "por la izquierda",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Para λ = 2",
+        "tail": 0.4,
+        "narration": "Para lambda igual a dos, la inversa sale con la adjunta. Al restar queda X: dos, cero, cero; uno, cero, cero; cero, cero, dos.",
+        "captions": [
+          "Para λ = 2, la inversa sale con la adjunta.",
+          "Al restar: X = [2 0 0; 1 0 0; 0 0 2]."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^{-1} = \\begin{pmatrix}-1&0&2\\\\-1&1&1\\\\1&0&-1\\end{pmatrix}",
+              "size": 58
+            },
+            {
+              "tex": "X = A - A^{-1} = \\begin{pmatrix}2&0&0\\\\1&0&0\\\\0&0&2\\end{pmatrix}",
+              "size": 58,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Un símbolo de diferencia. Tienes el ejercicio completo, con el rango, en YouTube.",
+        "captions": [
+          "Un símbolo de diferencia: I o A⁻¹.",
+          "El ejercicio completo, con el rango, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Despeja por la\n*izquierda*",
+          "tex": "X = A - A^{-1}",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

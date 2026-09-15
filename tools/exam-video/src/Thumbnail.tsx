@@ -28,6 +28,9 @@ export const Thumbnail: React.FC<VideoProps> = (props) => {
             position: "absolute",
             right: 64,
             top: 170,
+            maxWidth: 560,
+            display: "flex",
+            justifyContent: "center",
             padding: "22px 34px",
             borderRadius: 30,
             background: COLORS.panel,
@@ -35,7 +38,7 @@ export const Thumbnail: React.FC<VideoProps> = (props) => {
             boxShadow: `0 0 80px ${COLORS.teal}44`,
           }}
         >
-          <Tex tex={t.tex} size={54} color={COLORS.tealSoft} />
+          <Tex tex={t.tex} size={t.tex.length > 28 ? 36 : t.tex.length > 18 ? 46 : 54} color={COLORS.tealSoft} />
         </div>
       ) : null}
       {t.badge ? (

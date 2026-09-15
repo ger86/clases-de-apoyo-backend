@@ -43,3 +43,46 @@ The user upgraded ElevenLabs and created an instant clone of their own voice (`K
 Slug: `pau-madrid-matematicas-ii-2026-junio-pregunta-1-rango-ecuacion-matricial`. 14 scenes, 2,975 characters, about 3:18. Verified: |A| = (λ − 1)(λ − 3); rg A = 3 unless λ = 1 or 3 (rg 2); for λ = 2, X = A − A⁻¹ = [[2,0,0],[1,0,0],[0,0,2]]. The PDF shows a wrong matrix for λ = 3 ([[1,1,2],[0,1,1],[1,0,1]] instead of [[1,1,3],[0,1,2],[1,0,1]]); the rank conclusion is unaffected and the video uses the correct matrix.
 
 Tool changes: `youtube.mjs` now re-reads `exam` and `youtube` from `exercise.json`, so text edits need no props rebuild; row labels with non-ASCII characters (λ) are no longer uppercased; rows holding 3-row matrices count as tall for the density scaling.
+
+## Reel format (vertical 9:16) and first reel, 2026-09-15
+
+The tool now produces vertical shorts for Instagram and TikTok from the same `exercise.json`. A `reel` key holds 3 to 5 short scenes plus the post metadata (title, caption with hashtags, cover), and `tts`, `build-props`, `stills`, `render` and `youtube` all take `--reel`. Audio goes to `public/exercises/<slug>/audio/reel/`, props to `props.reel.json` (added to `.gitignore`), output to `output/<slug>/reel/`.
+
+Tool changes:
+
+- `src/layout.ts` is new: one table of numbers per frame shape, selected from `useVideoConfig()`. The horizontal column is a literal copy of the values the components hardcoded before, so the 16:9 videos are unaffected. This was verified, not assumed: the 14 stills of Pregunta 1 were rendered with the original code and with the refactor against the same `props.json` and came out byte-identical. Two regressions were caught that way and fixed (the top bar lost its `space-between`, and a `maxWidth` added to the summary boxes rewrapped the closing line).
+- Vertical safe zones: content box 50 px left and 170 px right, because both apps draw a button column over the right edge; captions pinned at y = 1060, in the middle third, because the bottom carries the post text; no footer; the top bar stacks the brand over the exam label on the left.
+- New `cta` body type for the closing call to action. `hook` and `cta` scenes now hide the phase heading and the footer in both formats.
+- New `ExamReel` (1080x1920) and `ReelCover` (1080x1920) compositions. `Video.tsx` reads the audio folder from a new `audioPath` prop, defaulting to `audio`.
+- `tts.mjs --reel --dry-run` and `build-props.mjs --reel` warn outside 3 to 5 scenes, 300 to 600 characters and 30 to 60 seconds.
+- The vertical widths are derived from the safe box, not typed one by one. The first version hand-picked five numbers (820, 830, 840, ...) that did not agree with each other; they were replaced by one `V_BOX = 1080 - 50 - 170` and a subtraction per body for the overhang the graph bodies draw past their declared width.
+- Formulas are not auto-fitted. An auto-scaling `FitTex` using `delayRender` was considered and dropped: a handle left uncontinued hangs the render, and `scrollWidth` can be measured before the KaTeX stylesheet settles. The still review is the gate instead, which is what the runbook already asks for.
+
+First reel: slug `pau-madrid-matematicas-ii-2026-junio-pregunta-1-rango-ecuacion-matricial`, 5 scenes, 577 characters, 39.9 s, cloned voice. Single idea: with matrices you cannot clear X the way you do with numbers.
+
+The mistake shown in the reel was chosen after checking the algebra. The obvious candidate, multiplying by A⁻¹ on the wrong side, is not usable here: for this matrix `(A² − I)A⁻¹` equals `A·X·A⁻¹` equals X, so the "wrong" move accidentally gives the right answer. The reel uses cancelling the A instead: `A² − AX = I` does not give `A − X = I`, because that would mean `X = A − I = [[0,0,2],[0,0,1],[1,0,0]]`, and substituting gives `A² − A·X = A`, not I. Verified with exact integer arithmetic, along with `A⁻¹`, `X = A − A⁻¹ = [[2,0,0],[1,0,0],[0,0,2]]` and `|A| = (λ − 1)(λ − 3)` for λ from −3 to 5.
+
+The reel itself only exercises `hook`, `rows` and `cta`, so the other five body types were rendered vertically on purpose before claiming the format is reusable: a throwaway `props.reel.json` (gitignored, deleted afterwards) with the `dots`, `normal` and `summary` scenes of the aceitunas exercise and the `table`, `plot` and 4-row `summary` scenes of Pregunta 2, rendered with `stills.mjs --reel` and reviewed with the safe zones drawn over them. It costs no credits and it found three real defects, all vertical only:
+
+- The 7-column sign table was 960 px wide against an 860 px box, so it ran under the button column, because `tableWidth` was being read as the whole table while the label column was added on top of it. The vertical value is now `V_BOX - tableLabelWidth`, and the table type scales with the cell width.
+- A 4-row `summary` overflowed its stack in both directions at once, printing the first row over the heading and the closing line over the captions. Vertical rows stack label over value, which the numbers had been chosen without accounting for. Four rows or more now render tighter, and the vertical stack starts 40 px higher.
+- `dots`, `normal` and `plot` were fine, but they clip or crowd rather than wrap, which the README claimed only for rows. The docs now separate the two failure modes, because the still review is the only thing catching either.
+
+Open point: nobody has listened to the reel narration yet.
+
+## Whole exam batch: PAU Madrid Junio 2026, Preguntas 2 to 5.2, 2026-09-15
+
+The six remaining questions of `tools/junio-2026.pdf` were produced in one pass. Three forked agents wrote two `exercise.json` each in parallel (editing only their own exercise folders) and reviewed their stills; the main session verified all results independently before that, spot-checked stills, then ran the new `scripts/batch.mjs` (tts, build-props, render, youtube per slug) detached with `nohup`, since a full exam exceeds the 10-minute limit of a background shell command.
+
+| Slug | Scenes | Chars | Length |
+|---|---|---|---|
+| pau-madrid-matematicas-ii-2026-junio-pregunta-2-optimizacion-jardin | 11 | 2,931 | 3:19 |
+| pau-madrid-matematicas-ii-2026-junio-pregunta-3-simetrico-plano-recta | 13 | 3,440 | 4:06 |
+| pau-madrid-matematicas-ii-2026-junio-pregunta-4-1-normal-binomial-baterias | 12 | 2,864 | 3:18 |
+| pau-madrid-matematicas-ii-2026-junio-pregunta-4-2-probabilidad-condicionada | 11 | 2,584 | 2:53 |
+| pau-madrid-matematicas-ii-2026-junio-pregunta-5-1-area-logaritmo | 8 | 1,872 | 2:20 |
+| pau-madrid-matematicas-ii-2026-junio-pregunta-5-2-continuidad-derivabilidad-tangente | 12 | 3,054 | 3:33 |
+
+Total about 16,700 credits, 18 minutes of batch time, all six with the cloned voice and full caption alignment. No errors found in the PDF solutions. Pregunta 3 covers a, b1 and b2 and says the student answers only one of b1/b2. Pregunta 2 adds the minimum cost (47,040 EUR), which the PDF does not state.
+
+Thumbnail fix: long formulas made the formula box grow leftwards over the title. The box is now capped at 560 px and the formula shrinks by length.

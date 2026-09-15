@@ -1,45 +1,52 @@
 import React from "react";
 import { useCurrentFrame, interpolate } from "remotion";
 import { COLORS, FONT_UI, color } from "./theme";
+import { useLayout } from "./layout";
 import { Tex, RevealUp, usePop } from "./math";
-import { ResultBadge, ChipRow } from "./ui";
+import { ResultBadge, ChipRow, Highlighted } from "./ui";
 import type { Body, Row } from "./types";
 
 // Reveal schedule: first element appears at START, then STEP frames per element.
 const START = 6;
 const STEP = 12;
 
+// Centres its children inside the layout's content box. On vertical frames that
+// box stops short of the right edge, where the apps draw their button column.
 const CenterStack: React.FC<{ top?: number; bottom?: number; gap?: number; children: React.ReactNode }> = ({
-  top = 300,
-  bottom = 250,
+  top,
+  bottom,
   gap = 36,
   children,
-}) => (
-  <div
-    style={{
-      position: "absolute",
-      top,
-      bottom,
-      left: 0,
-      right: 0,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      gap,
-    }}
-  >
-    {children}
-  </div>
-);
+}) => {
+  const l = useLayout();
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: top ?? l.stackTop,
+        bottom: bottom ?? l.stackBottom,
+        left: l.contentLeft,
+        right: l.contentRight,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 // One content row: optional label + tex or text.
 const RowView: React.FC<{ row: Row; delay: number; defaultSize?: number }> = ({ row, delay, defaultSize = 56 }) => {
+  const l = useLayout();
   const c = color(row.color, COLORS.ink);
   const size = row.size ?? defaultSize;
   return (
     <RevealUp delay={delay} distance={18}>
-      <div style={{ display: "flex", alignItems: "center", gap: 28, fontFamily: FONT_UI }}>
+      <div style={{ display: "flex", alignItems: "center", gap: l.vertical ? 18 : 28, fontFamily: FONT_UI }}>
         {row.label ? (
           <span
             style={{
@@ -49,7 +56,7 @@ const RowView: React.FC<{ row: Row; delay: number; defaultSize?: number }> = ({ 
               // Uppercasing would turn Greek letters such as λ into Λ.
               textTransform: /^[\x00-\x7F]*$/.test(row.label) ? "uppercase" : "none",
               color: COLORS.muted,
-              minWidth: 150,
+              minWidth: l.vertical ? 90 : 150,
               textAlign: "right",
             }}
           >
@@ -59,7 +66,7 @@ const RowView: React.FC<{ row: Row; delay: number; defaultSize?: number }> = ({ 
         {row.tex ? (
           <Tex tex={row.tex} display={false} size={size} color={c} />
         ) : (
-          <span style={{ fontSize: size * 0.8, fontWeight: 700, color: c, maxWidth: 1400, textAlign: "center" }}>
+          <span style={{ fontSize: size * 0.8, fontWeight: 700, color: c, maxWidth: l.contentWidth, textAlign: "center" }}>
             {row.text}
           </span>
         )}
@@ -68,28 +75,15 @@ const RowView: React.FC<{ row: Row; delay: number; defaultSize?: number }> = ({ 
   );
 };
 
-// *highlight* markup in hook titles.
-const Highlighted: React.FC<{ text: string }> = ({ text }) => (
-  <>
-    {text.split(/(\*[^*]+\*)/g).map((part, i) =>
-      part.startsWith("*") && part.endsWith("*") ? (
-        <span key={i} style={{ color: COLORS.teal }}>
-          {part.slice(1, -1)}
-        </span>
-      ) : (
-        <React.Fragment key={i}>{part}</React.Fragment>
-      ),
-    )}
-  </>
-);
-
 // ---------------------------------------------------------------------------
-const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body }) => (
+const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body }) => {
+  const l = useLayout();
+  return (
   <div style={{ position: "absolute", inset: 0, fontFamily: FONT_UI }}>
-    <CenterStack top={210} bottom={210} gap={44}>
+    <CenterStack top={l.hookStackTop} bottom={l.hookStackBottom} gap={44}>
       {body.kicker ? (
         <RevealUp delay={2} distance={12}>
-          <span style={{ fontSize: 26, fontWeight: 800, letterSpacing: 3, color: COLORS.tealSoft, textTransform: "uppercase" }}>
+          <span style={{ fontSize: l.hookKickerSize, fontWeight: 800, letterSpacing: 3, color: COLORS.tealSoft, textTransform: "uppercase", textAlign: "center", display: "block" }}>
             {body.kicker}
           </span>
         </RevealUp>
@@ -97,11 +91,11 @@ const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body })
       <RevealUp delay={6} distance={20}>
         <div
           style={{
-            fontSize: 70,
+            fontSize: l.hookTitleSize,
             fontWeight: 800,
             color: COLORS.ink,
             textAlign: "center",
-            maxWidth: 1500,
+            maxWidth: l.vertical ? l.contentWidth : 1500,
             lineHeight: 1.06,
             letterSpacing: -0.8,
             whiteSpace: "pre-line",
@@ -114,7 +108,7 @@ const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body })
         <RevealUp delay={22} distance={24}>
           <div
             style={{
-              padding: "18px 48px",
+              padding: l.vertical ? "16px 28px" : "18px 48px",
               borderRadius: 26,
               background: COLORS.panel,
               border: `1.5px solid ${COLORS.panelStroke}`,
@@ -128,17 +122,20 @@ const HookBody: React.FC<{ body: Extract<Body, { type: "hook" }> }> = ({ body })
       <ChipRow chips={body.chips} delay={34} />
     </CenterStack>
   </div>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 const RowsBody: React.FC<{ body: Extract<Body, { type: "rows" }> }> = ({ body }) => {
+  const l = useLayout();
   const n = body.rows.length;
   // Density: rows plus the space a badge / chip row takes. Dense scenes shrink so nothing touches the heading.
   // Rows with a cases block or a matrix of 3+ rows take about three lines of height.
   const tall = body.rows.filter((r) => r.tex && (r.tex.includes("\\begin{cases}") || (r.tex.includes("matrix}") && (r.tex.match(/\\\\/g) ?? []).length >= 2))).length;
   const density = n + tall * 2 + (body.badge ? 2 : 0) + (body.chips?.length ? 1 : 0);
   const scale = density >= 6 ? 0.8 : density >= 5 ? 0.88 : 1;
-  const defaultSize = (n >= 5 ? 44 : n === 4 ? 50 : 58) * scale;
+  const base = l.vertical ? (n >= 5 ? 40 : n === 4 ? 46 : 54) : n >= 5 ? 44 : n === 4 ? 50 : 58;
+  const defaultSize = base * scale;
   return (
     <CenterStack gap={density >= 5 ? 18 : n >= 4 ? 26 : 34}>
       {body.rows.map((row, i) => (
@@ -206,8 +203,9 @@ const DotsBody: React.FC<{ body: Extract<Body, { type: "dots" }> }> = ({ body })
 // ---------------------------------------------------------------------------
 // Normal curve with a shaded tail. The visual argument for "this is rare".
 const NormalBody: React.FC<{ body: Extract<Body, { type: "normal" }> }> = ({ body }) => {
+  const l = useLayout();
   const frame = useCurrentFrame();
-  const W = 1300;
+  const W = l.graphWidth;
   const H = 400;
   const pad = 60;
   const x0 = body.mu - 4 * body.sigma;
@@ -241,7 +239,7 @@ const NormalBody: React.FC<{ body: Extract<Body, { type: "normal" }> }> = ({ bod
   const areaLabelX = body.tail === "right" ? Math.min(cutX + 150, W - pad - 40) : Math.max(cutX - 150, pad + 40);
 
   return (
-    <CenterStack gap={22} top={290}>
+    <CenterStack gap={22} top={l.graphStackTop}>
       {body.lead ? <RowView row={body.lead} delay={START} defaultSize={50} /> : null}
       <RevealUp delay={START + 4} distance={16}>
         <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ overflow: "visible", fontFamily: FONT_UI }}>
@@ -273,11 +271,16 @@ const NormalBody: React.FC<{ body: Extract<Body, { type: "normal" }> }> = ({ bod
 // ---------------------------------------------------------------------------
 // Sign table: columns reveal left to right.
 const TableBody: React.FC<{ body: Extract<Body, { type: "table" }> }> = ({ body }) => {
+  const l = useLayout();
   const cols = body.columns.length;
-  const cellW = Math.min(200, Math.floor(1480 / cols));
+  const cellW = Math.min(200, Math.floor(l.tableWidth / cols));
+  // Narrow cells need smaller type, or a long header wraps into three lines.
+  const tight = cellW / 200;
+  const headSize = l.vertical ? Math.max(17, Math.round(26 * tight)) : 26;
+  const cellSize = l.vertical ? Math.max(22, Math.round(34 * tight)) : 34;
   const cellStyle: React.CSSProperties = {
     width: cellW,
-    height: 86,
+    height: l.vertical ? Math.max(66, Math.round(86 * tight)) : 86,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -290,7 +293,7 @@ const TableBody: React.FC<{ body: Extract<Body, { type: "table" }> }> = ({ body 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: `150px repeat(${cols}, ${cellW}px)`,
+            gridTemplateColumns: `${l.tableLabelWidth}px repeat(${cols}, ${cellW}px)`,
             borderRadius: 22,
             overflow: "hidden",
             background: COLORS.panel,
@@ -298,18 +301,18 @@ const TableBody: React.FC<{ body: Extract<Body, { type: "table" }> }> = ({ body 
             fontFamily: FONT_UI,
           }}
         >
-          <div style={{ ...cellStyle, width: 150, borderLeft: "none", borderBottom: `1px solid ${COLORS.panelStroke}` }} />
+          <div style={{ ...cellStyle, width: l.tableLabelWidth, borderLeft: "none", borderBottom: `1px solid ${COLORS.panelStroke}` }} />
           {body.columns.map((c, i) => (
             <div key={i} style={{ ...cellStyle, borderBottom: `1px solid ${COLORS.panelStroke}` }}>
               <RevealUp delay={START + 10 + i * 6} distance={8}>
-                <Tex tex={c} display={false} size={26} color={COLORS.inkSoft} />
+                <Tex tex={c} display={false} size={headSize} color={COLORS.inkSoft} />
               </RevealUp>
             </div>
           ))}
           {body.rows.map((row, r) => (
             <React.Fragment key={r}>
-              <div style={{ ...cellStyle, width: 150, borderLeft: "none", borderTop: r > 0 ? `1px solid ${COLORS.panelStroke}` : "none" }}>
-                <Tex tex={row.label} display={false} size={34} color={COLORS.ink} />
+              <div style={{ ...cellStyle, width: l.tableLabelWidth, borderLeft: "none", borderTop: r > 0 ? `1px solid ${COLORS.panelStroke}` : "none" }}>
+                <Tex tex={row.label} display={false} size={cellSize} color={COLORS.ink} />
               </div>
               {row.cells.map((cell, i) => {
                 const c = color(cell.color, COLORS.ink);
@@ -317,9 +320,9 @@ const TableBody: React.FC<{ body: Extract<Body, { type: "table" }> }> = ({ body 
                   <div key={i} style={{ ...cellStyle, borderTop: r > 0 ? `1px solid ${COLORS.panelStroke}` : "none" }}>
                     <RevealUp delay={START + 24 + r * 8 + i * 9} distance={10}>
                       {cell.tex ? (
-                        <Tex tex={cell.tex} display={false} size={34} color={c} />
+                        <Tex tex={cell.tex} display={false} size={cellSize} color={c} />
                       ) : (
-                        <span style={{ fontSize: 36, fontWeight: 800, color: c }}>{cell.text}</span>
+                        <span style={{ fontSize: cellSize + 2, fontWeight: 800, color: c }}>{cell.text}</span>
                       )}
                     </RevealUp>
                   </div>
@@ -337,8 +340,9 @@ const TableBody: React.FC<{ body: Extract<Body, { type: "table" }> }> = ({ body 
 // ---------------------------------------------------------------------------
 // Function plot: the curve draws itself, then points and shaded area appear.
 const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body }) => {
+  const l = useLayout();
   const frame = useCurrentFrame();
-  const W = 1180;
+  const W = l.plotWidth;
   const H = body.lead ? 330 : body.chips?.length ? 400 : 480;
   const pad = 50;
   // eslint-disable-next-line no-new-func
@@ -371,7 +375,7 @@ const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body })
   const shadeColor = color(body.shade?.color, COLORS.indet);
 
   return (
-    <CenterStack gap={22} top={290}>
+    <CenterStack gap={22} top={l.graphStackTop}>
       {body.lead ? <RowView row={body.lead} delay={START} defaultSize={48} /> : null}
       <RevealUp delay={START + 2} distance={14}>
         <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ overflow: "visible", fontFamily: FONT_UI }}>
@@ -415,8 +419,14 @@ const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body })
 };
 
 // ---------------------------------------------------------------------------
-const SummaryBody: React.FC<{ body: Extract<Body, { type: "summary" }> }> = ({ body }) => (
-  <CenterStack gap={26} top={300} bottom={240}>
+const SummaryBody: React.FC<{ body: Extract<Body, { type: "summary" }> }> = ({ body }) => {
+  const l = useLayout();
+  // On a vertical frame each row stacks its label over its value, so four rows
+  // plus a closing line no longer fit at full size: tighten them instead of
+  // letting the stack grow into the heading and the captions.
+  const dense = l.vertical && body.rows.length + (body.closing ? 1 : 0) >= 4;
+  return (
+  <CenterStack gap={dense ? 16 : 26} top={l.vertical ? l.stackTop : 300} bottom={l.vertical ? l.stackBottom : 240}>
     {body.rows.map((r, i) => {
       const c = color(r.color);
       return (
@@ -425,34 +435,96 @@ const SummaryBody: React.FC<{ body: Extract<Body, { type: "summary" }> }> = ({ b
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 34,
-              padding: "16px 36px",
+              gap: l.vertical ? (dense ? 6 : 12) : 34,
+              padding: l.vertical ? (dense ? "12px 28px" : "16px 30px") : "16px 36px",
               borderRadius: 20,
               background: `${c}12`,
               border: `2px solid ${c}55`,
-              minWidth: 1100,
+              minWidth: l.summaryWidth,
+              ...(l.vertical ? { maxWidth: l.summaryWidth, boxSizing: "border-box" as const, flexDirection: "column" as const } : {}),
               fontFamily: FONT_UI,
             }}
           >
-            <span style={{ fontSize: 30, fontWeight: 800, color: c, minWidth: 420 }}>{r.label}</span>
+            <span style={{ fontSize: dense ? 26 : 30, fontWeight: 800, color: c, minWidth: l.vertical ? 0 : l.summaryLabelWidth }}>{r.label}</span>
             {r.tex ? (
-              <Tex tex={r.tex} display={false} size={44} color={COLORS.ink} />
+              <Tex tex={r.tex} display={false} size={l.vertical ? (dense ? 32 : 38) : 44} color={COLORS.ink} />
             ) : (
-              <span style={{ fontSize: 36, fontWeight: 700, color: COLORS.ink }}>{r.text}</span>
+              <span style={{ fontSize: dense ? 30 : 36, fontWeight: 700, color: COLORS.ink }}>{r.text}</span>
             )}
           </div>
         </RevealUp>
       );
     })}
     {body.closing ? (
-      <RevealUp delay={START + body.rows.length * 16 + 10} distance={14} style={{ marginTop: 10 }}>
-        <span style={{ fontFamily: FONT_UI, fontSize: 38, fontWeight: 700, color: COLORS.tealSoft, textAlign: "center" }}>
+      <RevealUp delay={START + body.rows.length * 16 + 10} distance={14} style={{ marginTop: dense ? 2 : 10 }}>
+        <span style={{ fontFamily: FONT_UI, fontSize: dense ? 32 : 38, fontWeight: 700, color: COLORS.tealSoft, textAlign: "center", ...(l.vertical ? { display: "block", maxWidth: l.summaryWidth } : {}) }}>
           {body.closing}
         </span>
       </RevealUp>
     ) : null}
   </CenterStack>
-);
+  );
+};
+
+// ---------------------------------------------------------------------------
+// Closing call to action. Ends a reel: one headline, the formula that was
+// solved, and where the full solution lives.
+const CtaBody: React.FC<{ body: Extract<Body, { type: "cta" }> }> = ({ body }) => {
+  const l = useLayout();
+  return (
+    <CenterStack top={l.vertical ? 300 : 240} bottom={l.vertical ? 900 : 240} gap={l.vertical ? 34 : 40}>
+      <RevealUp delay={2} distance={18}>
+        <div
+          style={{
+            fontFamily: FONT_UI,
+            fontSize: l.vertical ? 72 : 84,
+            fontWeight: 900,
+            color: COLORS.ink,
+            textAlign: "center",
+            maxWidth: l.vertical ? l.contentWidth : 1400,
+            lineHeight: 1.05,
+            letterSpacing: -1,
+            whiteSpace: "pre-line",
+          }}
+        >
+          <Highlighted text={body.headline} />
+        </div>
+      </RevealUp>
+      {body.tex ? (
+        <RevealUp delay={14} distance={18}>
+          <div
+            style={{
+              padding: l.vertical ? "16px 30px" : "18px 44px",
+              borderRadius: 26,
+              background: COLORS.panel,
+              border: `1.5px solid ${COLORS.panelStroke}`,
+              boxShadow: `0 0 60px ${COLORS.solved}33`,
+            }}
+          >
+            <Tex tex={body.tex} size={l.vertical ? 58 : 76} color={COLORS.solved} />
+          </div>
+        </RevealUp>
+      ) : null}
+      {(body.lines ?? []).map((line, i) => (
+        <RevealUp key={i} delay={26 + i * 12} distance={14}>
+          <div
+            style={{
+              fontFamily: FONT_UI,
+              fontSize: i === 0 ? (l.vertical ? 46 : 52) : l.vertical ? 36 : 40,
+              fontWeight: 800,
+              color: i === 0 ? COLORS.tealSoft : COLORS.inkSoft,
+              textAlign: "center",
+              maxWidth: l.contentWidth,
+              lineHeight: 1.2,
+            }}
+          >
+            {line}
+          </div>
+        </RevealUp>
+      ))}
+    </CenterStack>
+  );
+};
 
 // ---------------------------------------------------------------------------
 export const SceneBody: React.FC<{ body: Body }> = ({ body }) => {
@@ -471,6 +543,8 @@ export const SceneBody: React.FC<{ body: Body }> = ({ body }) => {
       return <PlotBody body={body} />;
     case "summary":
       return <SummaryBody body={body} />;
+    case "cta":
+      return <CtaBody body={body} />;
     default:
       return null;
   }

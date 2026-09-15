@@ -67,7 +67,13 @@ export type Body =
       lead?: Row;
       chips?: Chip[];
     }
-  | { type: "summary"; rows: SummaryRow[]; closing?: string };
+  | { type: "summary"; rows: SummaryRow[]; closing?: string }
+  | {
+      type: "cta"; // closing call to action, used to end a reel
+      headline: string; // wrap a fragment in *asterisks* to highlight it
+      lines?: string[]; // secondary lines under the headline
+      tex?: string;
+    };
 
 export type SceneDef = {
   id: string;
@@ -77,6 +83,15 @@ export type SceneDef = {
   captions?: string[]; // one per narration sentence; defaults to the sentences
   tail?: number; // seconds of breathing room after the narration
   body: Body;
+};
+
+// Vertical short video (Instagram / TikTok reel) built from the same exercise.
+// Its scenes are ordinary scenes; only the frame shape and the layout change.
+export type Reel = {
+  title: string; // internal name of the reel
+  caption: string; // text of the Instagram / TikTok post, hashtags included
+  cover: { kicker: string; line1: string; line2: string; tex?: string; badge?: string };
+  scenes: SceneDef[];
 };
 
 export type Exercise = {
@@ -96,6 +111,7 @@ export type Exercise = {
     thumbnail: { kicker: string; line1: string; line2: string; tex?: string; badge?: string };
   };
   scenes: SceneDef[];
+  reel?: Reel;
 };
 
 export type SceneTiming = {
@@ -107,6 +123,9 @@ export type SceneTiming = {
 
 export type VideoProps = Exercise & {
   timing: { scenes: SceneTiming[] };
+  // Folder of the narration MP3s under public/exercises/<slug>/. The reel uses
+  // "audio/reel" so it never collides with the long video's audio.
+  audioPath?: string;
 };
 
 export type TimedScene = SceneDef & {

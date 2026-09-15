@@ -1,12 +1,14 @@
 // Merge exercise.json with measured audio durations and caption start times into props.json.
-//   node scripts/build-props.mjs <slug>
+//   node scripts/build-props.mjs <slug> [--reel]
+// --reel reads the "reel" scenes and writes props.reel.json.
 import fs from "node:fs";
 import path from "node:path";
-import { loadExercise, audioDir, propsPath, audioDuration, splitSentences, stripTags } from "./lib.mjs";
+import { loadExercise, audioDir, audioPathProp, propsPath, audioDuration, splitSentences, stripTags, cli, scenesOf } from "./lib.mjs";
 
-const slug = process.argv[2];
+const { slug, reel } = cli();
 const exercise = loadExercise(slug);
-const dir = audioDir(slug);
+const sceneDefs = scenesOf(exercise, reel);
+const dir = audioDir(slug, reel);
 
 // Start time (s) of each caption, by locating each narration sentence in the alignment text.
 const captionStarts = (scene, alignment) => {
@@ -28,7 +30,7 @@ const captionStarts = (scene, alignment) => {
   return starts;
 };
 
-const scenes = exercise.scenes.map((scene) => {
+const scenes = sceneDefs.map((scene) => {
   const mp3 = path.join(dir, `${scene.id}.mp3`);
   if (!fs.existsSync(mp3)) {
     console.log(`no audio for ${scene.id}; estimating duration`);
@@ -41,7 +43,9 @@ const scenes = exercise.scenes.map((scene) => {
   return { id: scene.id, hasAudio: true, durSec: Number(audioDuration(mp3).toFixed(3)), captionStarts: starts };
 });
 
-const props = { ...exercise, timing: { scenes } };
-fs.writeFileSync(propsPath(slug), JSON.stringify(props, null, 2));
-const total = scenes.reduce((s, t) => s + t.durSec + (exercise.scenes.find((x) => x.id === t.id).tail ?? 0.4), 0);
-console.log(`wrote ${path.relative(process.cwd(), propsPath(slug))}; video length about ${Math.floor(total / 60)}:${String(Math.round(total % 60)).padStart(2, "0")}`);
+// The reel renders through the same components, so its scenes become "scenes".
+const props = { ...exercise, scenes: sceneDefs, audioPath: audioPathProp(reel), timing: { scenes } };
+fs.writeFileSync(propsPath(slug, reel), JSON.stringify(props, null, 2));
+const total = scenes.reduce((s, t) => s + t.durSec + (sceneDefs.find((x) => x.id === t.id).tail ?? 0.4), 0);
+console.log(`wrote ${path.relative(process.cwd(), propsPath(slug, reel))}; ${reel ? "reel" : "video"} length about ${Math.floor(total / 60)}:${String(Math.round(total % 60)).padStart(2, "0")}`);
+if (reel && (total < 30 || total > 60)) console.log(`aviso: un reel deberia durar de 30 a 60 segundos, dura ${total.toFixed(1)}`);

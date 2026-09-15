@@ -2,8 +2,9 @@ import React from "react";
 import { Composition } from "remotion";
 import { ExamVideo } from "./Video";
 import { Thumbnail } from "./Thumbnail";
+import { ReelCover } from "./ReelCover";
 import { buildTimeline, totalFrames } from "./timeline";
-import { FPS, WIDTH, HEIGHT } from "./theme";
+import { FPS, WIDTH, HEIGHT, REEL_WIDTH, REEL_HEIGHT } from "./theme";
 import type { VideoProps } from "./types";
 
 // Placeholder shown in the studio when no --props file is given.
@@ -35,12 +36,33 @@ export const RemotionRoot: React.FC = () => (
     durationInFrames={1}
   />
   <Composition
+    id="ReelCover"
+    component={ReelCover}
+    defaultProps={DEMO}
+    fps={FPS}
+    width={REEL_WIDTH}
+    height={REEL_HEIGHT}
+    durationInFrames={1}
+  />
+  <Composition
     id="ExamVideo"
     component={ExamVideo}
     defaultProps={DEMO}
     fps={FPS}
     width={WIDTH}
     height={HEIGHT}
+    durationInFrames={totalFrames(buildTimeline(DEMO))}
+    calculateMetadata={({ props }) => ({
+      durationInFrames: totalFrames(buildTimeline(props)),
+    })}
+  />
+  <Composition
+    id="ExamReel"
+    component={ExamVideo}
+    defaultProps={DEMO}
+    fps={FPS}
+    width={REEL_WIDTH}
+    height={REEL_HEIGHT}
     durationInFrames={totalFrames(buildTimeline(DEMO))}
     calculateMetadata={({ props }) => ({
       durationInFrames: totalFrames(buildTimeline(props)),

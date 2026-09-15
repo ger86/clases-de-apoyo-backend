@@ -1,16 +1,27 @@
-// Build the YouTube package: title/description/tags (youtube.md), Spanish subtitles (.srt) and a thumbnail PNG.
-//   node scripts/youtube.mjs <slug>
+// Build the publishing package.
+//   node scripts/youtube.mjs <slug>          -> youtube.md, <slug>.es.srt, thumbnail.png (1280x720)
+//   node scripts/youtube.mjs <slug> --reel   -> reel.md, <slug>-reel.es.srt, cover.png (1080x1920)
+// Text is re-read from exercise.json on every run, so edits need no props rebuild.
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { ROOT, propsPath, splitSentences, loadExercise } from "./lib.mjs";
+import { ROOT, propsPath, outputDir, splitSentences, loadExercise, scenesOf, cli } from "./lib.mjs";
 
-const slug = process.argv[2];
+const { slug, reel } = cli();
 const exercise = loadExercise(slug);
-const props = { ...JSON.parse(fs.readFileSync(propsPath(slug), "utf8")), exam: exercise.exam, youtube: exercise.youtube };
-fs.writeFileSync(propsPath(slug), JSON.stringify(props, null, 2));
-if (!props.youtube) throw new Error('exercise.json has no "youtube" section');
-const outDir = path.join(ROOT, "output", slug);
+const file = propsPath(slug, reel);
+if (!fs.existsSync(file)) throw new Error(`Run build-props first: ${file} is missing`);
+const props = {
+  ...JSON.parse(fs.readFileSync(file, "utf8")),
+  exam: exercise.exam,
+  youtube: exercise.youtube,
+  reel: exercise.reel,
+  scenes: scenesOf(exercise, reel),
+};
+fs.writeFileSync(file, JSON.stringify(props, null, 2));
+const meta = reel ? props.reel : props.youtube;
+if (!meta) throw new Error(`exercise.json has no "${reel ? "reel" : "youtube"}" section`);
+const outDir = outputDir(slug, reel);
 fs.mkdirSync(outDir, { recursive: true });
 
 const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
@@ -41,14 +52,21 @@ for (const scene of props.scenes) {
   from += t.durSec + (scene.tail ?? 0.4);
 }
 
+const srtName = reel ? `${slug}-reel.es.srt` : `${slug}.es.srt`;
 const srt = cues.map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`).join("\n");
-fs.writeFileSync(path.join(outDir, `${slug}.es.srt`), srt);
+fs.writeFileSync(path.join(outDir, srtName), srt);
 
-const yt = props.youtube;
-const description = `${yt.description.trim()}\n\nCapítulos:\n${chapters.join("\n")}\n`;
-const md = `# YouTube: ${slug}\n\n## Título (${yt.title.length}/100 caracteres)\n\n${yt.title}\n\n## Descripción\n\n${description}\n## Etiquetas\n\n${yt.tags.join(", ")}\n\n## Ficheros\n\n- Vídeo: ${slug}.mp4\n- Miniatura: thumbnail.png (1280x720)\n- Subtítulos en español: ${slug}.es.srt (subir en YouTube Studio > Subtítulos)\n- Duración: ${mmss(from)}\n`;
-fs.writeFileSync(path.join(outDir, "youtube.md"), md);
+if (reel) {
+  const md = `# Reel: ${slug}\n\n## Título interno\n\n${meta.title}\n\n## Texto de la publicación (${meta.caption.length} caracteres)\n\n${meta.caption.trim()}\n\n## Ficheros\n\n- Vídeo vertical: ${slug}-reel.mp4 (1080x1920, 30 fps)\n- Portada: cover.png (1080x1920)\n- Subtítulos en español: ${srtName} (para quemar o subir donde se admitan)\n- Duración: ${mmss(from)}\n`;
+  fs.writeFileSync(path.join(outDir, "reel.md"), md);
+} else {
+  const description = `${meta.description.trim()}\n\nCapítulos:\n${chapters.join("\n")}\n`;
+  const md = `# YouTube: ${slug}\n\n## Título (${meta.title.length}/100 caracteres)\n\n${meta.title}\n\n## Descripción\n\n${description}\n## Etiquetas\n\n${meta.tags.join(", ")}\n\n## Ficheros\n\n- Vídeo: ${slug}.mp4\n- Miniatura: thumbnail.png (1280x720)\n- Subtítulos en español: ${slug}.es.srt (subir en YouTube Studio > Subtítulos)\n- Duración: ${mmss(from)}\n`;
+  fs.writeFileSync(path.join(outDir, "youtube.md"), md);
+}
 
-const r = spawnSync("npx", ["remotion", "still", "Thumbnail", path.join(outDir, "thumbnail.png"), `--props=${propsPath(slug)}`, "--image-format=png"], { cwd: ROOT, stdio: "inherit" });
+const imageId = reel ? "ReelCover" : "Thumbnail";
+const imageName = reel ? "cover.png" : "thumbnail.png";
+const r = spawnSync("npx", ["remotion", "still", imageId, path.join(outDir, imageName), `--props=${file}`, "--image-format=png"], { cwd: ROOT, stdio: "inherit" });
 if (r.status !== 0) process.exit(r.status ?? 1);
-console.log(`wrote ${path.relative(process.cwd(), outDir)}/{youtube.md, ${slug}.es.srt, thumbnail.png}`);
+console.log(`wrote ${path.relative(process.cwd(), outDir)}/{${reel ? "reel.md" : "youtube.md"}, ${srtName}, ${imageName}}`);
