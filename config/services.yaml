@@ -12,6 +12,19 @@ parameters:
     app.stripe.secret_key: "%env(resolve:STRIPE_SECRET_KEY)%"
     app.stripe.webhook_secret: "%env(resolve:STRIPE_WEBHOOK_SECRET)%"
     app.product_download_presigned_ttl: "+10 minutes"
+    app.api.gating_enabled: "%env(bool:APP_API_GATING_ENABLED)%"
+    app.mobile.min_supported_version: "%env(resolve:MOBILE_MIN_SUPPORTED_VERSION)%"
+    app.mobile.store_url: "%env(resolve:MOBILE_STORE_URL)%"
+    app.legal.terms_url: "%env(resolve:LEGAL_TERMS_URL)%"
+    app.legal.privacy_url: "%env(resolve:LEGAL_PRIVACY_URL)%"
+    app.apple.bundle_id: "%env(resolve:APPLE_BUNDLE_ID)%"
+    app.apple.environment: "%env(resolve:APPLE_ENVIRONMENT)%"
+    app.apple.issuer_id: "%env(resolve:APPLE_ISSUER_ID)%"
+    app.apple.key_id: "%env(resolve:APPLE_KEY_ID)%"
+    app.apple.private_key_path: "%env(resolve:APPLE_PRIVATE_KEY_PATH)%"
+    app.apple.root_certificate_path: "%kernel.project_dir%/config/apple/AppleRootCA-G3.cer"
+    app.apple.monthly_product_id: "%env(resolve:APPLE_MONTHLY_PRODUCT_ID)%"
+    app.apple.yearly_product_id: "%env(resolve:APPLE_YEARLY_PRODUCT_ID)%"
 
 imports:
     - { resource: "services/admin.yaml" }

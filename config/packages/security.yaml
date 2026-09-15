@@ -17,6 +17,14 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: true
+        api:
+            pattern: ^/api/
+            stateless: true
+            lazy: true
+            provider: app_user_provider
+            custom_authenticators:
+                - App\Security\ApiTokenAuthenticator
+            entry_point: App\Security\ApiTokenAuthenticator
         main:
             pattern: ^/
             form_login:
@@ -33,6 +41,7 @@ security:
     access_control:
         - { path: /_wdt/.*, role: PUBLIC_ACCESS }
         - { path: /_profiler/.*, role: PUBLIC_ACCESS }
+        - { path: ^/api/, role: PUBLIC_ACCESS }
         - { path: ^/login$, role: PUBLIC_ACCESS }
         - { path: ^/register, role: PUBLIC_ACCESS }
         - { path: ^/resetting, role: PUBLIC_ACCESS }

@@ -20,6 +20,16 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findOneByAppleOriginalTransactionId(string $originalTransactionId): ?User
+    {
+        return $this->findOneBy(['appleOriginalTransactionId' => $originalTransactionId]);
+    }
+
+    public function findOneByAppleAppAccountToken(string $appAccountToken): ?User
+    {
+        return $this->findOneBy(['appleAppAccountToken' => $appAccountToken]);
+    }
+
     public function findRegisteredButNoPayment()
     {
         return $this->createQueryBuilder('u')

@@ -21,15 +21,15 @@ class File
 
     #[ORM\ManyToOne(targetEntity: SonataMediaMedia::class, cascade: ['all'])]
     #[ORM\JoinColumn(name: 'media_id', referencedColumnName: 'id')]
-    private ?SonataMediaMedia $file;
+    private ?SonataMediaMedia $file = null;
 
     #[ORM\ManyToOne(targetEntity: Chapter::class, inversedBy: 'files')]
     #[ORM\JoinColumn(name: 'chapter_id', referencedColumnName: 'id')]
-    private ?Chapter $chapter;
+    private ?Chapter $chapter = null;
 
     #[ORM\ManyToOne(targetEntity: Exam::class, inversedBy: 'files')]
     #[ORM\JoinColumn(name: 'exam_id', referencedColumnName: 'id')]
-    private ?Exam $exam;
+    private ?Exam $exam = null;
 
     public function __toString()
     {

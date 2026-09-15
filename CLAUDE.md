@@ -45,7 +45,7 @@ Migrations live in [migrations/](migrations/) (top-level, not `src/Migrations/`)
 
 ### Dual delivery: API and web
 
-- API controllers live in [src/Controller/Api/](src/Controller/Api/) and use FOSRestBundle. They are **unauthenticated**.
+- API controllers live in [src/Controller/Api/](src/Controller/Api/) and use FOSRestBundle. Content endpoints stay readable without an account, exactly like the website; account and purchase endpoints require a bearer token. See "Mobile app API" below.
 - Web controllers live directly in [src/Controller/](src/Controller/) and rely on Symfony Security (form login + remember-me sessions). See [config/packages/security.yaml](config/packages/security.yaml) for access rules — `/admin/*` requires `ROLE_ADMIN`, `/usuario/*` requires `ROLE_USER`, everything else is public.
 - Subscription/billing flows are split into single-action controllers under [src/Controller/Subscription/](src/Controller/Subscription/), each backed by a service in [src/Service/Stripe/](src/Service/Stripe/).
 
@@ -68,6 +68,17 @@ Sonata Admin classes in [src/Admin/](src/Admin/) are auto-registered; each wraps
 - Short array syntax; `MethodArgumentSpaceFixer` enforces fully-multiline args when wrapped.
 - `NativeFunctionInvocationFixer` prefixes compiler-optimized built-ins with `\` in namespaced code — let ECS apply this rather than writing it manually.
 - PHPStan runs at level 2 with the Symfony + Doctrine + PHPUnit + strict-rules extensions.
+
+## Mobile app API
+
+The app in `../clases-de-apoyo-app` shares accounts and subscriptions with the website.
+
+- **Auth**: opaque bearer tokens in the `api_token` table, stored as a sha256 hash, 60-day sliding expiry. [src/Security/ApiTokenAuthenticator.php](src/Security/ApiTokenAuthenticator.php) runs on the `api` firewall, which is declared **above** `main` in [config/packages/security.yaml](config/packages/security.yaml) because `main` matches `^/`. A request with no `Authorization` header stays anonymous, so free content is still readable without an account.
+- **Endpoints**: `/api/auth/{register,login,logout,password-reset}`, `/api/me` (GET and DELETE, the latter required by App Store guideline 5.1.1(v)), `/api/app-config`, `/api/apple/transactions`, `/api/apple/notifications`.
+- **Gating**: `GetFileView` and `GetExamTeaserView` ask `PremiumService` the same questions the Twig templates ask, then return a `locked` flag and drop the signed S3 URL. Never reimplement the free/premium rules anywhere else.
+- **`APP_API_GATING_ENABLED`**: leave it off until the new app version is live. Even when it is on, a client that sends no `X-App-Version` header still receives the URL, because app 8.3.0 cannot render a locked file. Those installs are pushed to update through `MOBILE_MIN_SUPPORTED_VERSION` and `MOBILE_STORE_URL`, both served by `/api/app-config`.
+- **Apple**: [src/Service/Apple/](src/Service/Apple/) verifies transactions and App Store Server Notifications V2 with `readdle/app-store-server-api` against the root certificate in `config/apple/`. A purchase is tied to an account through `appAccountToken`, a UUID the app passes to StoreKit. Renewals only arrive through the notifications endpoint, so it is as important as the Stripe webhook.
+- **Provider guard**: `User::grantPremiumUntil()` records whether Stripe or Apple paid, and one provider never shortens access the other granted.
 
 ## Frontend assets
 

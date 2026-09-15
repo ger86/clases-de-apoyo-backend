@@ -10,7 +10,9 @@ readonly class FileView
         public int $id,
         public string $name,
         public ?int $weight,
-        public string $file
+        /** Null when the file is locked and the client is new enough to show a paywall. */
+        public ?string $file,
+        public bool $locked
     ) {
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\PremiumProvider;
 use App\Enum\SubscriptionStatus;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
@@ -36,13 +37,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?DateTimeImmutable $premiumUntil = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $customerId;
+    private ?string $customerId = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $subscriptionId;
+    private ?string $subscriptionId = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $subscriptionStatus;
+    private ?string $subscriptionStatus = null;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $premiumProvider = null;
+
+    #[ORM\Column(type: 'string', length: 64, nullable: true, unique: true)]
+    private ?string $appleOriginalTransactionId = null;
+
+    #[ORM\Column(type: 'string', length: 36, nullable: true, unique: true)]
+    private ?string $appleAppAccountToken = null;
+
+    #[ORM\Column(type: 'string', length: 40, nullable: true)]
+    private ?string $appleSubscriptionStatus = null;
 
     /** @var Collection<int,PremiumPayment> */
     #[ORM\OneToMany(targetEntity: PremiumPayment::class, mappedBy: 'user', cascade: ['all'])]
@@ -267,7 +280,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         $premiumUntil = DateTimeImmutable::createFromFormat('U', (string) $line->period->end);
         if ($premiumUntil !== false) {
-            $this->premiumUntil = $premiumUntil->modify('+6 hours');
+            $this->grantPremiumUntil($premiumUntil->modify('+6 hours'), PremiumProvider::STRIPE);
         }
 
         $subscriptionItemId = $lineData['parent']['subscription_item_details']['subscription_item'] ?? null;
@@ -303,6 +316,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isSubscriptionActive(): bool
     {
         return $this->subscriptionStatus === SubscriptionStatus::ACTIVE;
+    }
+
+    public function getPremiumProvider(): ?string
+    {
+        return $this->premiumProvider;
+    }
+
+    public function setPremiumProvider(?string $premiumProvider): self
+    {
+        $this->premiumProvider = $premiumProvider;
+
+        return $this;
+    }
+
+    public function getAppleOriginalTransactionId(): ?string
+    {
+        return $this->appleOriginalTransactionId;
+    }
+
+    public function setAppleOriginalTransactionId(?string $appleOriginalTransactionId): self
+    {
+        $this->appleOriginalTransactionId = $appleOriginalTransactionId;
+
+        return $this;
+    }
+
+    public function getAppleAppAccountToken(): ?string
+    {
+        return $this->appleAppAccountToken;
+    }
+
+    public function setAppleAppAccountToken(?string $appleAppAccountToken): self
+    {
+        $this->appleAppAccountToken = $appleAppAccountToken;
+
+        return $this;
+    }
+
+    public function getAppleSubscriptionStatus(): ?string
+    {
+        return $this->appleSubscriptionStatus;
+    }
+
+    public function setAppleSubscriptionStatus(?string $appleSubscriptionStatus): self
+    {
+        $this->appleSubscriptionStatus = $appleSubscriptionStatus;
+
+        return $this;
+    }
+
+    /**
+     * Extends premium access and records which payment provider owns it.
+     *
+     * A provider never shortens access that another provider granted, so a user who
+     * subscribes on the web and on the App Store keeps the longest of the two.
+     * Returns false when the call was ignored for that reason.
+     */
+    public function grantPremiumUntil(DateTimeImmutable $premiumUntil, string $provider): bool
+    {
+        $currentProvider = $this->premiumProvider;
+        $isOwnedByAnotherProvider = $currentProvider !== null && $currentProvider !== $provider;
+
+        if ($isOwnedByAnotherProvider && $this->isPremium() && $premiumUntil < $this->premiumUntil) {
+            return false;
+        }
+
+        $this->premiumUntil = $premiumUntil;
+        $this->premiumProvider = $provider;
+
+        return true;
+    }
+
+    /**
+     * Ends premium access, but only when the given provider is the one that granted it.
+     * Used for refunds and revocations, where access must stop immediately.
+     */
+    public function revokePremium(string $provider): bool
+    {
+        if ($this->premiumProvider !== null && $this->premiumProvider !== $provider) {
+            return false;
+        }
+
+        $this->premiumUntil = new DateTimeImmutable();
+        $this->premiumProvider = $provider;
+
+        return true;
     }
 
     public function __toString()

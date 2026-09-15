@@ -49,6 +49,7 @@ class UserAdmin extends AbstractAdmin
             ->add('subscriptionId', TextType::class, ['label' => 'Id Suscripción', 'required' => false])
             ->add('subscriptionStatus', TextType::class, ['label' => 'Estado Suscripción', 'required' => false])
             ->add('customerId', TextType::class, ['label' => 'Id Customer', 'required' => false])
+            ->add('premiumProvider', TextType::class, ['label' => 'Premium pagado con', 'required' => false])
             ->end();
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             $roles = [];
@@ -72,7 +73,8 @@ class UserAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('email')
-            ->add('isVerified');
+            ->add('isVerified')
+            ->add('premiumProvider');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -98,6 +100,12 @@ class UserAdmin extends AbstractAdmin
             ->add('email', null, ['label' => 'Email'])
             ->add('roles', null, ['label' => 'Roles'])
             ->add('isVerified', null, ['label' => 'Activado'])
+            ->add('premiumUntil', null, ['label' => 'Premium hasta'])
+            ->add('premiumProvider', null, ['label' => 'Premium pagado con'])
+            ->add('subscriptionId', null, ['label' => 'Id Suscripción'])
+            ->add('subscriptionStatus', null, ['label' => 'Estado Suscripción'])
+            ->add('appleOriginalTransactionId', null, ['label' => 'Id compra Apple'])
+            ->add('appleSubscriptionStatus', null, ['label' => 'Estado Apple'])
             ->add('createdAt', null, ['label' => 'Creado'])
             ->add('updatedAt', null, ['label' => 'Actualizado']);
     }

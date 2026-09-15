@@ -116,6 +116,15 @@ services:
             - ~
             - App\Entity\TestYear
             - ~
+    sonata.admin.apple_notification:
+        public: true
+        class: App\Admin\AppleNotificationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_users, label: "Notificaciones de Apple" }
+        arguments:
+            - ~
+            - App\Entity\AppleNotification
+            - ~
     sonata.admin.user:
         public: true
         class: App\Admin\UserAdmin

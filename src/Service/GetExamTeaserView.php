@@ -7,12 +7,16 @@ use App\Model\View\ExamTeaserView;
 
 class GetExamTeaserView
 {
+    public function __construct(private PremiumService $premiumService)
+    {
+    }
 
     public function __invoke(Exam $exam): ExamTeaserView
     {
         return new ExamTeaserView(
-            $exam->getId(),
-            $exam->getName()
+            (int) $exam->getId(),
+            $exam->getName(),
+            !$this->premiumService->canSeeExam($exam)
         );
     }
 }
