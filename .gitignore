@@ -29,3 +29,4 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+/config/apple/SubscriptionKey_87W5FYQF5C.p8
