@@ -26,7 +26,8 @@ class GetMeView
             $premiumUntil?->format(DateTimeInterface::ATOM),
             $user->getPremiumProvider(),
             $user->getPremiumProvider() === PremiumProvider::APPLE,
-            ($this->ensureAppAccountToken)($user)
+            ($this->ensureAppAccountToken)($user),
+            $user->hasClaimedLegacyAppAccess()
         );
     }
 }

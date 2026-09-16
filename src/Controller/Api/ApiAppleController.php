@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Model\View\ApiErrorView;
 use App\Service\Apple\AppleConfigurationException;
+use App\Service\Apple\ClaimLegacyAppAccess;
 use App\Service\Apple\AppleTransactionException;
 use App\Service\Apple\ProcessAppleNotification;
 use App\Service\Apple\ProcessAppleTransaction;
@@ -11,6 +12,7 @@ use App\Service\GetMeView;
 use App\Service\Security;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Post;
+use DateTimeImmutable;
 use FOS\RestBundle\View\View;
 use Psr\Log\LoggerInterface;
 use Readdle\AppStoreServerAPI\Exception\AppStoreServerNotificationException;
@@ -66,6 +68,49 @@ final class ApiAppleController extends AbstractFOSRestController
             return $this->view(
                 new ApiErrorView('Las compras no están disponibles ahora mismo.', 'apple_not_configured'),
                 Response::HTTP_SERVICE_UNAVAILABLE
+            );
+        }
+
+        return $this->view(($getMeView)($user));
+    }
+
+    /**
+     * Gives the free year to an account whose Apple ID bought the app when it was paid.
+     *
+     * The app reads the original purchase from StoreKit and sends it here. The date is not
+     * verified against Apple, so the only thing this grants is one year on one account.
+     */
+    #[Post(path: '/apple/legacy-access')]
+    #[IsGranted('ROLE_USER')]
+    public function postLegacyAccessAction(
+        Request $request,
+        Security $security,
+        ClaimLegacyAppAccess $claimLegacyAppAccess,
+        GetMeView $getMeView
+    ): View {
+        $user = $security->getSafeUser();
+        $originalPurchaseDate = $request->getPayload()->get('originalPurchaseDate');
+
+        if (!is_numeric($originalPurchaseDate)) {
+            return $this->view(
+                new ApiErrorView('Falta la fecha de compra original.', 'missing_original_purchase_date'),
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $appTransactionId = $request->getPayload()->get('appTransactionId');
+
+        try {
+            ($claimLegacyAppAccess)(
+                $user,
+                // Apple reports every date as milliseconds since the epoch.
+                (new DateTimeImmutable())->setTimestamp(intdiv((int) $originalPurchaseDate, 1000)),
+                $appTransactionId === null ? null : (string) $appTransactionId
+            );
+        } catch (AppleTransactionException $exception) {
+            return $this->view(
+                new ApiErrorView($exception->getMessage(), $exception->errorCode),
+                $exception->statusCode
             );
         }
 

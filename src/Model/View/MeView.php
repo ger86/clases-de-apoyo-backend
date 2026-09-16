@@ -15,7 +15,9 @@ readonly class MeView
         /** True when the subscription was bought in the app, so the app may offer to manage it. */
         public bool $canManageInApp,
         /** Passed to StoreKit as appAccountToken so Apple links every transaction to this account. */
-        public string $appAccountToken
+        public string $appAccountToken,
+        /** True once the account took the free year for having bought the paid app. */
+        public bool $legacyAppAccessClaimed
     ) {
     }
 }

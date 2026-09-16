@@ -57,6 +57,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 40, nullable: true)]
     private ?string $appleSubscriptionStatus = null;
 
+    /** Set once, when someone who bought the paid app claims the free year. */
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?DateTimeImmutable $legacyAppAccessClaimedAt = null;
+
+    /** Only kept for the record: Apple leaves it empty before iOS 18.4. */
+    #[ORM\Column(type: 'string', length: 64, nullable: true)]
+    private ?string $legacyAppTransactionId = null;
+
     /** @var Collection<int,PremiumPayment> */
     #[ORM\OneToMany(targetEntity: PremiumPayment::class, mappedBy: 'user', cascade: ['all'])]
     private Collection $premiumPayments;
@@ -316,6 +324,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isSubscriptionActive(): bool
     {
         return $this->subscriptionStatus === SubscriptionStatus::ACTIVE;
+    }
+
+    public function getLegacyAppAccessClaimedAt(): ?DateTimeImmutable
+    {
+        return $this->legacyAppAccessClaimedAt;
+    }
+
+    public function hasClaimedLegacyAppAccess(): bool
+    {
+        return $this->legacyAppAccessClaimedAt !== null;
+    }
+
+    public function claimLegacyAppAccess(DateTimeImmutable $claimedAt, ?string $appTransactionId): self
+    {
+        $this->legacyAppAccessClaimedAt = $claimedAt;
+        $this->legacyAppTransactionId = $appTransactionId;
+
+        return $this;
+    }
+
+    public function getLegacyAppTransactionId(): ?string
+    {
+        return $this->legacyAppTransactionId;
     }
 
     public function getPremiumProvider(): ?string

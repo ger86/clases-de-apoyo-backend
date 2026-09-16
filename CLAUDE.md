@@ -79,6 +79,7 @@ The app in `../clases-de-apoyo-app` shares accounts and subscriptions with the w
 - **`APP_API_GATING_ENABLED`**: leave it off until the new app version is live. Even when it is on, a client that sends no `X-App-Version` header still receives the URL, because app 8.3.0 cannot render a locked file. Those installs are pushed to update through `MOBILE_MIN_SUPPORTED_VERSION` and `MOBILE_STORE_URL`, both served by `/api/app-config`.
 - **Apple**: [src/Service/Apple/](src/Service/Apple/) verifies transactions and App Store Server Notifications V2 with `readdle/app-store-server-api` against the root certificate in `config/apple/`. A purchase is tied to an account through `appAccountToken`, a UUID the app passes to StoreKit. Renewals only arrive through the notifications endpoint, so it is as important as the Stripe webhook.
 - **Provider guard**: `User::grantPremiumUntil()` records whether Stripe or Apple paid, and one provider never shortens access the other granted.
+- **Paid app buyers**: the app was a paid download (8,99 €) until version 9.0.0 made it free. `/api/apple/legacy-access` gives those buyers one free year, recorded with the `legacy_app` provider so no later payment can shorten it. Eligibility is the StoreKit original purchase date against `APPLE_LEGACY_ACCESS_CUTOFF`, which must be set to the day 9.0.0 goes live.
 
 ## Frontend assets
 

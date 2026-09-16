@@ -23,6 +23,7 @@ parameters:
     app.apple.key_id: "%env(resolve:APPLE_KEY_ID)%"
     app.apple.private_key_path: "%env(resolve:APPLE_PRIVATE_KEY_PATH)%"
     app.apple.root_certificate_path: "%kernel.project_dir%/config/apple/AppleRootCA-G3.cer"
+    app.apple.legacy_access_cutoff: "%env(resolve:APPLE_LEGACY_ACCESS_CUTOFF)%"
     app.apple.monthly_product_id: "%env(resolve:APPLE_MONTHLY_PRODUCT_ID)%"
     app.apple.yearly_product_id: "%env(resolve:APPLE_YEARLY_PRODUCT_ID)%"
 
