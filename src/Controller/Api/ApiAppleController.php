@@ -86,9 +86,19 @@ final class ApiAppleController extends AbstractFOSRestController
         Request $request,
         Security $security,
         ClaimLegacyAppAccess $claimLegacyAppAccess,
-        GetMeView $getMeView
+        GetMeView $getMeView,
+        #[Autowire(service: 'limiter.api_apple_transaction')]
+        RateLimiterFactoryInterface $apiAppleTransactionLimiter
     ): View {
         $user = $security->getSafeUser();
+
+        if (!$apiAppleTransactionLimiter->create((string) $user->getId())->consume()->isAccepted()) {
+            return $this->view(
+                new ApiErrorView('Demasiados intentos. Inténtalo de nuevo más tarde.', 'too_many_requests'),
+                Response::HTTP_TOO_MANY_REQUESTS
+            );
+        }
+
         $originalPurchaseDate = $request->getPayload()->get('originalPurchaseDate');
 
         if (!is_numeric($originalPurchaseDate)) {

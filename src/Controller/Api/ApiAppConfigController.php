@@ -5,6 +5,9 @@ namespace App\Controller\Api;
 use App\Model\View\AppConfigView;
 use App\Model\View\AppProductView;
 use App\Service\Stripe\StripeCreateCheckoutSession;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Exception;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\View\View;
@@ -26,7 +29,9 @@ final class ApiAppConfigController extends AbstractFOSRestController
         #[Autowire('%app.legal.privacy_url%')]
         private string $privacyUrl,
         #[Autowire('%app.api.gating_enabled%')]
-        private bool $gatingEnabled
+        private bool $gatingEnabled,
+        #[Autowire('%app.apple.legacy_access_cutoff%')]
+        private string $legacyAccessCutoff
     ) {
     }
 
@@ -42,7 +47,22 @@ final class ApiAppConfigController extends AbstractFOSRestController
             ],
             $this->termsUrl,
             $this->privacyUrl,
-            $this->gatingEnabled
+            $this->gatingEnabled,
+            $this->legacyAccessCutoffAsAtom()
         ));
+    }
+
+    /**
+     * The app reads this date to decide who bought the app while it was paid. A value it
+     * cannot parse makes it fall back to the app version, so a bad one is passed through
+     * rather than breaking the whole configuration.
+     */
+    private function legacyAccessCutoffAsAtom(): string
+    {
+        try {
+            return (new DateTimeImmutable($this->legacyAccessCutoff))->format(DateTimeInterface::ATOM);
+        } catch (Exception) {
+            return $this->legacyAccessCutoff;
+        }
     }
 }

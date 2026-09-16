@@ -15,7 +15,9 @@ readonly class AppConfigView
         public array $iosProducts,
         public string $termsUrl,
         public string $privacyUrl,
-        public bool $gatingEnabled
+        public bool $gatingEnabled,
+        /** Anything the Apple ID bought before this date earns the free year. */
+        public string $legacyAccessCutoff
     ) {
     }
 }
