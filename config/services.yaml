@@ -2,8 +2,8 @@ parameters:
     locale: "es"
     app.secret: "%env(resolve:APP_SECRET)%"
     sitemap_dir: "%kernel.project_dir%/public/sitemap"
-    app.subscription.monthly_price: '15,00 € / mes'
-    app.subscription.yearly_price: '59,00 € / año'
+    app.subscription.monthly_price: '9,99 € / mes'
+    app.subscription.yearly_price: '59,99 € / año'
     app.mail.default_from: '%env(resolve:DEFAULT_FROM_EMAIL)%'
     app.mail.default_name: '%env(resolve:DEFAULT_FROM_EMAIL_NAME)%'
     app.stripe.monthly_price_id: "%env(resolve:STRIPE_MONTHLY_PRICE_ID)%"
