@@ -499,6 +499,12 @@ const CtaBody: React.FC<{ body: Extract<Body, { type: "cta" }> }> = ({ body }) =
               background: COLORS.panel,
               border: `1.5px solid ${COLORS.panelStroke}`,
               boxShadow: `0 0 60px ${COLORS.solved}33`,
+              // This panel is the only box on a CTA that grows with its content, so
+              // it is the only one that can reach the button column. Keep it inside
+              // the box; a formula too long for it spills out of the panel, where
+              // the still review sees it.
+              maxWidth: l.vertical ? l.contentWidth : 1400,
+              boxSizing: "border-box",
             }}
           >
             <Tex tex={body.tex} size={l.vertical ? 58 : 76} color={COLORS.solved} />
