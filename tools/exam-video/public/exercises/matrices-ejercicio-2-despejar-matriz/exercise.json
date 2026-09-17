@@ -1,0 +1,164 @@
+{
+  "slug": "matrices-ejercicio-2-despejar-matriz",
+  "exam": {
+    "label": "Matrices · Ejercicio 2",
+    "site": "ClasesDeApoyo.com",
+    "question": "Ejercicio 2",
+    "topic": "Operaciones con matrices"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El error": "danger",
+    "La regla": "indet",
+    "El resultado": "solved"
+  },
+  "reel": {
+    "title": "El menos del corchete cambia todo (Matrices, ejercicio 2)",
+    "caption": "Un menos delante de un corchete cambia el signo de todo lo que hay dentro.\n\nEn este ejercicio hay que despejar A de 2A − 3M = B − [5X − 2Y]. El error clásico es cambiar el signo del primer trozo y dejar el segundo como estaba, es decir escribir −5X − 2Y en vez de −5X + 2Y. Con ese despiste, 6 de las 9 entradas de A salen mal.\n\nBien hecho: 2A = 3M + B − 5X + 2Y, que da 2A = [[−8, −12, −13], [10, 7, 3], [14, 14, 6]], y dividiendo entre 2, A = [[−4, −6, −13/2], [5, 7/2, 3/2], [7, 7, 3]]. Que aparezcan fracciones no es un error: dividir una matriz entre 2 divide las nueve entradas.\n\nTienes la hoja completa de matrices, con soluciones paso a paso, en ClasesDeApoyo.com.\n\n#matrices #operacionesconmatrices #algebra #matematicas #bachillerato #1bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #estudiar #clasesdeapoyo #ejerciciosresueltos #algebralineal",
+    "cover": {
+      "kicker": "Matrices · Ejercicio 2",
+      "line1": "El menos\ndel corchete\ncambia todo",
+      "line2": "6 de 9 entradas",
+      "tex": "-\\left[\\,5X - 2Y\\,\\right]",
+      "badge": "✓  = −5X + 2Y"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "El menos del corchete",
+        "tail": 0.4,
+        "narration": "[excited] Un menos delante de un corchete cambia los signos de todo lo que hay dentro. Y aquí dentro hay dos matrices.",
+        "captions": [
+          "Un menos delante de un corchete cambia todo lo de dentro.",
+          "Y aquí dentro hay dos matrices."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · Ejercicio 2",
+          "title": "El menos\n*del corchete*\ncambia todo",
+          "tex": "2A - 3M = B - \\left[\\,5X - 2Y\\,\\right]",
+          "texSize": 46,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Cambiar solo el primer trozo",
+        "tail": 0.4,
+        "narration": "El error es cambiar el signo del primer trozo y dejar el segundo igual. Con ese despiste, seis de las nueve entradas salen mal.",
+        "captions": [
+          "El error es cambiar solo el signo del primer trozo.",
+          "Con ese despiste, 6 de las 9 entradas salen mal."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "-\\left[\\,5X - 2Y\\,\\right] \\;\\xcancel{=}\\; -5X - 2Y",
+              "size": 44,
+              "color": "danger"
+            },
+            {
+              "tex": "2A \\;\\xcancel{=}\\; \\begin{pmatrix}16&-12&-25\\\\6&7&-5\\\\18&22&6\\end{pmatrix}",
+              "size": 40,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "6 de 9 entradas mal",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-regla",
+        "phase": "La regla",
+        "heading": "Cambian los dos",
+        "tail": 0.4,
+        "narration": "[cheerful] Lo correcto es menos cinco X, más dos Y. Cambian los dos, y ya puedes operar término a término.",
+        "captions": [
+          "Lo correcto: −[5X − 2Y] = −5X + 2Y.",
+          "Cambian los dos, y ya puedes operar término a término."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "-\\left[\\,5X - 2Y\\,\\right] = -5X + 2Y",
+              "size": 48,
+              "color": "indet"
+            },
+            {
+              "tex": "2A = 3M + B - 5X + 2Y",
+              "size": 46
+            }
+          ],
+          "chips": [
+            {
+              "text": "los dos cambian",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Y se divide entre 2",
+        "tail": 0.4,
+        "narration": "Operas, queda dos A, y divides entre dos. Si aparecen fracciones están bien: menos trece medios es una entrada válida.",
+        "captions": [
+          "Operas, queda 2A, y divides entre 2.",
+          "Si aparecen fracciones están bien: −13/2 vale."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "2A = \\begin{pmatrix}-8&-12&-13\\\\10&7&3\\\\14&14&6\\end{pmatrix}",
+              "size": 44
+            },
+            {
+              "tex": "A = \\begin{pmatrix}-4&-6&-13/2\\\\5&7/2&3/2\\\\7&7&3\\end{pmatrix}",
+              "size": 44,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Un signo, seis números. Tienes la hoja entera resuelta en ClasesDeApoyo punto com.",
+        "captions": [
+          "Un signo, seis números.",
+          "La hoja entera resuelta en ClasesDeApoyo.com."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Cambia\n*los dos*",
+          "tex": "-5X + 2Y",
+          "lines": [
+            "Hoja de matrices resuelta",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

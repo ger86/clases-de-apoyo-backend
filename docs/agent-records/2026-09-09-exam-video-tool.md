@@ -111,3 +111,31 @@ The voice settings were hardcoded in `tts.mjs`. They are now defaults that `voic
 Lively profile, asked for and used by the first exercise outside the PAU exams: `stability 0.28` (down from 0.4, so the voice varies more), `style 0.65` (up from 0.45, which exaggerates its own manner) and `speed 1.05`. Plus the v3 tags `[excited]` and `[cheerful]` instead of `[energetic]`. Earlier reels keep their audio; changing the settings regenerates nothing without `--force`.
 
 First exercise from a worksheet rather than an exam: `matrices-ejercicio-1-matriz-traspuesta`, from `matrices_ejercicio_1.pdf` (transposes of a 4x2, a 3x3 and a 3x5 matrix). The PDF's solutions were checked element by element and are correct. The reel teaches that transposing is not rotating: rotating A a quarter turn gives [[7,0,3,-1],[4,7,-1,2]], the same numbers in the wrong order, against the transpose [[-1,3,0,7],[2,-1,7,4]]. 5 scenes, 516 characters, 33 seconds. It has no `scenes` key and no `youtube` key, which the reel path does not need, so an exercise can exist as a reel only.
+
+## Matrices worksheet, exercise 2, 2026-09-17
+
+`matrices-ejercicio-2-despejar-matriz`, from the same `matrices_ejercicio_1.pdf`. Despejar A from 2A - 3M = B - [5X - 2Y]. The PDF's solution was recomputed with exact fractions and is correct at every step: 2A = [[-8,-12,-13],[10,7,3],[14,14,6]] and A = [[-4,-6,-13/2],[5,7/2,3/2],[7,7,3]]. The reel teaches the sign of the bracket: distributing the minus only to the first term gives 2A = [[16,-12,-25],[6,7,-5],[18,22,6]], which differs in 6 of the 9 entries (not 9, because the second matrix has three zeros where the sign does not show). 5 scenes, 530 characters, 35 seconds, lively voice profile.
+
+Two fixes it forced:
+
+- The CTA panel had no width limit, so a long formula pushed it under the button column. It is the only box on a CTA that grows with its content, and it is now capped at the content box. The automated safe-zone check is what caught it: that frame read 64 against the background's 37, while every other frame in nine reels reads exactly 37.
+- Stacked fractions inside a 3x3 matrix render too small to read at reel size. Inline `-13/2` is used instead, which also matches how the captions write them.
+
+Worth knowing for the next byte-comparison: the 14 horizontal stills of Pregunta 1 no longer match the ones rendered on 2026-09-15, at PSNR 59.6 dB with a flat difference field, which is a uniform one-level shift of every pixel rather than a layout change. The machine's OS moved from Darwin 25.5.0 to 27.0.0 between the two sessions, and headless Chrome now writes a marginally different colour profile. Rendering is still deterministic within one environment (two consecutive runs are byte-identical), and the CTA fix was proved innocent by rendering the same stills with and without it: byte-identical. So compare against a baseline rendered on the same machine and the same day, not against an older one.
+
+## Matrices worksheet, exercise 3a, 2026-09-17
+
+`matrices-ejercicio-3a-traspuesta-y-suma`, from `matrices_ejercicio_3.pdf`. Compute A^t + 6B + 3C. The PDF's answer [[-4,13,6],[23,7,29],[2,14,47]] was recomputed and is correct.
+
+The reel is built on a property worth knowing: transposing never moves the diagonal, so somebody who adds A instead of A^t still gets -4, 7 and 47 in the right places. Exactly the 6 off-diagonal entries change. That makes the usual quick check, glancing at the diagonal, useless for this mistake, which is the idea the reel sells: look off the diagonal.
+
+The wrong matrix is shown with its diagonal in green inside an otherwise red matrix, using `\textcolor{#33d98a}{...}` inside the TeX. KaTeX renders hex colours inside a `pmatrix` correctly in this setup, which is now a usable device for pointing at single entries.
+
+## Matrices worksheet, exercise 5, 2026-09-17
+
+`matrices-ejercicio-5-producto-no-conmutativo`. A is 1x4, B is 4x1, and both products were recomputed: A·B = (0), a single number, and B·A the 4x4 [[3,9,6,-3],[1,3,2,-1],[-2,-6,-4,2],[2,6,4,-2]]. The worksheet's answers are right.
+
+The reel says AB and BA do not even have the same size, which is the strongest version of "matrices are not numbers" this worksheet offers, and the 4x4 next to the lone (0) makes it in one frame. The result scene also points out that A·B = 0 without either factor being the zero matrix, which belongs to the same idea rather than being a second one.
+
+Worth telling the author: the worksheet labels the second product `B(4x1) · A(1x4) = AB(4x4)`. The matrices are correct, the name is not: that product is BA. The reel writes BA.
+

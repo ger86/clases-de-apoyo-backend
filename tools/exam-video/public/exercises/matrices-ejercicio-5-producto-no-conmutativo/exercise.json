@@ -1,0 +1,169 @@
+{
+  "slug": "matrices-ejercicio-5-producto-no-conmutativo",
+  "exam": {
+    "label": "Matrices · Ejercicio 5",
+    "site": "ClasesDeApoyo.com",
+    "question": "Ejercicio 5",
+    "topic": "Producto de matrices"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El error": "danger",
+    "La regla": "indet",
+    "El resultado": "solved"
+  },
+  "reel": {
+    "title": "AB y BA ni siquiera miden lo mismo (Matrices, ejercicio 5)",
+    "caption": "A·B y B·A ni siquiera tienen el mismo tamaño.\n\nEjercicio 5: A = (1, 3, 2, −1) es 1 × 4 y B = (3, 1, −2, 2) es 4 × 1. Multiplicas filas de la primera por columnas de la segunda, y las dimensiones de dentro, las que coinciden, desaparecen: 1 × 4 por 4 × 1 deja un 1 × 1, y 4 × 1 por 1 × 4 deja un 4 × 4.\n\nAsí que A·B = (0), un solo número, y B·A = [[3, 9, 6, −3], [1, 3, 2, −1], [−2, −6, −4, 2], [2, 6, 4, −2]], una matriz entera. Con números, cambiar el orden no cambia nada. Con matrices cambia hasta el tamaño del resultado.\n\nY fíjate en otra cosa que con números no pasa: A·B vale cero sin que A ni B sean la matriz cero.\n\nTienes la hoja completa de matrices, con soluciones paso a paso, en ClasesDeApoyo.com.\n\n#matrices #productodematrices #algebra #matematicas #bachillerato #1bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #estudiar #clasesdeapoyo #ejerciciosresueltos #algebralineal",
+    "cover": {
+      "kicker": "Matrices · Ejercicio 5",
+      "line1": "AB y BA\nni siquiera\nmiden igual",
+      "line2": "1 × 1  y  4 × 4",
+      "tex": "AB \\neq BA",
+      "badge": "✓  el orden manda"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "AB y BA no miden lo mismo",
+        "tail": 0.4,
+        "narration": "[excited] A por B y B por A ni siquiera miden lo mismo. Uno es un número y el otro una matriz de cuatro por cuatro.",
+        "captions": [
+          "A·B y B·A ni siquiera miden lo mismo.",
+          "Uno es un número y el otro una matriz 4 × 4."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · Ejercicio 5",
+          "title": "AB y BA\n*ni siquiera*\nmiden igual",
+          "tex": "AB \\neq BA",
+          "texSize": 72,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Cambiar el orden",
+        "tail": 0.4,
+        "narration": "El error es pensar que puedes cambiar el orden, como con los números. Con matrices el orden decide hasta el tamaño del resultado.",
+        "captions": [
+          "El error es pensar que puedes cambiar el orden.",
+          "Con matrices el orden decide hasta el tamaño."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "AB \\;\\xcancel{=}\\; BA",
+              "size": 52,
+              "color": "danger"
+            },
+            {
+              "tex": "A = \\begin{pmatrix}1&3&2&-1\\end{pmatrix}",
+              "size": 40
+            },
+            {
+              "tex": "B = \\begin{pmatrix}3\\\\1\\\\-2\\\\2\\end{pmatrix}",
+              "size": 38
+            }
+          ],
+          "badge": {
+            "text": "1 × 4 y 4 × 1",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "03-regla",
+        "phase": "La regla",
+        "heading": "Las de dentro desaparecen",
+        "tail": 0.4,
+        "narration": "[cheerful] Filas de la primera por columnas de la segunda. Las dimensiones de dentro coinciden, y son justo las que desaparecen.",
+        "captions": [
+          "Filas de la primera por columnas de la segunda.",
+          "Las dimensiones de dentro coinciden, y desaparecen."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "(1 \\times \\mathbf{4})\\cdot(\\mathbf{4} \\times 1) = 1 \\times 1",
+              "size": 44,
+              "color": "indet"
+            },
+            {
+              "tex": "(4 \\times \\mathbf{1})\\cdot(\\mathbf{1} \\times 4) = 4 \\times 4",
+              "size": 44,
+              "color": "indet"
+            }
+          ],
+          "chips": [
+            {
+              "text": "las de fuera mandan",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Un número y una 4 × 4",
+        "tail": 0.4,
+        "narration": "A por B sale cero, sin que ninguna de las dos sea la matriz cero. Y B por A es una cuatro por cuatro entera.",
+        "captions": [
+          "A·B = 0, sin que ninguna sea la matriz cero.",
+          "Y B·A es una 4 × 4 entera."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "AB = \\begin{pmatrix}0\\end{pmatrix}",
+              "size": 46,
+              "color": "solved"
+            },
+            {
+              "tex": "BA = \\begin{pmatrix}3&9&6&-3\\\\1&3&2&-1\\\\-2&-6&-4&2\\\\2&6&4&-2\\end{pmatrix}",
+              "size": 40,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] El orden lo cambia todo. Tienes la hoja entera resuelta en ClasesDeApoyo punto com.",
+        "captions": [
+          "El orden lo cambia todo.",
+          "La hoja entera resuelta en ClasesDeApoyo.com."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "El orden\n*lo cambia*\ntodo",
+          "tex": "AB \\neq BA",
+          "lines": [
+            "Hoja de matrices resuelta",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

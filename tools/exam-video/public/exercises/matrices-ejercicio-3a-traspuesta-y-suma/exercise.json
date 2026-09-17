@@ -1,0 +1,165 @@
+{
+  "slug": "matrices-ejercicio-3a-traspuesta-y-suma",
+  "exam": {
+    "label": "Matrices · Ejercicio 3a",
+    "site": "ClasesDeApoyo.com",
+    "question": "Ejercicio 3a",
+    "topic": "Traspuesta y combinación lineal"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El error": "danger",
+    "La regla": "indet",
+    "El resultado": "solved"
+  },
+  "reel": {
+    "title": "Olvidas trasponer y la diagonal no te avisa (Matrices, ejercicio 3a)",
+    "caption": "Si te olvidas de trasponer, la diagonal te sale bien igual. Por eso este error pasa desapercibido.\n\nEjercicio 3a: calcular Aᵗ + 6B + 3C. Si sumas A en vez de Aᵗ, las tres entradas de la diagonal (−4, 7 y 47) coinciden con las correctas, porque trasponer no toca la diagonal. Las que cambian son las 6 de fuera: te sale [[−4, 11, 5], [25, 7, 38], [3, 5, 47]] en vez de la buena.\n\nBien hecho: traspones A primero (Aᵗ = [[−1, 4, 6], [2, 1, −1], [5, 8, 2]]), multiplicas cada matriz por su número y sumas entrada a entrada. Resultado: [[−4, 13, 6], [23, 7, 29], [2, 14, 47]].\n\nSi repasas un ejercicio de matrices, mira las entradas de fuera de la diagonal: son las que delatan una traspuesta mal hecha.\n\nTienes la hoja completa de matrices, con soluciones paso a paso, en ClasesDeApoyo.com.\n\n#matrices #matriztraspuesta #operacionesconmatrices #algebra #matematicas #bachillerato #1bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #estudiar #clasesdeapoyo #ejerciciosresueltos",
+    "cover": {
+      "kicker": "Matrices · Ejercicio 3a",
+      "line1": "La diagonal\nno te\navisa",
+      "line2": "6 entradas mal",
+      "tex": "A^{t} + 6B + 3C",
+      "badge": "✗  sumar A en vez de Aᵗ"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "La diagonal no te avisa",
+        "tail": 0.4,
+        "narration": "[excited] Si te olvidas de trasponer, la diagonal te sale bien igual. Por eso el error pasa desapercibido.",
+        "captions": [
+          "Si te olvidas de trasponer, la diagonal sale bien igual.",
+          "Por eso el error pasa desapercibido."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · Ejercicio 3a",
+          "title": "Te olvidas de\n*trasponer*\ny no se nota",
+          "tex": "A^{t} + 6B + 3C",
+          "texSize": 62,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Sumar A en vez de Aᵗ",
+        "tail": 0.4,
+        "narration": "Si sumas A en vez de su traspuesta, la diagonal coincide, pero seis de las nueve entradas están mal. Repasar la diagonal no sirve para pillarlo.",
+        "captions": [
+          "Si sumas A en vez de Aᵗ, la diagonal coincide.",
+          "Pero 6 de las 9 entradas están mal."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A + 6B + 3C \\;\\xcancel{=}\\; A^{t} + 6B + 3C",
+              "size": 42,
+              "color": "danger"
+            },
+            {
+              "tex": "\\begin{pmatrix}\\textcolor{#33d98a}{-4}&11&5\\\\25&\\textcolor{#33d98a}{7}&38\\\\3&5&\\textcolor{#33d98a}{47}\\end{pmatrix}",
+              "size": 46,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "La diagonal coincide",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "03-regla",
+        "phase": "La regla",
+        "heading": "Traspón y luego suma",
+        "tail": 0.4,
+        "narration": "[cheerful] Traspones A primero, cambiando filas por columnas. Luego cada matriz por su número, y sumas entrada a entrada.",
+        "captions": [
+          "Traspones A primero: filas por columnas.",
+          "Luego cada matriz por su número, y sumas entrada a entrada."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^{t} = \\begin{pmatrix}-1&4&6\\\\2&1&-1\\\\5&8&2\\end{pmatrix}",
+              "size": 44,
+              "color": "indet"
+            },
+            {
+              "tex": "6B + 3C \\ \\text{entrada a entrada}",
+              "size": 42
+            }
+          ],
+          "chips": [
+            {
+              "text": "trasponer va primero",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "El resultado",
+        "tail": 0.4,
+        "narration": "Y este es el resultado. Fíjate en las de fuera de la diagonal: son las que delatan una traspuesta mal hecha.",
+        "captions": [
+          "Y este es el resultado.",
+          "Las de fuera de la diagonal delatan la traspuesta."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\begin{pmatrix}-4&13&6\\\\23&7&29\\\\2&14&47\\end{pmatrix}",
+              "size": 50,
+              "color": "solved"
+            },
+            {
+              "tex": "\\text{mira fuera de la diagonal}",
+              "size": 38,
+              "color": "inkSoft"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Traspón antes de sumar. Tienes la hoja entera resuelta en ClasesDeApoyo punto com.",
+        "captions": [
+          "Traspón antes de sumar.",
+          "La hoja entera resuelta en ClasesDeApoyo.com."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Traspón\n*antes*\nde sumar",
+          "tex": "A^{t} + 6B + 3C",
+          "lines": [
+            "Hoja de matrices resuelta",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
