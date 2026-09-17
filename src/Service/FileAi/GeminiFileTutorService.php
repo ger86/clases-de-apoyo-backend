@@ -15,6 +15,7 @@ class GeminiFileTutorService
     private const GEMINI_API_BASE_URL = 'https://generativelanguage.googleapis.com/v1beta';
     private const GEMINI_UPLOAD_BASE_URL = 'https://generativelanguage.googleapis.com/upload/v1beta/files';
     private const MAX_FILE_PROCESSING_SECONDS = 20;
+    private const MAX_OUTPUT_TOKENS = 2048;
 
     public function __construct(
         private S3Client $s3Client,
@@ -76,9 +77,7 @@ class GeminiFileTutorService
                         ],
                     ],
                 ],
-                'generationConfig' => [
-                    'temperature' => 0.2,
-                ],
+                'generationConfig' => $this->buildGenerationConfig(),
                 'contents' => $this->buildContents($file, $messages, $uploadedFile),
             ]
         );
@@ -94,6 +93,29 @@ class GeminiFileTutorService
         $text = trim(implode("\n\n", array_filter($textParts, static fn(string $textPart): bool => $textPart !== '')));
 
         return $text !== '' ? $text : self::DEFAULT_ERROR_MESSAGE;
+    }
+
+    /**
+     * Thinking tokens are billed as output, and Gemini 3 thinks at the high level by
+     * default. A tutor answering questions about a school PDF does not need that, so the
+     * level is lowered and the answer length is capped to keep every turn cheap.
+     *
+     * @return array<string, mixed>
+     */
+    private function buildGenerationConfig(): array
+    {
+        $config = [
+            'temperature' => 0.2,
+            'maxOutputTokens' => self::MAX_OUTPUT_TOKENS,
+        ];
+
+        if (str_starts_with($this->model, 'gemini-3')) {
+            $config['thinkingConfig'] = [
+                'thinkingLevel' => 'low',
+            ];
+        }
+
+        return $config;
     }
 
     /**

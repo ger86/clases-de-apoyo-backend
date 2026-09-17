@@ -31,6 +31,16 @@ framework:
             policy: 'sliding_window'
             limit: 5
             interval: '1 hour'
+        # Each question costs Gemini tokens, so one account gets a daily budget of
+        # questions and one IP address cannot burst through many accounts.
+        file_ai_chat_user:
+            policy: 'sliding_window'
+            limit: 40
+            interval: '1 day'
+        file_ai_chat_ip:
+            policy: 'sliding_window'
+            limit: 30
+            interval: '1 hour'
         api_apple_transaction:
             policy: 'sliding_window'
             limit: 30

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\FileAccessResolver;
+use App\Service\FileAi\FileTutorMessageNormalizer;
 use App\Service\FileAi\GeminiFileTutorService;
 use Aws\S3\S3Client;
 use Sonata\MediaBundle\Provider\Pool;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 
 class FileController extends AbstractController
 {
@@ -82,7 +84,10 @@ class FileController extends AbstractController
         string $fileId,
         Request $request,
         FileAccessResolver $fileAccessResolver,
-        GeminiFileTutorService $geminiFileTutorService
+        FileTutorMessageNormalizer $messageNormalizer,
+        GeminiFileTutorService $geminiFileTutorService,
+        #[Autowire(service: 'limiter.file_ai_chat_ip')]
+        RateLimiterFactoryInterface $ipLimiter
     ): JsonResponse {
         if (!$this->isCsrfTokenValid(
             \sprintf('file_ai_chat_%s', $fileId),
@@ -93,10 +98,17 @@ class FileController extends AbstractController
             ], Response::HTTP_FORBIDDEN);
         }
 
+        // The website chat has no login, so the only handle to budget on is the IP address.
+        if (!$ipLimiter->create((string) $request->getClientIp())->consume()->isAccepted()) {
+            return $this->json([
+                'message' => 'Has hecho muchas preguntas seguidas. Espera un rato antes de volver a preguntar.',
+            ], Response::HTTP_TOO_MANY_REQUESTS);
+        }
+
         try {
             $file = $fileAccessResolver->resolveOrThrow($fileId);
             $payload = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
-            $messages = $this->normalizeMessages($payload['messages'] ?? null);
+            $messages = $messageNormalizer->normalize($payload['messages'] ?? null);
 
             return $this->json([
                 'answer' => $geminiFileTutorService->generateAnswer($file, $messages),
@@ -122,63 +134,6 @@ class FileController extends AbstractController
                 'message' => 'No se ha podido consultar la IA en este momento. Inténtalo de nuevo dentro de unos minutos.',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-    }
-
-    /**
-     * @return array<int, array{role: string, text: string}>
-     */
-    private function normalizeMessages(mixed $messages): array
-    {
-        if (!\is_array($messages) || $messages === []) {
-            throw new \InvalidArgumentException('Debes enviar al menos una pregunta sobre el documento.');
-        }
-
-        if (\count($messages) > 30) {
-            throw new \InvalidArgumentException('La conversación es demasiado larga para esta primera versión.');
-        }
-
-        $normalizedMessages = [];
-
-        foreach ($messages as $message) {
-            if (!\is_array($message)) {
-                throw new \InvalidArgumentException('El formato del historial del chat no es válido.');
-            }
-
-            $role = $message['role'] ?? null;
-            $text = trim((string) ($message['text'] ?? ''));
-
-            if (!\in_array($role, ['assistant', 'user'], true)) {
-                throw new \InvalidArgumentException('El rol del mensaje no es válido.');
-            }
-
-            if ($text === '') {
-                continue;
-            }
-
-            $normalizedMessages[] = [
-                'role' => $role,
-                'text' => mb_substr($text, 0, 4000),
-            ];
-        }
-
-        if ($normalizedMessages === []) {
-            throw new \InvalidArgumentException('Debes enviar al menos una pregunta sobre el documento.');
-        }
-
-        $hasUserMessage = false;
-
-        foreach ($normalizedMessages as $message) {
-            if ($message['role'] === 'user') {
-                $hasUserMessage = true;
-                break;
-            }
-        }
-
-        if (!$hasUserMessage) {
-            throw new \InvalidArgumentException('La conversación debe incluir al menos un mensaje del estudiante.');
-        }
-
-        return $normalizedMessages;
     }
 
     private function buildDownloadFilename(string $name): string
