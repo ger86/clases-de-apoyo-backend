@@ -18,7 +18,10 @@
     "Parte a · Normal": "teal",
     "Parte b · Binomial": "indet",
     "Resultado": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Normal y binomial: baterías defectuosas | PAU Madrid Junio 2026, Matemáticas II, Pregunta 4.1",
@@ -399,5 +402,144 @@
         "closing": "Normal para la batería, binomial para el lote."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "La p de la binomial no es la del enunciado (PAU Madrid, junio 2026, Pregunta 4.1)",
+    "caption": "En una binomial, el éxito es lo que te preguntan.\n\nPregunta 4.1 de la PAU de Madrid de junio de 2026 (Matemáticas II): la duración de una batería sigue una N(24, 3) y es defectuosa si dura menos de 21 horas. Tipificas, z = −1, y por simetría sale P = 0,1587. Ese es el dato que acabas de calcular, y por eso casi todo el mundo lo mete tal cual en la binomial.\n\nPero el apartado b pregunta por baterías NO defectuosas, así que el éxito es el contrario: p = 1 − 0,1587 = 0,8413. Con p = 0,1587 te saldría una probabilidad de 0,0000005, que es la de tener al menos 9 baterías malas. Con la p buena, P(Y ≥ 9) = 0,5127.\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #probabilidad #binomial #distribucionnormal #estadistica #tipificar",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "El éxito es\nlo que te\npreguntan",
+      "line2": "p = 0,8413",
+      "tex": "B(10;\\,0{,}8413)",
+      "badge": "✗  p = 0,1587"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Elige bien el éxito",
+        "tail": 0.4,
+        "narration": "[energetic] En una binomial, el éxito es lo que te preguntan, no lo que acabas de calcular. Mira este de Selectividad.",
+        "captions": [
+          "En una binomial, el éxito es lo que te preguntan.",
+          "No lo que acabas de calcular."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "El éxito es\n*lo que te*\npreguntan",
+          "tex": "B(10;\\,p)",
+          "texSize": 74,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Usar la p recién calculada",
+        "tail": 0.4,
+        "narration": "Tipificas y sale cero coma uno cinco ocho siete. Si metes esa p en la binomial, al menos nueve buenas daría cinco por diez elevado a menos siete. Imposible.",
+        "captions": [
+          "Tipificas: defectuosa con probabilidad 0,1587.",
+          "Con esa p, al menos 9 buenas daría 0,0000005.",
+          "Eso es la probabilidad de 9 malas."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "p \\;\\xcancel{=}\\; 0{,}1587",
+              "size": 48,
+              "color": "danger"
+            },
+            {
+              "tex": "P(Y \\ge 9) \\approx 5 \\cdot 10^{-7}",
+              "size": 46,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Eso son 9 defectuosas",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "Te preguntan por las buenas",
+        "tail": 0.4,
+        "narration": "Te preguntan por baterías no defectuosas, así que el éxito es el contrario. Uno menos cero coma uno cinco ocho siete es cero coma ocho cuatro uno tres.",
+        "captions": [
+          "Te preguntan por baterías NO defectuosas.",
+          "El éxito es el contrario: p = 1 − 0,1587 = 0,8413."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P(X < 21) = P(Z < -1) = 0{,}1587",
+              "size": 42
+            },
+            {
+              "tex": "p = 1 - 0{,}1587 = 0{,}8413",
+              "size": 48,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "el contrario",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Al menos 9 de 10",
+        "tail": 0.4,
+        "narration": "Al menos nueve son los casos nueve y diez. Sumas y sale cero coma cinco uno dos siete.",
+        "captions": [
+          "Al menos 9 son los casos 9 y 10.",
+          "Sumas y sale 0,5127: algo más de la mitad."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P(Y \\ge 9) = \\binom{10}{9}p^{9}(1-p) + p^{10}",
+              "size": 42
+            },
+            {
+              "tex": "P(Y \\ge 9) \\approx 0{,}5127",
+              "size": 54,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Medio punto por leer bien el enunciado. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "Medio punto por leer bien el enunciado.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Lee qué es\n*el éxito*",
+          "tex": "p = 0{,}8413",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

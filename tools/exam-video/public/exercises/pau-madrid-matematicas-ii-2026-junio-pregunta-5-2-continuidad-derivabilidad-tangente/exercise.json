@@ -17,7 +17,10 @@
     "Parte a · Continuidad": "teal",
     "Parte a · Derivabilidad": "indet",
     "Parte b · Recta tangente": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "A trozos: continuidad, derivabilidad y tangente | PAU Madrid Junio 2026, Matemáticas II, P. 5.2",
@@ -390,5 +393,150 @@
         "closing": "En una función a trozos, todo pasa en el punto donde cambia la expresión."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "La continuidad no ve la a (PAU Madrid, junio 2026, Pregunta 5.2)",
+    "caption": "Dos parámetros, dos condiciones: cada uno sale de la suya.\n\nPregunta 5.2 de la PAU de Madrid de junio de 2026 (Matemáticas II): una función a trozos con a y b, continua y derivable en x = 0. Al hacer el límite por la izquierda aparece sen(a·0), que vale 0 para cualquier a. Por eso la continuidad solo te da b = 2: si intentas sacar la a de ahí, no hay nada que sacar.\n\nLa a sale de la derivabilidad. Derivas los dos trozos, igualas en 0: por la izquierda queda −a, por la derecha 2, así que a = −2. Con a = −2 y b = 2 la función es continua y derivable en toda la recta real.\n\nEl ejercicio completo, con la recta tangente en x = 2, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #derivadas #continuidad #derivabilidad #funcionesatrozos #limites #rectatangente",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "La continuidad\nno ve\nla a",
+      "line2": "a = −2,  b = 2",
+      "tex": "\\sin(a\\cdot 0) = 0",
+      "badge": "✓  la a sale de f′"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "La continuidad no ve la a",
+        "tail": 0.4,
+        "narration": "[energetic] Dos parámetros y una función a trozos. La continuidad solo te va a dar uno de los dos.",
+        "captions": [
+          "Dos parámetros y una función a trozos.",
+          "La continuidad solo te da uno de los dos."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "La continuidad\n*no ve*\nla a",
+          "tex": "3x^2 - \\sin(ax) + b",
+          "texSize": 58,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Buscar la a en el límite",
+        "tail": 0.4,
+        "narration": "Mucha gente se atasca buscando la a en el límite por la izquierda. Pero seno de a por cero vale cero para cualquier a. La a desaparece y solo queda b igual a dos.",
+        "captions": [
+          "Mucha gente busca la a en el límite por la izquierda.",
+          "Pero sen(a·0) = 0 para cualquier a.",
+          "La a desaparece: solo queda b = 2."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\sin(a\\cdot 0) = 0 \\quad \\forall a",
+              "size": 46,
+              "color": "warn"
+            },
+            {
+              "tex": "\\lim_{x \\to 0^-} f(x) = b = 2",
+              "size": 46,
+              "color": "indet"
+            }
+          ],
+          "badge": {
+            "text": "La a no aparece",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "La a sale de la derivada",
+        "tail": 0.4,
+        "narration": "La a sale de la derivabilidad. Derivas los dos trozos y los igualas en cero. Por la izquierda queda menos a; por la derecha, dos.",
+        "captions": [
+          "La a sale de la derivabilidad.",
+          "Derivas los dos trozos y los igualas en 0.",
+          "Por la izquierda −a, por la derecha 2."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f'(0^-) = 6x - a\\cos(ax)\\big|_{0} = -a",
+              "size": 40
+            },
+            {
+              "tex": "f'(x) = \\frac{2e^{x}(1-x)^2}{(1+x^2)^2} \\ \\Rightarrow\\ f'(0^+) = 2",
+              "size": 44
+            },
+            {
+              "tex": "-a = 2",
+              "size": 52,
+              "color": "indet"
+            }
+          ],
+          "chips": [
+            {
+              "text": "derivadas laterales",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Los dos parámetros",
+        "tail": 0.4,
+        "narration": "Y ya está: a vale menos dos y b vale dos. Con esos valores la función es continua y derivable en toda la recta real.",
+        "captions": [
+          "a = −2 y b = 2.",
+          "Así es continua y derivable en toda la recta real."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "a = -2, \\qquad b = 2",
+              "size": 56,
+              "color": "solved"
+            },
+            {
+              "tex": "f \\ \\text{continua y derivable en } \\mathbb{R}",
+              "size": 40,
+              "color": "inkSoft"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Cada condición da un parámetro. Tienes el ejercicio completo, con la tangente, en YouTube.",
+        "captions": [
+          "Cada condición da un parámetro.",
+          "El ejercicio completo, con la tangente, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Cada condición,\n*un parámetro*",
+          "tex": "a = -2,\\ b = 2",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

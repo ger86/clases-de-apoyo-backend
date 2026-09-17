@@ -17,7 +17,10 @@
     "Parte a · Punto simétrico": "teal",
     "Parte b1 · Distancia": "indet",
     "Parte b2 · Plano": "pinkSoft",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Simétrico, distancia y plano perpendicular | PAU Madrid Junio 2026, Matemáticas II, Pregunta 3",
@@ -445,5 +448,149 @@
         "closing": "Perpendicular por P, corte con el plano, punto medio."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "El simétrico no es la proyección (PAU Madrid, junio 2026, Pregunta 3)",
+    "caption": "El simétrico de un punto no es su proyección.\n\nPregunta 3 de la PAU de Madrid de junio de 2026 (Matemáticas II): el simétrico de P(2, 0, 0) respecto del plano 2x + 2y − z = 13. Calculas la recta perpendicular, cortas con el plano y obtienes M(4, 2, −1). Ahí mucha gente contesta M, o resta M − P.\n\nM no es el simétrico: es el punto medio entre P y P′. De ahí sale la fórmula P′ = 2M − P, y el simétrico es P′(6, 4, −2). Comprueba que funciona: P y P′ están los dos a distancia 3 del plano, uno a cada lado.\n\nEl ejercicio completo, con la distancia de la recta al plano y el plano perpendicular, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #geometria #vectores #puntosimetrico #planos #rectasyplanos #geometriaanalitica",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "El simétrico\nno es la\nproyección",
+      "line2": "P′ = 2M − P",
+      "tex": "P'(6,4,-2)",
+      "badge": "✗  P′ = M − P"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "El simétrico no es la proyección",
+        "tail": 0.4,
+        "narration": "[energetic] El simétrico de un punto respecto de un plano no es su proyección. Y hay una fórmula que lo arregla.",
+        "captions": [
+          "El simétrico de un punto no es su proyección.",
+          "Hay una fórmula que lo arregla."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "El simétrico\n*no es* la\nproyección",
+          "tex": "P' = 2M - P",
+          "texSize": 72,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Restar M menos P",
+        "tail": 0.4,
+        "narration": "Cortas la perpendicular con el plano y sale M. El error es dar ese punto como respuesta, o restar M menos P. Comprueba el punto medio: no da M.",
+        "captions": [
+          "La perpendicular corta al plano en M(4, 2, −1).",
+          "El error es contestar M, o restar M − P.",
+          "Comprueba el punto medio: no sale M."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P' \\;\\xcancel{=}\\; M - P = (2,\\,2,\\,-1)",
+              "size": 44,
+              "color": "danger"
+            },
+            {
+              "tex": "\\text{punto medio} = \\left(2,\\,1,\\,-\\tfrac{1}{2}\\right) \\neq M",
+              "size": 42,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "M es el punto medio",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "M es el punto medio",
+        "tail": 0.4,
+        "narration": "La clave es que M es el punto medio entre P y su simétrico. Escribes el punto medio, despejas, y te queda P prima igual a dos M menos P.",
+        "captions": [
+          "M es el punto medio entre P y P′.",
+          "Despejas y queda P′ = 2M − P."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "M = \\frac{P + P'}{2}",
+              "size": 52
+            },
+            {
+              "tex": "P' = 2M - P",
+              "size": 62,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "el doble, no la resta",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "El simétrico",
+        "tail": 0.4,
+        "narration": "Sustituyes M y P, y el simétrico es el punto seis, cuatro, menos dos. Y comprueba: los dos están a distancia tres del plano.",
+        "captions": [
+          "Sustituyes y sale P′(6, 4, −2).",
+          "Comprueba: los dos están a distancia 3 del plano."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P' = 2\\,(4,2,-1) - (2,0,0)",
+              "size": 44
+            },
+            {
+              "tex": "P' = (6,\\,4,\\,-2)",
+              "size": 58,
+              "color": "solved"
+            },
+            {
+              "tex": "d(P,\\pi) = d(P',\\pi) = 3",
+              "size": 42,
+              "color": "inkSoft"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Seis, cuatro, menos dos. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "P′(6, 4, −2).",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "M es el\n*punto medio*",
+          "tex": "P' = 2M - P",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

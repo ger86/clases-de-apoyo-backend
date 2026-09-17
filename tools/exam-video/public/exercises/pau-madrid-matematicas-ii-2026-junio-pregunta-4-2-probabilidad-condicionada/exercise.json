@@ -18,7 +18,10 @@
     "Parte a · P(A) y P(A∩B)": "teal",
     "Parte b · Condicionada": "indet",
     "Resultado": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Probabilidad condicionada con tres datos | PAU Madrid Junio 2026, Matemáticas II, Pregunta 4.2",
@@ -365,5 +368,154 @@
         "closing": "Contrario, condicionada y regla de la unión."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "P(B|A) no es P(A∩B) (PAU Madrid, junio 2026, Pregunta 4.2)",
+    "caption": "Una condicionada no es una intersección.\n\nPregunta 4.2 de la PAU de Madrid de junio de 2026 (Matemáticas II): te dan P(B) = 0,4, P((A∪B)′) = 0,4 y P(B|A) = 0,2. Si tomas ese 0,2 como si fuera P(A∩B), te sale P(A) = 0,4. Compruébalo: entonces P(B|A) valdría 0,2/0,4 = 0,5, que contradice el dato del enunciado.\n\nLa definición dice P(B|A) = P(A∩B)/P(A), o sea P(A∩B) = 0,2 · P(A). Lo llevas a la regla de la unión, 0,6 = P(A) + 0,4 − 0,2·P(A), y sale P(A) = 0,25 y P(A∩B) = 0,05.\n\nEl ejercicio completo, con el apartado b, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #probabilidad #probabilidadcondicionada #sucesos #estadistica",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Condicionada\nno es\nintersección",
+      "line2": "P(A) = 0,25",
+      "tex": "P(B|A) = \\frac{P(A \\cap B)}{P(A)}",
+      "badge": "✗  P(A∩B) = 0,2"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Condicionada no es intersección",
+        "tail": 0.4,
+        "narration": "[energetic] Una probabilidad condicionada no es una intersección. Y este dato de Selectividad lo demuestra.",
+        "captions": [
+          "Una probabilidad condicionada no es una intersección.",
+          "Este dato de Selectividad lo demuestra."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "Condicionada\n*no es*\nintersección",
+          "tex": "P(B|A) = 0{,}2",
+          "texSize": 66,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Tomar el 0,2 como intersección",
+        "tail": 0.4,
+        "narration": "El error es usar ese cero coma dos como si fuera la intersección. Te saldría P de A igual a cero coma cuatro. Y entonces la condicionada valdría cero coma cinco, que contradice el dato.",
+        "captions": [
+          "El error es usar 0,2 como si fuera P(A∩B).",
+          "Saldría P(A) = 0,4.",
+          "Y entonces P(B|A) = 0,5, que contradice el dato."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P(A \\cap B) \\;\\xcancel{=}\\; 0{,}2",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "\\Rightarrow\\ P(A) = 0{,}4",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "P(B|A) = \\frac{0{,}2}{0{,}4} = 0{,}5 \\neq 0{,}2",
+              "size": 42,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Contradice el enunciado",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "La definición, despejada",
+        "tail": 0.4,
+        "narration": "La definición dice que la condicionada es la intersección partido por P de A. Despejas: la intersección es cero coma dos por P de A.",
+        "captions": [
+          "La definición: P(B|A) = P(A∩B)/P(A).",
+          "Despejas: P(A∩B) = 0,2 · P(A)."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P(A \\cap B) = P(B|A)\\cdot P(A) = 0{,}2\\,P(A)",
+              "size": 40
+            },
+            {
+              "tex": "0{,}6 = P(A) + 0{,}4 - 0{,}2\\,P(A)",
+              "size": 44,
+              "color": "indet"
+            }
+          ],
+          "chips": [
+            {
+              "text": "una incógnita",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Una ecuación de nada",
+        "tail": 0.4,
+        "narration": "Agrupas y sale P de A igual a cero coma veinticinco. La intersección vale cero coma cero cinco.",
+        "captions": [
+          "Agrupas: 0,2 = 0,8 · P(A).",
+          "P(A) = 0,25 y P(A∩B) = 0,05."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "0{,}2 = 0{,}8\\,P(A)",
+              "size": 50
+            },
+            {
+              "tex": "P(A) = 0{,}25",
+              "size": 54,
+              "color": "solved"
+            },
+            {
+              "tex": "P(A \\cap B) = 0{,}05",
+              "size": 50,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Cero coma veinticinco. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "P(A) = 0,25.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Despeja la\n*definición*",
+          "tex": "P(A \\cap B) = 0{,}2\\,P(A)",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

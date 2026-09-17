@@ -17,7 +17,10 @@
     "Planteamiento": "teal",
     "Primitiva": "indet",
     "Resultado": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Área bajo ln x con integración por partes | PAU Madrid Junio 2026, Matemáticas II, Pregunta 5.1",
@@ -338,5 +341,151 @@
         "closing": "Sitúa el recinto antes de integrar: te evita signos y valores absolutos."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "El recinto de ln x no empieza en 0 (PAU Madrid, junio 2026, Pregunta 5.1)",
+    "caption": "Antes de integrar, mira dónde está el recinto.\n\nPregunta 5.1 de la PAU de Madrid de junio de 2026 (Matemáticas II): área encerrada entre y = ln x, el eje X y la recta x = e. El reflejo es escribir la integral entre 0 y e, y ahí ya has perdido el ejercicio: entre 0 y 1 el logaritmo es negativo y se va a menos infinito, así que por ahí no hay ningún recinto cerrado.\n\nEl logaritmo corta al eje en x = 1, porque ln 1 = 0. El recinto va de 1 a e. Por partes, con u = ln x y dv = dx, la primitiva es x·ln x − x, y Barrow entre 1 y e da 0 − (−1) = 1. El área vale exactamente 1.\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #integrales #integracionporpartes #area #calculo #logaritmo #regladebarrow",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "El recinto\nno empieza\nen cero",
+      "line2": "Área = 1",
+      "tex": "\\int_1^{e} \\ln x \\; dx",
+      "badge": "✓  ln 1 = 0"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "El recinto no empieza en 0",
+        "tail": 0.4,
+        "narration": "[energetic] Antes de integrar, mira dónde está el recinto. Este de Selectividad no empieza donde parece.",
+        "captions": [
+          "Antes de integrar, mira dónde está el recinto.",
+          "Este no empieza donde parece."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "El recinto\n*no empieza*\nen cero",
+          "tex": "y = \\ln x,\\ \\ x = e",
+          "texSize": 62,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Integrar desde cero",
+        "tail": 0.4,
+        "narration": "El error es escribir la integral entre cero y e. Entre cero y uno el logaritmo es negativo. Y se va a menos infinito, así que por ahí no hay recinto.",
+        "captions": [
+          "El error es integrar entre 0 y e.",
+          "Entre 0 y 1 el logaritmo es negativo.",
+          "Y se va a menos infinito: ahí no hay recinto."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\text{Área} \\;\\xcancel{=}\\; \\int_{0}^{e} \\ln x \\; dx",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "\\ln x < 0 \\ \\ \\text{si}\\ \\ 0 < x < 1",
+              "size": 44,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Ahí no hay recinto",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-despeje",
+        "phase": "El despeje",
+        "heading": "Empieza donde corta al eje",
+        "tail": 0.4,
+        "narration": "El recinto empieza donde la curva corta al eje. Logaritmo de uno es cero, así que el límite de abajo es uno. Y la primitiva sale por partes, con u igual a logaritmo de x.",
+        "captions": [
+          "El recinto empieza donde la curva corta al eje.",
+          "ln 1 = 0, así que el límite de abajo es 1.",
+          "La primitiva sale por partes, con u = ln x."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\ln 1 = 0 \\;\\Rightarrow\\; \\text{Área} = \\int_{1}^{e} \\ln x \\; dx",
+              "size": 42,
+              "color": "indet"
+            },
+            {
+              "tex": "u = \\ln x,\\quad dv = dx",
+              "size": 46
+            },
+            {
+              "tex": "\\int \\ln x \\; dx = x\\ln x - x",
+              "size": 46,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "por partes",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Barrow entre 1 y e",
+        "tail": 0.4,
+        "narration": "Aplicas Barrow. En e queda cero, y en uno queda menos uno. Restas, y el área vale exactamente uno.",
+        "captions": [
+          "Aplicas Barrow entre 1 y e.",
+          "En e queda 0, en 1 queda −1.",
+          "El área vale exactamente 1."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\big[\\,x\\ln x - x\\,\\big]_{1}^{e} = 0 - (-1)",
+              "size": 44
+            },
+            {
+              "tex": "\\text{Área} = 1",
+              "size": 62,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Área uno, exacta. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "Área 1, exacta.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Dibuja\n*antes* de\nintegrar",
+          "tex": "\\int_{1}^{e} \\ln x \\; dx = 1",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }

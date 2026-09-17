@@ -18,7 +18,10 @@
     "Función objetivo": "teal",
     "Optimización": "indet",
     "Resultado": "solved",
-    "Resumen final": "tealSoft"
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El despeje": "indet",
+    "El resultado": "solved"
   },
   "youtube": {
     "title": "Optimización: el suelo más barato del jardín | PAU Madrid Junio 2026, Matemáticas II, Pregunta 2",
@@ -390,5 +393,158 @@
         "closing": "Función, relación entre variables, derivada y comprobación."
       }
     }
-  ]
+  ],
+  "reel": {
+    "title": "El paso que falta en optimización (PAU Madrid, junio 2026, Pregunta 2)",
+    "caption": "En optimización no puedes derivar con dos variables.\n\nPregunta 2 de la PAU de Madrid de junio de 2026 (Matemáticas II): un jardín triangular de catetos 42 y 56 metros, una zona techada rectangular a 30 euros el metro cuadrado y el resto a 50. El coste sale enseguida: C = 58800 − 20xy. Ahí se atasca medio mundo, porque tiene dos variables.\n\nEl paso que falta es la semejanza de triángulos: 42/56 = y/(56 − x), o sea y = 3/4 · (56 − x). Sustituyes, te queda C(x) = 58800 − 15x(56 − x), derivas y sale x = 28. Con la segunda derivada, 30 > 0, confirmas el mínimo. La zona techada mide 28 por 21 metros y el coste mínimo es 47040 euros.\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasii #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #optimizacion #derivadas #maximosyminimos #semejanza #problemasdeoptimizacion",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2026 · Matemáticas II",
+      "line1": "Dos variables\nno se\nderivan",
+      "line2": "28 × 21 metros",
+      "tex": "C = 58800 - 20xy",
+      "badge": "✓  y = ¾(56 − x)"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Dos variables no se derivan",
+        "tail": 0.4,
+        "narration": "[energetic] En optimización no puedes derivar una función con dos variables. Este coste cayó en Selectividad.",
+        "captions": [
+          "En optimización no puedes derivar con dos variables.",
+          "Este coste cayó en Selectividad."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2026",
+          "title": "Dos variables\n*no se*\nderivan",
+          "tex": "C = 58800 - 20xy",
+          "texSize": 70,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Derivar dejando la y quieta",
+        "tail": 0.4,
+        "narration": "El error típico es derivar dejando la y quieta. Pero la y depende de la x: el rectángulo va dentro del triángulo.",
+        "captions": [
+          "El error típico es derivar dejando la y quieta.",
+          "La y depende de la x: el rectángulo va dentro del triángulo."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "C(x,y) = 58800 - 20xy",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "\\frac{dC}{dx} \\;\\xcancel{=}\\; -20y",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "y \\ \\text{no es constante}",
+              "size": 46,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Falta la relación x-y",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-semejanza",
+        "phase": "El despeje",
+        "heading": "La semejanza te da la y",
+        "tail": 0.4,
+        "narration": "La relación sale de la semejanza de triángulos. Despejas la y, y el coste queda con una sola variable.",
+        "captions": [
+          "La relación sale de la semejanza de triángulos.",
+          "Despejas la y y queda una sola variable."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\frac{42}{56} = \\frac{y}{56-x}",
+              "size": 50
+            },
+            {
+              "tex": "y = \\tfrac{3}{4}\\,(56-x)",
+              "size": 50,
+              "color": "indet"
+            },
+            {
+              "tex": "C(x) = 58800 - 15x\\,(56-x)",
+              "size": 46,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "una sola variable",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Derivamos y ya",
+        "tail": 0.4,
+        "narration": "Ahora sí derivamos. Menos ochocientos cuarenta más treinta x igual a cero, y sale x igual a veintiocho. La y vale veintiuno, y el coste mínimo, cuarenta y siete mil cuarenta euros.",
+        "captions": [
+          "Ahora sí: derivamos e igualamos a cero.",
+          "Sale x = 28, y = 21.",
+          "Coste mínimo: 47040 euros."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "C'(x) = -840 + 30x = 0 \\;\\Rightarrow\\; x = 28",
+              "size": 44
+            },
+            {
+              "tex": "y = \\tfrac{3}{4}(56-28) = 21",
+              "size": 48
+            },
+            {
+              "tex": "C(28) = 47040\\ \\text{€}",
+              "size": 56,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Veintiocho por veintiuno. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "28 por 21 metros.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Busca la\n*relación*",
+          "tex": "28 \\times 21",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
 }
