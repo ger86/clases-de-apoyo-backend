@@ -20,6 +20,25 @@ class ChapterRepository extends ServiceEntityRepository
         parent::__construct($registry, Chapter::class);
     }
 
+    /**
+     * Every chapter with the course and the subject it sits under, in one query. See the same
+     * method in ExamRepository.
+     *
+     * @return Chapter[]
+     */
+    public function findAllForSearchIndex(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->addSelect('chapterBlock', 'courseSubject', 'course', 'subject')
+            ->join('c.chapterBlock', 'chapterBlock')
+            ->join('chapterBlock.courseSubject', 'courseSubject')
+            ->join('courseSubject.course', 'course')
+            ->join('courseSubject.subject', 'subject')
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findByCourseAndSubjectAndChapterSlugs($params): ?Chapter
     {
         return $this->createQueryBuilder('c')

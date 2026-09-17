@@ -20,6 +20,28 @@ class ExamRepository extends ServiceEntityRepository
         parent::__construct($registry, Exam::class);
     }
 
+    /**
+     * Every exam with the names above it, in one query. The search index needs all of them at
+     * once, and walking the relations one by one would be a query per exam.
+     *
+     * @return Exam[]
+     */
+    public function findAllForSearchIndex(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->addSelect('testYear', 'communityTestCourseSubject', 'courseSubject', 'subject', 'communityTest', 'community', 'knowledgeTest')
+            ->join('e.testYear', 'testYear')
+            ->join('testYear.communityTestCourseSubject', 'communityTestCourseSubject')
+            ->join('communityTestCourseSubject.courseSubject', 'courseSubject')
+            ->join('courseSubject.subject', 'subject')
+            ->join('communityTestCourseSubject.communityTest', 'communityTest')
+            ->join('communityTest.community', 'community')
+            ->join('communityTest.knowledgeTest', 'knowledgeTest')
+            ->orderBy('e.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findByCriteria(
         string $testSlug,
         string $communitySlug,
