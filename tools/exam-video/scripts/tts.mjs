@@ -39,6 +39,20 @@ const dir = audioDir(slug, reel);
 fs.mkdirSync(dir, { recursive: true });
 let voiceId = flag("voice") || env.ELEVENLABS_VOICE_ID || exercise.voice.voiceId;
 
+// Delivery, not identity: these shape how the cloned voice performs, never which
+// voice it is. Lower stability lets it vary more (livelier, less even), higher style
+// exaggerates its own manner. An exercise can override any of them with
+// "voice": { "settings": { ... } }, and a reel can override them again with
+// "voice": { "reelSettings": { ... } }, because a 40 second short wants more energy
+// than a 5 minute explainer. See the README.
+const VOICE_SETTINGS = { stability: 0.4, similarity_boost: 0.78, style: 0.45, use_speaker_boost: true, speed: 1.02 };
+const voiceSettings = {
+  ...VOICE_SETTINGS,
+  ...(exercise.voice.settings ?? {}),
+  ...(reel ? (exercise.voice.reelSettings ?? {}) : {}),
+};
+console.log(`voice settings: ${Object.entries(voiceSettings).map(([k, v]) => `${k}=${v}`).join(" ")}`);
+
 const synthesize = async (scene, voice, withTimestamps = true) => {
   const endpoint = withTimestamps ? "/with-timestamps" : "";
   const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}${endpoint}?output_format=mp3_44100_128`, {
@@ -47,7 +61,7 @@ const synthesize = async (scene, voice, withTimestamps = true) => {
     body: JSON.stringify({
       text: scene.narration,
       model_id: exercise.voice.model,
-      voice_settings: { stability: 0.4, similarity_boost: 0.78, style: 0.45, use_speaker_boost: true, speed: 1.02 },
+      voice_settings: voiceSettings,
     }),
   });
   return res;

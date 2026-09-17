@@ -1,0 +1,160 @@
+{
+  "slug": "matrices-ejercicio-1-matriz-traspuesta",
+  "exam": {
+    "label": "Matrices · Ejercicio 1",
+    "site": "ClasesDeApoyo.com",
+    "question": "Ejercicio 1",
+    "topic": "Matriz traspuesta"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El error": "danger",
+    "La regla": "indet",
+    "El resultado": "solved"
+  },
+  "reel": {
+    "title": "Trasponer no es girar la matriz (Matrices, ejercicio 1)",
+    "caption": "Trasponer una matriz no es girarla.\n\nSi giras la matriz un cuarto de vuelta, te salen los mismos números en el orden equivocado. La traspuesta se hace fila a fila: la fila 1 pasa a ser la columna 1, la fila 2 la columna 2, y así.\n\nPor eso las dimensiones se dan la vuelta: una matriz 4 × 2 tiene traspuesta 2 × 4, y una 3 × 5 tiene traspuesta 5 × 3. Si te sale con la misma forma, revísalo.\n\nTienes la hoja completa de matrices, con soluciones paso a paso, en ClasesDeApoyo.com.\n\n#matrices #matriztraspuesta #algebra #matematicas #bachillerato #1bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #estudiar #clasesdeapoyo #ejerciciosresueltos #algebralineal",
+    "cover": {
+      "kicker": "Matrices · Ejercicio 1",
+      "line1": "Trasponer\nno es\ngirar",
+      "line2": "4 × 2 → 2 × 4",
+      "tex": "A^{t}",
+      "badge": "✓  fila 1 → columna 1"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Trasponer no es girar",
+        "tail": 0.4,
+        "narration": "[excited] Trasponer una matriz no es girarla. Mira lo que pasa si la giras.",
+        "captions": [
+          "Trasponer una matriz no es girarla.",
+          "Mira lo que pasa si la giras."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · Ejercicio 1",
+          "title": "Trasponer\n*no es*\ngirar",
+          "tex": "A = \\begin{pmatrix}-1&2\\\\3&-1\\\\0&7\\\\7&4\\end{pmatrix}",
+          "texSize": 44,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Girarla un cuarto de vuelta",
+        "tail": 0.4,
+        "narration": "Si giras la matriz un cuarto de vuelta, te sale otra cosa. Están todos los números, pero en el orden equivocado.",
+        "captions": [
+          "Si la giras un cuarto de vuelta, sale otra matriz.",
+          "Están todos los números, pero en el orden equivocado."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^{t} \\;\\xcancel{=}\\; \\begin{pmatrix}7&0&3&-1\\\\4&7&-1&2\\end{pmatrix}",
+              "size": 44,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Eso es girar, no trasponer",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-regla",
+        "phase": "La regla",
+        "heading": "Fila a fila",
+        "tail": 0.4,
+        "narration": "[cheerful] La regla es sencilla: la fila uno pasa a ser la columna uno, la fila dos la columna dos, y así. Por eso las dimensiones se dan la vuelta.",
+        "captions": [
+          "La fila 1 pasa a ser la columna 1, la fila 2 la columna 2.",
+          "Por eso las dimensiones se dan la vuelta."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\text{fila } i \\;\\longrightarrow\\; \\text{columna } i",
+              "size": 46
+            },
+            {
+              "tex": "A_{m \\times n} \\;\\Rightarrow\\; A^{t}_{\\,n \\times m}",
+              "size": 52,
+              "color": "indet"
+            }
+          ],
+          "chips": [
+            {
+              "text": "se dan la vuelta",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "La traspuesta de A",
+        "tail": 0.4,
+        "narration": "La traspuesta de A es de dos por cuatro. Y si la matriz es de tres por cinco, su traspuesta es de cinco por tres.",
+        "captions": [
+          "La traspuesta de A es 2 × 4.",
+          "Y una matriz 3 × 5 tiene traspuesta 5 × 3."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^{t} = \\begin{pmatrix}-1&3&0&7\\\\2&-1&7&4\\end{pmatrix}",
+              "size": 48,
+              "color": "solved"
+            },
+            {
+              "tex": "3 \\times 5 \\;\\Rightarrow\\; 5 \\times 3",
+              "size": 44,
+              "color": "inkSoft"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Filas por columnas, y ya está. Tienes la hoja entera resuelta en ClasesDeApoyo punto com.",
+        "captions": [
+          "Filas por columnas, y ya está.",
+          "La hoja entera resuelta en ClasesDeApoyo.com."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Fila 1,\n*columna 1*",
+          "tex": "A_{m \\times n} \\Rightarrow A^{t}_{\\,n \\times m}",
+          "lines": [
+            "Hoja de matrices resuelta",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
