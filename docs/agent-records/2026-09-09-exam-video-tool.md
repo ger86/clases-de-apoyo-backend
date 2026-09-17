@@ -70,6 +70,23 @@ The reel itself only exercises `hook`, `rows` and `cta`, so the other five body 
 
 Open point: nobody has listened to the reel narration yet.
 
+## Six more reels: the rest of PAU Madrid June 2026, 2026-09-16
+
+One reel for each remaining exercise of the exam, same format, 5 scenes and about 40 seconds each, 3,497 credits in total. Each one teaches a single mistake, and every mistake was checked numerically before it was written, not after:
+
+- Pregunta 2 (jardín): deriving the cost with two variables. The relation comes from similar triangles, y = 3/4 (56 - x); x = 28, y = 21, 47,040 euros, checked against the cost at x = 20 and x = 35.
+- Pregunta 3 (simétrico): answering M, the projection, or M - P. M - P = (2, 2, -1), whose midpoint with P is (2, 1, -1/2), not M. The right answer P' = 2M - P = (6, 4, -2) puts P and P' both 3 units from the plane.
+- Pregunta 4.1 (baterías): reusing the probability you just computed as the p of the binomial. With p = 0.1587 the answer is 5e-7, which is the probability of nine defective ones; the question asks for nine good ones, so p = 0.8413 and the answer is 0.5127.
+- Pregunta 4.2 (condicionada): reading P(B|A) = 0.2 as P(A∩B) = 0.2. That gives P(A) = 0.4, and then P(B|A) would be 0.5, contradicting the statement.
+- Pregunta 5.1 (área): integrating ln x from 0. Between 0 and 1 the logarithm is negative and unbounded, so there is no region there; the region starts at x = 1 because ln 1 = 0. The reel deliberately does not write the bracket at 0: that integral converges to 0, which is a true but improper result and would teach a second error to students who have not seen improper integrals.
+- Pregunta 5.2 (a trozos): looking for a in the continuity condition. sin(a·0) = 0 for every a, so continuity only gives b = 2 and a = -2 comes from the derivatives.
+
+The still review was automated this time, on top of looking at the frames: for each of the 30 stills, the brightest pixel inside the right safe zone (x from 910 to 1080, below the top bar) was measured with ffmpeg signalstats. All 30 read 37, the background, against 226 inside the content box, which proves nothing was drawn under the button column. The same check on the 18 px band above the captions caught nothing either.
+
+`batch.mjs` now produces both formats for every slug instead of only the video: the four steps for the 16:9 explainer, then the same four with `--reel` when that `exercise.json` has a `reel` section. It is the difference between remembering to make the reel and getting one by default. An exercise with no `reel` section is not silently skipped: it still gets its video and the summary marks it "sin reel", because a missing reel is almost always an oversight rather than a decision. `--no-reel` and `--only-reel` cover the two one-format cases.
+
+Found while writing the Pregunta 5.2 reel: scene `06-derivada-der` of the long video says "uno menos dos x más x al cuadrado, que es uno menos x al cuadrado", which spoken aloud is 1 - x². The factor is (1 - x)², which is what the TeX and the caption of that scene show, so only the narration is wrong. The reel writes and narrates it unambiguously. Fixing the long video means regenerating that one clip and rendering again; it has not been done.
+
 ## Whole exam batch: PAU Madrid Junio 2026, Preguntas 2 to 5.2, 2026-09-15
 
 The six remaining questions of `tools/junio-2026.pdf` were produced in one pass. Three forked agents wrote two `exercise.json` each in parallel (editing only their own exercise folders) and reviewed their stills; the main session verified all results independently before that, spot-checked stills, then ran the new `scripts/batch.mjs` (tts, build-props, render, youtube per slug) detached with `nohup`, since a full exam exceeds the 10-minute limit of a background shell command.
@@ -86,3 +103,11 @@ The six remaining questions of `tools/junio-2026.pdf` were produced in one pass.
 Total about 16,700 credits, 18 minutes of batch time, all six with the cloned voice and full caption alignment. No errors found in the PDF solutions. Pregunta 3 covers a, b1 and b2 and says the student answers only one of b1/b2. Pregunta 2 adds the minimum cost (47,040 EUR), which the PDF does not state.
 
 Thumbnail fix: long formulas made the formula box grow leftwards over the title. The box is now capped at 560 px and the formula shrinks by length.
+
+## Voice delivery is configurable, and a reel outside the PAU exams, 2026-09-17
+
+The voice settings were hardcoded in `tts.mjs`. They are now defaults that `voice.settings` overrides per exercise, and `voice.reelSettings` overrides again for the reel only, which is the case that matters: a 40 second short wants more energy than a 5 minute explainer. `tts.mjs` prints the settings it is about to use, so what a clip was recorded with is visible in the log rather than guessed. The voice id is untouched by all of this: the request is that the same cloned voice performs differently, not that it becomes another voice.
+
+Lively profile, asked for and used by the first exercise outside the PAU exams: `stability 0.28` (down from 0.4, so the voice varies more), `style 0.65` (up from 0.45, which exaggerates its own manner) and `speed 1.05`. Plus the v3 tags `[excited]` and `[cheerful]` instead of `[energetic]`. Earlier reels keep their audio; changing the settings regenerates nothing without `--force`.
+
+First exercise from a worksheet rather than an exam: `matrices-ejercicio-1-matriz-traspuesta`, from `matrices_ejercicio_1.pdf` (transposes of a 4x2, a 3x3 and a 3x5 matrix). The PDF's solutions were checked element by element and are correct. The reel teaches that transposing is not rotating: rotating A a quarter turn gives [[7,0,3,-1],[4,7,-1,2]], the same numbers in the wrong order, against the transpose [[-1,3,0,7],[2,-1,7,4]]. 5 scenes, 516 characters, 33 seconds. It has no `scenes` key and no `youtube` key, which the reel path does not need, so an exercise can exist as a reel only.

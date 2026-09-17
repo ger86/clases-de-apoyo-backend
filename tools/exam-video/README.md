@@ -16,7 +16,7 @@ node scripts/build-props.mjs <slug>          # measure durations, sync captions 
 node scripts/stills.mjs <slug>               # one review PNG per scene
 node scripts/render.mjs <slug>               # final MP4 -> output/<slug>/<slug>.mp4
 node scripts/youtube.mjs <slug>              # youtube.md (title, description, chapters, tags), .es.srt subtitles, thumbnail.png
-node scripts/batch.mjs <slug> [<slug> ...]   # tts + build-props + render + youtube for several exercises, one after another (--dry-run to only count credits)
+node scripts/batch.mjs <slug> [<slug> ...]   # video AND reel for several exercises: tts + build-props + render + youtube for each format (--dry-run counts credits, --no-reel or --only-reel for one format)
 npx remotion studio --props=public/exercises/<slug>/props.json   # interactive preview
 ```
 
@@ -40,6 +40,22 @@ Colors are semantic names from `src/theme.ts`: `given`, `danger`, `indet`, `solv
 ## Captions
 
 Write one caption per narration sentence. The narration is what the voice reads (numbers in words), the caption is what the viewer sees (digits). `tts.mjs --dry-run` fails if the counts differ. `build-props.mjs` places each caption at the exact second the sentence starts, using the ElevenLabs character alignment.
+
+## Voice
+
+`voice` in `exercise.json` picks the voice; `voice.settings` changes how it performs, and `voice.reelSettings` changes it again for the reel only, because a 40 second short wants more energy than a 5 minute explainer:
+
+```json
+"voice": {
+  "provider": "elevenlabs", "model": "eleven_v3",
+  "voiceId": "KDuMsTRG03d18osdZP8V", "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+  "reelSettings": { "stability": 0.28, "style": 0.65, "speed": 1.05 }
+}
+```
+
+Defaults are `stability 0.4, similarity_boost 0.78, style 0.45, speed 1.02`, and anything you leave out keeps its default. Lower `stability` lets the voice vary more, which reads as livelier; higher `style` exaggerates its own manner. Both push it away from an even, neutral read, so change them in small steps and listen. `tts.mjs` prints the settings it is about to use on every run.
+
+The other half of the delivery is the ElevenLabs v3 tags at the start of a narration: `[excited]`, `[cheerful]`, `[energetic]`, `[calm]`, `[didactic]`. They are stripped before the character count and before the captions are matched.
 
 ## Reel format (vertical 9:16)
 

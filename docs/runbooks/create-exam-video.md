@@ -39,6 +39,8 @@ node scripts/tts.mjs <slug>
 
 The script skips scenes that already have an MP3. To redo one scene after a narration change: `--only=<sceneId> --force`. The default voice is the cloned voice `KDuMsTRG03d18osdZP8V` (paid plan). If a voice is rejected with 402, the script falls back to `fallbackVoiceId` (George).
 
+To make the same voice sound livelier, do not change the voice: add `voice.settings` (both formats) or `voice.reelSettings` (reel only) to `exercise.json`, lowering `stability` and raising `style`. `matrices-ejercicio-1-matriz-traspuesta` uses `stability 0.28, style 0.65, speed 1.05` as the lively profile. `tts.mjs` prints the settings on every run, and the tags `[excited]` and `[cheerful]` at the start of a narration do the rest. Changing the settings does not regenerate anything by itself: pass `--force` to redo clips that already exist.
+
 ## 5. Build props and render
 
 ```bash
@@ -122,8 +124,10 @@ You do not need to cut the PDF into exercises. The agent reads the whole scan pa
 Then run everything in one go:
 
 ```bash
-node scripts/batch.mjs --dry-run <slug1> <slug2> ...    # credits and caption checks for all
-nohup node scripts/batch.mjs <slug1> <slug2> ... > output/batch.log 2>&1 &   # tts, props, render, youtube per slug
+node scripts/batch.mjs --dry-run <slug1> <slug2> ...    # credits and caption checks for all, both formats
+nohup node scripts/batch.mjs <slug1> <slug2> ... > output/batch.log 2>&1 &   # video and reel per slug
 ```
 
-Use `nohup` (or a terminal you keep open): a full exam takes 20 to 30 minutes. The batch continues after a failing exercise and prints a summary at the end; rerun only the failed slugs, since `tts.mjs` skips the MP3s that already exist. Validate each MP4 with `ffprobe` and `ffmpeg -f null` and look at each `thumbnail.png` before uploading. Reference run: PAU Madrid Junio 2026, six questions, about 16,700 credits, 18 minutes of batch time.
+The batch produces both formats for every slug: the 16:9 video for YouTube, and then the 9:16 reel whenever that `exercise.json` has a `reel` section (section 7). An exercise without one is still produced as a video and is listed in the summary as "sin reel", so write the section and pass that slug again with `--only-reel`. `--no-reel` produces only the video.
+
+Use `nohup` (or a terminal you keep open): a full exam takes 20 to 30 minutes for the videos, plus about 3 minutes per reel. The batch continues after a failing format or exercise and prints a summary at the end; rerun only the failed slugs, since `tts.mjs` skips the MP3s that already exist. Validate each MP4 with `ffprobe` and `ffmpeg -f null` and look at each `thumbnail.png` and `cover.png` before uploading. Reference run: PAU Madrid Junio 2026, six questions, about 16,700 credits and 18 minutes for the videos, 3,500 credits and 16 minutes for the six reels.
