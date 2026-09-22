@@ -1,0 +1,664 @@
+{
+  "slug": "valor-absoluto-ejercicio-1-desarrollar-a-trozos",
+  "exam": {
+    "label": "Valor absoluto · 1º Bachillerato CC",
+    "question": "Ejercicio 1",
+    "topic": "Desarrollar |2x + 3| − |2x − 3| a trozos",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Puntos clave": "teal",
+    "Signos": "indet",
+    "Los tres tramos": "warn",
+    "Resultado": "solved",
+    "Comprobación": "teal",
+    "La gráfica": "indet",
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "La clave": "indet"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Un valor absoluto menos otro",
+      "narration": "[energetic] Desarrolla el valor absoluto de dos equis más tres, menos el valor absoluto de dos equis menos tres. Parece una resta sencilla, pero el resultado no es un número suelto: es una función con tres tramos. Vamos a hacerlo paso a paso.",
+      "captions": [
+        "Desarrolla |2x + 3| − |2x − 3|.",
+        "Parece una resta sencilla, pero el resultado no es un número suelto: es una función con tres tramos.",
+        "Vamos a hacerlo paso a paso."
+      ],
+      "tail": 0.5,
+      "body": {
+        "type": "hook",
+        "kicker": "Valor absoluto · 1º Bachillerato",
+        "title": "De dos *valores absolutos*\na una función *a trozos*",
+        "tex": "\\lvert 2x+3 \\rvert - \\lvert 2x-3 \\rvert",
+        "texColor": "teal",
+        "texSize": 78
+      }
+    },
+    {
+      "id": "02-que-es-desarrollar",
+      "phase": "Idea clave",
+      "heading": "Qué significa desarrollar un valor absoluto",
+      "narration": "[didactic] Desarrollar significa quitar las barras. Y para quitarlas hay que saber el signo de lo que hay dentro. Si lo de dentro es positivo o cero, el valor absoluto lo deja tal cual. Si es negativo, le cambia el signo. Aquí hay dos barras, así que hay dos signos que estudiar.",
+      "captions": [
+        "Desarrollar significa quitar las barras.",
+        "Y para quitarlas hay que saber el signo de lo que hay dentro.",
+        "Si lo de dentro es positivo o cero, el valor absoluto lo deja tal cual.",
+        "Si es negativo, le cambia el signo.",
+        "Aquí hay dos barras, así que hay dos signos que estudiar."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Definición",
+            "tex": "\\lvert u \\rvert = \\begin{cases} u & \\text{si } u \\geq 0 \\\\ -u & \\text{si } u < 0 \\end{cases}",
+            "color": "teal",
+            "size": 54
+          }
+        ],
+        "chips": [
+          {
+            "tex": "u_1 = 2x+3",
+            "color": "teal"
+          },
+          {
+            "tex": "u_2 = 2x-3",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-puntos-criticos",
+      "phase": "Puntos clave",
+      "heading": "Dónde cambia de signo cada paréntesis",
+      "narration": "Cada valor absoluto cambia de signo justo donde su interior vale cero. Igualamos dos equis más tres a cero y sale equis igual a menos tres medios. Igualamos dos equis menos tres a cero y sale equis igual a tres medios. Estos dos puntos parten la recta real en tres tramos.",
+      "captions": [
+        "Cada valor absoluto cambia de signo justo donde su interior vale 0.",
+        "Igualamos 2x + 3 = 0 y sale x = −3/2.",
+        "Igualamos 2x − 3 = 0 y sale x = 3/2.",
+        "Estos dos puntos parten la recta real en tres tramos."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Primer paréntesis",
+            "tex": "2x+3 = 0 \\;\\Rightarrow\\; x = -\\dfrac{3}{2}",
+            "color": "teal",
+            "size": 58
+          },
+          {
+            "label": "Segundo paréntesis",
+            "tex": "2x-3 = 0 \\;\\Rightarrow\\; x = \\dfrac{3}{2}",
+            "color": "indet",
+            "size": 58
+          }
+        ],
+        "badge": {
+          "text": "2 puntos, 3 tramos",
+          "sub": "a la izquierda de −3/2, entre los dos, y a la derecha de 3/2",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "04-tabla-signos",
+      "phase": "Signos",
+      "heading": "Tabla de signos de los dos paréntesis",
+      "narration": "[didactic] Colocamos los signos en una tabla. A la izquierda de menos tres medios los dos paréntesis son negativos. En el tramo central, dos equis más tres ya es positivo, pero dos equis menos tres sigue siendo negativo. Y a la derecha de tres medios los dos son positivos. Tres combinaciones distintas, tres tramos.",
+      "captions": [
+        "Colocamos los signos en una tabla.",
+        "A la izquierda de −3/2 los dos paréntesis son negativos.",
+        "En el tramo central, 2x + 3 ya es positivo, pero 2x − 3 sigue siendo negativo.",
+        "Y a la derecha de 3/2 los dos son positivos.",
+        "Tres combinaciones distintas, tres tramos."
+      ],
+      "tail": 0.6,
+      "body": {
+        "type": "table",
+        "columns": [
+          "\\left(-\\infty,\\, -\\tfrac{3}{2}\\right)",
+          "-\\tfrac{3}{2}",
+          "\\left(-\\tfrac{3}{2},\\, \\tfrac{3}{2}\\right)",
+          "\\tfrac{3}{2}",
+          "\\left(\\tfrac{3}{2},\\, +\\infty\\right)"
+        ],
+        "rows": [
+          {
+            "label": "2x+3",
+            "cells": [
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "0",
+                "color": "indet"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              }
+            ]
+          },
+          {
+            "label": "2x-3",
+            "cells": [
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "0",
+                "color": "indet"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              }
+            ]
+          }
+        ],
+        "chips": [
+          {
+            "text": "el signo de cada paréntesis decide si su valor absoluto cambia o no",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-tramo-1",
+      "phase": "Los tres tramos",
+      "heading": "Tramo 1: x ≤ −3/2, los dos paréntesis negativos",
+      "narration": "[didactic] Primer tramo: equis menor o igual que menos tres medios. Los dos paréntesis son negativos, así que los dos valores absolutos cambian de signo. Cuidado con el segundo, que va restando: al restar menos el paréntesis, queda sumando. Nos queda menos dos equis menos tres, más dos equis menos tres. Las equis se cancelan y el resultado es menos seis, un número fijo.",
+      "captions": [
+        "Primer tramo: x ≤ −3/2.",
+        "Los dos paréntesis son negativos, así que los dos valores absolutos cambian de signo.",
+        "Cuidado con el segundo, que va restando: al restar −(2x − 3), queda sumando.",
+        "Nos queda −2x − 3 + 2x − 3.",
+        "Las x se cancelan y el resultado es −6, un número fijo."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Signos",
+            "tex": "2x+3 \\leq 0, \\qquad 2x-3 < 0",
+            "color": "danger",
+            "size": 50
+          },
+          {
+            "tex": "-(2x+3) - \\big[-(2x-3)\\big] = -2x-3+2x-3",
+            "size": 48
+          },
+          {
+            "tex": "= -6",
+            "color": "solved",
+            "size": 72
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-tramo-2",
+      "phase": "Los tres tramos",
+      "heading": "Tramo 2: entre −3/2 y 3/2, un signo de cada",
+      "narration": "Segundo tramo: equis entre menos tres medios y tres medios. Aquí el primer paréntesis ya es positivo, así que sale tal cual. El segundo todavía es negativo, así que cambia de signo y vuelve a quedar sumando. Nos queda dos equis más tres, más dos equis menos tres. Los treses se cancelan y el resultado es cuatro equis. Este tramo no es constante: depende de equis.",
+      "captions": [
+        "Segundo tramo: x entre −3/2 y 3/2.",
+        "Aquí el primer paréntesis ya es positivo, así que sale tal cual.",
+        "El segundo todavía es negativo, así que cambia de signo y vuelve a quedar sumando.",
+        "Nos queda 2x + 3 + 2x − 3.",
+        "Los treses se cancelan y el resultado es 4x.",
+        "Este tramo no es constante: depende de x."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Signos",
+            "tex": "2x+3 > 0, \\qquad 2x-3 < 0",
+            "color": "warn",
+            "size": 50
+          },
+          {
+            "tex": "(2x+3) - \\big[-(2x-3)\\big] = 2x+3+2x-3",
+            "size": 48
+          },
+          {
+            "tex": "= 4x",
+            "color": "solved",
+            "size": 72
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-tramo-3",
+      "phase": "Los tres tramos",
+      "heading": "Tramo 3: x ≥ 3/2, los dos paréntesis positivos",
+      "narration": "Tercer tramo: equis mayor o igual que tres medios. Ahora los dos paréntesis son positivos, así que las barras se quitan sin tocar nada. Restamos el segundo paréntesis entero: dos equis más tres, menos dos equis, más tres. Las equis se cancelan y quedan tres más tres, es decir, seis.",
+      "captions": [
+        "Tercer tramo: x ≥ 3/2.",
+        "Ahora los dos paréntesis son positivos, así que las barras se quitan sin tocar nada.",
+        "Restamos el segundo paréntesis entero: 2x + 3 − 2x + 3.",
+        "Las x se cancelan y quedan 3 + 3, es decir, 6."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Signos",
+            "tex": "2x+3 > 0, \\qquad 2x-3 \\geq 0",
+            "color": "solved",
+            "size": 50
+          },
+          {
+            "tex": "(2x+3) - (2x-3) = 2x+3-2x+3",
+            "size": 48
+          },
+          {
+            "tex": "= 6",
+            "color": "solved",
+            "size": 72
+          }
+        ],
+        "chips": [
+          {
+            "text": "el signo menos afecta a todo el paréntesis, también al −3",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-funcion-a-trozos",
+      "phase": "Resultado",
+      "heading": "La expresión desarrollada por intervalos",
+      "narration": "[didactic] Juntamos los tres tramos y ya tenemos el desarrollo pedido. Vale menos seis si equis es menor o igual que menos tres medios. Vale cuatro equis si equis está entre menos tres medios y tres medios. Y vale seis si equis es mayor o igual que tres medios.",
+      "captions": [
+        "Juntamos los tres tramos y ya tenemos el desarrollo pedido.",
+        "Vale −6 si x ≤ −3/2.",
+        "Vale 4x si x está entre −3/2 y 3/2.",
+        "Y vale 6 si x ≥ 3/2."
+      ],
+      "tail": 0.8,
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lvert 2x+3\\rvert - \\lvert 2x-3\\rvert = \\begin{cases} -6 & \\text{si } x \\leq -\\tfrac{3}{2} \\\\ 4x & \\text{si } -\\tfrac{3}{2} < x < \\tfrac{3}{2} \\\\ 6 & \\text{si } x \\geq \\tfrac{3}{2} \\end{cases}",
+            "size": 54
+          }
+        ],
+        "badge": {
+          "text": "−6,  4x,  6",
+          "sub": "esta es la respuesta del ejercicio",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "09-comprobacion-numeros",
+      "phase": "Comprobación",
+      "heading": "Comprobamos con un número de cada tramo",
+      "narration": "Lo comprobamos con un número de cada tramo. Con equis igual a menos dos: valor absoluto de menos uno menos valor absoluto de menos siete, uno menos siete, menos seis. Con equis igual a cero: valor absoluto de tres menos valor absoluto de menos tres, tres menos tres, cero, que es justo cuatro por cero. Con equis igual a dos: valor absoluto de siete menos valor absoluto de uno, siete menos uno, seis. Los tres encajan.",
+      "captions": [
+        "Lo comprobamos con un número de cada tramo.",
+        "Con x = −2: |−1| − |−7| = 1 − 7 = −6.",
+        "Con x = 0: |3| − |−3| = 3 − 3 = 0, que es justo 4 · 0.",
+        "Con x = 2: |7| − |1| = 7 − 1 = 6.",
+        "Los tres encajan."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "x = −2",
+            "tex": "\\lvert -1\\rvert - \\lvert -7\\rvert = 1 - 7 = -6 \\ \\checkmark",
+            "color": "teal",
+            "size": 50
+          },
+          {
+            "label": "x = 0",
+            "tex": "\\lvert 3\\rvert - \\lvert -3\\rvert = 3 - 3 = 0 = 4\\cdot 0 \\ \\checkmark",
+            "color": "warn",
+            "size": 50
+          },
+          {
+            "label": "x = 2",
+            "tex": "\\lvert 7\\rvert - \\lvert 1\\rvert = 7 - 1 = 6 \\ \\checkmark",
+            "color": "solved",
+            "size": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-fronteras",
+      "phase": "Comprobación",
+      "heading": "Los tramos encajan en las fronteras",
+      "narration": "Queda una comprobación más, la más útil de todas: mirar las fronteras. En menos tres medios, el tramo de la izquierda da menos seis y el central da cuatro por menos tres medios, que también es menos seis. En tres medios, el central da cuatro por tres medios, seis, y el de la derecha da seis. Coinciden, así que la expresión no da ningún salto.",
+      "captions": [
+        "Queda una comprobación más, la más útil de todas: mirar las fronteras.",
+        "En −3/2, el tramo de la izquierda da −6 y el central da 4 · (−3/2), que también es −6.",
+        "En 3/2, el central da 4 · (3/2) = 6, y el de la derecha da 6.",
+        "Coinciden, así que la expresión no da ningún salto."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "En x = −3/2",
+            "tex": "-6 \\qquad \\text{y} \\qquad 4\\cdot\\left(-\\tfrac{3}{2}\\right) = -6",
+            "color": "teal",
+            "size": 54
+          },
+          {
+            "label": "En x = 3/2",
+            "tex": "4\\cdot\\tfrac{3}{2} = 6 \\qquad \\text{y} \\qquad 6",
+            "color": "solved",
+            "size": 54
+          }
+        ],
+        "chips": [
+          {
+            "text": "los valores coinciden: la función es continua",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-grafica",
+      "phase": "La gráfica",
+      "heading": "Así se ve: dos mesetas y una rampa",
+      "narration": "Y esta es la gráfica de lo que acabamos de escribir. A la izquierda de menos tres medios es una recta horizontal en menos seis. Entre los dos puntos es la recta cuatro equis, que sube. Y a la derecha de tres medios vuelve a ser horizontal, ahora en seis. Dos mesetas unidas por una rampa.",
+      "captions": [
+        "Y esta es la gráfica de lo que acabamos de escribir.",
+        "A la izquierda de −3/2 es una recta horizontal en −6.",
+        "Entre los dos puntos es la recta 4x, que sube.",
+        "Y a la derecha de 3/2 vuelve a ser horizontal, ahora en 6.",
+        "Dos mesetas unidas por una rampa."
+      ],
+      "tail": 0.6,
+      "body": {
+        "type": "plot",
+        "fn": "Math.abs(2*x+3) - Math.abs(2*x-3)",
+        "xMin": -4,
+        "xMax": 4,
+        "yMin": -8,
+        "yMax": 8,
+        "xTicks": [
+          {
+            "x": -1.5,
+            "label": "−3/2"
+          },
+          {
+            "x": 1.5,
+            "label": "3/2"
+          }
+        ],
+        "points": [
+          {
+            "x": -1.5,
+            "y": -6,
+            "label": "(−3/2, −6)",
+            "color": "teal"
+          },
+          {
+            "x": 1.5,
+            "y": 6,
+            "label": "(3/2, 6)",
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "meseta en −6",
+            "color": "teal"
+          },
+          {
+            "text": "rampa 4x",
+            "color": "warn"
+          },
+          {
+            "text": "meseta en 6",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "narration": "[calm] Resumen. Se iguala a cero el interior de cada valor absoluto: salen menos tres medios y tres medios. Esos dos puntos dan tres tramos. En cada tramo se quitan las barras según el signo, sin olvidar que el menos de delante afecta a todo el paréntesis. Y el resultado es menos seis, cuatro equis y seis. Con dos valores absolutos siempre se hace igual.",
+      "captions": [
+        "Resumen.",
+        "Se iguala a cero el interior de cada valor absoluto: salen −3/2 y 3/2.",
+        "Esos dos puntos dan tres tramos.",
+        "En cada tramo se quitan las barras según el signo, sin olvidar que el menos de delante afecta a todo el paréntesis.",
+        "Y el resultado es −6, 4x y 6.",
+        "Con dos valores absolutos siempre se hace igual."
+      ],
+      "tail": 1.0,
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Puntos clave",
+            "tex": "x = -\\tfrac{3}{2} \\quad \\text{y} \\quad x = \\tfrac{3}{2}",
+            "color": "teal"
+          },
+          {
+            "label": "Regla",
+            "text": "si el paréntesis es negativo, su valor absoluto le cambia el signo",
+            "color": "warn"
+          },
+          {
+            "label": "Resultado",
+            "tex": "-6, \\qquad 4x, \\qquad 6",
+            "color": "solved"
+          }
+        ],
+        "closing": "Dos puntos, tres tramos, tres signos: así se desarrolla cualquier resta de valores absolutos."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Desarrollar |2x+3| − |2x−3| paso a paso | Valor absoluto y función a trozos (1º Bachillerato)",
+    "description": "Desarrollamos paso a paso la expresión |2x + 3| − |2x − 3|, un ejercicio clásico de valor absoluto de 1º de Bachillerato. El resultado no es un número: es una expresión definida a trozos con tres intervalos.\n\nEl método, en tres pasos:\n1. Igualar a cero el interior de cada valor absoluto: 2x + 3 = 0 da x = −3/2, y 2x − 3 = 0 da x = 3/2.\n2. Hacer la tabla de signos de los dos paréntesis en los tres tramos que definen esos puntos.\n3. Quitar las barras en cada tramo según el signo, con cuidado con el menos que va delante del segundo valor absoluto.\n\nResultado:\n|2x + 3| − |2x − 3| = −6 si x ≤ −3/2\n|2x + 3| − |2x − 3| = 4x si −3/2 < x < 3/2\n|2x + 3| − |2x − 3| = 6 si x ≥ 3/2\n\nTambién comprobamos el resultado con un número de cada tramo (x = −2, x = 0, x = 2), vemos que los trozos encajan en las fronteras y dibujamos la gráfica: dos mesetas unidas por una rampa.\n\nEl error más frecuente: quitar las barras directamente y escribir 6 para todo x. Solo es cierto a partir de x = 3/2. Con x = 0 el valor real es 0, no 6.\n\nMás ejercicios resueltos de valor absoluto, inecuaciones y funciones a trozos: https://www.clasesdeapoyo.com\n\n#ValorAbsoluto #FuncionesATrozos #Bachillerato #Matemáticas #EjercicioResuelto",
+    "tags": [
+      "valor absoluto",
+      "desarrollar valor absoluto",
+      "función a trozos",
+      "funciones definidas a trozos",
+      "tabla de signos",
+      "quitar el valor absoluto",
+      "1º bachillerato",
+      "matemáticas 1 bachillerato",
+      "matemáticas aplicadas a las ciencias sociales",
+      "ejercicio resuelto",
+      "ejercicios de valor absoluto",
+      "inecuaciones con valor absoluto",
+      "intervalos",
+      "matemáticas paso a paso",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Valor absoluto · 1º Bachillerato",
+      "line1": "Dos valores\nabsolutos",
+      "line2": "Tres tramos,\npaso a paso",
+      "tex": "\\lvert 2x+3\\rvert - \\lvert 2x-3\\rvert",
+      "badge": "no vale siempre 6"
+    }
+  },
+  "reel": {
+    "title": "|2x+3| − |2x−3| no vale 6 (valor absoluto, ejercicio 1)",
+    "caption": "|2x + 3| − |2x − 3| no vale 6.\n\nSi quitas las barras sin mirar el signo te sale 6 para todo x, y eso solo es cierto a partir de x = 3/2. Prueba con x = 0: |3| − |−3| = 0.\n\nLos puntos donde cada paréntesis se anula son −3/2 y 3/2, y ahí nacen tres tramos: −6, 4x y 6. Dos mesetas unidas por una rampa.\n\nVídeo completo con la tabla de signos y la comprobación en YouTube, y más ejercicios resueltos en ClasesDeApoyo.com.\n\n#valorabsoluto #funcionatrozos #matematicas #bachillerato #1bachillerato #mates #ejerciciosresueltos #tabladesignos #estudiar #matematicasfaciles #clasesdeapoyo",
+    "cover": {
+      "kicker": "Valor absoluto",
+      "line1": "No vale\nsiempre 6",
+      "line2": "Tres tramos:\n−6, 4x y 6",
+      "tex": "\\lvert 2x+3\\rvert - \\lvert 2x-3\\rvert",
+      "badge": "prueba con x = 0"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "No vale siempre 6",
+        "narration": "[excited] Valor absoluto de dos equis más tres, menos el de dos equis menos tres. Casi todos quitan las barras y escriben seis. Y está mal.",
+        "captions": [
+          "|2x + 3| − |2x − 3|.",
+          "Casi todos quitan las barras y escriben 6.",
+          "Y está mal."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Valor absoluto",
+          "title": "No vale\n*siempre 6*",
+          "tex": "\\lvert 2x+3\\rvert - \\lvert 2x-3\\rvert",
+          "texColor": "danger",
+          "texSize": 54
+        }
+      },
+      {
+        "id": "r2-error",
+        "phase": "El error",
+        "heading": "Prueba con x = 0",
+        "narration": "[didactic] Si quitas las barras sin mirar, queda seis. Prueba con equis igual a cero: valor absoluto de tres, menos valor absoluto de menos tres. Da cero. Cero no es seis.",
+        "captions": [
+          "Si quitas las barras sin mirar, queda 6.",
+          "Prueba con x = 0: |3| − |−3|.",
+          "Da 0.",
+          "0 no es 6."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "(2x+3)-(2x-3)=6",
+              "color": "danger",
+              "size": 50
+            },
+            {
+              "label": "x = 0",
+              "tex": "\\lvert 3\\rvert - \\lvert -3\\rvert = 0",
+              "color": "solved",
+              "size": 50
+            }
+          ],
+          "badge": {
+            "text": "0 ≠ 6",
+            "sub": "quitar las barras solo vale si el interior es positivo",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r3-tramos",
+        "phase": "La clave",
+        "heading": "Dos puntos, tres tramos",
+        "narration": "La clave son los puntos donde cada paréntesis se anula: menos tres medios y tres medios. Entre ellos el segundo cambia de signo. Salen tres tramos: menos seis, cuatro equis y seis.",
+        "captions": [
+          "La clave son los puntos donde cada paréntesis se anula: −3/2 y 3/2.",
+          "Entre ellos el segundo cambia de signo.",
+          "Salen tres tramos: −6, 4x y 6."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "Math.abs(2*x+3) - Math.abs(2*x-3)",
+          "xMin": -4,
+          "xMax": 4,
+          "yMin": -8,
+          "yMax": 8,
+          "xTicks": [
+            {
+              "x": -1.5,
+              "label": "−3/2"
+            },
+            {
+              "x": 1.5,
+              "label": "3/2"
+            }
+          ],
+          "points": [
+            {
+              "x": -1.5,
+              "y": -6,
+              "label": "−6",
+              "color": "teal"
+            },
+            {
+              "x": 1.5,
+              "y": 6,
+              "label": "6",
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "tex": "-6, \\quad 4x, \\quad 6",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "El ejercicio completo en YouTube",
+        "narration": "[cheerful] Los tres tramos, paso a paso, en el vídeo de YouTube. Te espero en Clases de Apoyo.",
+        "captions": [
+          "Los 3 tramos, paso a paso, en el vídeo de YouTube.",
+          "Te espero en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "3 tramos,\n*paso a paso*",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ],
+          "tex": "-6,\\ 4x,\\ 6"
+        }
+      }
+    ]
+  }
+}
