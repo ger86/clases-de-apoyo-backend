@@ -15,6 +15,11 @@ export const ReelCover: React.FC<VideoProps> = (props) => {
   };
   const site = props.exam.site ?? "ClasesDeApoyo.com";
   const i = site.lastIndexOf(".");
+  // A one-line formula is set at 58, but a 3x3 determinant is three lines and at that
+  // size it would run into the footer. Shrink it so the whole block still fits the
+  // roughly 420 px between the formula box and the site name.
+  const texRows = c.tex ? c.tex.split("\\\\").length : 1;
+  const texSize = Math.min(58, Math.round(114 / texRows));
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.bg0, fontFamily: FONT_UI }}>
       <Background />
@@ -27,41 +32,50 @@ export const ReelCover: React.FC<VideoProps> = (props) => {
       <div style={{ position: "absolute", left: 70, right: 170, top: 760, fontSize: 52, fontWeight: 800, lineHeight: 1.12, letterSpacing: -0.5, color: COLORS.solved, whiteSpace: "pre-line" }}>
         {c.line2}
       </div>
-      {c.tex ? (
-        <div
-          style={{
-            position: "absolute",
-            left: 70,
-            top: 1000,
-            padding: "26px 36px",
-            borderRadius: 30,
-            background: COLORS.panel,
-            border: `2px solid ${COLORS.panelStroke}`,
-            boxShadow: `0 0 80px ${COLORS.teal}44`,
-          }}
-        >
-          <Tex tex={c.tex} size={58} color={COLORS.tealSoft} />
-        </div>
-      ) : null}
-      {c.badge ? (
-        <div
-          style={{
-            position: "absolute",
-            left: 70,
-            top: 1260,
-            padding: "20px 38px",
-            borderRadius: 999,
-            background: `${COLORS.danger}22`,
-            border: `3px solid ${COLORS.danger}`,
-            color: COLORS.danger,
-            fontSize: 46,
-            fontWeight: 900,
-            boxShadow: `0 0 50px ${COLORS.danger}55`,
-          }}
-        >
-          {c.badge}
-        </div>
-      ) : null}
+      {/* Formula and badge stack in one column, so the badge always clears the formula
+          box however tall it is: a 3x3 determinant is three lines, not one. */}
+      <div
+        style={{
+          position: "absolute",
+          left: 70,
+          right: 170,
+          top: 1000,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: 24,
+        }}
+      >
+        {c.tex ? (
+          <div
+            style={{
+              padding: "26px 36px",
+              borderRadius: 30,
+              background: COLORS.panel,
+              border: `2px solid ${COLORS.panelStroke}`,
+              boxShadow: `0 0 80px ${COLORS.teal}44`,
+            }}
+          >
+            <Tex tex={c.tex} size={texSize} color={COLORS.tealSoft} />
+          </div>
+        ) : null}
+        {c.badge ? (
+          <div
+            style={{
+              padding: "20px 38px",
+              borderRadius: 999,
+              background: `${COLORS.danger}22`,
+              border: `3px solid ${COLORS.danger}`,
+              color: COLORS.danger,
+              fontSize: 46,
+              fontWeight: 900,
+              boxShadow: `0 0 50px ${COLORS.danger}55`,
+            }}
+          >
+            {c.badge}
+          </div>
+        ) : null}
+      </div>
       <div style={{ position: "absolute", left: 70, bottom: 420, fontSize: 44, fontWeight: 800 }}>
         <span style={{ color: COLORS.ink }}>{i > 0 ? site.slice(0, i) : site}</span>
         <span style={{ color: COLORS.teal }}>{i > 0 ? site.slice(i) : ""}</span>

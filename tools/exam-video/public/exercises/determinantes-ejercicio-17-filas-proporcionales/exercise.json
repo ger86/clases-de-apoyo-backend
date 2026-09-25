@@ -1,0 +1,599 @@
+{
+  "slug": "determinantes-ejercicio-17-filas-proporcionales",
+  "exam": {
+    "label": "Determinantes · 2º Bachillerato",
+    "question": "Ejercicio 17",
+    "topic": "Propiedades de los determinantes",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El enunciado": "teal",
+    "La tentación": "warn",
+    "La propiedad": "indet",
+    "Las operaciones": "warn",
+    "El resultado": "solved",
+    "Comprobación": "teal",
+    "Por qué": "indet",
+    "El error": "danger",
+    "La clave": "indet",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Un determinante lleno de equis",
+      "tail": 0.5,
+      "narration": "[energetic] Calcula el valor de este determinante usando las propiedades de los determinantes. Fíjate en que todos los elementos llevan una equis. Parece que el resultado va a depender de equis, y sin embargo vale cero siempre.",
+      "captions": [
+        "Calcula este determinante usando las propiedades de los determinantes.",
+        "Todos los elementos llevan una x.",
+        "Parece que depende de x, pero vale 0 siempre."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Determinantes · 2º Bachillerato",
+        "title": "Un determinante\nque vale *0 siempre*",
+        "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix}",
+        "texColor": "teal",
+        "texSize": 56
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "El enunciado",
+      "heading": "Qué pide exactamente el enunciado",
+      "narration": "[didactic] El enunciado pide usar las propiedades, no la regla de Sarrus. Eso ya es una pista: hay un atajo. Y hay algo más importante: aquí equis es un parámetro, así que la respuesta tiene que valer para cualquier valor de equis.",
+      "captions": [
+        "El enunciado pide usar las propiedades, no la regla de Sarrus.",
+        "Eso ya es una pista: hay un atajo.",
+        "x es un parámetro: la respuesta debe valer para cualquier x."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Se pide",
+            "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix} \\;=\\; ?",
+            "size": 52,
+            "color": "given"
+          }
+        ],
+        "chips": [
+          {
+            "text": "x es un parámetro, no una incógnita",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-camino-largo",
+      "phase": "La tentación",
+      "heading": "El camino largo: Sarrus",
+      "narration": "[didactic] El camino largo existe: aplicar Sarrus y desarrollar. Salen seis productos, y cada uno es un producto de tres binomios con equis. Se puede hacer, pero es largo y casi todo el mundo se pierde por el camino. Vamos a dejarlo aparcado y a usar las propiedades.",
+      "captions": [
+        "El camino largo existe: aplicar Sarrus y desarrollar.",
+        "Salen 6 productos, cada uno con tres binomios en x.",
+        "Se puede hacer, pero es largo y es fácil perderse.",
+        "Vamos a usar las propiedades."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "x(x+3)(x+6) + (x+1)(x+4)x + (x+2)x(x+5)",
+            "size": 40,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "-\\,(x+2)(x+3)x - x(x+4)(x+5) - (x+1)x(x+6)",
+            "size": 40,
+            "color": "inkSoft"
+          }
+        ],
+        "badge": {
+          "text": "6 productos de tres binomios",
+          "sub": "funciona, pero es el camino lento",
+          "color": "warn"
+        }
+      }
+    },
+    {
+      "id": "04-propiedad-restar",
+      "phase": "La propiedad",
+      "heading": "Restar una fila no cambia el determinante",
+      "narration": "[didactic] La propiedad que nos interesa es esta: si a una fila le restas otra fila, el determinante no cambia. Puedes sumar o restar a una fila un múltiplo de otra fila y el valor se mantiene igual. Ojo, esto no es lo mismo que multiplicar una fila por un número: eso sí cambia el determinante.",
+      "captions": [
+        "Si a una fila le restas otra fila, el determinante no cambia.",
+        "Puedes sumar o restar a una fila un múltiplo de otra.",
+        "Multiplicar una fila por un número sí cambia el determinante."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Propiedad",
+            "tex": "F_i \\longrightarrow F_i + k\\,F_j \\;\\Longrightarrow\\; \\det \\text{ no cambia}",
+            "size": 48,
+            "color": "indet"
+          },
+          {
+            "label": "Cuidado",
+            "tex": "F_i \\longrightarrow k\\,F_i \\;\\Longrightarrow\\; \\det \\text{ queda multiplicado por } k",
+            "size": 42,
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-f2-menos-f1",
+      "phase": "Las operaciones",
+      "heading": "A la fila 2 le restamos la fila 1",
+      "narration": "Primera operación: a la fila dos le restamos la fila uno. En la primera posición, equis menos equis da cero. En la segunda, equis más tres menos equis más uno da dos. Y en la tercera, equis más cuatro menos equis más dos da dos. La fila dos se convierte en cero, dos, dos.",
+      "captions": [
+        "Primera operación: a F2 le restamos F1.",
+        "x − x = 0.",
+        "(x + 3) − (x + 1) = 2.",
+        "(x + 4) − (x + 2) = 2.",
+        "F2 pasa a ser (0, 2, 2)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "F2 → F2 − F1",
+            "tex": "\\big(\\,x-x,\\;\\; (x+3)-(x+1),\\;\\; (x+4)-(x+2)\\,\\big)",
+            "size": 44
+          },
+          {
+            "tex": "=\\;\\big(\\,0,\\;\\; 2,\\;\\; 2\\,\\big)",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "el determinante no ha cambiado",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-f3-menos-f1",
+      "phase": "Las operaciones",
+      "heading": "A la fila 3 le restamos también la fila 1",
+      "narration": "Segunda operación: a la fila tres le restamos también la fila uno. Otra vez, equis menos equis da cero. En la segunda posición, equis más cinco menos equis más uno da cuatro. Y en la tercera, equis más seis menos equis más dos da cuatro. La fila tres se convierte en cero, cuatro, cuatro.",
+      "captions": [
+        "Segunda operación: a F3 le restamos F1.",
+        "x − x = 0.",
+        "(x + 5) − (x + 1) = 4.",
+        "(x + 6) − (x + 2) = 4.",
+        "F3 pasa a ser (0, 4, 4)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "F3 → F3 − F1",
+            "tex": "\\big(\\,x-x,\\;\\; (x+5)-(x+1),\\;\\; (x+6)-(x+2)\\,\\big)",
+            "size": 44
+          },
+          {
+            "tex": "=\\;\\big(\\,0,\\;\\; 4,\\;\\; 4\\,\\big)",
+            "size": 58,
+            "color": "warn"
+          }
+        ],
+        "chips": [
+          {
+            "text": "la fila 1 no se toca en ningún momento",
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-matriz-reducida",
+      "phase": "El resultado",
+      "heading": "Así queda el determinante",
+      "tail": 0.6,
+      "narration": "[didactic] Así queda el determinante después de las dos operaciones. La primera fila sigue intacta. Y el valor es exactamente el mismo que al principio, porque solo hemos restado filas. Ahora mira las dos filas de abajo.",
+      "captions": [
+        "Así queda el determinante tras las dos operaciones.",
+        "La primera fila sigue intacta.",
+        "El valor es el mismo que al principio.",
+        "Ahora mira las dos filas de abajo."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix} \\;=\\; \\begin{vmatrix} x & x+1 & x+2 \\\\ 0 & 2 & 2 \\\\ 0 & 4 & 4 \\end{vmatrix}",
+            "size": 48
+          }
+        ],
+        "chips": [
+          {
+            "text": "misma fila 1, mismo valor",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-filas-proporcionales",
+      "phase": "La propiedad",
+      "heading": "Las dos últimas filas son proporcionales",
+      "narration": "[didactic] Cero, cuatro, cuatro es exactamente el doble de cero, dos, dos. Las dos últimas filas son proporcionales. Y hay una propiedad que resuelve esto en un segundo: si un determinante tiene dos filas proporcionales, vale cero.",
+      "captions": [
+        "(0, 4, 4) es exactamente el doble de (0, 2, 2).",
+        "Las dos últimas filas son proporcionales.",
+        "Si un determinante tiene dos filas proporcionales, vale 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Observa",
+            "tex": "F_3 = 2\\,F_2",
+            "size": 58,
+            "color": "warn"
+          },
+          {
+            "label": "Propiedad",
+            "tex": "\\text{dos filas proporcionales} \\;\\Longrightarrow\\; \\det = 0",
+            "size": 46,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "= 0",
+          "sub": "sin desarrollar ni un solo producto",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "09-resultado",
+      "phase": "El resultado",
+      "heading": "El resultado del ejercicio",
+      "tail": 0.6,
+      "narration": "Y ese es el resultado: el determinante vale cero. No vale cero para un valor concreto de equis, vale cero para todos. Da igual que equis sea uno, menos tres o cien.",
+      "captions": [
+        "El determinante vale 0.",
+        "No para un x concreto: para todos.",
+        "Da igual que x sea 1, −3 o 100."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix} \\;=\\; 0",
+            "size": 54,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "0 para todo x",
+          "sub": "el resultado no depende del parámetro",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "10-comprobacion-desarrollo",
+      "phase": "Comprobación",
+      "heading": "Lo comprobamos desarrollando",
+      "narration": "[didactic] Si no te fías de la propiedad, desarrolla por la primera columna. Debajo de la equis solo hay ceros, así que queda equis por el menor de orden dos. Ese menor es dos por cuatro menos dos por cuatro, es decir, ocho menos ocho, cero. Y equis por cero es cero, valga lo que valga equis.",
+      "captions": [
+        "¿No te fías? Desarrolla por la primera columna.",
+        "Debajo de la x solo hay ceros: queda x por el menor de orden 2.",
+        "El menor es 2 · 4 − 2 · 4 = 8 − 8 = 0.",
+        "x · 0 = 0, valga lo que valga x."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ 0 & 2 & 2 \\\\ 0 & 4 & 4 \\end{vmatrix} \\;=\\; x \\cdot \\begin{vmatrix} 2 & 2 \\\\ 4 & 4 \\end{vmatrix}",
+            "size": 48
+          },
+          {
+            "tex": "=\\; x\\,(2\\cdot 4 - 2\\cdot 4) \\;=\\; x \\cdot 0 \\;=\\; 0",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-por-que",
+      "phase": "Por qué",
+      "heading": "Por qué sale tan redondo",
+      "narration": "[calm] ¿Y por qué sale tan redondo? Porque las tres filas van subiendo a pasos iguales. De la fila uno a la fila dos sumas cero, dos, dos, y de la fila dos a la fila tres sumas otra vez cero, dos, dos. Eso significa que la fila tres es dos veces la fila dos menos la fila uno. Las tres filas dependen unas de otras, y un determinante con filas dependientes siempre vale cero.",
+      "captions": [
+        "¿Y por qué sale tan redondo?",
+        "Porque las tres filas suben a pasos iguales.",
+        "De F1 a F2 sumas (0, 2, 2), y de F2 a F3 otra vez (0, 2, 2).",
+        "Es decir: F3 = 2·F2 − F1.",
+        "Filas dependientes: el determinante siempre vale 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Paso constante",
+            "tex": "F_2 - F_1 \\;=\\; F_3 - F_2 \\;=\\; (0,\\,2,\\,2)",
+            "size": 48,
+            "color": "teal"
+          },
+          {
+            "label": "Por tanto",
+            "tex": "F_3 = 2F_2 - F_1",
+            "size": 54,
+            "color": "warn"
+          },
+          {
+            "label": "Conclusión",
+            "tex": "\\text{filas dependientes} \\;\\Longrightarrow\\; \\det = 0",
+            "size": 44,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-comprobacion-numeros",
+      "phase": "Comprobación",
+      "heading": "Lo comprobamos con números",
+      "narration": "Lo comprobamos con números concretos. Con equis igual a uno, el determinante da cero. Con equis igual a dos, da cero otra vez. Y con equis igual a cien, también da cero. La propiedad no falla.",
+      "captions": [
+        "Lo comprobamos con números concretos.",
+        "x = 1 → 0.",
+        "x = 2 → 0.",
+        "x = 100 → 0.",
+        "La propiedad no falla."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "x=1:\\; \\begin{vmatrix} 1&2&3 \\\\ 1&4&5 \\\\ 1&6&7 \\end{vmatrix} = 0 \\qquad x=2:\\; \\begin{vmatrix} 2&3&4 \\\\ 2&5&6 \\\\ 2&7&8 \\end{vmatrix} = 0",
+            "size": 40,
+            "color": "teal"
+          },
+          {
+            "tex": "x=100:\\; \\begin{vmatrix} 100&101&102 \\\\ 100&103&104 \\\\ 100&105&106 \\end{vmatrix} = 0",
+            "size": 40,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-error",
+      "phase": "El error",
+      "heading": "El error típico con el factor común",
+      "narration": "[didactic] Y ahora el error típico. Mucha gente saca la equis como factor común de la primera columna, y eso está bien hecho. El fallo viene justo después: concluir que el determinante vale cero solo cuando equis vale cero. No es así, porque el determinante que queda dentro también vale cero, exactamente por lo mismo de antes.",
+      "captions": [
+        "El error típico.",
+        "Sacar la x como factor común de la primera columna está bien hecho.",
+        "El fallo es concluir que vale 0 solo si x = 0.",
+        "El determinante de dentro también vale 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Bien",
+            "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix} = x \\begin{vmatrix} 1 & x+1 & x+2 \\\\ 1 & x+3 & x+4 \\\\ 1 & x+5 & x+6 \\end{vmatrix}",
+            "size": 42
+          },
+          {
+            "label": "Mal",
+            "tex": "\\det = 0 \\;\\text{ solo si }\\; x = 0",
+            "size": 48,
+            "color": "danger"
+          }
+        ],
+        "badge": {
+          "text": "el determinante de dentro ya vale 0",
+          "sub": "sus filas también suben a pasos iguales",
+          "color": "warn"
+        }
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1,
+      "narration": "[calm] Resumen. Restar una fila a otra no cambia el valor del determinante. Con la fila dos menos la fila uno y la fila tres menos la fila uno aparecen cero, dos, dos y cero, cuatro, cuatro. Esas dos filas son proporcionales, así que el determinante vale cero. Y vale cero para cualquier equis, porque las filas de la matriz original suben a pasos iguales.",
+      "captions": [
+        "Resumen.",
+        "Restar una fila a otra no cambia el determinante.",
+        "Con F2 − F1 y F3 − F1 aparecen (0, 2, 2) y (0, 4, 4).",
+        "Son proporcionales, así que el determinante vale 0.",
+        "Y vale 0 para cualquier x: las filas suben a pasos iguales."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Operaciones",
+            "tex": "F_2 - F_1, \\qquad F_3 - F_1",
+            "color": "teal"
+          },
+          {
+            "label": "Lo que aparece",
+            "tex": "F_3 = 2\\,F_2",
+            "color": "warn"
+          },
+          {
+            "label": "Respuesta",
+            "tex": "\\det = 0 \\quad \\text{para todo } x",
+            "color": "solved"
+          }
+        ],
+        "closing": "Antes de desarrollar un determinante, mira si alguna fila sale de las otras."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Determinante que vale 0 para todo x | Propiedades de los determinantes (2º Bachillerato)",
+    "description": "Calculamos con las propiedades de los determinantes el valor de un determinante 3 × 3 en el que todos los elementos llevan el parámetro x. Sin Sarrus y sin desarrollar ni un solo producto.\n\nEl método, en dos pasos:\n1. A la fila 2 le restamos la fila 1 y a la fila 3 le restamos la fila 1. Restar una fila a otra no cambia el valor del determinante, así que el resultado es el mismo.\n2. Aparecen las filas (0, 2, 2) y (0, 4, 4). Son proporcionales, porque F3 = 2·F2, y un determinante con dos filas proporcionales vale 0.\n\nResultado: el determinante vale 0 para cualquier valor de x.\n\nAdemás lo comprobamos de tres maneras: desarrollando por la primera columna, que deja x · (2·4 − 2·4) = x · 0 = 0; con números concretos (x = 1, x = 2 y x = 100); y explicando por qué sale tan redondo, ya que las tres filas de la matriz suben a pasos iguales y por tanto F3 = 2·F2 − F1.\n\nEl error más frecuente: sacar la x como factor común de la primera columna (eso está bien) y concluir que el determinante vale 0 solo si x = 0. El determinante que queda dentro también vale 0, así que el resultado es 0 siempre.\n\nMás ejercicios resueltos de determinantes, matrices y sistemas: https://www.clasesdeapoyo.com\n\n#Determinantes #Matrices #Bachillerato #Matemáticas #EjercicioResuelto",
+    "tags": [
+      "determinantes",
+      "propiedades de los determinantes",
+      "determinante 3x3",
+      "determinante con parámetro",
+      "filas proporcionales",
+      "determinante igual a cero",
+      "operaciones con filas",
+      "regla de sarrus",
+      "2º bachillerato",
+      "matemáticas 2 bachillerato",
+      "algebra lineal",
+      "matrices y determinantes",
+      "selectividad",
+      "ejercicio resuelto",
+      "matemáticas paso a paso",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Determinantes · 2º Bachillerato",
+      "line1": "Todo lleno\nde equis",
+      "line2": "Y el resultado\nes 0 siempre",
+      "tex": "\\begin{vmatrix} x & x+1 & x+2 \\\\ x & x+3 & x+4 \\\\ x & x+5 & x+6 \\end{vmatrix}",
+      "badge": "sin Sarrus"
+    }
+  },
+  "reel": {
+    "title": "No vale 0 solo si x = 0 (Determinantes, ejercicio 17)",
+    "caption": "Este determinante no vale 0 solo cuando x = 0. Vale 0 siempre.\n\nCasi todo el mundo saca la x como factor común de la primera columna y concluye que el resultado depende de x. Prueba con x = 100: también da 0.\n\nLa clave está en las filas. Si a la fila 2 le restas la fila 1 sale (0, 2, 2), y si a la fila 3 le restas la fila 1 sale (0, 4, 4), que es justo el doble. Dos filas proporcionales, determinante 0. Y restar una fila a otra no cambia el valor del determinante, así que ese 0 es el del determinante original.\n\nVídeo completo con las dos propiedades y la comprobación en YouTube, y más ejercicios resueltos en ClasesDeApoyo.com.\n\n#determinantes #matrices #algebra #matematicas #bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #ejerciciosresueltos #algebralineal #estudiar #clasesdeapoyo",
+    "cover": {
+      "kicker": "Determinantes",
+      "line1": "No vale 0\nsolo si x = 0",
+      "line2": "Vale 0\npara todo x",
+      "tex": "\\begin{vmatrix} x & x{+}1 & x{+}2 \\\\ x & x{+}3 & x{+}4 \\\\ x & x{+}5 & x{+}6 \\end{vmatrix}",
+      "badge": "prueba con x = 100"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Vale 0 siempre",
+        "tail": 0.4,
+        "narration": "[excited] Este determinante no vale cero solo cuando equis vale cero. Vale cero siempre.",
+        "captions": [
+          "Este determinante no vale 0 solo cuando x = 0.",
+          "Vale 0 siempre."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Determinantes · 2º Bach",
+          "title": "Vale 0\n*siempre*",
+          "tex": "\\begin{vmatrix} x & x{+}1 & x{+}2 \\\\ x & x{+}3 & x{+}4 \\\\ x & x{+}5 & x{+}6 \\end{vmatrix}",
+          "texColor": "teal",
+          "texSize": 54
+        }
+      },
+      {
+        "id": "r2-error",
+        "phase": "El error",
+        "heading": "Prueba con x = 100",
+        "tail": 0.4,
+        "narration": "[didactic] Casi todos sacan la equis de la primera columna y dicen: vale cero si equis es cero. Prueba con equis igual a cien. También da cero.",
+        "captions": [
+          "Casi todos dicen: vale 0 si x = 0.",
+          "Prueba con x = 100.",
+          "También da 0."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\det = 0 \\;\\text{ solo si }\\; x = 0",
+              "size": 48,
+              "color": "danger",
+              "label": "Mal"
+            },
+            {
+              "label": "x = 100",
+              "tex": "\\begin{vmatrix} 100&101&102 \\\\ 100&103&104 \\\\ 100&105&106 \\end{vmatrix} = 0",
+              "size": 40,
+              "color": "solved"
+            }
+          ],
+          "badge": {
+            "text": "0 para todo x",
+            "color": "solved"
+          }
+        }
+      },
+      {
+        "id": "r3-clave",
+        "phase": "La clave",
+        "heading": "Mira las filas",
+        "tail": 0.4,
+        "narration": "[cheerful] La clave está en las filas. A la fila dos le restas la primera y sale cero, dos, dos. A la fila tres le restas la primera y sale cero, cuatro, cuatro. El doble. Dos filas proporcionales, determinante cero.",
+        "captions": [
+          "La clave está en las filas.",
+          "F2 − F1 = (0, 2, 2).",
+          "F3 − F1 = (0, 4, 4).",
+          "El doble.",
+          "Dos filas proporcionales: determinante 0."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\begin{vmatrix} x & x{+}1 & x{+}2 \\\\ 0 & 2 & 2 \\\\ 0 & 4 & 4 \\end{vmatrix}",
+              "size": 52
+            },
+            {
+              "tex": "F_3 = 2F_2 \\;\\Rightarrow\\; \\det = 0",
+              "size": 46,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] El ejercicio entero, paso a paso, en YouTube. Te espero en Clases de Apoyo.",
+        "captions": [
+          "El ejercicio entero, paso a paso, en YouTube.",
+          "Te espero en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Filas\n*proporcionales*",
+          "tex": "\\det = 0",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
