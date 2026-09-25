@@ -1,5 +1,5 @@
 {% if (app.environment != 'dev') %}
-  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+  {% if not is_granted('IS_AUTHENTICATED_REMEMBERED')%}
   <div class="sidebar-ad {% if mb is defined %}{{mb}}{% endif %}">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"

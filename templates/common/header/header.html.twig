@@ -62,7 +62,7 @@
         </nav>
       </div>
       <nav class="flex items-center">
-        {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
         <div>
           <button
             class="btn btn-link relative"
