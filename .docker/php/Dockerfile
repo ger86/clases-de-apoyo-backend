@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-bullseye
+FROM php:8.4-fpm-bookworm
 ARG TIMEZONE
 
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     && echo 'alias sf="php bin/console"' >> ~/.bashrc
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs python
+RUN apt-get install -y nodejs python3
 RUN npm install --global yarn
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype 
