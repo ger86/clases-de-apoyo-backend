@@ -81,7 +81,7 @@ export const ReelCover: React.FC<VideoProps> = (props) => {
         <span style={{ color: COLORS.teal }}>{i > 0 ? site.slice(i) : ""}</span>
       </div>
       <div style={{ position: "absolute", left: 70, right: 170, bottom: 360, fontSize: 30, fontWeight: 700, color: COLORS.inkSoft }}>
-        {props.exam.question} · solución completa en YouTube
+        {props.reel?.cover.footer ?? `${props.exam.question} · solución completa en YouTube`}
       </div>
     </AbsoluteFill>
   );

@@ -1,0 +1,171 @@
+{
+  "slug": "productos-vectores-ejercicio-7-area-triangulo",
+  "exam": {
+    "label": "Productos de vectores · 2º Bachillerato",
+    "question": "Ejercicio 7",
+    "topic": "Área de un triángulo con el producto vectorial",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Los vectores": "teal",
+    "Producto vectorial": "indet",
+    "El error": "danger",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "El triángulo es la mitad (Productos de vectores, ejercicio 7)",
+    "caption": "El área de un triángulo no es el módulo del producto vectorial. Es la mitad.\n\nEjercicio 7 de Productos de vectores (2º de Bachillerato): el triángulo de vértices A(3, 2, 4), B(4, 4, 5) y C(6, 3, 3). Restas desde A y salen AB = (1, 2, 1) y AC = (3, 1, −1). El producto vectorial es (−3, 4, −5) y su módulo, √50 = 5√2.\n\nAhí mucha gente contesta 5√2. Pero eso es el área del paralelogramo que forman AB y AC. La diagonal lo parte en dos triángulos iguales, así que el área del triángulo es 5√2/2 ≈ 3,54 u².\n\nEste ejercicio resuelto, con toda la hoja de Productos de vectores, en ClasesDeApoyo.com.\n\n#geometria #vectores #productovectorial #geometriaanalitica #matematicas #matematicasii #bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #ejerciciosresueltos #estudiar #clasesdeapoyo",
+    "cover": {
+      "kicker": "Productos de vectores · 2º Bach",
+      "line1": "El área no es\n|AB × AC|",
+      "line2": "Es la mitad",
+      "tex": "S = \\tfrac{1}{2}\\,\\bigl|\\overrightarrow{AB}\\times\\overrightarrow{AC}\\bigr|",
+      "badge": "✗  S = 5√2",
+      "footer": "Ejercicio 7 · Productos de vectores, resuelto"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "El triángulo es la mitad",
+        "tail": 0.4,
+        "narration": "[energetic] El módulo del producto vectorial no es el área del triángulo. Es el doble.",
+        "captions": [
+          "El módulo del producto vectorial no es el área del triángulo.",
+          "Es el doble."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Productos de vectores · 2º Bach",
+          "title": "El triángulo\nes *la mitad*",
+          "tex": "S = \\tfrac{1}{2}\\,\\bigl|\\overrightarrow{AB}\\times\\overrightarrow{AC}\\bigr|",
+          "texColor": "teal",
+          "texSize": 60
+        }
+      },
+      {
+        "id": "r2-vectores",
+        "phase": "Los vectores",
+        "heading": "Dos lados desde A",
+        "tail": 0.4,
+        "narration": "[didactic] Restas coordenadas desde A: el vector A B es uno, dos, uno, y el vector A C, tres, uno, menos uno.",
+        "captions": [
+          "AB = (1, 2, 1) y AC = (3, 1, −1)."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Vértices",
+              "tex": "A(3,2,4)\\quad B(4,4,5)\\quad C(6,3,3)",
+              "size": 38,
+              "color": "given"
+            },
+            {
+              "tex": "\\overrightarrow{AB} = B - A = (1,\\,2,\\,1)",
+              "size": 46
+            },
+            {
+              "tex": "\\overrightarrow{AC} = C - A = (3,\\,1,\\,-1)",
+              "size": 46
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-producto",
+        "phase": "Producto vectorial",
+        "heading": "El producto vectorial",
+        "tail": 0.4,
+        "narration": "[didactic] El producto vectorial da menos tres, cuatro, menos cinco, y su módulo, cinco raíz de dos.",
+        "captions": [
+          "AB × AC = (−3, 4, −5) y su módulo, 5√2."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\overrightarrow{AB}\\times\\overrightarrow{AC} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ 1 & 2 & 1 \\\\ 3 & 1 & -1 \\end{vmatrix}",
+              "size": 42
+            },
+            {
+              "tex": "= (-3,\\,4,\\,-5)",
+              "size": 48,
+              "color": "indet"
+            },
+            {
+              "tex": "\\bigl|\\overrightarrow{AB}\\times\\overrightarrow{AC}\\bigr| = \\sqrt{50} = 5\\sqrt{2}",
+              "size": 44
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-error",
+        "phase": "El error",
+        "heading": "Eso es el paralelogramo",
+        "tail": 0.4,
+        "narration": "[didactic] Aquí casi todos contestan cinco raíz de dos. Pero eso es el paralelogramo. La diagonal lo parte en dos triángulos iguales: el área es la mitad.",
+        "captions": [
+          "Aquí casi todos contestan 5√2.",
+          "Pero eso es el paralelogramo.",
+          "La diagonal lo parte en dos triángulos iguales: el área es la mitad."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Mal",
+              "tex": "S = 5\\sqrt{2}\\quad(\\text{paralelogramo})",
+              "size": 44,
+              "color": "danger"
+            },
+            {
+              "label": "Bien",
+              "tex": "S = \\tfrac{1}{2}\\cdot 5\\sqrt{2} = \\dfrac{5\\sqrt{2}}{2}\\;u^2",
+              "size": 48,
+              "color": "solved"
+            }
+          ],
+          "badge": {
+            "text": "≈ 3,54 u²",
+            "color": "solved"
+          }
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Cinco raíz de dos entre dos, unas tres coma cinco cuatro unidades cuadradas. Más ejercicios resueltos en Clases de Apoyo.",
+        "captions": [
+          "5√2/2, unas 3,54 u².",
+          "Más ejercicios resueltos en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "El triángulo\nes *la mitad*",
+          "tex": "S = \\dfrac{5\\sqrt{2}}{2} \\approx 3{,}54\\;u^2",
+          "lines": [
+            "Ejercicio 7 · Productos de vectores",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

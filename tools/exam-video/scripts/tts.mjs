@@ -31,6 +31,12 @@ for (const p of problems) console.log(`caption mismatch: ${p}`);
 if (reel) {
   if (scenes.length < 3 || scenes.length > 5) console.log(`aviso: un reel deberia tener de 3 a 5 escenas, tiene ${scenes.length}`);
   if (total < 300 || total > 600) console.log(`aviso: la narracion del reel deberia medir de 300 a 600 caracteres, mide ${total}`);
+  // The post text: Instagram and TikTok accept 5 hashtags and show only the first line before "más".
+  const caption = (exercise.reel?.caption ?? "").trim();
+  const hashtags = caption.match(/#[\p{L}\p{N}_]+/gu) ?? [];
+  if (hashtags.length > 5) console.log(`aviso: el texto del reel lleva ${hashtags.length} hashtags; Instagram y TikTok admiten 5`);
+  const hook = caption.split("\n")[0];
+  if (hook.length > 100) console.log(`aviso: la primera linea del texto del reel mide ${hook.length} caracteres; el gancho debe caber en 100`);
 }
 if (dryRun) process.exit(problems.length ? 1 : 0);
 if (!apiKey) throw new Error("Missing ELEVENLABS_API_KEY in .env.local");

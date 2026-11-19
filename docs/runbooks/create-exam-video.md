@@ -37,7 +37,7 @@ Fix crowded or wrapped frames now. Frames are free; audio is not.
 node scripts/tts.mjs <slug>
 ```
 
-The script skips scenes that already have an MP3. To redo one scene after a narration change: `--only=<sceneId> --force`. The default voice is the cloned voice `KDuMsTRG03d18osdZP8V` (paid plan). If a voice is rejected with 402, the script falls back to `fallbackVoiceId` (George).
+The script skips scenes that already have an MP3. To redo one scene after a narration change: `--only=<sceneId> --force`. The default voice is `uZAgv46kqRrZthdejCSf` (Ignacio), a deep, warm male voice from the ElevenLabs library with a light Galician accent. It is Spanish from Spain, which is what every video on this channel uses; do not replace it with a Latin American voice. If a voice is rejected with 402, the script falls back to `fallbackVoiceId`, which is `t9LRTh3y1ioN00e9wsNh` (Aaron Abad), neutral Castilian, so a failure never drops the narration into an English accent. The older cloned voice `KDuMsTRG03d18osdZP8V` is kept only by the exercises that already shipped with it.
 
 To make the same voice sound livelier, do not change the voice: add `voice.settings` (both formats) or `voice.reelSettings` (reel only) to `exercise.json`, lowering `stability` and raising `style`. `matrices-ejercicio-1-matriz-traspuesta` uses `stability 0.28, style 0.65, speed 1.05` as the lively profile. `tts.mjs` prints the settings on every run, and the tags `[excited]` and `[cheerful]` at the start of a narration do the rest. Changing the settings does not regenerate anything by itself: pass `--force` to redo clips that already exist.
 
@@ -74,7 +74,7 @@ A reel is the same exercise told as a single idea in 30 to 60 seconds, at 1080x1
 ```json
 "reel": {
   "title": "internal name of the reel",
-  "caption": "text of the post, hashtags included",
+  "caption": "text of the Instagram and TikTok post, at most 5 hashtags",
   "cover": { "kicker": "...", "line1": "...", "line2": "...", "tex": "...", "badge": "..." },
   "scenes": [ /* 3 to 5 scenes, same structure as the long video's scenes */ ]
 }
@@ -89,10 +89,18 @@ Rules:
 - The mistake you teach has to be a real mistake. Check it numerically before recording: in Pregunta 1 of June 2026, multiplying by A⁻¹ on the right happens to give the same answer, so it is not a valid counterexample; cancelling the A does fail.
 - Narration and on-screen text are Spanish from Spain, like the long video.
 
+Post text (`caption`), the same for Instagram and TikTok. It sells the reel; it does not solve the exercise again.
+
+- First line: the hook, under 100 characters, with the topic keyword in it. Instagram cuts the text after about 125 characters and TikTok shows less, so this line is all most people read. Example: `Si este límite te da 0, has aplicado L'Hôpital una vez de más ❌`.
+- Then the method in 3 short numbered lines (1️⃣ 2️⃣ 3️⃣) and one `Truco:` line with the takeaway. Nothing else about the exercise.
+- Close with a save call (`📌 Guárdalo para el examen`), a question that invites comments (`💬 ¿Tú habrías parado a tiempo?`) and `Más ejercicios resueltos en ClasesDeApoyo.com`. No URLs: they are not clickable in a post.
+- At most 5 hashtags, on the last line, because Instagram and TikTok both cap a post at 5. Cover the topic (`#limites #lhopital`), the subject (`#matematicas`), the level (`#2bachillerato`) and the exam (`#selectividad`).
+- The reference is the caption of `limites-ejercicio-7-lhopital-dos-veces`. Older reels still use long paragraphs and 16 hashtags; do not copy them.
+
 ### 7.2 Validate, review, produce
 
 ```bash
-node scripts/tts.mjs <slug> --reel --dry-run   # credits, captions, scene-count and length warnings
+node scripts/tts.mjs <slug> --reel --dry-run   # credits, captions, scene-count, length and post-text warnings
 node scripts/build-props.mjs <slug> --reel     # estimated durations, warns outside 30-60 s
 node scripts/stills.mjs <slug> --reel          # output/<slug>/reel/stills/*.png
 ```

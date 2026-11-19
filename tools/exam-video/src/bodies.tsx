@@ -370,7 +370,8 @@ const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body })
       const x = body.shade.from + ((body.shade.to - body.shade.from) * i) / 120;
       seg.push(`${toX(x).toFixed(1)},${toY(f(x)).toFixed(1)}`);
     }
-    shadePath = `M ${toX(body.shade.from).toFixed(1)},${y0} L ${seg.join(" L ")} L ${toX(body.shade.to).toFixed(1)},${y0} Z`;
+    const yFloor = toY(body.shade.floor ?? 0).toFixed(1);
+    shadePath = `M ${toX(body.shade.from).toFixed(1)},${yFloor} L ${seg.join(" L ")} L ${toX(body.shade.to).toFixed(1)},${yFloor} Z`;
   }
   const shadeColor = color(body.shade?.color, COLORS.indet);
 
@@ -391,7 +392,7 @@ const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body })
           ))}
           {body.shade ? <path d={shadePath} fill={shadeColor} opacity={0.45 * later} /> : null}
           {body.shade?.label ? (
-            <text x={toX((body.shade.from + body.shade.to) / 2)} y={toY(f((body.shade.from + body.shade.to) / 2) * 0.28)} fill={COLORS.ink} fontSize={30} fontWeight={800} textAnchor="middle" opacity={later}>
+            <text x={toX((body.shade.from + body.shade.to) / 2)} y={toY((body.shade.floor ?? 0) + (f((body.shade.from + body.shade.to) / 2) - (body.shade.floor ?? 0)) * 0.28)} fill={COLORS.ink} fontSize={30} fontWeight={800} textAnchor="middle" opacity={later}>
               {body.shade.label}
             </text>
           ) : null}
@@ -402,7 +403,7 @@ const PlotBody: React.FC<{ body: Extract<Body, { type: "plot" }> }> = ({ body })
             return (
               <g key={i} opacity={pop}>
                 <circle cx={toX(p.x)} cy={toY(p.y)} r={22} fill={c} opacity={0.25} />
-                <circle cx={toX(p.x)} cy={toY(p.y)} r={11} fill={c} stroke="#0b1622" strokeWidth={3} />
+                <circle cx={toX(p.x)} cy={toY(p.y)} r={11} fill={p.hollow ? "#0b1622" : c} stroke={p.hollow ? c : "#0b1622"} strokeWidth={p.hollow ? 5 : 3} />
                 {p.label ? (
                   <text x={toX(p.x)} y={toY(p.y) + (p.label.startsWith("m\u00e1x") || p.label.startsWith("máx") ? -30 : 48)} fill={c} fontSize={26} fontWeight={800} textAnchor="middle">
                     {p.label}

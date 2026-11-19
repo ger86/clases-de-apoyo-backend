@@ -61,8 +61,8 @@ export type Body =
       xMax: number;
       yMin: number;
       yMax: number;
-      points?: { x: number; y: number; label?: string; color?: string }[];
-      shade?: { from: number; to: number; color?: string; label?: string };
+      points?: { x: number; y: number; label?: string; color?: string; hollow?: boolean }[]; // hollow: open circle, the function is not defined there
+      shade?: { from: number; to: number; color?: string; label?: string; floor?: number }; // floor: shade down to y = floor instead of the x-axis
       xTicks?: { x: number; label: string }[];
       lead?: Row;
       chips?: Chip[];
@@ -89,8 +89,10 @@ export type SceneDef = {
 // Its scenes are ordinary scenes; only the frame shape and the layout change.
 export type Reel = {
   title: string; // internal name of the reel
-  caption: string; // text of the Instagram / TikTok post, hashtags included
-  cover: { kicker: string; line1: string; line2: string; tex?: string; badge?: string };
+  caption: string; // text of the Instagram / TikTok post, at most 5 hashtags
+  // footer: last line of the cover; defaults to "<question> · solución completa en YouTube",
+  // so a reel with no long video on YouTube has to set it.
+  cover: { kicker: string; line1: string; line2: string; tex?: string; badge?: string; footer?: string };
   scenes: SceneDef[];
 };
 

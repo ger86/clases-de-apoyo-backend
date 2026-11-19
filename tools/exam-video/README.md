@@ -48,7 +48,7 @@ Write one caption per narration sentence. The narration is what the voice reads 
 ```json
 "voice": {
   "provider": "elevenlabs", "model": "eleven_v3",
-  "voiceId": "KDuMsTRG03d18osdZP8V", "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+  "voiceId": "uZAgv46kqRrZthdejCSf", "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
   "reelSettings": { "stability": 0.28, "style": 0.65, "speed": 1.05 }
 }
 ```
@@ -64,7 +64,7 @@ A reel is the same exercise told as one idea in 30 to 60 seconds. It lives under
 ```json
 "reel": {
   "title": "internal name",
-  "caption": "text of the Instagram post, hashtags included",
+  "caption": "text of the Instagram and TikTok post, at most 5 hashtags",
   "cover": { "kicker": "...", "line1": "...", "line2": "...", "tex": "...", "badge": "..." },
   "scenes": [ /* 3 to 5 scenes, same structure as the long video's scenes */ ]
 }
@@ -76,6 +76,7 @@ Rules that keep a reel watchable:
 - One idea only. The long video explains the exercise; the reel sells a single insight.
 - The hook has to land in the first 2 seconds, so scene 1 is a `hook` whose title states the idea, not the exam reference.
 - The last scene is a `cta` body with the call to action. Hook and CTA scenes hide the phase heading and the footer, so they read full bleed.
+- The `caption` is a social post, not a worked solution: a hook first line under 100 characters, 3 short numbered steps, a save call, a question and at most 5 hashtags. `tts.mjs --reel --dry-run` warns when the first line or the hashtag count is over. The full rules are in [docs/runbooks/create-exam-video.md](../../docs/runbooks/create-exam-video.md).
 
 Layout comes from `src/layout.ts`, which keys off the composition size: the horizontal numbers are exactly what the 16:9 video always used, the vertical ones add the safe zones the apps need.
 

@@ -1,0 +1,657 @@
+{
+  "slug": "limites-ejercicio-7-lhopital-dos-veces",
+  "exam": {
+    "label": "Límites · 2º Bachillerato",
+    "question": "Ejercicio 7",
+    "topic": "Regla de L'Hôpital",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El enunciado": "teal",
+    "Sustituir": "indet",
+    "La regla": "warn",
+    "Primera vez": "teal",
+    "Segunda vez": "warn",
+    "El resultado": "solved",
+    "Comprobación": "teal",
+    "El error": "danger",
+    "Resumen final": "tealSoft",
+    "La clave": "indet"
+  },
+  "youtube": {
+    "title": "Límite con L'Hôpital aplicado dos veces | Cuándo hay que parar (2º Bachillerato)",
+    "description": "Calculamos el límite cuando x tiende a 0 de (e^(sen x) − x − 1) / (2x² − x³) con la regla de L'Hôpital. Es el ejercicio 7 de la hoja de límites de 2º de Bachillerato.\n\nEl método, paso a paso:\n1. Sustituimos x = 0: sale 0/0, una indeterminación.\n2. Primera vez L'Hôpital: derivamos el numerador y el denominador por separado. Queda (cos x · e^(sen x) − 1) / (4x − 3x²), que vuelve a dar 0/0.\n3. Segunda vez L'Hôpital: queda (cos² x − sen x) · e^(sen x) / (4 − 6x), que da 1/4.\n\nResultado: el límite vale 1/4. Lo comprobamos en la gráfica: la función no está definida en x = 0, pero se acerca a 0,25 por los dos lados.\n\nLos dos errores más frecuentes:\n- Seguir derivando cuando ya no hay indeterminación. Una tercera vez L'Hôpital da 0/(−6) = 0, que es falso.\n- Usar la fórmula de la derivada de un cociente. L'Hôpital deriva el numerador y el denominador por separado.\n\nMás ejercicios resueltos de límites, derivadas e integrales: https://www.clasesdeapoyo.com\n\n#Límites #LHopital #Bachillerato #Matemáticas #EjercicioResuelto",
+    "tags": [
+      "límites",
+      "regla de l'hôpital",
+      "l'hopital",
+      "lhopital",
+      "indeterminación 0/0",
+      "límites con l'hôpital",
+      "cálculo de límites",
+      "límites 2 bachillerato",
+      "derivadas",
+      "matemáticas 2 bachillerato",
+      "matemáticas ii",
+      "selectividad",
+      "pau",
+      "ejercicio resuelto",
+      "matemáticas paso a paso",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Límites · 2º Bachillerato",
+      "line1": "L'Hôpital\ndos veces",
+      "line2": "Y cuándo\nhay que parar",
+      "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3}",
+      "badge": "= 1/4"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "L'Hôpital dos veces",
+      "tail": 0.5,
+      "narration": "[energetic] Este límite da cero entre cero. Lo resolvemos con la regla de Lopital, y hay que aplicarla dos veces. Y te enseño el momento exacto en el que hay que parar, porque si sigues derivando, el resultado sale mal.",
+      "captions": [
+        "Este límite da 0/0.",
+        "Lo resolvemos con la regla de L'Hôpital, aplicada dos veces.",
+        "Y verás cuándo hay que parar: si sigues derivando, sale mal."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Límites · 2º Bachillerato",
+        "title": "L'Hôpital *dos veces*\ny saber parar",
+        "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3}",
+        "texColor": "teal",
+        "texSize": 80
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "El enunciado",
+      "heading": "Qué pide el ejercicio",
+      "narration": "[didactic] Es el ejercicio siete de la hoja de límites. Hay que calcular el límite, cuando equis tiende a cero, de este cociente. Arriba, e elevado a seno de equis, menos equis, menos uno. Abajo, dos equis al cuadrado menos equis al cubo.",
+      "captions": [
+        "Ejercicio 7 de la hoja de límites.",
+        "Hay que calcular el límite de este cociente cuando x → 0.",
+        "Arriba: e^(sen x) − x − 1.",
+        "Abajo: 2x² − x³."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Se pide",
+            "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3}",
+            "size": 64,
+            "color": "given"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "f(x) = e^{\\operatorname{sen} x}-x-1",
+            "color": "teal"
+          },
+          {
+            "tex": "g(x) = 2x^2-x^3",
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-sustituir",
+      "phase": "Sustituir",
+      "heading": "Lo primero: sustituir x = 0",
+      "narration": "Lo primero, siempre, es sustituir equis por cero. Arriba: e elevado a seno de cero es e elevado a cero, que vale uno. Uno menos cero menos uno da cero. Abajo, todo vale cero. Cero entre cero: es una indeterminación, y todavía no sabemos cuánto vale el límite.",
+      "captions": [
+        "Lo primero, siempre: sustituir x = 0.",
+        "Arriba: e^(sen 0) = e⁰ = 1.",
+        "1 − 0 − 1 = 0.",
+        "Abajo: 2·0² − 0³ = 0.",
+        "0/0: indeterminación, todavía no sabemos cuánto vale."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Arriba",
+            "tex": "e^{\\operatorname{sen} 0} - 0 - 1 = 1 - 0 - 1 = 0",
+            "size": 52
+          },
+          {
+            "label": "Abajo",
+            "tex": "2\\cdot 0^2 - 0^3 = 0",
+            "size": 52
+          }
+        ],
+        "badge": {
+          "text": "0/0",
+          "sub": "indeterminación",
+          "color": "indet"
+        }
+      }
+    },
+    {
+      "id": "04-regla",
+      "phase": "La regla",
+      "heading": "La regla de L'Hôpital",
+      "narration": "[didactic] Aquí entra la regla de Lopital. Si al sustituir sale cero entre cero, o infinito entre infinito, puedes derivar el numerador y el denominador, y el límite no cambia. Ojo, cada uno por separado. No es la derivada de un cociente.",
+      "captions": [
+        "Aquí entra la regla de L'Hôpital.",
+        "Si sale 0/0 o ∞/∞, derivas numerador y denominador y el límite no cambia.",
+        "Ojo: cada uno por separado.",
+        "No es la derivada de un cociente."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Si sale",
+            "tex": "\\dfrac{0}{0} \\quad\\text{o}\\quad \\dfrac{\\infty}{\\infty}",
+            "size": 54,
+            "color": "indet"
+          },
+          {
+            "label": "Entonces",
+            "tex": "\\lim_{x\\to a}\\dfrac{f(x)}{g(x)} = \\lim_{x\\to a}\\dfrac{f'(x)}{g'(x)}",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "f′ arriba y g′ abajo, cada una por separado",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-derivada-numerador",
+      "phase": "Primera vez",
+      "heading": "Derivamos el numerador",
+      "narration": "Primera vez. Derivamos el numerador. La función e elevado a seno de equis se deriva con la regla de la cadena: se copia igual y se multiplica por la derivada del exponente, que es coseno de equis. Menos equis da menos uno, y el uno da cero.",
+      "captions": [
+        "Primera vez.",
+        "Derivamos el numerador.",
+        "Regla de la cadena: e^(sen x) se copia y se multiplica por (sen x)′ = cos x.",
+        "−x da −1, y la constante da 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Cadena",
+            "tex": "\\left(e^{\\operatorname{sen} x}\\right)' = e^{\\operatorname{sen} x}\\cdot \\cos x",
+            "size": 52
+          },
+          {
+            "tex": "f'(x) = \\cos x\\; e^{\\operatorname{sen} x} - 1",
+            "size": 58,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-derivada-denominador",
+      "phase": "Primera vez",
+      "heading": "Derivamos el denominador",
+      "narration": "El denominador es más fácil. Dos equis al cuadrado da cuatro equis, y menos equis al cubo da menos tres equis al cuadrado.",
+      "captions": [
+        "El denominador es más fácil.",
+        "2x² da 4x, y −x³ da −3x²."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Abajo",
+            "tex": "g(x) = 2x^2 - x^3",
+            "size": 52,
+            "color": "given"
+          },
+          {
+            "tex": "g'(x) = 4x - 3x^2",
+            "size": 58,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-sustituir-otra-vez",
+      "phase": "Primera vez",
+      "heading": "Antes de seguir, sustituimos otra vez",
+      "narration": "[didactic] Este es el nuevo límite. Y antes de seguir, volvemos a sustituir. Arriba: coseno de cero es uno, por e elevado a cero, que también es uno, menos uno: cero. Abajo: cuatro por cero menos tres por cero, cero. Otra vez cero entre cero, así que todavía no hemos terminado.",
+      "captions": [
+        "Este es el nuevo límite.",
+        "Antes de seguir, volvemos a sustituir.",
+        "Arriba: cos 0 · e⁰ − 1 = 1 · 1 − 1 = 0.",
+        "Abajo: 4·0 − 3·0² = 0.",
+        "Otra vez 0/0: todavía no hemos terminado."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lim_{x\\to 0}\\dfrac{\\cos x\\; e^{\\operatorname{sen} x} - 1}{4x - 3x^2}",
+            "size": 60
+          },
+          {
+            "tex": "= \\dfrac{1\\cdot 1 - 1}{0 - 0} = \\dfrac{0}{0}",
+            "size": 54,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "text": "sigue indeterminado: otra vez L'Hôpital",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-producto",
+      "phase": "Segunda vez",
+      "heading": "El numerador es un producto",
+      "narration": "Segunda vez. El numerador ahora es un producto: coseno de equis por e elevado a seno de equis. Se deriva el primero por el segundo, más el primero por la derivada del segundo. Sale menos seno por e elevado a seno, más coseno por coseno por e elevado a seno. Sacando factor común, queda coseno al cuadrado menos seno, todo por e elevado a seno de equis. El menos uno, al derivar, desaparece.",
+      "captions": [
+        "Segunda vez.",
+        "El numerador es un producto: cos x · e^(sen x).",
+        "Derivada del primero por el segundo, más el primero por la derivada del segundo.",
+        "Sale −sen x · e^(sen x) + cos x · cos x · e^(sen x).",
+        "Factor común: (cos² x − sen x) · e^(sen x).",
+        "El −1 desaparece al derivar."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Producto",
+            "tex": "\\left(\\cos x\\; e^{\\operatorname{sen} x}\\right)' = -\\operatorname{sen} x\\; e^{\\operatorname{sen} x} + \\cos x\\cdot \\cos x\\; e^{\\operatorname{sen} x}",
+            "size": 44
+          },
+          {
+            "tex": "= \\left(\\cos^2 x - \\operatorname{sen} x\\right) e^{\\operatorname{sen} x}",
+            "size": 56,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-segunda-sustitucion",
+      "phase": "Segunda vez",
+      "heading": "Sustituimos: ya no es 0/0",
+      "narration": "Y el denominador, cuatro equis menos tres equis al cuadrado, da cuatro menos seis equis. Sustituimos otra vez. Arriba: coseno al cuadrado de cero es uno, menos seno de cero, que es cero, por e elevado a cero, que es uno: sale uno. Abajo sale cuatro. Uno entre cuatro: un cuarto, y esto ya no es una indeterminación.",
+      "captions": [
+        "El denominador: (4x − 3x²)′ = 4 − 6x.",
+        "Sustituimos otra vez.",
+        "Arriba: (cos² 0 − sen 0) · e⁰ = (1 − 0) · 1 = 1.",
+        "Abajo: 4 − 6·0 = 4.",
+        "1/4: ya no es una indeterminación."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lim_{x\\to 0}\\dfrac{\\left(\\cos^2 x - \\operatorname{sen} x\\right) e^{\\operatorname{sen} x}}{4 - 6x}",
+            "size": 48
+          },
+          {
+            "tex": "= \\dfrac{(1 - 0)\\cdot 1}{4 - 0} = \\dfrac{1}{4}",
+            "size": 50,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "1/4",
+          "sub": "ya no es 0/0: aquí se para",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "10-resultado",
+      "phase": "El resultado",
+      "heading": "El límite vale 1/4",
+      "tail": 0.6,
+      "narration": "[didactic] Así que el límite vale un cuarto. Hemos aplicado la regla dos veces, y entre una y otra hemos comprobado que seguía saliendo cero entre cero.",
+      "captions": [
+        "El límite vale 1/4.",
+        "Dos veces L'Hôpital, comprobando entre una y otra que seguía saliendo 0/0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3} = \\dfrac{1}{4}",
+            "size": 64,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "1.ª vez: 0/0, derivar",
+            "color": "indet"
+          },
+          {
+            "text": "2.ª vez: 0/0, derivar",
+            "color": "indet"
+          },
+          {
+            "text": "1/4: parar",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-grafica",
+      "phase": "Comprobación",
+      "heading": "Lo vemos en la gráfica",
+      "narration": "Lo comprobamos en la gráfica. En equis igual a cero la función no existe, porque el denominador vale cero: hay un agujero. Pero cuando equis se acerca a cero, por la izquierda y por la derecha, la curva se acerca a cero coma veinticinco. Con equis igual a cero coma cero cero uno, la función vale cero coma dos cinco cero uno.",
+      "captions": [
+        "Lo comprobamos en la gráfica.",
+        "En x = 0 la función no existe (el denominador vale 0): hay un agujero.",
+        "Pero al acercarnos a 0, por los dos lados, la curva se acerca a 0,25.",
+        "Con x = 0,001, la función vale 0,2501."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "(Math.exp(Math.sin(x)) - x - 1) / (2*x*x - x*x*x)",
+        "xMin": -1.5,
+        "xMax": 1.5,
+        "yMin": 0,
+        "yMax": 0.4,
+        "xTicks": [
+          {
+            "x": -1,
+            "label": "−1"
+          },
+          {
+            "x": 1,
+            "label": "1"
+          }
+        ],
+        "points": [
+          {
+            "x": 0,
+            "y": 0.25,
+            "label": "1/4",
+            "color": "solved",
+            "hollow": true
+          }
+        ],
+        "chips": [
+          {
+            "tex": "f(0) \\text{ no existe}",
+            "color": "danger"
+          },
+          {
+            "tex": "f(0{,}001) \\approx 0{,}2501",
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-error-parar",
+      "phase": "El error",
+      "heading": "El error: seguir derivando",
+      "narration": "[didactic] Ahora, el error más caro. Al llegar a un cuarto, hay quien sigue derivando por inercia. Si aplicas Lopital una tercera vez, arriba sale cero y abajo menos seis. Te da cero, y es falso. La regla solo se puede usar si sale cero entre cero o infinito entre infinito, y un cuarto no lo es.",
+      "captions": [
+        "Ahora, el error más caro.",
+        "Al llegar a 1/4, hay quien sigue derivando por inercia.",
+        "Una tercera vez L'Hôpital: arriba sale 0 y abajo −6.",
+        "Da 0, y es falso.",
+        "La regla solo vale con 0/0 o ∞/∞, y 1/4 no lo es."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mal",
+            "tex": "\\dfrac{1}{4} \\;\\xrightarrow{\\;\\text{derivar otra vez}\\;}\\; \\dfrac{0}{-6} = 0",
+            "size": 52,
+            "color": "danger"
+          },
+          {
+            "label": "Bien",
+            "tex": "\\dfrac{1}{4} \\;\\text{ no es indeterminado: se para}",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-error-cociente",
+      "phase": "El error",
+      "heading": "El error: la derivada del cociente",
+      "narration": "El otro error típico es usar la fórmula de la derivada de un cociente. Lopital no deriva el cociente entero. Deriva el numerador por un lado y el denominador por otro, y luego vuelve a dividir.",
+      "captions": [
+        "El otro error típico: usar la derivada de un cociente.",
+        "L'Hôpital no deriva el cociente entero.",
+        "Deriva el numerador por un lado y el denominador por otro."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mal",
+            "tex": "\\left(\\dfrac{f}{g}\\right)' = \\dfrac{f'g - fg'}{g^2}",
+            "size": 52,
+            "color": "danger"
+          },
+          {
+            "label": "Bien",
+            "tex": "\\dfrac{f'}{g'}",
+            "size": 60,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1,
+      "narration": "[calm] Resumen. Primero se sustituye, y sale cero entre cero. Se aplica Lopital, y se vuelve a sustituir: otra vez cero entre cero. Se aplica Lopital una segunda vez, y sale un cuarto. Antes de cada derivada, sustituye. Y en cuanto deje de salir cero entre cero, para.",
+      "captions": [
+        "Resumen.",
+        "Primero se sustituye: 0/0.",
+        "L'Hôpital y se vuelve a sustituir: otra vez 0/0.",
+        "L'Hôpital una segunda vez: 1/4.",
+        "Antes de cada derivada, sustituye.",
+        "Y en cuanto deje de salir 0/0, para."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Sustituir",
+            "tex": "x = 0 \\;\\Rightarrow\\; 0/0",
+            "color": "indet"
+          },
+          {
+            "label": "1.ª L'Hôpital",
+            "tex": "\\tfrac{\\cos x\\; e^{\\operatorname{sen} x}-1}{4x-3x^2} \\;\\to\\; 0/0",
+            "color": "teal"
+          },
+          {
+            "label": "2.ª L'Hôpital",
+            "tex": "\\tfrac{(\\cos^2 x-\\operatorname{sen} x)\\, e^{\\operatorname{sen} x}}{4-6x} \\;\\to\\; 1/4",
+            "color": "warn"
+          },
+          {
+            "label": "Respuesta",
+            "tex": "\\lim = 1/4",
+            "color": "solved"
+          }
+        ],
+        "closing": "Antes de cada derivada, sustituye. Si ya no sale 0/0, para."
+      }
+    }
+  ],
+  "reel": {
+    "title": "L'Hôpital: saber parar (Límites, ejercicio 7)",
+    "caption": "Si este límite te da 0, has aplicado L'Hôpital una vez de más ❌\n\nRegla de L'Hôpital, límites de 2º de Bachillerato:\n1️⃣ Sustituyes y sale 0/0 → derivas\n2️⃣ Vuelve a salir 0/0 → derivas otra vez\n3️⃣ Sale 1/4 → paras ✋\n\nSi derivas una tercera vez te sale 0, y está mal: L'Hôpital solo vale con 0/0 o ∞/∞, y 1/4 ya no es una indeterminación.\n\nTruco: sustituye siempre antes de volver a derivar.\n\n📌 Guárdalo para el examen\n💬 ¿Tú habrías parado a tiempo?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#limites #lhopital #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "Límites · 2º Bach",
+      "line1": "L'Hôpital:\nsaber parar",
+      "line2": "Vale 1/4,\nno 0",
+      "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3}",
+      "badge": "✗  0/(−6) = 0",
+      "footer": "Ejercicio 7 · Límites, resuelto"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Saber parar",
+        "tail": 0.4,
+        "narration": "[energetic] Este límite vale un cuarto. Pero si aplicas Lopital una vez de más, te sale cero.",
+        "captions": [
+          "Este límite vale 1/4.",
+          "Pero si aplicas L'Hôpital una vez de más, te sale 0."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Límites · 2º Bach",
+          "title": "L'Hôpital:\nsaber *parar*",
+          "tex": "\\lim_{x\\to 0}\\dfrac{e^{\\operatorname{sen} x}-x-1}{2x^2-x^3}",
+          "texColor": "teal",
+          "texSize": 60
+        }
+      },
+      {
+        "id": "r2-dos-veces",
+        "phase": "Segunda vez",
+        "heading": "Dos veces, y sale 1/4",
+        "tail": 0.4,
+        "narration": "[didactic] Sustituyes y sale cero entre cero. Derivas arriba y abajo, y otra vez cero entre cero. Derivas una segunda vez y sale un cuarto.",
+        "captions": [
+          "Sustituyes: 0/0.",
+          "Derivas arriba y abajo: otra vez 0/0.",
+          "Segunda vez: sale 1/4."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "1.ª",
+              "tex": "\\dfrac{\\cos x\\; e^{\\operatorname{sen} x}-1}{4x-3x^2} \\to \\dfrac{0}{0}",
+              "size": 46,
+              "color": "indet"
+            },
+            {
+              "label": "2.ª",
+              "tex": "\\dfrac{(\\cos^2 x-\\operatorname{sen} x)\\, e^{\\operatorname{sen} x}}{4-6x} \\to \\dfrac{1}{4}",
+              "size": 44,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-error",
+        "phase": "El error",
+        "heading": "Una vez de más",
+        "tail": 0.4,
+        "narration": "[didactic] Aquí mucha gente sigue derivando por inercia. Una tercera vez da cero entre menos seis, o sea, cero. Y es falso.",
+        "captions": [
+          "Aquí mucha gente sigue derivando por inercia.",
+          "Una tercera vez da 0/(−6) = 0.",
+          "Y es falso."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\dfrac{1}{4} \\;\\xrightarrow{\\;\\text{derivar otra vez}\\;}\\; \\dfrac{0}{-6} = 0",
+              "size": 44,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "0 es falso",
+            "sub": "el límite vale 1/4",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r4-regla",
+        "phase": "La clave",
+        "heading": "Cuándo se para",
+        "tail": 0.4,
+        "narration": "[didactic] Lopital solo vale con cero entre cero o infinito entre infinito. Un cuarto no es una indeterminación: ahí se para.",
+        "captions": [
+          "L'Hôpital solo vale con 0/0 o ∞/∞.",
+          "1/4 no es una indeterminación: ahí se para."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Solo si",
+              "tex": "\\dfrac{0}{0}\\quad\\text{o}\\quad\\dfrac{\\infty}{\\infty}",
+              "size": 52,
+              "color": "indet"
+            },
+            {
+              "tex": "\\dfrac{1}{4} \\;\\Rightarrow\\; \\text{parar}",
+              "size": 52,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "sustituye antes de cada derivada",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Antes de cada derivada, sustituye. Más ejercicios resueltos en Clases de Apoyo.",
+        "captions": [
+          "Antes de cada derivada, sustituye.",
+          "Más ejercicios resueltos en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Sustituye antes\nde *derivar*",
+          "tex": "\\lim = \\dfrac{1}{4}",
+          "lines": [
+            "Ejercicio 7 · Límites",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
