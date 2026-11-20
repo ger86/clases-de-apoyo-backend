@@ -1,0 +1,182 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2020-junio-pregunta-b2-derivable-derivada-no",
+  "exam": {
+    "label": "PAU Madrid · Junio 2020 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta B.2",
+    "topic": "Continuidad y derivabilidad"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Continuidad y derivabilidad": "teal",
+    "La trampa": "warn",
+    "El error": "danger",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Derivable, pero su derivada no (PAU Madrid, junio 2020, Pregunta B.2)",
+    "caption": "Esta función es derivable en x = 1… pero su derivada no 🤯\n\nPAU Madrid, junio 2020, Matemáticas II, pregunta B.2:\n1️⃣ Continuidad en x = 1: los dos trozos valen 0\n2️⃣ Derivadas laterales: 0 y 0 → derivable, f′(1) = 0\n3️⃣ Derivas f′ otra vez: 2 por la izquierda, 0 por la derecha ❌\n\nTruco: que f sea derivable no significa que f′ también lo sea. Compruébalo siempre con las derivadas laterales.\n\n📌 Guárdalo para el examen\n💬 ¿Lo habrías visto?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#derivabilidad #continuidad #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2020 · Matemáticas II",
+      "line1": "Derivable…\npero f′ no",
+      "line2": "f′(1) existe,\nf″(1) no",
+      "tex": "f''(1^-) = 2 \\neq 0 = f''(1^+)",
+      "badge": "✗  f′ derivable",
+      "footer": "Pregunta B.2 · PAU Madrid 2020, resuelta"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Derivable, pero f′ no",
+        "tail": 0.4,
+        "narration": "[energetic] Esta función es derivable en equis igual a uno. Pero su derivada no.",
+        "captions": [
+          "Esta función es derivable en x = 1.",
+          "Pero su derivada no."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2020",
+          "title": "Derivable…\npero f′ *no*",
+          "tex": "f(x)=\\begin{cases}(x-1)^2 & x\\le 1\\\\(x-1)^3 & x>1\\end{cases}",
+          "texColor": "teal",
+          "texSize": 54
+        }
+      },
+      {
+        "id": "r2-f",
+        "phase": "Continuidad y derivabilidad",
+        "heading": "f es continua y derivable",
+        "tail": 0.4,
+        "narration": "[didactic] Los dos trozos valen cero en uno: es continua. Las derivadas laterales también valen cero: es derivable.",
+        "captions": [
+          "Los dos trozos valen 0 en x = 1: es continua.",
+          "Las derivadas laterales también valen 0: es derivable."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Continua",
+              "tex": "f(1^-) = 0 = f(1^+)",
+              "size": 46,
+              "color": "teal"
+            },
+            {
+              "tex": "f'(x)=\\begin{cases}2(x-1) & x<1\\\\3(x-1)^2 & x>1\\end{cases}",
+              "size": 42
+            },
+            {
+              "label": "Derivable",
+              "tex": "f'(1^-) = 0 = f'(1^+)",
+              "size": 46,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-trampa",
+        "phase": "La trampa",
+        "heading": "Ahora deriva f′",
+        "tail": 0.4,
+        "narration": "[didactic] Ahora deriva f prima, que también es continua. Por la izquierda sale dos. Por la derecha, seis por equis menos uno, que en uno vale cero.",
+        "captions": [
+          "Ahora deriva f′, que también es continua.",
+          "Por la izquierda sale 2.",
+          "Por la derecha, 6(x − 1), que en 1 vale 0."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Continua",
+              "tex": "f'(1^-) = 0 = f'(1^+)",
+              "size": 44,
+              "color": "teal"
+            },
+            {
+              "tex": "f''(1^-) = 2",
+              "size": 50,
+              "color": "warn"
+            },
+            {
+              "tex": "f''(1^+) = 6(1-1) = 0",
+              "size": 50,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "2 ≠ 0",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r4-pico",
+        "phase": "El error",
+        "heading": "f′ tiene un pico",
+        "tail": 0.4,
+        "narration": "[didactic] Dos no es cero: f prima hace un pico en uno, y ahí no es derivable.",
+        "captions": [
+          "2 ≠ 0: f′ hace un pico en x = 1, y ahí no es derivable."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "x < 1 ? 2*(x-1) : 3*(x-1)**2",
+          "xMin": 0.55,
+          "xMax": 1.45,
+          "yMin": -0.9,
+          "yMax": 0.62,
+          "points": [
+            {
+              "x": 1,
+              "y": 0,
+              "label": "x = 1",
+              "color": "danger"
+            }
+          ],
+          "chips": [
+            {
+              "text": "pendiente 2 a la izquierda, 0 a la derecha",
+              "color": "danger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Que f sea derivable no significa que f prima lo sea. Más ejercicios resueltos en Clases de Apoyo.",
+        "captions": [
+          "Que f sea derivable no significa que f′ lo sea.",
+          "Más ejercicios resueltos en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "f derivable\n*no implica*\nf′ derivable",
+          "tex": "f''(1^-) = 2 \\neq 0 = f''(1^+)",
+          "lines": [
+            "Pregunta B.2 · PAU Madrid 2020",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
