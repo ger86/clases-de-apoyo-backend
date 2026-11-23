@@ -8,6 +8,7 @@ use App\Entity\UserBookmark;
 use App\Repository\FileRepository;
 use App\Repository\UserBookmarkRepository;
 use DateTimeImmutable;
+use Exception;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
@@ -65,16 +66,18 @@ final class UserBookmarkManager
     }
 
     /**
-     * Adds the files a student saved before having an account. Ids that are malformed or
-     * point to a file that no longer exists are skipped: losing one stale bookmark beats
-     * refusing the whole batch.
+     * Adds the files a student saved before having an account. Each item is a file id, or
+     * {"id": 12, "bookmarkedAt": "2026-01-31T10:00:00Z"} so the list keeps its order. Items
+     * that are malformed or point to a file that no longer exists are skipped: losing one
+     * stale bookmark beats refusing the whole batch. A missing, broken or future date
+     * becomes now.
      *
-     * @param array<mixed> $fileIds
+     * @param array<mixed> $files
      * @return int how many bookmarks were added
      */
-    public function merge(User $user, array $fileIds): int
+    public function merge(User $user, array $files): int
     {
-        if (\count($fileIds) > self::MAX_MERGE_IDS) {
+        if (\count($files) > self::MAX_MERGE_IDS) {
             throw new InvalidArgumentException('Demasiados guardados en una sola petición.');
         }
 
@@ -85,13 +88,16 @@ final class UserBookmarkManager
             $seen[(int) $bookmark->getFile()->getId()] = true;
         }
 
+        $now = new DateTimeImmutable();
+        /** @var array<int, DateTimeImmutable> $wanted */
         $wanted = [];
-        foreach ($fileIds as $fileId) {
-            if (!\is_int($fileId) || $fileId <= 0 || isset($seen[$fileId])) {
+        foreach ($files as $item) {
+            $fileId = \is_array($item) ? ($item['id'] ?? null) : $item;
+            if (!\is_int($fileId) || $fileId <= 0 || isset($seen[$fileId]) || isset($wanted[$fileId])) {
                 continue;
             }
 
-            $wanted[$fileId] = true;
+            $wanted[$fileId] = $this->readDate(\is_array($item) ? ($item['bookmarkedAt'] ?? null) : null, $now);
         }
 
         if ($wanted === []) {
@@ -99,9 +105,8 @@ final class UserBookmarkManager
         }
 
         $added = 0;
-        $now = new DateTimeImmutable();
         foreach ($this->fileRepository->findBy(['id' => array_keys($wanted)]) as $file) {
-            $this->em->persist(new UserBookmark($user, $file, $now));
+            $this->em->persist(new UserBookmark($user, $file, $wanted[(int) $file->getId()]));
             ++$added;
         }
 
@@ -110,5 +115,20 @@ final class UserBookmarkManager
         }
 
         return $added;
+    }
+
+    private function readDate(mixed $value, DateTimeImmutable $now): DateTimeImmutable
+    {
+        if (!\is_string($value) || $value === '') {
+            return $now;
+        }
+
+        try {
+            $date = new DateTimeImmutable($value);
+        } catch (Exception) {
+            return $now;
+        }
+
+        return $date > $now ? $now : $date;
     }
 }

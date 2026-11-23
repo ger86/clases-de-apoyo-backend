@@ -107,6 +107,41 @@ final class UserBookmarkManagerTest extends TestCase
         self::assertSame(1, $added);
     }
 
+    public function testMergeKeepsTheDateTheGuestSavedEachFile(): void
+    {
+        $persisted = [];
+        $em = $this->createMock(EntityManagerInterface::class);
+        $em->expects(self::once())->method('flush');
+        $em->expects(self::exactly(4))->method('persist')->willReturnCallback(static function (object $bookmark) use (&$persisted): void {
+            $persisted[] = $bookmark;
+        });
+
+        $added = $this->createManager(
+            $em,
+            files: [$this->createFile(1), $this->createFile(2), $this->createFile(3), $this->createFile(4)],
+            existing: null
+        )->merge(new User(), [
+            ['id' => 1, 'bookmarkedAt' => '2026-01-31T10:00:00.000Z'],
+            ['id' => 2, 'bookmarkedAt' => 'not a date'],
+            ['id' => 3, 'bookmarkedAt' => '2999-01-01T00:00:00Z'],
+            ['id' => 4],
+            ['id' => 'x', 'bookmarkedAt' => '2026-01-31T10:00:00Z'],
+        ]);
+
+        self::assertSame(4, $added);
+        $dates = [];
+        foreach ($persisted as $bookmark) {
+            self::assertInstanceOf(UserBookmark::class, $bookmark);
+            $dates[(int) $bookmark->getFile()->getId()] = $bookmark->getBookmarkedAt();
+        }
+
+        self::assertSame('2026-01-31T10:00:00+00:00', $dates[1]->format(DATE_ATOM));
+        // A broken, future or missing date becomes the time of the merge.
+        foreach ([2, 3, 4] as $fileId) {
+            self::assertLessThanOrEqual(5, abs($dates[$fileId]->getTimestamp() - time()));
+        }
+    }
+
     public function testMergeWithNothingNewWritesNothing(): void
     {
         $em = $this->createMock(EntityManagerInterface::class);
