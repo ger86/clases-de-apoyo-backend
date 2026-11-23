@@ -15,6 +15,7 @@ use App\Entity\Subject;
 use App\Entity\TestYear;
 use App\Entity\User;
 use App\Service\ApiGatingPolicy;
+use App\Service\FileSourceName;
 use App\Service\GetFileView;
 use App\Service\PremiumService;
 use App\Service\Product\PauBundleProductCatalog;
@@ -111,6 +112,29 @@ final class GetFileViewTest extends TestCase
         self::assertFalse(($getFileView)($this->createExamFile('Soluciones', $recentExam))->locked);
     }
 
+    public function testAnExamFileNamesItsFullExam(): void
+    {
+        $getFileView = $this->createGetFileView(gatingEnabled: true, appVersion: '9.0.0');
+        $exam = $this->createExam('2024');
+
+        $source = ($getFileView)($this->createExamFile('Enunciados', $exam))->source;
+
+        self::assertSame(
+            \sprintf('%s %s', $exam->getTestYear()->getCommunityTestCourseSubject(), $exam->getName()),
+            $source
+        );
+        self::assertSame(1, substr_count((string) $source, '2024'));
+    }
+
+    public function testAFileWithoutChapterOrExamHasNoSource(): void
+    {
+        $view = ($this->createGetFileView(gatingEnabled: true, appVersion: '9.0.0'))(
+            $this->createChapterFile('Apuntes')
+        );
+
+        self::assertNull($view->source);
+    }
+
     private function createGetFileView(bool $gatingEnabled, ?string $appVersion, ?User $user = null): GetFileView
     {
         $authChecker = $this->createStub(AuthorizationCheckerInterface::class);
@@ -132,7 +156,8 @@ final class GetFileViewTest extends TestCase
         return new GetFileView(
             $publicUrlGenerator,
             new PremiumService($authChecker, $security, new PauBundleProductCatalog()),
-            new ApiGatingPolicy($gatingEnabled, $requestStack)
+            new ApiGatingPolicy($gatingEnabled, $requestStack),
+            new FileSourceName()
         );
     }
 

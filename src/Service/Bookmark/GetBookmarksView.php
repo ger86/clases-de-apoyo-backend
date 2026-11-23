@@ -2,11 +2,11 @@
 
 namespace App\Service\Bookmark;
 
-use App\Entity\File;
 use App\Entity\User;
 use App\Model\View\BookmarkView;
 use App\Model\View\BookmarksView;
 use App\Repository\UserBookmarkRepository;
+use App\Service\FileSourceName;
 use App\Service\PremiumService;
 
 /**
@@ -17,7 +17,8 @@ final class GetBookmarksView
 {
     public function __construct(
         private UserBookmarkRepository $userBookmarkRepository,
-        private PremiumService $premiumService
+        private PremiumService $premiumService,
+        private FileSourceName $fileSourceName
     ) {
     }
 
@@ -29,23 +30,12 @@ final class GetBookmarksView
             $bookmarks[] = new BookmarkView(
                 (int) $file->getId(),
                 $file->getName() ?? '',
-                $this->sourceOf($file),
+                ($this->fileSourceName)($file),
                 !$this->premiumService->canSeeExamFile($file),
                 $bookmark->getBookmarkedAt()->format(DATE_ATOM)
             );
         }
 
         return new BookmarksView($bookmarks);
-    }
-
-    /** File names repeat ("Apuntes", "Enunciados"), so the list also names the chapter or exam. */
-    private function sourceOf(File $file): ?string
-    {
-        $exam = $file->getExam();
-        if ($exam !== null) {
-            return (string) $exam;
-        }
-
-        return $file->getChapter()?->asString();
     }
 }

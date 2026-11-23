@@ -10,7 +10,8 @@ class GetFileView
     public function __construct(
         private PublicUrlGenerator $publicUrlGenerator,
         private PremiumService $premiumService,
-        private ApiGatingPolicy $apiGatingPolicy
+        private ApiGatingPolicy $apiGatingPolicy,
+        private FileSourceName $fileSourceName
     ) {
     }
 
@@ -24,6 +25,7 @@ class GetFileView
         return new FileView(
             (int) $file->getId(),
             $file->getName(),
+            ($this->fileSourceName)($file),
             $file->getWeight(),
             $hideUrl ? null : $this->publicUrlGenerator->generate($file->getFile()),
             $locked
