@@ -46,6 +46,13 @@
   </div>
   <div class="col-span-12 lg:col-span-4">
     <div class="sticky">
+      {% if bookmarked is not null %}
+      {% include 'views/bookmarks/_toggle.html.twig' with {
+        fileId: file.id,
+        bookmarked: bookmarked,
+        return: 'file'
+      } %}
+      {% endif %}
       {% if showPauBundlePackPromo %}
         {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
           pack: pauBundlePack,

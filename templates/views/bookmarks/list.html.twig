@@ -1,0 +1,55 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>Mis guardados</title>
+<meta name="robots" content="noindex"/>
+{% endblock %}
+
+{% block pageTitle %}
+Mis guardados
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Mis guardados</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block pageContent %}
+<div class="min-h-[400px]">
+  {% if bookmarks is empty %}
+  <div class="simple-box">
+    <h2 class="h4 mb-4">Todavía no has guardado nada</h2>
+    <p>Abre cualquier archivo y pulsa «Guardar» para tenerlo aquí a mano. Lo que guardes en la web también aparece en la app, y al revés.</p>
+  </div>
+  {% else %}
+  <ul class="divide-y divide-gray-200 bg-white shadow-md">
+    {% for bookmark in bookmarks %}
+    <li class="flex items-center justify-between gap-4 p-4">
+      {# A locked file page refuses the visit, so the row goes to the premium page, like the app paywall. #}
+      <a class="flex-1" href="{{ bookmark.locked ? path('app_subscription_payment') : path('file', {fileId: bookmark.fileId}) }}">
+        <strong class="block">{{ bookmark.name }}</strong>
+        {% if bookmark.source %}
+        <small class="block text-gray-600">{{ bookmark.source }}</small>
+        {% endif %}
+        {% if bookmark.locked %}
+        <small class="block text-gray-500">Contenido premium</small>
+        {% endif %}
+      </a>
+      {% include 'views/bookmarks/_toggle.html.twig' with {
+        fileId: bookmark.fileId,
+        bookmarked: true,
+        return: 'list'
+      } %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock pageContent %}

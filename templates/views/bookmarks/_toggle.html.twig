@@ -1,0 +1,22 @@
+{# The save button of one file. It needs fileId, bookmarked and return ("file" or "list"). #}
+{% set label = bookmarked ? 'Quitar de guardados' : 'Guardar' %}
+<form
+  method="post"
+  action="{{ bookmarked ? path('app_bookmark_remove', {fileId: fileId}) : path('app_bookmark_add', {fileId: fileId}) }}"
+  class="{{ return == 'file' ? 'mb-4' : '' }}"
+>
+  <input type="hidden" name="_token" value="{{ csrf_token('bookmark_' ~ fileId) }}">
+  <input type="hidden" name="return" value="{{ return }}">
+  <button
+    type="submit"
+    class="{{ return == 'file' ? 'btn btn-light flex w-full' : 'btn btn-link inline-flex' }} items-center justify-center gap-2"
+    aria-pressed="{{ bookmarked ? 'true' : 'false' }}"
+    title="{{ label }}"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
+      fill="{{ bookmarked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+      <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/>
+    </svg>
+    <span>{{ return == 'list' ? 'Quitar' : (bookmarked ? 'Guardado' : 'Guardar') }}</span>
+  </button>
+</form>

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Service\Bookmark\UserBookmarkManager;
 use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
 use App\Service\FileAi\GeminiFileTutorService;
+use App\Service\Security;
 use Aws\S3\S3Client;
 use Sonata\MediaBundle\Provider\Pool;
 use Psr\Http\Message\StreamInterface;
@@ -28,12 +30,17 @@ class FileController extends AbstractController
 
     public function viewer(
         string $fileId,
-        FileAccessResolver $fileAccessResolver
+        FileAccessResolver $fileAccessResolver,
+        Security $security,
+        UserBookmarkManager $bookmarkManager
     ): Response {
         $file = $fileAccessResolver->resolveOrThrow($fileId);
+        $user = $security->getUser();
 
         return $this->render('views/files/viewer.html.twig', [
             'file' => $file,
+            // Null for a guest, who gets no bookmark button.
+            'bookmarked' => $user === null ? null : $bookmarkManager->isBookmarked($user, $file),
         ]);
     }
 

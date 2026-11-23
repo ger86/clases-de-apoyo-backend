@@ -1,0 +1,18 @@
+app_bookmarks:
+    path: /usuario/guardados
+    controller: App\Controller\BookmarkController::list
+    methods: [GET]
+
+app_bookmark_add:
+    path: /usuario/guardados/{fileId}
+    controller: App\Controller\BookmarkController::add
+    methods: [POST]
+    requirements:
+        fileId: '\d+'
+
+app_bookmark_remove:
+    path: /usuario/guardados/{fileId}/quitar
+    controller: App\Controller\BookmarkController::remove
+    methods: [POST]
+    requirements:
+        fileId: '\d+'

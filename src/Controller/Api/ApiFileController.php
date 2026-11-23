@@ -2,11 +2,14 @@
 
 namespace App\Controller\Api;
 
+use App\Repository\FileRepository;
 use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
 use App\Service\FileAi\GeminiFileTutorService;
+use App\Service\GetFileView;
 use App\Service\Security;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -25,6 +28,23 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  */
 final class ApiFileController extends AbstractFOSRestController
 {
+    /**
+     * One file on its own, readable without an account like the chapter and exam lists.
+     * The saved files list opens a file through here, because a signed link expires after
+     * 30 minutes and must not be kept on the phone.
+     */
+    #[Get(path: '/files/{fileId}', requirements: ['fileId' => '\d+'])]
+    public function getFileAction(string $fileId, FileRepository $fileRepository, GetFileView $getFileView): View
+    {
+        $file = $fileRepository->find((int) $fileId);
+        // A file without a PDF has nothing to open, and the signed link needs one.
+        if ($file === null || $file->getFile() === null) {
+            return $this->error('Ese archivo no existe.', 'not_found', Response::HTTP_NOT_FOUND);
+        }
+
+        return $this->view(($getFileView)($file));
+    }
+
     #[Post(path: '/files/{fileId}/ai-chat', requirements: ['fileId' => '\d+'])]
     #[IsGranted('ROLE_USER')]
     public function askAiAction(
