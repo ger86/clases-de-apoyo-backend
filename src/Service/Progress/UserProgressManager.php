@@ -7,6 +7,7 @@ use App\Entity\UserProgress;
 use App\Model\ProgressTarget;
 use App\Repository\UserProgressRepository;
 use DateTimeImmutable;
+use Exception;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
@@ -56,15 +57,18 @@ final class UserProgressManager
     }
 
     /**
-     * Adds the marks a student made before having an account. Keys that are malformed or
-     * point to nothing are skipped: losing one stale mark beats refusing the whole batch.
+     * Adds the marks a student made before having an account. Each item is a key such as
+     * "chapter:12" (what app 9.2.0 sends), or {"key": "chapter:12", "doneAt": "..."} so the
+     * marks keep their date. Items that are malformed or point to nothing are skipped:
+     * losing one stale mark beats refusing the whole batch. A missing, broken or future
+     * date becomes now.
      *
-     * @param array<mixed> $keys
+     * @param array<mixed> $items
      * @return int how many marks were added
      */
-    public function merge(User $user, array $keys): int
+    public function merge(User $user, array $items): int
     {
-        if (\count($keys) > self::MAX_MERGE_KEYS) {
+        if (\count($items) > self::MAX_MERGE_KEYS) {
             throw new InvalidArgumentException('Demasiadas marcas en una sola petición.');
         }
 
@@ -77,7 +81,8 @@ final class UserProgressManager
 
         $added = 0;
         $now = new DateTimeImmutable();
-        foreach ($keys as $key) {
+        foreach ($items as $item) {
+            $key = \is_array($item) ? ($item['key'] ?? null) : $item;
             if (!\is_string($key)) {
                 continue;
             }
@@ -93,7 +98,8 @@ final class UserProgressManager
             }
 
             $seen[$target->key()] = true;
-            $this->em->persist(new UserProgress($user, $target, $now));
+            $doneAt = $this->readDate(\is_array($item) ? ($item['doneAt'] ?? null) : null, $now);
+            $this->em->persist(new UserProgress($user, $target, $doneAt));
             ++$added;
         }
 
@@ -102,5 +108,20 @@ final class UserProgressManager
         }
 
         return $added;
+    }
+
+    private function readDate(mixed $value, DateTimeImmutable $now): DateTimeImmutable
+    {
+        if (!\is_string($value) || $value === '') {
+            return $now;
+        }
+
+        try {
+            $date = new DateTimeImmutable($value);
+        } catch (Exception) {
+            return $now;
+        }
+
+        return $date > $now ? $now : $date;
     }
 }

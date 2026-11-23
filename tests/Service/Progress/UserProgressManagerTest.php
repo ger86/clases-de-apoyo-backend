@@ -92,6 +92,41 @@ final class UserProgressManagerTest extends TestCase
         self::assertSame(1, $added);
     }
 
+    public function testMergeKeepsTheDateOfEachMark(): void
+    {
+        $persisted = [];
+        $em = $this->createMock(EntityManagerInterface::class);
+        $em->expects(self::once())->method('flush');
+        $em->expects(self::exactly(4))->method('persist')->willReturnCallback(
+            static function (object $progress) use (&$persisted): void {
+                $persisted[] = $progress;
+            }
+        );
+
+        $added = $this->createManager($em, exists: true, existing: null)
+            ->merge(new User(), [
+                ['key' => 'chapter:1', 'doneAt' => '2026-01-31T10:00:00.000Z'],
+                ['key' => 'chapter:2', 'doneAt' => 'not a date'],
+                ['key' => 'exam:3', 'doneAt' => '2999-01-01T00:00:00Z'],
+                // App 9.2.0 sends plain keys, and they still work.
+                'exam:4',
+                ['key' => 42, 'doneAt' => '2026-01-31T10:00:00Z'],
+            ]);
+
+        self::assertSame(4, $added);
+        $dates = [];
+        foreach ($persisted as $progress) {
+            self::assertInstanceOf(UserProgress::class, $progress);
+            $dates[$progress->getTarget()->key()] = $progress->getDoneAt();
+        }
+
+        self::assertSame('2026-01-31T10:00:00+00:00', $dates['chapter:1']->format(DATE_ATOM));
+        // A broken, future or missing date becomes the time of the merge.
+        foreach (['chapter:2', 'exam:3', 'exam:4'] as $key) {
+            self::assertLessThanOrEqual(5, abs($dates[$key]->getTimestamp() - time()));
+        }
+    }
+
     public function testMarkingIsIdempotentWhenAnotherRequestWonTheRace(): void
     {
         $em = $this->createMock(EntityManagerInterface::class);
