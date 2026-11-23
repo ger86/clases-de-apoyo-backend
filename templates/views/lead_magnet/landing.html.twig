@@ -1,10 +1,8 @@
 {% extends 'container_layout.html.twig' %}
 
-{% set yearRange = constant('App\\Service\\LeadMagnet\\FreeExamPack::YEAR_RANGE') %}
-
 {% block metatags %}
-{% set metaTitle = 'Exámenes PAU Madrid ' ~ yearRange ~ ' en PDF gratis | Clases de Apoyo' %}
-{% set metaDescription = 'Descarga gratis en PDF los enunciados de la PAU/EvAU de Madrid ' ~ yearRange ~ ' de Matemáticas II, Matemáticas CCSS, Física y Química.' %}
+{% set metaTitle = 'Exámenes PAU Madrid recientes en PDF gratis | Clases de Apoyo' %}
+{% set metaDescription = 'Descarga gratis en PDF los enunciados de los tres últimos años de la PAU/EvAU de Madrid de Matemáticas II, Matemáticas CCSS, Física y Química.' %}
 <title>{{ metaTitle }}</title>
 <meta name="description" content="{{ metaDescription }}"/>
 <meta property="og:title" content="{{ metaTitle }}" />
@@ -13,7 +11,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-Exámenes PAU Madrid {{ yearRange }} en PDF gratis
+Exámenes PAU Madrid recientes en PDF gratis
 {% endblock %}
 
 {% block breadcrumb %}
@@ -32,7 +30,7 @@ Exámenes PAU Madrid {{ yearRange }} en PDF gratis
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
   <div class="col-span-12 lg:col-span-7">
     <p class="text-lg mb-8">
-      Los enunciados de los exámenes de la PAU/EvAU de Madrid de los últimos años ({{ yearRange }}), en un PDF por asignatura, listos para imprimir y practicar como el día del examen.
+      Los enunciados de los exámenes de la PAU/EvAU de Madrid de los tres últimos años que tenemos de cada asignatura, en un PDF por asignatura, listos para imprimir y practicar como el día del examen.
     </p>
     <div class="simple-box mb-8">
       <h2 class="h2 mb-4">Qué recibes</h2>

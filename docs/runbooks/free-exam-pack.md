@@ -1,6 +1,6 @@
 # Free exam pack (email capture)
 
-A visitor leaves an email and gets, for free, the PAU Madrid exam statements (no solutions) of the last three years for Matemáticas II, Matemáticas CCSS, Física and Química. Then three follow-up emails offer the paid pack of the subject the visitor was looking at, and Premium.
+A visitor leaves an email and gets, for free, the PAU Madrid exam statements (no solutions) of the last three years on the website for Matemáticas II, Matemáticas CCSS, Física and Química. Then three follow-up emails offer the paid pack of the subject the visitor was looking at, and Premium.
 
 The statements are already free on the website, so the free pack gives away nothing that is sold. The solutions stay in the paid packs.
 
@@ -23,7 +23,7 @@ Code: `src/Service/LeadMagnet/`, `src/Controller/LeadMagnetController.php`, `src
 
 ### 1. Build the PDFs
 
-`FreeExamPack::YEAR_RANGE` says which years the copy shows (now `2024-2026`). First check in production that the four subjects have statements for those years. If not, change the constant.
+Each PDF holds the statements of the last three years that the website has for that subject. Some years are missing, so the years differ by subject. The label of each file in `FreeExamPack` lists its years; update it when the PDFs change.
 
 List the statement files with the DQL query of `docs/runbooks/create-pau-bundle.md` (section "Data audit"), filtered on `ty.year >= <first year>` and the four subject slugs (`matematicas`, `matematicas-cc-ss`, `fisica`, `quimica`). Keep only the statements, not the solutions; check the real file names first.
 
@@ -44,7 +44,7 @@ PAU-Madrid-Quimica-enunciados-recientes.pdf
 s3://<bucket>/lead-magnets/pau-madrid-enunciados-recientes/<file name>
 ```
 
-The names stay the same every year, so a new year only means new PDFs and a new `YEAR_RANGE`.
+The names stay the same every year, so a new year only means new PDFs and new labels in `FreeExamPack`.
 
 ### 3. Deploy and verify
 
@@ -70,3 +70,17 @@ When `app:lead-magnet:verify` passes, set `LEAD_MAGNET_ENABLED=1` in `.env.local
 ### 6. Smoke test
 
 Sign up on the landing page with a real address, open the link, download one PDF, then use the unsubscribe link of the email.
+
+## Current PDFs (2026-11-23)
+
+Built from production data, uploaded to `s3://clasesdeapoyosf/lead-magnets/pau-madrid-enunciados-recientes/`. Order: year, then modelo, junio, julio.
+
+| Subject | Years | Exams | Pages | Source file ids |
+|---|---|---|---|---|
+| Matemáticas II | 2024, 2025, 2026 | 9 | 31 | 1764, 1766, 1768, 1776, 1780, 1788, 1790, 1795, 1797 |
+| Física | 2023, 2024, 2025 | 9 | 18 | 1738, 1736, 1734, 1770, 1772, 1774, 1794, 1782, 1792 |
+| Matemáticas CCSS | 2021, 2025, 2026 | 7 | 24 | 1681, 1679, 1677, 1778, 1786, 1801, 1799 |
+| Química | 2021, 2022, 2025 | 7 | 14 | 1693, 1691, 1689, 1695, 1724, 1726, 1784 |
+
+The website has no CCSS statements for 2022-2024 and no Química statements for 2023-2024 or 2026; when they are added, rebuild those PDFs. Source S3 keys are `document/<providerReference>` of each file's media.
+
