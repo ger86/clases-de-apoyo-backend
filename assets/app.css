@@ -1,21 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source(none);
 
-*, [class*=" icon-"], [class^=icon-] {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@source '../templates';
+@source './';
+
+@theme {
+  --font-*: initial;
+  --font-sans: "Open Sans", sans-serif;
+  --font-heading: "Lato", sans-serif;
+
+  --color-primary: #107896;
+  --color-primary-dark: #0c5c73;
+  --color-primary-light: #0ea5e9;
+  --color-body: #515151;
+  --color-gray-600: #515151;
+  --color-gray-700: #343a40;
+  --color-heading: #343a40;
 }
 
-html {
-  font-size: 16px;
-}
-
-p {
-  margin-bottom: 0.5rem;
-}
-
+/*
+  Tailwind v4 compatibility: v3 gave borders a gray-200 default color and
+  buttons a pointer cursor. Keep both so the site looks the same.
+*/
 @layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* In v4, CSS outside a layer beats every utility, so these plain rules live in the base layer. */
+@layer base {
+  *, [class*=" icon-"], [class^=icon-] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
   body {
     @apply text-gray-600;
   }
@@ -30,8 +65,15 @@ p {
 }
 
 @layer components {
-  .btn {
-    @apply inline-block text-white border border-transparent rounded-sm px-4 py-2 text-lg text-center font-normal leading-5 transition duration-300 ease-in-out select-none;
+  /* Shared button base. Kept in the components layer (not @utility) so .btn-* colors win over it, as in v3. */
+  .btn,
+  .btn-primary,
+  .btn-outline-primary,
+  .btn-secondary,
+  .btn-light {
+    @apply inline-block text-white border border-transparent rounded-xs px-4 py-2 text-lg text-center font-normal transition duration-300 ease-in-out select-none;
+    /* Plain line-height (not leading-5) so a text-* class on the button can still change it, as in v3. */
+    line-height: 1.25rem;
   }
 
   .btn-link {
@@ -39,19 +81,19 @@ p {
   }
 
   .btn-primary {
-    @apply btn bg-primary text-white hover:bg-primary-dark;
+    @apply bg-primary text-white hover:bg-primary-dark;
   }
 
   .btn-outline-primary {
-    @apply btn border-primary text-primary;
+    @apply border-primary text-primary;
   }
 
   .btn-secondary {
-    @apply btn bg-green-600 text-white;
+    @apply bg-green-600 text-white;
   }
 
   .btn-light {
-    @apply btn bg-white border-gray-300 text-heading;
+    @apply bg-white border-gray-300 text-heading;
   }
 
   .h1, h1 {
@@ -87,7 +129,7 @@ p {
   }
 
   .simple-box {
-    @apply bg-gray-100 p-4 rounded lg:p-8;
+    @apply bg-gray-100 p-4 rounded-sm lg:p-8;
   }
 
   .form-group {
@@ -120,7 +162,7 @@ p {
     @apply bg-[#f8d7da]
     border
     border-solid
-    rounded
+    rounded-sm
     box-border
     block
     font-sans
@@ -161,7 +203,7 @@ p {
   }
 
   .file-viewer-shell {
-    @apply relative overflow-hidden rounded-2xl bg-white shadow-sm;
+    @apply relative overflow-hidden rounded-2xl bg-white shadow-xs;
   }
 
   .file-viewer-frame {
@@ -249,7 +291,7 @@ p {
   }
 
   .file-ai-message-bubble {
-    @apply max-w-[90%] rounded-[1.5rem] px-4 py-3 shadow-sm;
+    @apply max-w-[90%] rounded-[1.5rem] px-4 py-3 shadow-xs;
   }
 
   .file-ai-message-bubble-user {
@@ -269,7 +311,7 @@ p {
   }
 
   .file-ai-message-body {
-    @apply whitespace-pre-wrap break-words text-sm leading-6 text-slate-900;
+    @apply whitespace-pre-wrap wrap-break-word text-sm leading-6 text-slate-900;
   }
 
   .file-ai-message-body-user {
@@ -313,7 +355,7 @@ p {
   }
 
   .file-ai-textarea {
-    @apply mb-3 block min-h-[72px] w-full resize-none rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm leading-6 text-slate-900 shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+    @apply mb-3 block min-h-[72px] w-full resize-none rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm leading-6 text-slate-900 shadow-xs transition focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20;
   }
 
   .file-ai-send-button {

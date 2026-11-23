@@ -2,7 +2,7 @@
   background-image: url(./home-bg-sm.jpg);
 }
 
-@media screen(lg) {
+@media (min-width: 1024px) {
   .home-cover {
     background-image: url(./home-bg.jpg);
   }

@@ -11,9 +11,6 @@
     "doctrine/collections": {
         "version": "1.6.8"
     },
-    "doctrine/common": {
-        "version": "3.1.2"
-    },
     "doctrine/dbal": {
         "version": "2.13.4"
     },
@@ -782,9 +779,6 @@
     },
     "symplify/easy-coding-standard": {
         "version": "9.4.70"
-    },
-    "theseer/tokenizer": {
-        "version": "1.2.1"
     },
     "twig/extra-bundle": {
         "version": "v3.3.3"

@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+import Encore from '@symfony/webpack-encore';
 
 Encore
     .setOutputPath('public/build/')
@@ -12,17 +12,12 @@ Encore
     .splitEntryChunks()
 
     .enableSingleRuntimeChunk()
-    .enableBuildNotifications()
 
     // configure Babel
     .configureBabel((config) => {
       config.plugins.push('@babel/plugin-transform-class-properties');
-    })
-
-    // enables and configure @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
+      // Babel 8 removed useBuiltIns/corejs from preset-env; this plugin adds the same "usage" polyfills.
+      config.plugins.push(['babel-plugin-polyfill-corejs3', { method: 'usage-global', version: '3.51' }]);
     })
 
     .enableSourceMaps(!Encore.isProduction())
@@ -33,6 +28,4 @@ Encore
     .enablePostCssLoader()
 ;
 
-const localWebpackConfig = Encore.getWebpackConfig();
-
-module.exports = localWebpackConfig;
+export default Encore.getWebpackConfig();

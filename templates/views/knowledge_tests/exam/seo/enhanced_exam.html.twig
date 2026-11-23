@@ -103,7 +103,7 @@
           {% for row in enhancedExamPage.examData %}
             <div class="py-3">
               <dt class="mb-1 text-sm font-bold text-slate-700">{{ row.label }}</dt>
-              <dd class="text-body break-words">{{ enhancedExam.fillPlaceholders(row.value, exam, pauBundlePack) }}</dd>
+              <dd class="text-body wrap-break-word">{{ enhancedExam.fillPlaceholders(row.value, exam, pauBundlePack) }}</dd>
             </div>
           {% endfor %}
         </dl>
@@ -128,13 +128,13 @@
                 <span class="text-sm font-bold text-slate-700">{{ question.block }}</span>
                 <span class="text-sm text-slate-500">{{ question.question }}</span>
               </div>
-              <p class="mb-2 text-body break-words">{{ question.task }}</p>
-              <p class="text-sm font-bold text-slate-700 break-words">{{ question.topic }}</p>
+              <p class="mb-2 text-body wrap-break-word">{{ question.task }}</p>
+              <p class="text-sm font-bold text-slate-700 wrap-break-word">{{ question.topic }}</p>
             </section>
           {% endfor %}
         </div>
         <table class="hidden md:table border-collapse table-auto w-full">
-          <thead class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left bg-slate-200 rounded">
+          <thead class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left bg-slate-200 rounded-sm">
             <tr>
               <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Bloque</th>
               <th class="border-b p-4 text-slate-700 text-left font-bold text-lg">Pregunta</th>
