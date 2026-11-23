@@ -7,6 +7,7 @@ use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
 use App\Service\FileAi\GeminiFileTutorService;
 use App\Service\GetFileView;
+use App\Service\PremiumService;
 use App\Service\Security;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -54,12 +55,22 @@ final class ApiFileController extends AbstractFOSRestController
         FileAccessResolver $fileAccessResolver,
         FileTutorMessageNormalizer $messageNormalizer,
         GeminiFileTutorService $geminiFileTutorService,
+        PremiumService $premiumService,
         #[Autowire(service: 'limiter.file_ai_chat_user')]
         RateLimiterFactoryInterface $userLimiter,
         #[Autowire(service: 'limiter.file_ai_chat_ip')]
         RateLimiterFactoryInterface $ipLimiter
     ): View {
         $user = $security->getSafeUser();
+
+        // Checked before the limiters, so a free account does not use up the budget.
+        if (!$premiumService->isPremium()) {
+            return $this->error(
+                'El asistente de IA es solo para usuarios Premium.',
+                'premium_required',
+                Response::HTTP_FORBIDDEN
+            );
+        }
 
         if (!$ipLimiter->create((string) $request->getClientIp())->consume()->isAccepted()) {
             return $this->error(

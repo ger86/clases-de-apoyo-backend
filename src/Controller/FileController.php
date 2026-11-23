@@ -6,6 +6,7 @@ use App\Service\Bookmark\UserBookmarkManager;
 use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
 use App\Service\FileAi\GeminiFileTutorService;
+use App\Service\PremiumService;
 use App\Service\Security;
 use Aws\S3\S3Client;
 use Sonata\MediaBundle\Provider\Pool;
@@ -93,6 +94,7 @@ class FileController extends AbstractController
         FileAccessResolver $fileAccessResolver,
         FileTutorMessageNormalizer $messageNormalizer,
         GeminiFileTutorService $geminiFileTutorService,
+        PremiumService $premiumService,
         #[Autowire(service: 'limiter.file_ai_chat_ip')]
         RateLimiterFactoryInterface $ipLimiter
     ): JsonResponse {
@@ -105,7 +107,13 @@ class FileController extends AbstractController
             ], Response::HTTP_FORBIDDEN);
         }
 
-        // The website chat has no login, so the only handle to budget on is the IP address.
+        // The page only shows the chat to Premium users, but the endpoint must check it too.
+        if (!$premiumService->isPremium()) {
+            return $this->json([
+                'message' => 'El asistente de IA es solo para usuarios Premium.',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
         if (!$ipLimiter->create((string) $request->getClientIp())->consume()->isAccepted()) {
             return $this->json([
                 'message' => 'Has hecho muchas preguntas seguidas. Espera un rato antes de volver a preguntar.',
