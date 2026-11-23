@@ -1,0 +1,69 @@
+{% extends 'container_layout.html.twig' %}
+
+{% set yearRange = constant('App\\Service\\LeadMagnet\\FreeExamPack::YEAR_RANGE') %}
+
+{% block metatags %}
+{% set metaTitle = 'Exámenes PAU Madrid ' ~ yearRange ~ ' en PDF gratis | Clases de Apoyo' %}
+{% set metaDescription = 'Descarga gratis en PDF los enunciados de la PAU/EvAU de Madrid ' ~ yearRange ~ ' de Matemáticas II, Matemáticas CCSS, Física y Química.' %}
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ url('lead_magnet_landing') }}">
+{% endblock %}
+
+{% block pageTitle %}
+Exámenes PAU Madrid {{ yearRange }} en PDF gratis
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Exámenes PAU Madrid gratis</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block pageContent %}
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-7">
+    <p class="text-lg mb-8">
+      Los enunciados de los exámenes de la PAU/EvAU de Madrid de los últimos años ({{ yearRange }}), en un PDF por asignatura, listos para imprimir y practicar como el día del examen.
+    </p>
+    <div class="simple-box mb-8">
+      <h2 class="h2 mb-4">Qué recibes</h2>
+      <ul class="list-disc list-inside text-lg">
+        {% for file in files %}
+          <li>{{ file.label }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="simple-box">
+      <h2 class="h2 mb-4">Cómo funciona</h2>
+      <ol class="list-decimal list-inside text-lg">
+        <li>Escribe tu email.</li>
+        <li>Te enviamos un enlace al momento.</li>
+        <li>Abre el enlace y descarga los PDF que quieras.</li>
+      </ol>
+    </div>
+  </div>
+  <aside class="col-span-12 lg:col-span-5">
+    <div class="simple-box border border-blue-200 bg-blue-50">
+      <h2 class="h3 mb-4">Recíbelos gratis por email</h2>
+      {% for error in errors %}
+        <div class="alert alert-danger mb-4" role="alert">{{ error }}</div>
+      {% endfor %}
+      {% include 'common/lead_magnet/_form.html.twig' with {
+        form_id: 'lead-magnet-landing',
+        email: email,
+        pack_code: packCode,
+        event_label: 'landing'
+      } %}
+    </div>
+  </aside>
+</section>
+{% endblock %}

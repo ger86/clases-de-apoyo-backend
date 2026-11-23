@@ -212,6 +212,10 @@
           compact: true,
           event_label: enhancedExamPage.sidebarPackEventLabel|default(enhancedExamPage.analyticsLabel)
         } %}
+        {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
+          pack: pauBundlePack,
+          event_label: 'enhanced-exam-sidebar'
+        } %}
       {% endif %}
       {% include 'ads/sidebar_ad.html.twig' with { 'mb': 'mb-8'} %}
       {% include 'common/elements/youtube_box.html.twig' %}

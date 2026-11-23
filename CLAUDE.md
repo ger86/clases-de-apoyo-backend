@@ -112,6 +112,10 @@ Important rules:
 - Run the product seed and verify commands before advertising a bundle.
 - Keep access-control restrictions scoped to the exact bundle context.
 
+## Free exam pack (email capture)
+
+`/examenes-pau-madrid-gratis` gives the recent PAU Madrid statements in exchange for an email (double opt-in), then `app:lead-magnet:send-follow-ups` (hourly cron) sends three emails that offer the packs and Premium. It stays hidden until `LEAD_MAGNET_ENABLED=1`. Every email must keep the unsubscribe link and the `List-Unsubscribe` headers. Setup steps (PDFs, S3, cron) are in [docs/runbooks/free-exam-pack.md](docs/runbooks/free-exam-pack.md).
+
 ## Exam explainer videos
 
 Explainer videos for exam exercises are produced with the Remotion tool in [tools/exam-video/](tools/exam-video/). Follow [docs/runbooks/create-exam-video.md](docs/runbooks/create-exam-video.md). Audio, props and rendered files are ignored; only `exercise.json` files are tracked.

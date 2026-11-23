@@ -1,0 +1,12 @@
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+<p>¡Hola!</p>
+<p>Aquí tienes los enunciados de la PAU de Madrid de los últimos años de Matemáticas II, Matemáticas CCSS, Física y Química. Pulsa el botón para descargarlos:</p>
+{% include 'email/lead_magnet/_button.html.twig' with {url: downloadsUrl, label: 'Descargar los exámenes'} %}
+<p>Guarda este email: el enlace sigue funcionando si los necesitas otra vez.</p>
+<p>En los próximos días te enviaremos un par de consejos para sacarles partido.</p>
+<p>¡Mucho ánimo con la PAU!</p>
+<p>Si no has pedido estos exámenes, ignora este email y no te enviaremos nada más.</p>
+{% include 'email/lead_magnet/_unsubscribe.html.twig' %}
+{% endblock body %}

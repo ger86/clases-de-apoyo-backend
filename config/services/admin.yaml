@@ -125,6 +125,15 @@ services:
             - ~
             - App\Entity\AppleNotification
             - ~
+    sonata.admin.lead_subscriber:
+        public: true
+        class: App\Admin\LeadSubscriberAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: cda_users, label: "Suscriptores del pack gratis" }
+        arguments:
+            - ~
+            - App\Entity\LeadSubscriber
+            - ~
     sonata.admin.user:
         public: true
         class: App\Admin\UserAdmin

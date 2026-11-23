@@ -1,0 +1,18 @@
+{#
+  Box with the signup form of the free exam pack, for pages of the subjects that
+  have a Madrid PAU pack. Variables: pack (PauBundleProductDefinition), event_label, form_id.
+#}
+{% if leadMagnetEnabled and not isPremium() %}
+<div class="simple-box mb-4 border border-blue-200 bg-blue-50">
+  <p class="mb-2 text-sm font-bold uppercase text-blue-700">Gratis</p>
+  <h3 class="h4 mb-3">Exámenes PAU Madrid {{ constant('App\\Service\\LeadMagnet\\FreeExamPack::YEAR_RANGE') }} en PDF</h3>
+  <p class="mb-4">
+    Te enviamos por email los enunciados de los últimos años de Matemáticas II, Matemáticas CCSS, Física y Química, listos para imprimir.
+  </p>
+  {% include 'common/lead_magnet/_form.html.twig' with {
+    form_id: form_id|default('lead-magnet-box'),
+    pack_code: pack.code,
+    event_label: event_label|default('contextual')
+  } %}
+</div>
+{% endif %}

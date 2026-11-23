@@ -32,6 +32,10 @@ class MailerService
             ->htmlTemplate($dto->template)
             ->context($dto->templateVars);
 
+        foreach ($dto->headers as $name => $value) {
+            $email->getHeaders()->addTextHeader($name, $value);
+        }
+
         $this->mailer->send($email);
     }
 }

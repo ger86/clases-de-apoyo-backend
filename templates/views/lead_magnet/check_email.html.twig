@@ -1,0 +1,25 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>Revisa tu email | Clases de Apoyo</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block pageTitle %}
+Revisa tu email
+{% endblock %}
+
+{% block pageContent %}
+<section class="min-h-[400px]">
+  <div class="simple-box">
+    <h2 class="h3 mb-4">Te hemos enviado un enlace</h2>
+    <p class="mb-4 text-lg">
+      Abre el email de Clases de Apoyo y pulsa el enlace para descargar los exámenes.
+    </p>
+    <p class="mb-4">
+      Si no lo ves en unos minutos, mira en la carpeta de spam o de promociones.
+    </p>
+    <a class="btn btn-light inline-block" href="{{ path('lead_magnet_landing') }}">Usar otro email</a>
+  </div>
+</section>
+{% endblock %}

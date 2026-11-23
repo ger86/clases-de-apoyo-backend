@@ -4,6 +4,12 @@
   <loc>{{ url('product_index') }}</loc>
   <changefreq>monthly</changefreq>
 </url>
+{% if leadMagnetEnabled %}
+<url>
+  <loc>{{ url('lead_magnet_landing') }}</loc>
+  <changefreq>monthly</changefreq>
+</url>
+{% endif %}
 {% for product in products %}
 <url>
   <loc>{{ url('product_show', { 'slug' : product.slug })}}</loc>

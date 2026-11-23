@@ -45,6 +45,11 @@ framework:
             policy: 'sliding_window'
             limit: 30
             interval: '1 hour'
+        # Each signup sends an email, so one IP address cannot use the form to spam inboxes.
+        lead_magnet_subscribe:
+            policy: 'sliding_window'
+            limit: 5
+            interval: '1 hour'
 
     serializer:
         enabled: true

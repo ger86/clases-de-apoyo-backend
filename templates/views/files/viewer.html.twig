@@ -59,6 +59,13 @@
           compact: true,
           event_label: exam ? 'file-viewer-exam-sidebar' : 'file-viewer-course-sidebar'
         } %}
+        {# The free pack is Madrid PAU only, so it is not offered on course files. #}
+        {% if exam %}
+          {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
+            pack: pauBundlePack,
+            event_label: 'file-viewer-exam-sidebar'
+          } %}
+        {% endif %}
       {% endif %}
       {% if premiumUser %}
       <div class="simple-box mb-4">

@@ -52,6 +52,10 @@ Exámenes de {{ communityTest.knowledgeTest.name|lower ~ ' resueltos de ' ~ cour
     <p class="mb-4 text-sm text-gray-600">
       Puedes abrir gratis los enunciados más recientes. El pack reúne todo el histórico con soluciones para estudiar sin ir año por año.
     </p>
+    {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
+      pack: pauBundlePack,
+      event_label: 'community-test-course-subject'
+    } %}
   {% endif %}
   <div class="mb-8">
     <table class="border-collapse table-auto w-full">

@@ -1,0 +1,26 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>Darse de baja | Clases de Apoyo</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block pageTitle %}
+Darse de baja
+{% endblock %}
+
+{% block pageContent %}
+<section class="min-h-[400px]">
+  <div class="simple-box">
+    {% if done %}
+      <h2 class="h3 mb-4">Te has dado de baja</h2>
+      <p class="text-lg">No te enviaremos más emails. Tus descargas siguen funcionando.</p>
+    {% else %}
+      <h2 class="h3 mb-4">¿Quieres dejar de recibir nuestros emails?</h2>
+      <form method="post" action="{{ path('lead_magnet_unsubscribe', {token: token}) }}">
+        <button type="submit" class="btn btn-secondary">Darme de baja</button>
+      </form>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

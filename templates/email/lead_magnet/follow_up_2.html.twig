@@ -1,0 +1,14 @@
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+<p>¡Hola!</p>
+<p>¿Te has atascado en algún ejercicio de la PAU? Con Clases de Apoyo Premium puedes:</p>
+<ul>
+  <li>Ver las soluciones de todos los exámenes de selectividad.</li>
+  <li>Preguntarle a tu profe IA por cualquier PDF y resolver tus dudas al momento.</li>
+  <li>Estudiar sin anuncios, en la web y en la app.</li>
+</ul>
+{% include 'email/lead_magnet/_button.html.twig' with {url: premiumUrl, label: 'Hacerme Premium'} %}
+<p>Puedes cancelar cuando quieras.</p>
+{% include 'email/lead_magnet/_unsubscribe.html.twig' %}
+{% endblock body %}

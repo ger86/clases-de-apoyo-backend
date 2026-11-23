@@ -1,0 +1,16 @@
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+<p>¡Hola!</p>
+<p>Este es nuestro último email sobre los exámenes que pediste.</p>
+<p>Los de los últimos años están bien para empezar, pero en la PAU vuelven a salir tipos de ejercicio de años anteriores.
+{% if pack %}
+  En el pack PAU {{ pack.subjectName }} {{ pack.communityName }} {{ pack.yearRange }} tienes {{ pack.statementCount }} exámenes y {{ pack.solutionCount }} soluciones en PDF, por {{ pack.formattedPrice }}.
+{% else %}
+  En los packs PAU de Madrid tienes todo el histórico de exámenes con soluciones en PDF.
+{% endif %}
+Pago único: son tuyos para siempre.</p>
+{% include 'email/lead_magnet/_button.html.twig' with {url: packUrl, label: pack ? 'Conseguir el pack ' ~ pack.subjectName : 'Ver los packs'} %}
+<p>¡Mucha suerte en la PAU!</p>
+{% include 'email/lead_magnet/_unsubscribe.html.twig' %}
+{% endblock body %}

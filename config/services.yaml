@@ -13,6 +13,7 @@ parameters:
     app.stripe.webhook_secret: "%env(resolve:STRIPE_WEBHOOK_SECRET)%"
     app.product_download_presigned_ttl: "+10 minutes"
     app.api.gating_enabled: "%env(bool:APP_API_GATING_ENABLED)%"
+    app.lead_magnet.enabled: "%env(bool:LEAD_MAGNET_ENABLED)%"
     app.mobile.min_supported_version: "%env(resolve:MOBILE_MIN_SUPPORTED_VERSION)%"
     app.mobile.store_url: "%env(resolve:MOBILE_STORE_URL)%"
     app.legal.terms_url: "%env(resolve:LEGAL_TERMS_URL)%"

@@ -10,7 +10,9 @@ readonly class MailDto
         public array $templateVars,
         public string $subject,
         public string $to,
-        public ?array $from = null
+        public ?array $from = null,
+        /** Extra text headers, for example List-Unsubscribe. */
+        public array $headers = []
     ) {
     }
 }

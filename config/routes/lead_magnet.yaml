@@ -1,0 +1,36 @@
+lead_magnet_landing:
+    path: /examenes-pau-madrid-gratis
+    controller: App\Controller\LeadMagnetController::landing
+    methods: [GET]
+
+lead_magnet_subscribe:
+    path: /examenes-pau-madrid-gratis
+    controller: App\Controller\LeadMagnetController::subscribe
+    methods: [POST]
+
+lead_magnet_check_email:
+    path: /examenes-pau-madrid-gratis/revisa-tu-email
+    controller: App\Controller\LeadMagnetController::checkEmail
+    methods: [GET]
+
+lead_magnet_downloads:
+    path: /examenes-pau-madrid-gratis/descargas/{token}
+    controller: App\Controller\LeadMagnetController::downloads
+    methods: [GET]
+    requirements:
+        token: '[a-f0-9]{64}'
+
+lead_magnet_download:
+    path: /examenes-pau-madrid-gratis/descargas/{token}/{fileKey}
+    controller: App\Controller\LeadMagnetController::download
+    methods: [GET]
+    requirements:
+        token: '[a-f0-9]{64}'
+        fileKey: '[a-z0-9-]+'
+
+lead_magnet_unsubscribe:
+    path: /emails/baja/{token}
+    controller: App\Controller\LeadMagnetController::unsubscribe
+    methods: [GET, POST]
+    requirements:
+        token: '[a-f0-9]{64}'

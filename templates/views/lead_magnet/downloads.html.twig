@@ -1,0 +1,44 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>Descarga tus exámenes | Clases de Apoyo</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block pageTitle %}
+Descarga tus exámenes
+{% endblock %}
+
+{% block pageContent %}
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="col-span-12 lg:col-span-8">
+    <p class="text-lg mb-8">
+      Ya puedes descargar los PDF. Guarda el email que te enviamos: el enlace sigue funcionando si los necesitas otra vez.
+    </p>
+    <div class="list-group mb-8">
+      {% for file in files %}
+        <a
+          class="list-group-item"
+          href="{{ path('lead_magnet_download', {token: token, fileKey: file.key}) }}"
+          rel="nofollow"
+          onclick="if (typeof gtag === 'function') { gtag('event', 'file_download', {'event_category': 'lead-magnet', 'event_label': '{{ file.key|e('js') }}'}); }"
+        >
+          <span>{{ file.label }}</span>
+          <span class="list-group-item-badge"><i class="icon-download"></i></span>
+        </a>
+      {% endfor %}
+    </div>
+    <div class="simple-box border border-green-200 bg-green-50">
+      <h2 class="h3 mb-4">¿Y las soluciones?</h2>
+      <p class="mb-4">
+        Los packs PAU de Madrid traen todos los exámenes desde los años 90 con sus soluciones, en PDF. Pago único, sin suscripción.
+      </p>
+      <a
+        class="btn btn-secondary inline-block"
+        href="{{ path('product_index') }}"
+        onclick="if (typeof gtag === 'function') { gtag('event', 'click', {'event_category': 'lead-magnet', 'event_label': 'downloads-packs'}); }"
+      >Ver los packs con soluciones</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

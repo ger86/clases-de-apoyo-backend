@@ -8,6 +8,7 @@ twig:
         defaultMail: '%app.mail.default_from%'
         subscriptionMonthlyPrice: '%app.subscription.monthly_price%'
         subscriptionYearlyPrice: '%app.subscription.yearly_price%'
+        leadMagnetEnabled: '%app.lead_magnet.enabled%'
     file_name_pattern: "*.twig"
 
 when@test:

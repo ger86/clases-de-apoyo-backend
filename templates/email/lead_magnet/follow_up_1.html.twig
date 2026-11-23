@@ -1,0 +1,21 @@
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+<p>¡Hola!</p>
+<p>Hace un par de días te enviamos los exámenes de la PAU. Así es como más se aprovechan:</p>
+<ol>
+  <li><strong>Hazlos con reloj.</strong> Imprime un examen y hazlo en el tiempo real, sin apuntes.</li>
+  <li><strong>Corrígelo tú.</strong> Compara cada respuesta con la solución y apunta dónde fallaste.</li>
+  <li><strong>Repite los temas flojos.</strong> Busca en otros años ejercicios del mismo tipo hasta que salgan solos.</li>
+</ol>
+<p>Para el paso 2 necesitas las soluciones.
+{% if pack %}
+  El pack PAU {{ pack.subjectName }} {{ pack.communityName }} trae todos los exámenes desde {{ pack.yearRange|split('-')|first }} con sus soluciones en PDF, por {{ pack.formattedPrice }} y sin suscripción.
+{% else %}
+  Los packs PAU de Madrid traen todos los exámenes desde los años 90 con sus soluciones en PDF, con pago único y sin suscripción.
+{% endif %}
+</p>
+{% include 'email/lead_magnet/_button.html.twig' with {url: packUrl, label: pack ? 'Ver el pack ' ~ pack.subjectName : 'Ver los packs'} %}
+<p>¿Has perdido los exámenes? <a href="{{ downloadsUrl }}">Descárgalos otra vez</a>.</p>
+{% include 'email/lead_magnet/_unsubscribe.html.twig' %}
+{% endblock body %}
