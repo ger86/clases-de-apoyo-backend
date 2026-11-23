@@ -2,7 +2,7 @@
 
 Date: 2026-11-23
 Project: Clases de Apoyo backend
-Status: implemented and verified locally. Not deployed.
+Status: implemented, verified, deployed to production on 2026-11-23.
 Scope: PHP (`composer.json`), website front end (`package.json`) and the video tool (`tools/exam-video/package.json`).
 
 ## PHP
@@ -46,3 +46,11 @@ Remotion 4.0.380 to 4.0.546, React 19.3, KaTeX 0.19, TypeScript 7, all still pin
 - Front end: 9 key pages rendered at 1280 px and 390 px with the old and the new CSS, then compared pixel by pixel. Identical, except the Google Maps iframe in the footer, which loads at random speed.
 - Front-end JS: home, a file page and login run in headless Chrome with the built scripts and an error collector. Zero errors, and the cookie banner opens, so the scripts run. `encore dev` also builds.
 - Video tool: `tsc --noEmit` passes, and the 18 review stills of `determinantes-ejercicio-17-filas-proporcionales` (normal and reel) are identical (largest pixel difference 2 of 255).
+
+## Deployment
+
+- Production Node is fine: `prepare_cda_coffe` loads nvm, whose default is Node 24.14. The system Node (`/usr/bin/node`) is still 18 and is not used by the build.
+- `prepare_cda_coffe` never ran `npm install`. It now runs `npm ci` before `npm run build` (backup: `/var/www/prepare_cda_coffe.bak-20261123`).
+- The server had a local, auto-generated edit to `config/reference.php` that would block `git pull`. It was discarded (diff saved in `/tmp/reference.php.server-20261123.diff`).
+- **About 4 minutes of downtime (500 errors, 14:10 to 14:14 UTC).** `cache:clear` in the wrapper booted the old compiled container, which crashes with doctrine-bundle 3.4, so `cache:clear` and `doctrine:migrations:migrate` both failed. Fixed by deleting `var/cache/prod`, running `cache:warmup` and the migrations (already up to date), and restarting php8.4-fpm. A future major Doctrine or Symfony bump will hit the same problem with this wrapper.
+- After the fix, the 10 checked public pages and API endpoints return the same status codes as before the deploy, and the new Tailwind 4 CSS is served.
