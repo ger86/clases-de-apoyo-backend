@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Solución Matemáticas II Modelo 2027</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<style>
+  @page {
+    size: A4;
+    margin: 19mm 16mm 16mm 16mm;
+    @top-center {
+      content: "www.clasesdeapoyo.com";
+      font-family: "Varela Round", "Arial Rounded MT Bold", sans-serif;
+      font-size: 17pt;
+      font-weight: bold;
+      color: #107896;
+      vertical-align: bottom;
+      padding-bottom: 3mm;
+    }
+    @bottom-center {
+      content: counter(page);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 10.5pt;
+    }
+  }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 10.5pt;
+    line-height: 1.32;
+    color: #000;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .katex { font-size: 1.05em; }
+  .watermark {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-58deg);
+    font-family: "Varela Round", Arial, sans-serif;
+    font-size: 58pt;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.045);
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  .titulo { text-align: center; font-weight: bold; margin: 4mm 0 5mm; }
+  .titulo .uni { font-size: 14pt; line-height: 1.15; }
+  .titulo .curso { font-size: 11.5pt; margin-top: 1mm; }
+  .titulo .materia { font-size: 12pt; }
+  .instr-tit { text-align: center; font-weight: bold; margin: 4mm 0 3mm; }
+  p { margin: 0 0 1.6mm; }
+  .bloque { font-weight: bold; margin: 4mm 0 3mm; }
+  .enunciado { margin-top: 4mm; }
+  .enunciado .preg { font-weight: bold; font-size: 11.5pt; }
+  .enunciado ol { list-style: none; margin: 1mm 0 1mm 7mm; padding: 0; }
+  .enunciado ol li { margin: 0 0 1mm; padding-left: 7mm; text-indent: -7mm; }
+  .enunciado ol li b.l { display: inline-block; width: 7mm; text-indent: 0; }
+  .enunciado .sub { margin: 1.5mm 0 1.5mm 7mm; }
+  .enunciado .sub p { margin: 0 0 1.5mm; }
+  .sol { font-weight: bold; margin: 2mm 0 1mm; }
+  .ap { display: flex; gap: 0; margin: 2.5mm 0 1mm; }
+  .ap > .lab { flex: 0 0 11mm; font-weight: bold; }
+  .ap > .txt { flex: 1; }
+  .ind { padding-left: 11mm; }
+  .eq { text-align: center; margin: 1.5mm 0; break-inside: avoid; }
+  .eq .katex-display { margin: 0.6mm 0; }
+  .fig-r { float: right; margin: 0 0 2mm 4mm; text-align: center; break-inside: avoid; }
+  .fig-r img { display: block; }
+  .nota { margin: 1.5mm 0 1mm 11mm; }
+  .res { margin: 1.5mm 0; }
+  .clear { clear: both; }
+  .avoid { break-inside: avoid; }
+  .new-page { break-before: page; }
+  .two { margin: 1mm 0 0 11mm; }
+  .two b { font-weight: bold; }
+  ul.casos { margin: 1mm 0 1mm 11mm; padding-left: 5mm; }
+  ul.casos li { margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+<div class="watermark">www.clasesdeapoyo.com</div>
+
+<div class="titulo">
+  <div class="uni">UNIVERSIDADES PÚBLICAS DE LA COMUNIDAD DE MADRID<br>PRUEBA DE ACCESO A LA UNIVERSIDAD</div>
+  <div class="curso">MODELO ORIENTATIVO Curso 2026/2027</div>
+  <div class="materia">MATERIA: MATEMÁTICAS II</div>
+</div>
+
+<div class="instr-tit">INSTRUCCIONES GENERALES Y CALIFICACIÓN</div>
+<p>Después de leer atentamente el examen, responda razonadamente a cinco preguntas, tres de ellas obligatorias y dos de ellas a escoger entre dos opciones. <b>Todas las respuestas deberán estar debidamente justificadas.</b><br>
+<b>CALIFICACIÓN:</b> Cada pregunta se calificará sobre 2 puntos.<br>
+<b>TIEMPO:</b> 90 minutos.</p>
+
+<div class="bloque">Responda a las tres preguntas siguientes (calificación máxima por pregunta: 2 puntos):</div>
+
+<!-- ===================== PREGUNTA 1 ===================== -->
+<div class="enunciado avoid">
+  <p><span class="preg">Pregunta 1.</span> Dos rectas \(r\) y \(s\) en un mismo plano \(\pi\) se cortan perpendicularmente en un punto \(C\). La recta \(r\) está determinada por los puntos \(P(1,0,2)\) y \(Q(0,2,4)\) y la recta \(s\) está determinada por \(A(0,4,2)\) y el punto \(C\).</p>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Halle las ecuaciones del plano \(\pi\) y las coordenadas de \(C\).</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> Halle un punto \(R\) de la recta \(s\) tal que la distancia de \(R\) a \(Q\) sea igual a la distancia de \(P\) a \(Q\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <div class="fig-r"><img src="fig-q1.png" style="width:62mm" alt="Plano con las rectas r y s"></div>
+  <p>Se pide la ecuación del plano \(\pi\) que contiene a las rectas \(r\) y \(s\), y el punto \(C\) donde se cortan. Como las dos rectas están en \(\pi\), el plano contiene a los puntos \(P\), \(Q\) y \(A\), y se determina con un punto y dos vectores:</p>
+  <div class="eq">\[\pi \equiv \left\{\begin{array}{l} P(1,0,2) \\ \vec u_r = \overrightarrow{PQ} = (0-1,\,2-0,\,4-2) = (-1,2,2) \\ \overrightarrow{PA} = (0-1,\,4-0,\,2-2) = (-1,4,0) \end{array}\right. : \ \pi \equiv \begin{vmatrix} x-1 & y & z-2 \\ -1 & 2 & 2 \\ -1 & 4 & 0 \end{vmatrix} = 0\]</div>
+  <div class="eq">\[-8(x-1) - 2y - 2(z-2) = 0 \ ; \quad -8x - 2y - 2z + 12 = 0\]</div>
+  <p>Ecuación general y ecuaciones paramétricas del plano:</p>
+  <div class="eq">\[\pi \equiv 4x + y + z - 6 = 0 \qquad\qquad \pi \equiv \left\{\begin{array}{l} x = 1 - \lambda - \mu \\ y = 2\lambda + 4\mu \\ z = 2 + 2\lambda \end{array}\right. \quad \forall\,\lambda, \mu \in \mathbb R\]</div>
+  <p>El punto \(C\) se puede calcular de dos formas:</p>
+  <p><b>1ª</b> \(C\) es el pie de la perpendicular trazada desde \(A\) a la recta \(r\). Un punto genérico de \(r\) es \(X_\lambda = (1-\lambda,\ 2\lambda,\ 2+2\lambda)\). El vector \(\overrightarrow{AX_\lambda}\) debe ser perpendicular a \(\vec u_r\):</p>
+  <div class="eq">\[\overrightarrow{AX_\lambda} = (1-\lambda,\ 2\lambda - 4,\ 2\lambda) \ ; \quad \overrightarrow{AX_\lambda} \cdot \vec u_r = -(1-\lambda) + 2(2\lambda-4) + 2\cdot 2\lambda = 9\lambda - 9 = 0 \ ; \quad \lambda = 1\]</div>
+  <div class="eq">\[C = (1-1,\ 2\cdot 1,\ 2+2\cdot 1) = (0,2,4)\]</div>
+  <p><b>2ª</b> El vector director de \(s\) es perpendicular a \(\vec n_\pi = (4,1,1)\), porque \(s\) está en \(\pi\), y a \(\vec u_r\), porque \(s \perp r\). Se obtiene con el producto vectorial:</p>
+  <div class="eq">\[\vec n_\pi \times \vec u_r = \begin{vmatrix} \vec i & \vec j & \vec k \\ 4 & 1 & 1 \\ -1 & 2 & 2 \end{vmatrix} = (0,-9,9) \ \Rightarrow \ \vec d_s = (0,1,-1) \ ; \quad s \equiv \left\{\begin{array}{l} x = 0 \\ y = 4 + \mu \\ z = 2 - \mu \end{array}\right.\]</div>
+  <div class="eq">\[C = r \cap s : \ \left\{\begin{array}{l} 1 - \lambda = 0 \\ 2\lambda = 4 + \mu \\ 2 + 2\lambda = 2 - \mu \end{array}\right. \ \Rightarrow \ \lambda = 1,\ \mu = -2 \ \Rightarrow \ C(0,2,4)\]</div>
+  <p class="res">\(C(0,2,4)\)</p>
+  <p class="nota">* El punto \(C\) coincide con \(Q\): la perpendicular desde \(A\) a la recta \(r\) cae justo en \(Q\), porque \(\overrightarrow{QA}\cdot\vec u_r = (0,2,-2)\cdot(-1,2,2) = 0\).</p>
+</div></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <p>Se pide un punto \(R\) de la recta \(s\) cuya distancia a \(Q\) sea igual a la distancia de \(P\) a \(Q\). Se calcula esa distancia y se busca \(R\) con las ecuaciones paramétricas de \(s\).</p>
+  <div class="eq">\[d(P,Q) = \left|\overrightarrow{PQ}\right| = \sqrt{(-1)^2 + 2^2 + 2^2} = \sqrt 9 = 3 \text{ u}\]</div>
+  <div class="eq">\[R \in s : R(0,\ 4+\mu,\ 2-\mu) \ ; \quad \overrightarrow{QR} = (0,\ 2+\mu,\ -2-\mu) \ ; \quad \left|\overrightarrow{QR}\right| = \sqrt{2(2+\mu)^2} = \sqrt 2\,\left|2+\mu\right|\]</div>
+  <div class="eq">\[\sqrt 2\,\left|2+\mu\right| = 3 \ ; \quad 2 + \mu = \pm\frac{3}{\sqrt 2} = \pm\frac{3\sqrt 2}{2}\]</div>
+  <p>Hay dos puntos que cumplen la condición:</p>
+  <div class="eq">\[R_1\left(0,\ 2 + \frac{3\sqrt2}{2},\ 4 - \frac{3\sqrt2}{2}\right) \qquad R_2\left(0,\ 2 - \frac{3\sqrt2}{2},\ 4 + \frac{3\sqrt2}{2}\right)\]</div>
+  <p class="nota">* El enunciado pide un punto, así que basta con dar uno de los dos.</p>
+</div></div>
+
+<!-- ===================== PREGUNTA 2 ===================== -->
+<div class="enunciado avoid">
+  <p><span class="preg">Pregunta 2.</span> Sea la función:</p>
+  <div class="eq">\[f(x) = \frac{e^x - 1}{e^x + 1}.\]</div>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Halle las asíntotas horizontales de \(f(x)\).</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> Halle \(\displaystyle\int_0^{\ln(3)} \big(f(x)+1\big)\,dx\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <div class="fig-r"><img src="fig-q2.png" style="width:60mm" alt="Gráfica de f con sus asíntotas"></div>
+  <p>Se piden las asíntotas horizontales, para lo cual se calcula el límite de \(f(x)\) cuando \(x \to +\infty\) y cuando \(x \to -\infty\).</p>
+  <div class="eq">\[\lim_{x\to+\infty} \frac{e^x-1}{e^x+1} = \frac{\infty}{\infty} = \lim_{x\to+\infty} \frac{1 - e^{-x}}{1 + e^{-x}} = \frac{1-0}{1+0} = 1\]</div>
+  <p>Asíntota horizontal \(y = 1\) cuando \(x \to +\infty\).</p>
+  <div class="eq">\[\lim_{x\to-\infty} \frac{e^x-1}{e^x+1} = \frac{0-1}{0+1} = -1\]</div>
+  <p>Asíntota horizontal \(y = -1\) cuando \(x \to -\infty\).</p>
+  <p class="nota">* Como \(e^x - 1 &lt; e^x + 1\) y \(e^x + 1 &gt; 0\), se cumple \(-1 &lt; f(x) &lt; 1\) para todo \(x\): la gráfica queda siempre entre las dos asíntotas.</p>
+</div></div>
+<div class="clear"></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <p>Se pide una integral definida. Primero se suma \(f(x)+1\) para obtener una integral inmediata de tipo logarítmico y después se aplica la regla de Barrow.</p>
+  <div class="eq">\[f(x) + 1 = \frac{e^x - 1 + e^x + 1}{e^x + 1} = \frac{2e^x}{e^x + 1}\]</div>
+  <p>El apartado se puede resolver de dos formas:</p>
+  <p><b>1ª</b> El numerador es el doble de la derivada del denominador, luego:</p>
+  <div class="eq">\[\int_0^{\ln 3} \frac{2e^x}{e^x+1}\,dx = \Big[\,2\ln\left(e^x+1\right)\Big]_0^{\ln 3} = 2\ln\left(e^{\ln 3}+1\right) - 2\ln\left(e^0+1\right) = 2\ln 4 - 2\ln 2 = 2\ln\frac{4}{2} = 2\ln 2\]</div>
+  <p><b>2ª</b> Con el cambio de variable \(t = e^x + 1\), \(dt = e^x\,dx\). Los límites cambian: si \(x = 0\), \(t = 2\); si \(x = \ln 3\), \(t = 4\).</p>
+  <div class="eq">\[\int_0^{\ln 3} \frac{2e^x}{e^x+1}\,dx = \int_2^4 \frac{2}{t}\,dt = \Big[\,2\ln t\,\Big]_2^4 = 2\ln 4 - 2\ln 2 = 2\ln 2\]</div>
+  <div class="eq">\[\int_0^{\ln 3} \big(f(x)+1\big)\,dx = 2\ln 2 \approx 1{,}386\]</div>
+</div></div>
+
+<!-- ===================== PREGUNTA 3 ===================== -->
+<div class="enunciado avoid">
+  <p><span class="preg">Pregunta 3.</span> Para llegar a tiempo a primera hora al instituto, Ana debe coger a las ocho de la mañana una de las tres líneas, \(L1\), \(L2\) o \(L3\), que parten de la estación de autobuses y tienen parada cerca del instituto. Las probabilidades de poder coger los autobuses a las ocho de la mañana en esta estación son de \(\frac{2}{3}\) para \(L1\), \(\frac{4}{5}\) para \(L2\) y \(\frac{3}{5}\) para \(L3\). Estos tres sucesos son independientes. Si Ana está a las 8 de la mañana en la estación de autobuses, se pide:</p>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Calcular la probabilidad de que Ana llegue a tiempo a primera hora a su instituto.</li>
+    <li><b class="l">b)</b><b>(1 punto) Responda solo a uno de los dos apartados siguientes:</b></li>
+  </ol>
+  <div class="sub">
+    <p><b>b1)</b> Calcular la probabilidad de que no pueda coger la línea \(L2\) sabiendo que solo puede coger una de las otras dos líneas.</p>
+    <p><b>b2)</b> Calcular la probabilidad de que pueda coger exactamente dos de las tres líneas.</p>
+  </div>
+</div>
+<div class="sol">Solución.</div>
+<div class="fig-r" style="margin-top:1mm"><img src="fig-q3.png" style="width:58mm" alt="Diagrama de árbol"></div>
+<p>Se definen los sucesos \(A_i \equiv\) «Ana puede coger el autobús de la línea \(Li\) a las ocho», con \(i = 1, 2, 3\), que son independientes:</p>
+<div class="eq" style="text-align:left;padding-left:20mm">\[\begin{array}{ll} P(A_1) = \dfrac23 \quad & P(\overline{A_1}) = \dfrac13 \\[2mm] P(A_2) = \dfrac45 & P(\overline{A_2}) = \dfrac15 \\[2mm] P(A_3) = \dfrac35 & P(\overline{A_3}) = \dfrac25 \end{array}\]</div>
+<p>En el diagrama de árbol adjunto se recogen todas las posibilidades. Por ser sucesos independientes, la probabilidad de cada rama es el producto de las probabilidades de sus tramos.</p>
+
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <p>Se pide la probabilidad de que Ana llegue a tiempo, es decir, de que pueda coger al menos una de las tres líneas. Se calcula con el suceso contrario: no poder coger ninguna.</p>
+  <div class="eq">\[P(\overline{A_1}\cap\overline{A_2}\cap\overline{A_3}) = P(\overline{A_1})\cdot P(\overline{A_2})\cdot P(\overline{A_3}) = \frac13\cdot\frac15\cdot\frac25 = \frac{2}{75}\]</div>
+  <div class="eq">\[P(\text{llegar a tiempo}) = P(A_1\cup A_2\cup A_3) = 1 - \frac{2}{75} = \frac{73}{75} \approx 0{,}9733\]</div>
+</div></div>
+<div class="clear"></div>
+
+<div class="ap avoid"><div class="lab">b1.</div><div class="txt">
+  <p>Se pide una probabilidad condicionada. El suceso que se sabe que ocurre es \(B \equiv\) «Ana solo puede coger una de las líneas \(L1\) y \(L3\)»:</p>
+  <div class="eq">\[B = \left(A_1\cap\overline{A_3}\right)\cup\left(\overline{A_1}\cap A_3\right) \ ; \quad P(B) = \frac23\cdot\frac25 + \frac13\cdot\frac35 = \frac{4}{15} + \frac{3}{15} = \frac{7}{15}\]</div>
+  <div class="eq">\[P(\overline{A_2}\cap B) = \frac23\cdot\frac15\cdot\frac25 + \frac13\cdot\frac15\cdot\frac35 = \frac{4}{75} + \frac{3}{75} = \frac{7}{75}\]</div>
+  <div class="eq">\[P(\overline{A_2}\,/\,B) = \frac{P(\overline{A_2}\cap B)}{P(B)} = \frac{7/75}{7/15} = \frac{15}{75} = \frac15 = 0{,}2\]</div>
+  <p class="nota">* El suceso \(B\) solo depende de las líneas \(L1\) y \(L3\), y estas son independientes de \(L2\). Por eso saber que ocurre \(B\) no cambia la probabilidad de no coger \(L2\): \(P(\overline{A_2}\,/\,B) = P(\overline{A_2}) = \frac15\).</p>
+</div></div>
+
+<div class="ap avoid"><div class="lab">b2.</div><div class="txt">
+  <p>Se pide la probabilidad de coger exactamente dos líneas. Es la unión de tres sucesos incompatibles: coger \(L1\) y \(L2\) pero no \(L3\), coger \(L1\) y \(L3\) pero no \(L2\), y coger \(L2\) y \(L3\) pero no \(L1\).</p>
+  <div class="eq">\[P = P(A_1\cap A_2\cap\overline{A_3}) + P(A_1\cap\overline{A_2}\cap A_3) + P(\overline{A_1}\cap A_2\cap A_3)\]</div>
+  <div class="eq">\[P = \frac23\cdot\frac45\cdot\frac25 + \frac23\cdot\frac15\cdot\frac35 + \frac13\cdot\frac45\cdot\frac35 = \frac{16}{75} + \frac{6}{75} + \frac{12}{75} = \frac{34}{75} \approx 0{,}4533\]</div>
+</div></div>
+
+<!-- ===================== PREGUNTA 4 ===================== -->
+<div class="bloque new-page">Responda a una de las dos preguntas siguientes (calificación máxima: 2 puntos):</div>
+
+<div class="enunciado avoid" style="margin-top:0">
+  <p><span class="preg">Pregunta 4.1.</span> Dado el sistema de ecuaciones</p>
+  <div class="eq">\[\left\{\begin{array}{rcl} (a+2)x + y + z &amp;=&amp; a \\ x - ay + 3z &amp;=&amp; 0 \\ 3x + ay + z &amp;=&amp; 1 \end{array}\right. ,\]</div>
+  <p>se pide:</p>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Discutir el sistema en función del parámetro \(a\).</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> Resolver el sistema para \(a = 1\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <p>Se pide discutir el sistema según los valores de \(a\). Se aplica el teorema de Rouché-Fröbenius: se compara el rango de la matriz de coeficientes \(A\) con el de la matriz ampliada \(A^*\), y con el número de incógnitas (3).</p>
+  <div class="eq">\[A = \begin{pmatrix} a+2 & 1 & 1 \\ 1 & -a & 3 \\ 3 & a & 1 \end{pmatrix} \qquad A^* = \left(\begin{array}{ccc|c} a+2 & 1 & 1 & a \\ 1 & -a & 3 & 0 \\ 3 & a & 1 & 1 \end{array}\right)\]</div>
+  <p>Se calculan los valores de \(a\) que anulan el determinante de \(A\):</p>
+  <div class="eq">\[|A| = (a+2)(-a)\cdot 1 + 1\cdot 3\cdot 3 + 1\cdot 1\cdot a - 3(-a)\cdot 1 - 1\cdot 1\cdot 1 - (a+2)\cdot 3a = -4a^2 - 4a + 8\]</div>
+  <div class="eq">\[-4a^2 - 4a + 8 = 0 \ ; \quad a^2 + a - 2 = 0 \ ; \quad a = \frac{-1\pm\sqrt{1+8}}{2} = \left\{\begin{array}{l} 1 \\ -2 \end{array}\right.\]</div>
+  <ul class="casos">
+    <li><b>Si \(a \neq 1\) y \(a \neq -2\):</b> \(|A| \neq 0 \Rightarrow \text{rg}\,A = \text{rg}\,A^* = 3 = \) n.º de incógnitas. <b>Sistema compatible determinado</b> (solución única).</li>
+    <li><b>Si \(a = 1\):</b>
+      \[A^* = \left(\begin{array}{ccc|c} 3 & 1 & 1 & 1 \\ 1 & -1 & 3 & 0 \\ 3 & 1 & 1 & 1 \end{array}\right)\]
+      La primera y la tercera fila son iguales, luego \(\text{rg}\,A^* \le 2\). Como \(\begin{vmatrix} 3 & 1 \\ 1 & -1 \end{vmatrix} = -4 \neq 0\), \(\ \text{rg}\,A = \text{rg}\,A^* = 2 &lt; 3\). <b>Sistema compatible indeterminado</b> (infinitas soluciones, dependientes de un parámetro).</li>
+    <li><b>Si \(a = -2\):</b>
+      \[A^* = \left(\begin{array}{ccc|c} 0 & 1 & 1 & -2 \\ 1 & 2 & 3 & 0 \\ 3 & -2 & 1 & 1 \end{array}\right)\]
+      \(|A| = 0\) y \(\begin{vmatrix} 0 & 1 \\ 1 & 2 \end{vmatrix} = -1 \neq 0 \Rightarrow \text{rg}\,A = 2\). Se orla con la columna de términos independientes:
+      \[\begin{vmatrix} 1 & 1 & -2 \\ 2 & 3 & 0 \\ -2 & 1 & 1 \end{vmatrix} = 3 + 0 - 4 - 12 - 0 - 2 = -15 \neq 0 \ \Rightarrow \ \text{rg}\,A^* = 3\]
+      \(\text{rg}\,A = 2 \neq \text{rg}\,A^* = 3\). <b>Sistema incompatible</b> (no tiene solución).</li>
+  </ul>
+</div></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <p>Se pide resolver el sistema para \(a = 1\). Por el apartado anterior es compatible indeterminado y la tercera ecuación es igual a la primera, así que se elimina. Se toma \(z = \lambda\) como parámetro:</p>
+  <div class="eq">\[\left\{\begin{array}{l} 3x + y + z = 1 \\ x - y + 3z = 0 \end{array}\right. \ \xrightarrow{\ z\,=\,\lambda\ } \ \left\{\begin{array}{l} 3x + y = 1 - \lambda \\ x - y = -3\lambda \end{array}\right.\]</div>
+  <p>Sumando las dos ecuaciones y despejando después \(y\) de la segunda:</p>
+  <div class="eq">\[4x = 1 - 4\lambda \ ; \quad x = \frac14 - \lambda \ ; \qquad y = x + 3\lambda = \frac14 + 2\lambda\]</div>
+  <div class="eq">\[\left\{\begin{array}{l} x = \dfrac14 - \lambda \\[2mm] y = \dfrac14 + 2\lambda \\[2mm] z = \lambda \end{array}\right. \qquad \forall\,\lambda \in \mathbb R\]</div>
+  <p class="nota">* Comprobación con \(\lambda = 0\), punto \(\left(\frac14, \frac14, 0\right)\): \(\ 3\cdot\frac14 + \frac14 + 0 = 1\) y \(\ \frac14 - \frac14 + 0 = 0\).</p>
+</div></div>
+
+<div class="enunciado avoid">
+  <p><span class="preg">Pregunta 4.2.</span> Se considera la matriz</p>
+  <div class="eq">\[A = \begin{pmatrix} a & 1 & 0 \\ 1 & a & 1 \\ 0 & 1 & a \end{pmatrix},\]</div>
+  <p>donde \(a\) es un número real.</p>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Determine para qué valores de \(a\) la matriz \(A^{2026}\) es invertible.</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> Para \(a = 0\), pruebe que \(A^3 = 2A\) y calcule la matriz \(A^9\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap avoid"><div class="lab">a.</div><div class="txt">
+  <p>Se pide para qué valores de \(a\) es invertible \(A^{2026}\). Se usa que una matriz cuadrada es invertible si y solo si su determinante no es cero, y que el determinante de un producto es el producto de los determinantes: \(\left|A^{n}\right| = |A|^{n}\).</p>
+  <div class="eq">\[|A| = \begin{vmatrix} a & 1 & 0 \\ 1 & a & 1 \\ 0 & 1 & a \end{vmatrix} = a^3 + 0 + 0 - 0 - a - a = a^3 - 2a = a\left(a^2 - 2\right)\]</div>
+  <div class="eq">\[a\left(a^2-2\right) = 0 \ \Rightarrow \ a = 0,\ \ a = \sqrt2,\ \ a = -\sqrt2\]</div>
+  <div class="eq">\[\left|A^{2026}\right| = |A|^{2026} \neq 0 \ \Leftrightarrow \ |A| \neq 0\]</div>
+  <p class="res">\(A^{2026}\) es invertible para todo \(a \in \mathbb R\) con \(a \neq 0\), \(a \neq \sqrt2\) y \(a \neq -\sqrt2\).</p>
+</div></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <p>Se pide comprobar que \(A^3 = 2A\) para \(a = 0\) y usar esa igualdad para calcular \(A^9\) sin hacer nueve productos.</p>
+  <div class="eq">\[A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} \qquad A^2 = A\cdot A = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}\]</div>
+  <div class="eq">\[A^3 = A^2\cdot A = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 \\ 2 & 0 & 2 \\ 0 & 2 & 0 \end{pmatrix} = 2\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} = 2A\]</div>
+  <p>Queda probado que \(A^3 = 2A\). Con esta igualdad:</p>
+  <div class="eq">\[A^9 = \left(A^3\right)^3 = (2A)^3 = 8A^3 = 8\cdot 2A = 16A = \begin{pmatrix} 0 & 16 & 0 \\ 16 & 0 & 16 \\ 0 & 16 & 0 \end{pmatrix}\]</div>
+</div></div>
+
+<!-- ===================== PREGUNTA 5 ===================== -->
+<div class="bloque new-page">Responda a una de las dos preguntas siguientes (calificación máxima: 2 puntos):</div>
+
+<div class="enunciado avoid" style="margin-top:0">
+  <p><span class="preg">Pregunta 5.1.</span> Sea la función</p>
+  <div class="eq">\[f(x) = \left\{\begin{array}{lll} 2x + 2 & \quad & \text{si } x \in [0,2] \\ ax^2 + bx & & \text{si } x \in (2,5) \\ -(x-5)^2 + 15 & & \text{si } x \in [5,7] \end{array}\right. .\]</div>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Halle los valores de \(a\) y \(b\) para los que la función \(f(x)\) es continua en \([0,7]\).</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> La longitud de la gráfica de una función \(f(x)\) en un intervalo \([x_0, x_1]\) se calcula con la integral \(L = \displaystyle\int_{x_0}^{x_1}\sqrt{1 + \left(f'(x)\right)^2}\,dx\). Utilice la fórmula dada para calcular la longitud de la gráfica de \(f(x)\) en el intervalo \([0,2]\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <div class="fig-r"><img src="fig-q51.png" style="width:54mm" alt="Gráfica de f para a = 0 y b = 3"></div>
+  <p>Se piden \(a\) y \(b\) para que \(f\) sea continua en \([0,7]\). Cada trozo es un polinomio, que es continuo en su intervalo, así que solo hay que estudiar los puntos de unión \(x = 2\) y \(x = 5\). En cada uno, los límites laterales deben ser iguales al valor de la función.</p>
+  <p><b>En \(x = 2\):</b></p>
+  <div class="eq">\[f(2) = 2\cdot 2 + 2 = 6 \ ; \quad \lim_{x\to2^-} (2x+2) = 6\]</div>
+  <div class="eq">\[\lim_{x\to2^+} \left(ax^2+bx\right) = 4a + 2b \ \Rightarrow \ 4a + 2b = 6\]</div>
+  <p><b>En \(x = 5\):</b></p>
+  <div class="eq">\[f(5) = -(5-5)^2 + 15 = 15 \ ; \quad \lim_{x\to5^-} \left(ax^2+bx\right) = 25a + 5b \ ; \quad \lim_{x\to5^+} \left(-(x-5)^2+15\right) = 15\]</div>
+  <div class="eq">\[25a + 5b = 15\]</div>
+  <div class="eq">\[\left\{\begin{array}{l} 4a + 2b = 6 \\ 25a + 5b = 15 \end{array}\right. \ \Rightarrow \ \left\{\begin{array}{l} 2a + b = 3 \\ 5a + b = 3 \end{array}\right. \ \xrightarrow{\ E_2 - E_1\ } \ 3a = 0 \ ; \quad a = 0 \ ; \quad b = 3\]</div>
+  <p class="res">\(a = 0\), \(\ b = 3\). El trozo central queda \(f(x) = 3x\) en \((2,5)\).</p>
+</div></div>
+<div class="clear"></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <p>Se pide la longitud de la gráfica en \([0,2]\) con la fórmula dada. En ese intervalo \(f(x) = 2x + 2\), luego \(f'(x) = 2\).</p>
+  <div class="eq">\[L = \int_0^2 \sqrt{1 + 2^2}\,dx = \int_0^2 \sqrt5\,dx = \Big[\sqrt5\,x\Big]_0^2 = 2\sqrt5 \text{ u} \approx 4{,}47 \text{ u}\]</div>
+  <p class="nota">* En \([0,2]\) la gráfica es el segmento que une \((0,2)\) y \((2,6)\), cuya longitud es \(\sqrt{2^2 + 4^2} = \sqrt{20} = 2\sqrt5\). Coincide con el resultado.</p>
+</div></div>
+
+<div class="enunciado avoid">
+  <p><span class="preg">Pregunta 5.2.</span> Sea \(f(x) = \dfrac{-2x+1}{x-1}\).</p>
+  <ol>
+    <li><b class="l">a)</b><b>(1 punto)</b> Halle los intervalos de crecimiento y decrecimiento de la función \(f(x)\).</li>
+    <li><b class="l">b)</b><b>(1 punto)</b> Halle, si existen, los puntos de la gráfica de \(f(x)\) cuya recta tangente tenga pendiente \(1\).</li>
+  </ol>
+</div>
+<div class="sol">Solución.</div>
+<div class="ap"><div class="lab">a.</div><div class="txt">
+  <p>Se piden los intervalos de monotonía, que se obtienen con el signo de la derivada. El dominio es \(\mathbb R - \{1\}\), porque el denominador se anula en \(x = 1\).</p>
+  <div class="eq">\[f'(x) = \frac{-2(x-1) - (-2x+1)\cdot 1}{(x-1)^2} = \frac{-2x + 2 + 2x - 1}{(x-1)^2} = \frac{1}{(x-1)^2}\]</div>
+  <p>El numerador es \(1\) y el denominador es un cuadrado, luego \(f'(x) &gt; 0\) para todo \(x \neq 1\). La derivada nunca se anula.</p>
+  <p class="res">\(f\) es creciente en \((-\infty, 1)\) y en \((1, +\infty)\). No tiene intervalos de decrecimiento.</p>
+  <p class="nota">* No se puede decir que \(f\) sea creciente en \((-\infty,1)\cup(1,+\infty)\): por ejemplo \(0 &lt; 2\) pero \(f(0) = -1 &gt; f(2) = -3\). La función crece en cada intervalo por separado.</p>
+</div></div>
+<div class="clear"></div>
+
+<div class="ap avoid"><div class="lab">b.</div><div class="txt">
+  <div class="fig-r"><img src="fig-q52.png" style="width:56mm" alt="Gráfica de f con las dos tangentes"></div>
+  <p>Se piden los puntos donde la recta tangente tiene pendiente \(1\). La pendiente de la tangente en \(x\) es \(f'(x)\), luego hay que resolver \(f'(x) = 1\):</p>
+  <div class="eq">\[\frac{1}{(x-1)^2} = 1 \ ; \quad (x-1)^2 = 1 \ ; \quad x - 1 = \pm 1 \ \Rightarrow \ x = 0,\ \ x = 2\]</div>
+  <div class="eq">\[f(0) = \frac{-2\cdot0+1}{0-1} = -1 \qquad f(2) = \frac{-2\cdot2+1}{2-1} = -3\]</div>
+  <p class="res">Los puntos son \((0,-1)\) y \((2,-3)\). Sus rectas tangentes son \(y = x - 1\) e \(y = x - 5\).</p>
+</div></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "\\[", right: "\\]", display: true},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    throwOnError: false
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+OK  1a normal of plane: ours=(4, 1, 1) | official=(4, 1, 1)
+OK  1a independent term: ours=6 | official=6
+OK  1a C: ours=(0, 2, 4) | official=(0, 2, 4)
+OK  1a C (second way): ours=(0, 2, 4) | official=(0, 2, 4)
+OK  1a r perp s: ours=0 | official=0
+OK  1b d(P,Q): ours=3 | official=3
+    R points: [(0, 2 - 3*sqrt(2)/2, 3*sqrt(2)/2 + 4), (0, 2 + 3*sqrt(2)/2, 4 - 3*sqrt(2)/2)]
+OK  1b d(R,Q): ours=3 | official=3
+OK  1b R in plane: ours=0 | official=0
+OK  1b d(R,Q): ours=3 | official=3
+OK  1b R in plane: ours=0 | official=0
+OK  2a lim +oo: ours=1 | official=1
+OK  2a lim -oo: ours=-1 | official=-1
+OK  2b f+1 rewrite: ours=0 | official=0
+OK  2b integral: ours=log(4) | official=2*log(2)
+    integral ~ 1.38629436111989
+OK  3a P(at least one): ours=73/75 | official=73/75
+OK  3b1 P(B): ours=7/15 | official=7/15
+OK  3b1 P(no L2 | B): ours=1/5 | official=1/5
+OK  3b2 exactly two: ours=34/75 | official=34/75
+OK  4.1a det: ours=-4*a**2 - 4*a + 8 | official=-4*a**2 - 4*a + 8
+OK  4.1a roots: ours=(-2, 1) | official=(-2, 1)
+    a=1: rank A=2, rank A*=2
+    a=-2: rank A=2, rank A*=3
+    a=0: rank A=3, rank A*=3
+    a=5: rank A=3, rank A*=3
+    a=-2 augmented: [[0, 1, 1, -2], [1, 2, 3, 0], [3, -2, 1, 1]]
+    a=1 solution: {(1/4 - z, 2*z + 1/4, z)}
+OK  4.1b x: ours=1/4 - lambda | official=1/4 - lambda
+OK  4.1b y: ours=2*lambda + 1/4 | official=2*lambda + 1/4
+    generic solution (a != 1, -2): [(4*a + 3)/(4*(a + 2)), -5/(4*(a + 2)), -(3*a + 1)/(4*(a + 2))]
+OK  4.2a det A: ours=a**3 - 2*a | official=a**3 - 2*a
+OK  4.2a roots: ours=(-sqrt(2), 0, sqrt(2)) | official=(-sqrt(2), 0, sqrt(2))
+OK  4.2b A^2: ours=Matrix([[1, 0, 1], [0, 2, 0], [1, 0, 1]]) | official=Matrix([[1, 0, 1], [0, 2, 0], [1, 0, 1]])
+OK  4.2b A^3 = 2A: ours=True | official=True
+OK  4.2b A^9 = 16A: ours=Matrix([[0, 16, 0], [16, 0, 16], [0, 16, 0]]) | official=Matrix([[0, 16, 0], [16, 0, 16], [0, 16, 0]])
+OK  5.1a a: ours=0 | official=0
+OK  5.1a b: ours=3 | official=3
+OK  5.1b length: ours=2*sqrt(5) | official=2*sqrt(5)
+OK  5.1b segment (0,2)-(2,6): ours=2*sqrt(5) | official=2*sqrt(5)
+    L ~ 4.47213595499958
+OK  5.2a f': ours=(x - 1)**(-2) | official=(x - 1)**(-2)
+    f' zeros: []
+OK  5.2b x values: ours=(0, 2) | official=(0, 2)
+OK  5.2b points: ours=((0, -1), (2, -3)) | official=((0, -1), (2, -3))
+    tangents: [x - 1, x - 5]
+    f(0) > f(2): True
+
+ALL CHECKS PASSED
