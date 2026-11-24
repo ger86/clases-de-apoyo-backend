@@ -27,7 +27,7 @@ Apuntes de {{ courseSubject.subjectName|lower }} de {{ courseSubject.course.name
 <section class="course-subject">
   {% set pauBundlePack = getPauBundlePackForCourseSubject(courseSubject) %}
   {% if pauBundlePack %}
-    {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
+    {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
       pack: pauBundlePack,
       event_label: 'course-subject'
     } %}

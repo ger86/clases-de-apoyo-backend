@@ -97,11 +97,6 @@
         Dificultad: {{ exam.difficulty }}
       </div>
       {% if showPauBundlePackPromo %}
-        {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
-          pack: pauBundlePack,
-          compact: true,
-          event_label: 'exam-sidebar'
-        } %}
         {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
           pack: pauBundlePack,
           event_label: 'exam-sidebar'

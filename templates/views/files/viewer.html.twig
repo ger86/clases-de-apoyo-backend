@@ -54,11 +54,6 @@
       } %}
       {% endif %}
       {% if showPauBundlePackPromo %}
-        {% include 'common/products/pau_bundle_pack_promo.html.twig' with {
-          pack: pauBundlePack,
-          compact: true,
-          event_label: exam ? 'file-viewer-exam-sidebar' : 'file-viewer-course-sidebar'
-        } %}
         {# The free pack is Madrid PAU only, so it is not offered on course files. #}
         {% if exam %}
           {% include 'common/lead_magnet/free_exams_promo.html.twig' with {
