@@ -23,6 +23,22 @@
       </div>
     </div>
   </div>
+  <div class="absolute inset-x-0 bottom-8 lg:bottom-16">
+    <div class="container mx-auto px-4">
+      <form action="{{ path('search') }}" method="get" role="search" class="flex gap-2 max-w-2xl mx-auto bg-white p-2 shadow-lg">
+        <label for="homeSearchInput" class="sr-only">Buscar exámenes y apuntes</label>
+        <input
+          id="homeSearchInput"
+          class="flex-1 min-w-0 px-3 py-2 text-base lg:text-lg"
+          type="search"
+          name="q"
+          placeholder="Busca exámenes y apuntes: derivadas, matemáticas madrid 2024…"
+          maxlength="100"
+        >
+        <button class="btn-secondary" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <section class="py-12 lg:py-8 bg-white">

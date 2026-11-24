@@ -1,0 +1,4 @@
+search:
+    path: /buscar
+    controller: App\Controller\SearchController::search
+    methods: [GET]

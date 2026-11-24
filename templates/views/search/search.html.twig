@@ -1,0 +1,65 @@
+{% extends 'container_layout.html.twig' %}
+
+{% block metatags %}
+<title>{{ query ? 'Buscar «' ~ query ~ '»' : 'Buscar' }} | Clases de Apoyo</title>
+<meta name="robots" content="noindex, follow"/>
+{% endblock %}
+
+{% block pageTitle %}
+Buscar
+{% endblock %}
+
+{% block breadcrumb %}
+{% set arrow = "after:content-['>'] after:pl-2" %}
+<nav aria-label="breadcrumb">
+  <ol class="flex flex-wrap list-none text-sm lg:text-base">
+    <li class="pr-2 font-bold text-gray-600 {{arrow}}">
+      <a href="{{ path('home') }}">Inicio</a>
+    </li>
+    <li class="pr-2 font-bold text-heading" aria-current="page">Buscar</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block pageContent %}
+<div class="min-h-[400px]">
+  <form action="{{ path('search') }}" method="get" role="search" class="flex gap-2 mb-8">
+    <label for="searchPageInput" class="sr-only">Buscar exámenes y apuntes</label>
+    <input
+      id="searchPageInput"
+      class="flex-1 border border-gray-300 px-4 py-2 text-lg"
+      type="search"
+      name="q"
+      value="{{ query }}"
+      placeholder="Ej.: matemáticas madrid 2024, derivadas…"
+      maxlength="100"
+      autofocus
+    >
+    <button class="btn-secondary" type="submit">Buscar</button>
+  </form>
+
+  {% if query|length < minQueryLength %}
+  <p class="text-gray-600">Escribe al menos {{ minQueryLength }} letras para buscar exámenes de selectividad y apuntes.</p>
+  {% elseif results is empty %}
+  <div class="simple-box">
+    <h2 class="h4 mb-4">No hemos encontrado nada para «{{ query }}»</h2>
+    <p>Prueba con menos palabras o con otras, por ejemplo el nombre de la asignatura o de la comunidad.</p>
+  </div>
+  {% else %}
+  <p class="mb-4 text-gray-600">{{ results|length }} resultado{{ results|length == 1 ? '' : 's' }} para «{{ query }}»{{ results|length == 50 ? ' (se muestran los 50 primeros)' : '' }}</p>
+  <ul class="divide-y divide-gray-200 bg-white shadow-md">
+    {% for result in results %}
+    <li>
+      <a class="block p-4 hover:bg-gray-50" href="{{ result.url }}">
+        <small class="block text-gray-500">{{ result.type == 'exam' ? 'Examen' : 'Apuntes' }} · {{ result.context }}</small>
+        <strong class="block">{{ result.title }}</strong>
+        {% if result.description %}
+        <small class="block text-gray-600">{{ result.description }}</small>
+        {% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock pageContent %}
