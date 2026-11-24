@@ -23,21 +23,25 @@
       </div>
     </div>
   </div>
-  <div class="absolute inset-x-0 bottom-8 lg:bottom-16">
-    <div class="container mx-auto px-4">
-      <form action="{{ path('search') }}" method="get" role="search" class="flex gap-2 max-w-2xl mx-auto bg-white p-2 shadow-lg">
-        <label for="homeSearchInput" class="sr-only">Buscar exámenes y apuntes</label>
-        <input
-          id="homeSearchInput"
-          class="flex-1 min-w-0 px-3 py-2 text-base lg:text-lg"
-          type="search"
-          name="q"
-          placeholder="Busca exámenes y apuntes: derivadas, matemáticas madrid 2024…"
-          maxlength="100"
-        >
-        <button class="btn-secondary" type="submit">Buscar</button>
-      </form>
-    </div>
+  {# The layer covers the whole image but lets clicks through, so the links above stay usable. #}
+  <div class="absolute inset-0 flex items-center justify-center px-4 pointer-events-none">
+    <form action="{{ path('search') }}" method="get" role="search"
+      class="pointer-events-auto flex items-center w-full max-w-2xl bg-white rounded-full shadow-xl border border-gray-200 pl-5 pr-2 py-2 transition-shadow focus-within:shadow-2xl">
+      <svg class="w-5 h-5 shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <label for="homeSearchInput" class="sr-only">Buscar exámenes y apuntes</label>
+      <input
+        id="homeSearchInput"
+        class="flex-1 min-w-0 px-3 py-2 text-base lg:text-xl bg-transparent outline-none"
+        type="search"
+        name="q"
+        placeholder="Busca exámenes y apuntes"
+        maxlength="100"
+      >
+      <button class="btn-secondary rounded-full" type="submit">Buscar</button>
+    </form>
   </div>
 </div>
 
