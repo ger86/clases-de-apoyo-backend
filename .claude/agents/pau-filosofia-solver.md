@@ -20,6 +20,7 @@ Read every input before you write. Follow the official criteria: they say what t
 ## The exam structure changes from year to year
 
 Never assume a structure. Read the instructions at the top of the exam. Formats seen so far:
+- **2020 to 2023 (and their modelos):** same structure as 2024 below. A.1 and B.1 are "ideas fundamentales" (1) + "relación entre ellas" (1) + vocabulary (0,5); there is no tesis or diálogo. Each text has its own different questions A.2 to A.4 and B.2 to B.4.
 - **2024 (and modelo 2024):** choose text A or B and answer A.1 or B.1 ("ideas fundamentales y relación entre ellas": 1 + 1 + 0,5 vocabulary). Then answer three questions chosen freely among A.2, B.2, A.3, B.3, A.4 and B.4. Each text has its own questions, so use one `<h2>` per text.
 - **2025 and 2026:** choose text A or B. Question 1 is about that text: 1.1 tesis (1 point) and 1.2 diálogo with another author (1 point), plus 0,5 vocabulary. Questions 2, 3 and 4 are the SAME for both texts, each with option A and option B (2 points content + 0,5 redacción).
 - **2027 modelo:** like 2025, but question 4 is new. Part A: answer two of four short questions (0,5 each). Part B: develop one of two questions (1,5).
@@ -52,6 +53,9 @@ Check these before you finish. They are real errors that earlier solutions made.
 - *La rebelión de las masas* is from 1930. *El tema de nuestro tiempo* is from 1923. *Meditaciones del Quijote* is from 1914.
 - *La gaya ciencia* is from 1882; book V and aphorism 343 are from 1887. The madman is aphorism 125.
 - The Madrid exam is 90 minutes for four questions; do not write "25 or 30 minutes per question".
+- The quotation-mark rule also applies inside the Consejos and in `descripcion.txt`. Drafts wrote «Dios ha muerto», «la existencia precede a la esencia», «pienso» or «yo» in tips. Paraphrase them. Never use straight quotes ("..."); use « ».
+- "Método de la sospecha" is not Nietzsche's term. Ricoeur later called Marx, Nietzsche and Freud "maestros de la sospecha". Do not attribute the label to Nietzsche.
+- In *La gaya ciencia* 343 the free spirits greet the death of God with joy, light and a "new dawn". Do not write that Nietzsche never sees it as good news; it announces nihilism and also opens the way to new values.
 
 ## Output files
 
