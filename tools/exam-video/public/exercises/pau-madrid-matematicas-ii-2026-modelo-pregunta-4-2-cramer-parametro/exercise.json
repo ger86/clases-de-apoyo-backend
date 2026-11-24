@@ -1,0 +1,178 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2026-modelo-pregunta-4-2-cramer-parametro",
+  "exam": {
+    "label": "PAU Madrid · Modelo 2026 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 4.2",
+    "topic": "Sistemas con parámetro · Cramer"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El determinante": "teal",
+    "Cramer": "teal",
+    "La trampa": "warn",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Cramer con parámetro: no simplifiques a ciegas (PAU Madrid, modelo 2026, Pregunta 4.2)",
+    "caption": "¿Cramer con parámetro? Si simplificas sin mirar, pierdes infinitas soluciones ❌\n\nPAU Madrid, modelo 2026, Matemáticas II, pregunta 4.2:\n1️⃣ |A| = (λ − 4)(λ + 1) → Cramer solo si λ ≠ 4 y λ ≠ −1\n2️⃣ Cramer: x = 2(λ − 7)/(λ − 4), y = 3/(λ − 4), z = 0\n3️⃣ λ = −1: la 1ª y la 3ª ecuación son iguales → S.C.I.\n\nTruco: Cramer solo vale donde |A| ≠ 0, aunque la fórmula simplificada no se rompa.\n\n📌 Guárdalo para el examen\n💬 ¿Tú habrías sustituido λ = −1?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#sistemas #cramer #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Modelo 2026 · Matemáticas II",
+      "line1": "Cramer con\nparámetro",
+      "line2": "¿y si λ = −1?",
+      "tex": "\\lvert A\\rvert = (\\lambda-4)(\\lambda+1)",
+      "badge": "✗  simplificar y sustituir",
+      "footer": "Pregunta 4.2 · PAU Madrid 2026, resuelta"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Cramer con parámetro",
+        "tail": 0.4,
+        "narration": "[energetic] Haces Cramer, simplificas y sustituyes. Error. Así pierdes infinitas soluciones.",
+        "captions": [
+          "Haces Cramer, simplificas y sustituyes.",
+          "Error.",
+          "Así pierdes infinitas soluciones."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Modelo 2026",
+          "title": "Cramer:\n*no* simplifiques a ciegas",
+          "tex": "\\begin{cases} x+2y-z=2 \\\\ 2x+\\lambda y+z=7 \\\\ x+2y+\\lambda z=2 \\end{cases}",
+          "texColor": "teal",
+          "texSize": 56
+        }
+      },
+      {
+        "id": "r2-determinante",
+        "phase": "El determinante",
+        "heading": "Primero, el determinante",
+        "tail": 0.4,
+        "narration": "[didactic] El determinante es lambda menos cuatro, por lambda más uno. Cramer solo vale si lambda no es cuatro ni menos uno.",
+        "captions": [
+          "El determinante es (λ − 4)(λ + 1).",
+          "Cramer solo vale si λ no es 4 ni −1."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Determinante",
+              "tex": "\\lvert A\\rvert = (\\lambda-4)(\\lambda+1)",
+              "size": 52,
+              "color": "teal"
+            },
+            {
+              "tex": "\\lambda \\neq 4 \\qquad \\lambda \\neq -1",
+              "size": 60,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "Solo aquí puedes usar Cramer",
+            "color": "solved"
+          }
+        }
+      },
+      {
+        "id": "r3-cramer",
+        "phase": "Cramer",
+        "heading": "La solución por Cramer",
+        "tail": 0.4,
+        "narration": "[didactic] Por Cramer, lambda más uno sale arriba y abajo, y lo tachas. Queda x igual a dos, lambda menos siete, entre lambda menos cuatro.",
+        "captions": [
+          "Por Cramer, λ + 1 sale arriba y abajo, y lo tachas.",
+          "Queda x = 2(λ − 7)/(λ − 4)."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "x por Cramer",
+              "tex": "x=\\frac{2(\\lambda-7)\\cancel{(\\lambda+1)}}{(\\lambda-4)\\cancel{(\\lambda+1)}}",
+              "size": 50,
+              "color": "teal"
+            },
+            {
+              "tex": "x=\\frac{2(\\lambda-7)}{\\lambda-4} \\qquad y=\\frac{3}{\\lambda-4} \\qquad z=0",
+              "size": 44,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-trampa",
+        "phase": "La trampa",
+        "heading": "¿Y con λ = −1?",
+        "tail": 0.4,
+        "narration": "[didactic] Pones lambda igual a menos uno y sale una solución. Pero ahí el determinante es cero: la primera y la tercera son iguales. Compatible indeterminado.",
+        "captions": [
+          "Pones λ = −1 y sale una solución.",
+          "Pero ahí el determinante es 0: la 1ª y la 3ª son iguales.",
+          "Compatible indeterminado."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "λ = −1",
+              "tex": "\\begin{array}{rcl} x+2y-z & = & 2 \\\\ x+2y-z & = & 2 \\end{array}",
+              "size": 52,
+              "color": "teal"
+            },
+            {
+              "tex": "\\operatorname{rg} A = \\operatorname{rg} A^{*} = 2",
+              "size": 54,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "compatible indeterminado",
+              "color": "solved"
+            }
+          ],
+          "badge": {
+            "text": "✗  no es solución única",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Cramer, solo donde el determinante no es cero. Más ejercicios en Clases de Apoyo.",
+        "captions": [
+          "Cramer, solo donde el determinante no es 0.",
+          "Más ejercicios en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Cramer solo si\n*|A| ≠ 0*",
+          "tex": "\\begin{gathered}\\lvert A\\rvert = 0 \\\\ \\Rightarrow \\text{ estudia los rangos}\\end{gathered}",
+          "lines": [
+            "Pregunta 4.2 · PAU Madrid 2026",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
