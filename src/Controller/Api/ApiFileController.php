@@ -5,7 +5,7 @@ namespace App\Controller\Api;
 use App\Repository\FileRepository;
 use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
-use App\Service\FileAi\GeminiFileTutorService;
+use App\Service\FileAi\ClaudeFileTutorService;
 use App\Service\GetFileView;
 use App\Service\PremiumService;
 use App\Service\Security;
@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 /**
  * Chat about a PDF from the app. The app used to call Gemini itself with a key baked
  * into the bundle and the whole PDF re-sent on every turn. Going through here keeps the
- * key on the server, reuses the PDF already uploaded to Gemini and lets us cap usage per
+ * key on the server, reuses the PDF already uploaded to the AI provider and lets us cap usage per
  * account.
  */
 final class ApiFileController extends AbstractFOSRestController
@@ -54,7 +54,7 @@ final class ApiFileController extends AbstractFOSRestController
         Security $security,
         FileAccessResolver $fileAccessResolver,
         FileTutorMessageNormalizer $messageNormalizer,
-        GeminiFileTutorService $geminiFileTutorService,
+        ClaudeFileTutorService $fileTutorService,
         PremiumService $premiumService,
         #[Autowire(service: 'limiter.file_ai_chat_user')]
         RateLimiterFactoryInterface $userLimiter,
@@ -93,7 +93,7 @@ final class ApiFileController extends AbstractFOSRestController
             $messages = $messageNormalizer->normalize($request->getPayload()->all('messages'));
 
             return $this->view([
-                'answer' => $geminiFileTutorService->generateAnswer($file, $messages),
+                'answer' => $fileTutorService->generateAnswer($file, $messages),
             ]);
         } catch (NotFoundHttpException $exception) {
             return $this->error($exception->getMessage(), 'not_found', Response::HTTP_NOT_FOUND);

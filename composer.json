@@ -5,6 +5,7 @@
     "php": "^8.4",
     "ext-ctype": "*",
     "ext-iconv": "*",
+    "anthropic-ai/sdk": "^1.13",
     "aws/aws-sdk-php": "^3.371",
     "cocur/slugify": "^4.7",
     "doctrine/dbal": "^4.6",

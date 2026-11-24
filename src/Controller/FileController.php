@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Service\Bookmark\UserBookmarkManager;
 use App\Service\FileAccessResolver;
 use App\Service\FileAi\FileTutorMessageNormalizer;
-use App\Service\FileAi\GeminiFileTutorService;
+use App\Service\FileAi\ClaudeFileTutorService;
 use App\Service\PremiumService;
 use App\Service\Security;
 use Aws\S3\S3Client;
@@ -93,7 +93,7 @@ class FileController extends AbstractController
         Request $request,
         FileAccessResolver $fileAccessResolver,
         FileTutorMessageNormalizer $messageNormalizer,
-        GeminiFileTutorService $geminiFileTutorService,
+        ClaudeFileTutorService $fileTutorService,
         PremiumService $premiumService,
         #[Autowire(service: 'limiter.file_ai_chat_ip')]
         RateLimiterFactoryInterface $ipLimiter
@@ -126,7 +126,7 @@ class FileController extends AbstractController
             $messages = $messageNormalizer->normalize($payload['messages'] ?? null);
 
             return $this->json([
-                'answer' => $geminiFileTutorService->generateAnswer($file, $messages),
+                'answer' => $fileTutorService->generateAnswer($file, $messages),
             ]);
         } catch (NotFoundHttpException $exception) {
             return $this->json([

@@ -3,11 +3,11 @@
 namespace App\Service\FileAi;
 
 /**
- * Cleans the chat history sent by the website and the app before it reaches Gemini.
+ * Cleans the chat history sent by the website and the app before it reaches the AI model.
  *
  * Every request re-sends the whole conversation, so the history is the part of the bill
  * that grows with each turn. Keeping only the last few messages bounds that cost while the
- * PDF itself stays cached on the Gemini side.
+ * PDF itself stays in the prompt cache on the AI side.
  */
 final class FileTutorMessageNormalizer
 {
@@ -76,7 +76,7 @@ final class FileTutorMessageNormalizer
 
     /**
      * Keeps the newest messages and makes sure the kept history starts with a student
-     * message, because Gemini expects the conversation to open with the user turn.
+     * message, because the AI model expects the conversation to open with the user turn.
      *
      * @param array<int, array{role: string, text: string}> $messages
      * @return array<int, array{role: string, text: string}>
