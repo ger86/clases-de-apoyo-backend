@@ -1,9 +1,9 @@
 .home-cover {
-  background-image: url(./home-bg-sm.jpg);
+  background-image: url(./home-bg-sm.svg);
 }
 
 @media (min-width: 1024px) {
   .home-cover {
-    background-image: url(./home-bg.jpg);
+    background-image: url(./home-bg.svg);
   }
 }
