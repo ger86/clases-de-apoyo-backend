@@ -1,0 +1,776 @@
+{
+  "slug": "pau-madrid-matematicas-ccss-ii-2026-julio-pregunta-1-programacion-lineal-sistema",
+  "exam": {
+    "label": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 1",
+    "topic": "Programación lineal y sistemas"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Región": "teal",
+    "Parte a · Vértices": "indet",
+    "Parte a · Óptimo": "solved",
+    "Parte b · Sistema": "warn",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "La traducción": "indet",
+    "El resultado": "solved"
+  },
+  "youtube": {
+    "title": "Programación lineal y sistema 3x3: aceite de argán | PAU Madrid Julio 2026, Matemáticas CCSS II, Pregunta 1",
+    "description": "Resolvemos paso a paso la Pregunta 1 del examen extraordinario de Selectividad (PAU/EvAU) de la Comunidad de Madrid de julio de 2026, Matemáticas Aplicadas a las Ciencias Sociales II. Susana compra aceite de argán a dos distribuidoras, Saviah y Naturaelis, y quiere conseguir de regalo la mayor cantidad posible de agua destilada.\n\na) Programación lineal: F(x, y) = 3x + 2y con 0 ≤ x ≤ 9, 1 ≤ y ≤ 5, x ≥ y + 2 y x + y ≤ 13. Los vértices son A(3, 1), B(9, 1), C(9, 4), D(8, 5) y E(7, 5), y el máximo es 35 litros de agua en C: 9 litros a Saviah y 4 a Naturaelis.\nb) Sistema de tres ecuaciones: x + y + z = 18, z = 2x, y = x + z. Tiene 3 litros almacenados, compra 9 a Saviah y 6 a Naturaelis.\n\nLo que vas a aprender:\n• Cómo traducir \"como mínimo 2 litros más que\" a una inecuación sin equivocarte de sentido.\n• Cómo dibujar la región factible y calcular sus vértices.\n• Por qué el óptimo se busca evaluando la función objetivo en todos los vértices.\n• Cómo plantear y resolver un sistema 3x3 sencillo por sustitución.\n\nEnunciado y solución en PDF del examen de julio de 2026 de Matemáticas CCSS II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasCCSS #ProgramaciónLineal #SistemasDeEcuaciones",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "julio 2026",
+      "extraordinaria",
+      "Matemáticas CCSS II",
+      "matemáticas aplicadas a las ciencias sociales",
+      "2º bachillerato",
+      "programación lineal",
+      "región factible",
+      "vértices",
+      "función objetivo",
+      "sistema de ecuaciones",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Programación\nlineal",
+      "line2": "Aceite de argán,\npaso a paso",
+      "tex": "F(x,y) = 3x + 2y",
+      "badge": "Máx = 35 L"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Un problema de programación lineal y un sistema",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta uno de la PAU de Madrid de julio de dos mil veintiséis, Matemáticas Aplicadas a las Ciencias Sociales. Susana compra aceite de argán a dos distribuidoras y quiere llevarse de regalo la mayor cantidad posible de agua destilada. Primero, programación lineal. Después, un sistema de tres ecuaciones.",
+      "captions": [
+        "Pregunta 1 de la PAU de Madrid de julio de 2026, Matemáticas CCSS II.",
+        "Susana compra aceite de argán a dos distribuidoras y quiere llevarse de regalo la mayor cantidad posible de agua destilada.",
+        "Primero, programación lineal.",
+        "Después, un sistema de 3 ecuaciones."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II · Pregunta 1",
+        "title": "*Maximizar* el agua de regalo\ny resolver un *sistema*",
+        "tex": "F(x,y) = 3x + 2y",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-datos",
+      "phase": "Planteamiento",
+      "heading": "Lo que dice el enunciado",
+      "narration": "Saviah puede venderle como máximo nueve litros, y Naturaelis como máximo cinco. A Naturaelis tiene que comprarle al menos un litro. A Saviah, como mínimo dos litros más que a Naturaelis. En total no puede comprar más de trece litros.",
+      "captions": [
+        "Saviah: como máximo 9 litros. Naturaelis: como máximo 5.",
+        "A Naturaelis, al menos 1 litro.",
+        "A Saviah, como mínimo 2 litros más que a Naturaelis.",
+        "En total, no más de 13 litros."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Saviah",
+            "text": "Como máximo 9 litros",
+            "color": "given",
+            "size": 44
+          },
+          {
+            "label": "Naturaelis",
+            "text": "Como máximo 5 litros y como mínimo 1",
+            "color": "given",
+            "size": 44
+          },
+          {
+            "label": "Acuerdo",
+            "text": "A Saviah, al menos 2 litros más que a Naturaelis",
+            "color": "warn",
+            "size": 44
+          },
+          {
+            "label": "Total",
+            "text": "No más de 13 litros",
+            "color": "given",
+            "size": 44
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-variables",
+      "phase": "Planteamiento",
+      "heading": "Variables y función objetivo",
+      "narration": "Llamamos equis a los litros que compra a Saviah, e i griega a los que compra a Naturaelis. Saviah regala tres litros de agua por cada litro de aceite, y Naturaelis dos. Así que el agua regalada es tres equis más dos i griega, y eso es lo que queremos maximizar.",
+      "captions": [
+        "x = litros comprados a Saviah, y = litros comprados a Naturaelis.",
+        "Saviah regala 3 litros de agua por litro de aceite, y Naturaelis 2.",
+        "El agua regalada es F(x, y) = 3x + 2y, y eso es lo que queremos maximizar."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "x \\equiv \\text{litros comprados a Saviah}",
+            "color": "teal",
+            "size": 46
+          },
+          {
+            "label": "Variable",
+            "tex": "y \\equiv \\text{litros comprados a Naturaelis}",
+            "color": "indet",
+            "size": 46
+          },
+          {
+            "label": "Objetivo",
+            "tex": "\\max\\; F(x,y) = 3x + 2y",
+            "color": "solved",
+            "size": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-traduccion",
+      "phase": "Planteamiento",
+      "heading": "Dos litros más que Naturaelis: x ≥ y + 2",
+      "narration": "La restricción delicada es la del acuerdo. Lo que compra a Saviah tiene que ser, como mínimo, lo que compra a Naturaelis más dos. Es decir, equis mayor o igual que i griega más dos. Compruébalo con un ejemplo: si compra un litro a Naturaelis, a Saviah le compra tres o más.",
+      "captions": [
+        "La restricción delicada es la del acuerdo.",
+        "Lo que compra a Saviah tiene que ser, como mínimo, lo de Naturaelis más 2.",
+        "Es decir, x ≥ y + 2.",
+        "Compruébalo con un ejemplo: si compra 1 litro a Naturaelis, a Saviah le compra 3 o más."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Saviah ≥ Naturaelis + 2",
+            "tex": "x \\geq y + 2",
+            "color": "warn",
+            "size": 72
+          },
+          {
+            "label": "Ejemplo",
+            "tex": "y = 1 \\;\\Rightarrow\\; x \\geq 3",
+            "color": "inkSoft",
+            "size": 52
+          }
+        ],
+        "chips": [
+          {
+            "text": "el + 2 va con la y",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-sistema",
+      "phase": "Planteamiento",
+      "heading": "El sistema de restricciones",
+      "narration": "Juntamos todo. Equis entre cero y nueve, i griega entre uno y cinco, equis mayor o igual que i griega más dos, y equis más i griega menor o igual que trece.",
+      "captions": [
+        "Juntamos todo.",
+        "0 ≤ x ≤ 9, 1 ≤ y ≤ 5, x ≥ y + 2 y x + y ≤ 13."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{cases} 0 \\leq x \\leq 9 \\\\ 1 \\leq y \\leq 5 \\\\ x \\geq y + 2 \\\\ x + y \\leq 13 \\end{cases}",
+            "size": 56
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\max\\; F = 3x + 2y",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-region",
+      "phase": "Parte a · Región",
+      "heading": "La región factible",
+      "narration": "Dibujamos las rectas y nos quedamos con el lado correcto de cada una. Para equis mayor o igual que i griega más dos, el origen da cero mayor o igual que dos, que es falso, así que tomamos el lado que no contiene al origen. Para equis más i griega menor o igual que trece, el origen sí la cumple. La región que queda es un pentágono.",
+      "captions": [
+        "Dibujamos las rectas y nos quedamos con el lado correcto de cada una.",
+        "x ≥ y + 2 con el origen: 0 ≥ 2, falso, así que tomamos el lado sin el origen.",
+        "x + y ≤ 13 con el origen: 0 ≤ 13, se cumple.",
+        "La región que queda es un pentágono."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "x < 3 || x > 9 ? NaN : (x <= 7 ? x - 2 : (x <= 8 ? 5 : 13 - x))",
+        "xMin": -0.6,
+        "xMax": 11,
+        "yMin": -0.6,
+        "yMax": 6.5,
+        "xTicks": [
+          {
+            "x": 3,
+            "label": "3"
+          },
+          {
+            "x": 7,
+            "label": "7"
+          },
+          {
+            "x": 9,
+            "label": "9"
+          }
+        ],
+        "shade": {
+          "from": 3,
+          "to": 9,
+          "floor": 1,
+          "color": "indet",
+          "label": "Región factible"
+        },
+        "lead": {
+          "tex": "1 \\leq y \\leq 5,\\quad x \\leq 9,\\quad x \\geq y + 2,\\quad x + y \\leq 13",
+          "size": 40
+        }
+      }
+    },
+    {
+      "id": "07-vertices-abajo",
+      "phase": "Parte a · Vértices",
+      "heading": "Vértices sobre y = 1",
+      "narration": "Ahora los vértices, cortando rectas de dos en dos. A es el corte de equis igual a i griega más dos con i griega igual a uno: el punto tres, uno. B es el corte de equis igual a nueve con i griega igual a uno: el punto nueve, uno.",
+      "captions": [
+        "Ahora los vértices, cortando rectas de dos en dos.",
+        "A: x = y + 2 con y = 1, el punto (3, 1).",
+        "B: x = 9 con y = 1, el punto (9, 1)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Vértice A",
+            "tex": "\\begin{cases} x = y + 2 \\\\ y = 1 \\end{cases} \\Rightarrow A(3,\\,1)",
+            "color": "solved",
+            "size": 50
+          },
+          {
+            "label": "Vértice B",
+            "tex": "\\begin{cases} x = 9 \\\\ y = 1 \\end{cases} \\Rightarrow B(9,\\,1)",
+            "color": "solved",
+            "size": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-vertices-arriba",
+      "phase": "Parte a · Vértices",
+      "heading": "Vértices C, D y E",
+      "narration": "C es el corte de equis igual a nueve con equis más i griega igual a trece: nueve, cuatro. D es el corte de equis más i griega igual a trece con i griega igual a cinco: ocho, cinco. Y E es el corte de equis igual a i griega más dos con i griega igual a cinco: siete, cinco.",
+      "captions": [
+        "C: x = 9 con x + y = 13, el punto (9, 4).",
+        "D: x + y = 13 con y = 5, el punto (8, 5).",
+        "E: x = y + 2 con y = 5, el punto (7, 5)."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "x < 3 || x > 9 ? NaN : (x <= 7 ? x - 2 : (x <= 8 ? 5 : 13 - x))",
+        "xMin": -0.6,
+        "xMax": 11,
+        "yMin": -0.6,
+        "yMax": 6.5,
+        "xTicks": [
+          {
+            "x": 3,
+            "label": "3"
+          },
+          {
+            "x": 7,
+            "label": "7"
+          },
+          {
+            "x": 9,
+            "label": "9"
+          }
+        ],
+        "shade": {
+          "from": 3,
+          "to": 9,
+          "floor": 1,
+          "color": "indet"
+        },
+        "points": [
+          {
+            "x": 3,
+            "y": 1,
+            "label": "A(3, 1)",
+            "color": "given"
+          },
+          {
+            "x": 9,
+            "y": 1,
+            "label": "B(9, 1)",
+            "color": "given"
+          },
+          {
+            "x": 9,
+            "y": 4,
+            "label": "C(9, 4)",
+            "color": "solved"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "label": "D",
+            "color": "given"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "label": "E",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-evaluar",
+      "phase": "Parte a · Óptimo",
+      "heading": "Evaluamos F en los cinco vértices",
+      "narration": "El máximo de una función lineal en una región como esta está siempre en un vértice. Así que evaluamos tres equis más dos i griega en los cinco. En A sale once, en B veintinueve, en C treinta y cinco, en D treinta y cuatro y en E treinta y uno. Ojo: en A es tres por tres más dos por uno, once.",
+      "captions": [
+        "El máximo de una función lineal en una región como esta está siempre en un vértice.",
+        "Así que evaluamos 3x + 2y en los cinco.",
+        "A: 11, B: 29, C: 35, D: 34, E: 31.",
+        "Ojo: en A es 3 · 3 + 2 · 1 = 11."
+      ],
+      "body": {
+        "type": "table",
+        "columns": [
+          "x",
+          "y",
+          "F = 3x + 2y"
+        ],
+        "rows": [
+          {
+            "label": "A",
+            "cells": [
+              {
+                "tex": "3"
+              },
+              {
+                "tex": "1"
+              },
+              {
+                "tex": "11"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "cells": [
+              {
+                "tex": "9"
+              },
+              {
+                "tex": "1"
+              },
+              {
+                "tex": "29"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "cells": [
+              {
+                "tex": "9",
+                "color": "solved"
+              },
+              {
+                "tex": "4",
+                "color": "solved"
+              },
+              {
+                "tex": "35",
+                "color": "solved"
+              }
+            ]
+          },
+          {
+            "label": "D",
+            "cells": [
+              {
+                "tex": "8"
+              },
+              {
+                "tex": "5"
+              },
+              {
+                "tex": "34"
+              }
+            ]
+          },
+          {
+            "label": "E",
+            "cells": [
+              {
+                "tex": "7"
+              },
+              {
+                "tex": "5"
+              },
+              {
+                "tex": "31"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-resultado-a",
+      "phase": "Parte a · Óptimo",
+      "heading": "Máximo: 35 litros en C(9, 4)",
+      "tail": 0.5,
+      "narration": "El mayor valor es treinta y cinco, en el vértice C. Susana debe comprar nueve litros de aceite a Saviah y cuatro a Naturaelis, y así se lleva treinta y cinco litros de agua destilada.",
+      "captions": [
+        "El mayor valor es 35, en el vértice C.",
+        "Susana debe comprar 9 litros a Saviah y 4 a Naturaelis, y se lleva 35 litros de agua destilada."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "F(9,\\,4) = 3 \\cdot 9 + 2 \\cdot 4 = 35",
+            "color": "solved",
+            "size": 62
+          }
+        ],
+        "badge": {
+          "text": "9 L a Saviah y 4 L a Naturaelis",
+          "sub": "35 litros de agua destilada de regalo",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "11-incognitas-b",
+      "phase": "Parte b · Sistema",
+      "heading": "Apartado b: tres incógnitas",
+      "narration": "Apartado b. Ahora el aceite de rosa mosqueta. Llamamos equis a lo que ya tiene almacenado, i griega a lo que compra a Saviah, y zeta a lo que compra a Naturaelis.",
+      "captions": [
+        "Apartado b.",
+        "Ahora el aceite de rosa mosqueta.",
+        "x = lo almacenado, y = lo comprado a Saviah, z = lo comprado a Naturaelis."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "x \\equiv \\text{litros almacenados}",
+            "color": "teal",
+            "size": 46
+          },
+          {
+            "label": "Variable",
+            "tex": "y \\equiv \\text{litros comprados a Saviah}",
+            "color": "indet",
+            "size": 46
+          },
+          {
+            "label": "Variable",
+            "tex": "z \\equiv \\text{litros comprados a Naturaelis}",
+            "color": "warn",
+            "size": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-ecuaciones",
+      "phase": "Parte b · Sistema",
+      "heading": "Una ecuación por frase",
+      "narration": "Necesita dieciocho litros en total: equis más i griega más zeta igual a dieciocho. A Naturaelis le compra el doble de lo almacenado: zeta igual a dos equis. Y a Saviah, lo almacenado más lo de Naturaelis: i griega igual a equis más zeta.",
+      "captions": [
+        "18 litros en total: x + y + z = 18.",
+        "A Naturaelis, el doble de lo almacenado: z = 2x.",
+        "A Saviah, lo almacenado más lo de Naturaelis: y = x + z."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{cases} x + y + z = 18 \\\\ z = 2x \\\\ y = x + z \\end{cases}",
+            "size": 62
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-resolver",
+      "phase": "Parte b · Sistema",
+      "heading": "Sustituimos todo en función de x",
+      "narration": "Es un sistema muy sencillo, así que sustituimos. Zeta es dos equis, luego i griega es equis más dos equis, tres equis. En la primera ecuación: equis más tres equis más dos equis, seis equis, igual a dieciocho. Equis vale tres.",
+      "captions": [
+        "Es un sistema muy sencillo, así que sustituimos.",
+        "z = 2x, luego y = x + 2x = 3x.",
+        "En la primera: x + 3x + 2x = 6x = 18.",
+        "x = 3."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "z = 2x, \\qquad y = x + 2x = 3x",
+            "size": 54
+          },
+          {
+            "tex": "x + 3x + 2x = 6x = 18",
+            "size": 54,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "x = 3",
+            "size": 66,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resultado-b",
+      "phase": "Resultado",
+      "heading": "3 L almacenados, 9 L a Saviah, 6 L a Naturaelis",
+      "tail": 0.5,
+      "narration": "Entonces i griega es nueve y zeta es seis. Tiene tres litros almacenados, compra nueve a Saviah y seis a Naturaelis. Comprobación: tres más nueve más seis, dieciocho.",
+      "captions": [
+        "Entonces y = 9 y z = 6.",
+        "Tiene 3 litros almacenados, compra 9 a Saviah y 6 a Naturaelis.",
+        "Comprobación: 3 + 9 + 6 = 18."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "x = 3, \\quad y = 9, \\quad z = 6",
+            "color": "solved",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "tex": "3 + 9 + 6 = 18 \\;\\checkmark",
+            "color": "given"
+          }
+        ],
+        "badge": {
+          "text": "3 L almacenados · 9 L Saviah · 6 L Naturaelis",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "15-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. En el apartado a, la clave es traducir bien el acuerdo: equis mayor o igual que i griega más dos. Evaluando los cinco vértices, el máximo es treinta y cinco litros de agua, comprando nueve litros a Saviah y cuatro a Naturaelis. En el apartado b, una ecuación por frase: tres litros almacenados, nueve a Saviah y seis a Naturaelis.",
+      "captions": [
+        "Resumen.",
+        "En el apartado a, la clave es traducir bien el acuerdo: x ≥ y + 2.",
+        "Evaluando los cinco vértices, el máximo es 35 litros de agua, con 9 litros a Saviah y 4 a Naturaelis.",
+        "En el apartado b, una ecuación por frase: 3 litros almacenados, 9 a Saviah y 6 a Naturaelis."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "La clave",
+            "tex": "x \\geq y + 2",
+            "color": "warn"
+          },
+          {
+            "label": "a) Máximo",
+            "tex": "F(9,\\,4) = 35 \\text{ litros}",
+            "color": "solved"
+          },
+          {
+            "label": "b) Sistema",
+            "tex": "x = 3,\\; y = 9,\\; z = 6",
+            "color": "solved"
+          }
+        ],
+        "closing": "Traduce bien cada frase y evalúa todos los vértices."
+      }
+    }
+  ],
+  "reel": {
+    "title": "Dos litros más que: x ≥ y + 2 (PAU Madrid CCSS, julio 2026, Pregunta 1)",
+    "caption": "\"Como mínimo 2 litros más que\" se traduce al revés muy a menudo.\n\nPregunta 1 de la PAU de Madrid de julio de 2026 (Matemáticas CCSS II): Susana tiene que comprar a Saviah como mínimo 2 litros más de aceite de argán que a Naturaelis. Si escribes y ≥ x + 2, la región cambia por completo y el máximo te sale 19. La traducción buena es x ≥ y + 2: lo de Saviah es, como mínimo, lo de Naturaelis más 2. Con ella, el máximo es 35 litros de agua en el vértice (9, 4).\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasccss #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #programacionlineal #inecuaciones",
+    "cover": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Dos litros\nmás que…",
+      "line2": "x ≥ y + 2",
+      "tex": "\\max\\; 3x + 2y = 35",
+      "badge": "✗  y ≥ x + 2"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Traduce bien la frase",
+        "tail": 0.4,
+        "narration": "[energetic] Como mínimo dos litros más que. Esta frase se traduce al revés muchísimo.",
+        "captions": [
+          "\"Como mínimo 2 litros más que.\"",
+          "Esta frase se traduce al revés muchísimo."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Julio 2026",
+          "title": "*Dos litros*\nmás que…",
+          "tex": "x \\;?\\; y + 2",
+          "texSize": 80,
+          "texColor": "warn"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Ponerla al revés",
+        "tail": 0.4,
+        "narration": "A Saviah le compra como mínimo dos litros más que a Naturaelis. Si escribes i griega mayor o igual que equis más dos, la región es otra y el máximo te sale diecinueve.",
+        "captions": [
+          "A Saviah, como mínimo 2 litros más que a Naturaelis.",
+          "Si escribes y ≥ x + 2, la región es otra y el máximo te sale 19."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "y \\;\\xcancel{\\geq}\\; x + 2",
+              "size": 60,
+              "color": "danger"
+            },
+            {
+              "tex": "\\max F = 19",
+              "size": 52,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Eso es Naturaelis comprando más",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-traduccion",
+        "phase": "La traducción",
+        "heading": "Saviah ≥ Naturaelis + 2",
+        "tail": 0.4,
+        "narration": "Lo de Saviah tiene que ser, como mínimo, lo de Naturaelis más dos. Equis mayor o igual que i griega más dos. Pruébalo: un litro a Naturaelis, tres o más a Saviah.",
+        "captions": [
+          "Lo de Saviah tiene que ser, como mínimo, lo de Naturaelis más 2.",
+          "x ≥ y + 2.",
+          "Pruébalo: 1 litro a Naturaelis, 3 o más a Saviah."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "x \\geq y + 2",
+              "size": 72,
+              "color": "solved"
+            },
+            {
+              "tex": "y = 1 \\Rightarrow x \\geq 3",
+              "size": 48,
+              "color": "inkSoft"
+            }
+          ],
+          "chips": [
+            {
+              "text": "prueba con un número",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Máximo en C(9, 4)",
+        "tail": 0.4,
+        "narration": "Con la buena, el máximo está en nueve, cuatro: treinta y cinco litros de agua.",
+        "captions": [
+          "Con la buena, el máximo está en (9, 4): 35 litros de agua."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "F(9,\\,4) = 3 \\cdot 9 + 2 \\cdot 4",
+              "size": 50
+            },
+            {
+              "tex": "= 35 \\text{ litros}",
+              "size": 60,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Antes de dibujar, prueba cada inecuación con un número. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "Antes de dibujar, prueba cada inecuación con un número.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Prueba con\n*un número*",
+          "tex": "x \\geq y + 2",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

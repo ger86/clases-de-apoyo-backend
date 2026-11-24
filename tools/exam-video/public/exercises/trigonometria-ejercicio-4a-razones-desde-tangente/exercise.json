@@ -1,0 +1,654 @@
+{
+  "slug": "trigonometria-ejercicio-4a-razones-desde-tangente",
+  "exam": {
+    "label": "Trigonometría · 1º Bachillerato",
+    "question": "Ejercicio 4a",
+    "topic": "Razones trigonométricas a partir de la tangente",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El enunciado": "teal",
+    "El cuadrante": "indet",
+    "Los signos": "indet",
+    "La cadena": "warn",
+    "La identidad": "indet",
+    "El resultado": "solved",
+    "Comprobación": "teal",
+    "El error": "danger",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Dos datos y cuatro razones por descubrir",
+      "tail": 0.5,
+      "narration": "[energetic] Te dan solo dos datos: la tangente de alfa vale dos, y el seno de alfa es positivo. Con eso hay que calcular las otras cuatro razones trigonométricas. Y se hace sin calculadora y sin saber cuánto mide el ángulo.",
+      "captions": [
+        "Dos datos: tg α = 2 y sen α > 0.",
+        "Con eso hay que calcular las otras cuatro razones.",
+        "Sin calculadora y sin saber cuánto mide el ángulo."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Trigonometría · 1º Bachillerato",
+        "title": "Dos datos,\n*cuatro razones*",
+        "tex": "\\mathrm{tg}\\,\\alpha = 2, \\qquad \\mathrm{sen}\\,\\alpha > 0",
+        "texColor": "teal",
+        "texSize": 60
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "El enunciado",
+      "heading": "Lo que tenemos y lo que piden",
+      "narration": "[didactic] Vamos a ordenar lo que tenemos. Dato uno: la tangente de alfa vale dos. Dato dos: el seno de alfa es positivo. Y nos piden el seno, el coseno, la cotangente, la secante y la cosecante. Cinco razones a partir de una sola.",
+      "captions": [
+        "Ordenamos lo que tenemos.",
+        "Dato 1: tg α = 2.",
+        "Dato 2: sen α > 0.",
+        "Nos piden sen, cos, cotg, sec y cosec.",
+        "Cinco razones a partir de una sola."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Datos",
+            "tex": "\\mathrm{tg}\\,\\alpha = 2, \\qquad \\mathrm{sen}\\,\\alpha > 0",
+            "size": 52,
+            "color": "given"
+          },
+          {
+            "label": "Se pide",
+            "tex": "\\mathrm{sen}\\,\\alpha, \\;\\cos\\alpha, \\;\\mathrm{cotg}\\,\\alpha, \\;\\mathrm{sec}\\,\\alpha, \\;\\mathrm{cosec}\\,\\alpha",
+            "size": 42,
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-cuadrante",
+      "phase": "El cuadrante",
+      "heading": "El signo decide el cuadrante",
+      "narration": "Primero, el cuadrante. La tangente es positiva en el primer cuadrante y en el tercero. El seno es positivo en el primero y en el segundo. El único cuadrante que cumple las dos cosas a la vez es el primero.",
+      "captions": [
+        "Primero, el cuadrante.",
+        "La tangente es positiva en el 1º y en el 3º.",
+        "El seno es positivo en el 1º y en el 2º.",
+        "El único que cumple las dos cosas es el 1º."
+      ],
+      "body": {
+        "type": "table",
+        "columns": [
+          "1^{\\circ}",
+          "2^{\\circ}",
+          "3^{\\circ}",
+          "4^{\\circ}"
+        ],
+        "rows": [
+          {
+            "label": "sen",
+            "cells": [
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              }
+            ]
+          },
+          {
+            "label": "cos",
+            "cells": [
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              }
+            ]
+          },
+          {
+            "label": "tg",
+            "cells": [
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              },
+              {
+                "text": "+",
+                "color": "solved"
+              },
+              {
+                "text": "−",
+                "color": "danger"
+              }
+            ]
+          }
+        ],
+        "chips": [
+          {
+            "text": "tg > 0 y sen > 0 solo coinciden en el 1º cuadrante",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-signos",
+      "phase": "Los signos",
+      "heading": "En el primer cuadrante todo es positivo",
+      "narration": "[didactic] Y como alfa está en el primer cuadrante, todas las razones son positivas. Seno y cosecante, positivas. Coseno y secante, positivas. Tangente y cotangente, positivas también. Esto nos va a resolver el signo de la raíz dentro de un momento.",
+      "captions": [
+        "α está en el 1º cuadrante: todo es positivo.",
+        "Seno y cosecante: positivas.",
+        "Coseno y secante: positivas.",
+        "Tangente y cotangente: positivas.",
+        "Esto resolverá el signo de la raíz."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "1º cuadrante",
+            "tex": "\\mathrm{sen}\\,\\alpha, \\;\\mathrm{cosec}\\,\\alpha \\;>\\; 0",
+            "size": 46,
+            "color": "solved"
+          },
+          {
+            "tex": "\\cos\\alpha, \\;\\mathrm{sec}\\,\\alpha \\;>\\; 0",
+            "size": 46,
+            "color": "solved"
+          },
+          {
+            "tex": "\\mathrm{tg}\\,\\alpha, \\;\\mathrm{cotg}\\,\\alpha \\;>\\; 0",
+            "size": 46,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "todo positivo",
+          "sub": "estamos en el primer cuadrante",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "05-cotangente",
+      "phase": "La cadena",
+      "heading": "La cotangente, que es la más directa",
+      "narration": "La cotangente es la más fácil, porque es la inversa de la tangente. Uno partido por la tangente de alfa, es decir, uno partido por dos. La cotangente de alfa vale un medio. Y sale positiva, como tocaba.",
+      "captions": [
+        "La cotangente es la inversa de la tangente.",
+        "1 / tg α = 1 / 2.",
+        "cotg α = 1/2",
+        "Sale positiva, como tocaba."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{cotg}\\,\\alpha = \\dfrac{1}{\\mathrm{tg}\\,\\alpha} = \\dfrac{1}{2}",
+            "size": 58,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-identidad",
+      "phase": "La identidad",
+      "heading": "La identidad que une tangente y secante",
+      "narration": "[didactic] Ahora nos hace falta una identidad que relacione la tangente con otra razón. Es esta: tangente al cuadrado de alfa más uno es igual a secante al cuadrado de alfa. Sale de dividir la identidad fundamental entre coseno al cuadrado. Como conocemos la tangente, de aquí sacamos la secante.",
+      "captions": [
+        "Necesitamos una identidad que una la tangente con otra razón.",
+        "tg²α + 1 = sec²α",
+        "Sale de dividir sen²α + cos²α = 1 entre cos²α.",
+        "Conocemos tg α, así que de aquí sale sec α."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Identidad fundamental",
+            "tex": "\\mathrm{sen}^{2}\\alpha + \\cos^{2}\\alpha = 1",
+            "size": 46,
+            "color": "inkSoft"
+          },
+          {
+            "label": "Dividiendo entre el coseno al cuadrado",
+            "tex": "\\mathrm{tg}^{2}\\alpha + 1 = \\mathrm{sec}^{2}\\alpha",
+            "size": 54,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-secante",
+      "phase": "La cadena",
+      "heading": "La secante y el signo de la raíz",
+      "narration": "Sustituimos. Tangente al cuadrado es dos al cuadrado, o sea cuatro. Cuatro más uno son cinco, así que secante al cuadrado de alfa vale cinco. Al sacar la raíz aparece un más menos, y aquí es donde importa el cuadrante: en el primero la secante es positiva, así que la secante de alfa es raíz de cinco.",
+      "captions": [
+        "Sustituimos.",
+        "tg²α = 2² = 4.",
+        "4 + 1 = 5, así que sec²α = 5.",
+        "La raíz lleva ±, y en el 1º cuadrante sec α > 0: sec α = √5."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{sec}^{2}\\alpha = \\mathrm{tg}^{2}\\alpha + 1 = 2^{2} + 1 = 5",
+            "size": 50
+          },
+          {
+            "tex": "\\mathrm{sec}\\,\\alpha = \\pm\\sqrt{5} = +\\sqrt{5}",
+            "size": 56,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "el ± lo decide el cuadrante",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-coseno",
+      "phase": "La cadena",
+      "heading": "De la secante al coseno",
+      "narration": "[didactic] Con la secante ya tenemos el coseno, porque la secante es uno partido por el coseno. Entonces el coseno de alfa es uno partido por raíz de cinco. Eso se racionaliza multiplicando arriba y abajo por raíz de cinco, y queda raíz de cinco partido por cinco. Aproximadamente cero coma cuatro cuatro siete.",
+      "captions": [
+        "La secante es 1 / cos α, así que ya tenemos el coseno.",
+        "cos α = 1 / √5",
+        "Racionalizando: cos α = √5 / 5.",
+        "Aproximadamente 0,447."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{sec}\\,\\alpha = \\dfrac{1}{\\cos\\alpha} \\;\\Longrightarrow\\; \\cos\\alpha = \\dfrac{1}{\\sqrt{5}}",
+            "size": 48
+          },
+          {
+            "tex": "\\cos\\alpha = \\dfrac{1}{\\sqrt{5}} \\cdot \\dfrac{\\sqrt{5}}{\\sqrt{5}} = \\dfrac{\\sqrt{5}}{5}",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-seno",
+      "phase": "La cadena",
+      "heading": "Del coseno al seno",
+      "narration": "Para el seno usamos la definición de tangente: la tangente es el seno partido por el coseno. Despejando, el seno es el coseno por la tangente. Raíz de cinco partido por cinco, por dos, da dos raíz de cinco partido por cinco. Aproximadamente cero coma ocho nueve cuatro.",
+      "captions": [
+        "tg α = sen α / cos α.",
+        "Despejando: sen α = cos α · tg α.",
+        "(√5 / 5) · 2 = 2√5 / 5.",
+        "Aproximadamente 0,894."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{tg}\\,\\alpha = \\dfrac{\\mathrm{sen}\\,\\alpha}{\\cos\\alpha} \\;\\Longrightarrow\\; \\mathrm{sen}\\,\\alpha = \\cos\\alpha \\cdot \\mathrm{tg}\\,\\alpha",
+            "size": 46
+          },
+          {
+            "tex": "\\mathrm{sen}\\,\\alpha = \\dfrac{\\sqrt{5}}{5} \\cdot 2 = \\dfrac{2\\sqrt{5}}{5}",
+            "size": 52,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-cosecante",
+      "phase": "La cadena",
+      "heading": "Y la cosecante",
+      "narration": "Y la última, la cosecante, que es la inversa del seno. Uno partido por dos raíz de cinco partido por cinco es cinco partido por dos raíz de cinco. Racionalizando otra vez, queda raíz de cinco partido por dos. Aproximadamente uno coma uno uno ocho.",
+      "captions": [
+        "La cosecante es la inversa del seno.",
+        "1 : (2√5 / 5) = 5 / (2√5).",
+        "Racionalizando: cosec α = √5 / 2.",
+        "Aproximadamente 1,118."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{cosec}\\,\\alpha = \\dfrac{1}{\\mathrm{sen}\\,\\alpha} = \\dfrac{1}{\\tfrac{2\\sqrt{5}}{5}} = \\dfrac{5}{2\\sqrt{5}}",
+            "size": 46
+          },
+          {
+            "tex": "= \\dfrac{5\\sqrt{5}}{2 \\cdot 5} = \\dfrac{\\sqrt{5}}{2}",
+            "size": 52,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-resultado",
+      "phase": "El resultado",
+      "heading": "Las cinco razones",
+      "tail": 0.6,
+      "narration": "Ya están las cinco. Seno de alfa, dos raíz de cinco partido por cinco. Coseno de alfa, raíz de cinco partido por cinco. Cotangente un medio, secante raíz de cinco y cosecante raíz de cinco partido por dos. Todas positivas, como tenía que ser en el primer cuadrante.",
+      "captions": [
+        "Ya están las cinco.",
+        "sen α = 2√5 / 5.",
+        "cos α = √5 / 5.",
+        "cotg α = 1/2, sec α = √5, cosec α = √5 / 2.",
+        "Todas positivas, como tocaba en el 1º cuadrante."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{sen}\\,\\alpha = \\dfrac{2\\sqrt{5}}{5} \\qquad \\cos\\alpha = \\dfrac{\\sqrt{5}}{5}",
+            "size": 48,
+            "color": "solved"
+          },
+          {
+            "tex": "\\mathrm{cotg}\\,\\alpha = \\dfrac{1}{2} \\quad \\mathrm{sec}\\,\\alpha = \\sqrt{5} \\quad \\mathrm{cosec}\\,\\alpha = \\dfrac{\\sqrt{5}}{2}",
+            "size": 42,
+            "color": "warn"
+          }
+        ],
+        "badge": {
+          "text": "todas positivas",
+          "sub": "primer cuadrante",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "12-comprobacion",
+      "phase": "Comprobación",
+      "heading": "Lo comprobamos de dos maneras",
+      "narration": "[didactic] Lo comprobamos. Seno al cuadrado es dos raíz de cinco partido por cinco, al cuadrado, o sea veinte partido por veinticinco. Coseno al cuadrado es raíz de cinco partido por cinco, al cuadrado, o sea cinco partido por veinticinco. Veinte más cinco son veinticinco partido por veinticinco, es decir, uno. Y si divides el seno entre el coseno los cincos y las raíces se van, y queda dos, que es justo el dato del enunciado.",
+      "captions": [
+        "Lo comprobamos.",
+        "sen²α = (2√5/5)² = 20/25.",
+        "cos²α = (√5/5)² = 5/25.",
+        "20/25 + 5/25 = 25/25 = 1.",
+        "Y sen α / cos α = 2, justo el dato del enunciado."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\mathrm{sen}^{2}\\alpha + \\cos^{2}\\alpha = \\dfrac{20}{25} + \\dfrac{5}{25} = 1",
+            "size": 48,
+            "color": "teal"
+          },
+          {
+            "tex": "\\dfrac{\\mathrm{sen}\\,\\alpha}{\\cos\\alpha} = \\dfrac{2\\sqrt{5}/5}{\\sqrt{5}/5} = 2 = \\mathrm{tg}\\,\\alpha",
+            "size": 48,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "coincide con el dato",
+          "sub": "tg α = 2",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "13-error",
+      "phase": "El error",
+      "heading": "El error de leer la tangente como dos valores",
+      "narration": "[didactic] Y el error típico, que se ve muchísimo. Como la tangente es seno partido por coseno y vale dos, mucha gente escribe directamente seno igual a dos y coseno igual a uno. Es imposible, porque el seno nunca pasa de uno. Y además dos al cuadrado más uno al cuadrado da cinco, no uno, así que la identidad fundamental no se cumple. La tangente da la proporción entre el seno y el coseno, no sus valores.",
+      "captions": [
+        "El error típico, que se ve muchísimo.",
+        "Como tg α = 2, mucha gente escribe sen α = 2 y cos α = 1.",
+        "Imposible: el seno nunca pasa de 1.",
+        "Y 2² + 1² = 5, no 1: falla la identidad fundamental.",
+        "La tangente da la proporción, no los valores."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mal",
+            "tex": "\\mathrm{sen}\\,\\alpha = 2, \\quad \\cos\\alpha = 1 \\quad \\Longrightarrow\\quad 2^{2} + 1^{2} = 5 \\neq 1",
+            "size": 42,
+            "color": "danger"
+          },
+          {
+            "label": "Bien",
+            "tex": "\\mathrm{sen}\\,\\alpha = \\dfrac{2\\sqrt{5}}{5}, \\quad \\cos\\alpha = \\dfrac{\\sqrt{5}}{5}",
+            "size": 46,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "el seno y el coseno nunca pasan de 1",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1,
+      "narration": "[calm] Resumen. Los signos de la tangente y del seno colocan alfa en el primer cuadrante, así que todas las razones salen positivas. De ahí sale la cadena: cotangente un medio, secante raíz de cinco, coseno raíz de cinco partido por cinco, seno dos raíz de cinco partido por cinco y cosecante raíz de cinco partido por dos. Y todo queda comprobado con seno al cuadrado más coseno al cuadrado igual a uno.",
+      "captions": [
+        "Resumen.",
+        "Los signos colocan α en el 1º cuadrante: todo positivo.",
+        "cotg = 1/2, sec = √5, cos = √5/5, sen = 2√5/5, cosec = √5/2.",
+        "Comprobado con sen²α + cos²α = 1."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Cuadrante",
+            "tex": "\\alpha \\in 1^{\\circ} \\;\\Rightarrow\\; \\text{todo } > 0",
+            "color": "teal"
+          },
+          {
+            "label": "Seno y coseno",
+            "tex": "\\mathrm{sen}\\,\\alpha = \\tfrac{2\\sqrt{5}}{5}, \\;\\; \\cos\\alpha = \\tfrac{\\sqrt{5}}{5}",
+            "color": "solved"
+          },
+          {
+            "label": "Inversas",
+            "tex": "\\mathrm{cotg} = \\tfrac{1}{2}, \\;\\; \\mathrm{sec} = \\sqrt{5}, \\;\\; \\mathrm{cosec} = \\tfrac{\\sqrt{5}}{2}",
+            "color": "warn"
+          }
+        ],
+        "closing": "Con una razón y un signo tienes todas las demás: el cuadrante decide el signo de la raíz."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Calcular las razones trigonométricas con tg α = 2 y sen α > 0 | Trigonometría paso a paso",
+    "description": "Nos dan solo dos datos, tg α = 2 y sen α > 0, y calculamos las otras cinco razones trigonométricas sin calculadora y sin saber cuánto mide el ángulo.\n\nEl orden importa, y es este:\n1. El cuadrante. La tangente es positiva en el 1º y en el 3º, y el seno es positivo en el 1º y en el 2º. El único que cumple las dos condiciones es el 1º, así que todas las razones salen positivas.\n2. La cotangente, que es la inversa de la tangente: cotg α = 1/2.\n3. La secante, con la identidad tg²α + 1 = sec²α. Sustituyendo, sec²α = 2² + 1 = 5, y la raíz lleva ±. Aquí es donde sirve el cuadrante: en el 1º la secante es positiva, así que sec α = √5.\n4. El coseno, que es la inversa de la secante: cos α = 1/√5 = √5/5.\n5. El seno, con la definición de tangente: sen α = cos α · tg α = 2√5/5.\n6. La cosecante, inversa del seno: cosec α = 5/(2√5) = √5/2.\n\nLo comprobamos de dos formas: sen²α + cos²α = 20/25 + 5/25 = 1, y sen α / cos α = 2, que es el dato del enunciado.\n\nEl error típico: como tg α = 2, escribir sen α = 2 y cos α = 1. Es imposible, porque el seno nunca pasa de 1, y además 2² + 1² = 5, no 1. La tangente da la proporción entre el seno y el coseno, no sus valores.\n\nMás ejercicios resueltos de trigonometría: https://www.clasesdeapoyo.com\n\n#Trigonometría #Bachillerato #Matemáticas #EjercicioResuelto #RazonesTrigonometricas",
+    "tags": [
+      "trigonometria",
+      "razones trigonometricas",
+      "calcular razones trigonometricas",
+      "tangente",
+      "secante",
+      "cosecante",
+      "cotangente",
+      "identidad fundamental",
+      "cuadrantes trigonometria",
+      "signos de las razones",
+      "1 bachillerato",
+      "4 eso",
+      "matematicas bachillerato",
+      "ejercicio resuelto",
+      "matematicas paso a paso",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Trigonometría · 1º Bachillerato",
+      "line1": "Solo sabes\nque tg α = 2",
+      "line2": "Y salen las\ncinco razones",
+      "tex": "\\mathrm{tg}^{2}\\alpha + 1 = \\mathrm{sec}^{2}\\alpha",
+      "badge": "sin calculadora"
+    }
+  },
+  "reel": {
+    "title": "tg α = 2 no significa sen α = 2 (Trigonometría, ejercicio 4a)",
+    "caption": "Si tg α = 2, el seno no vale 2.\n\nEs el error más repetido de todo el tema. Como la tangente es el seno partido por el coseno, mucha gente escribe sen α = 2 y cos α = 1 y sigue adelante. Imposible: el seno nunca pasa de 1, y además 2² + 1² = 5, no 1, así que la identidad fundamental se cae.\n\nLa tangente da la proporción entre el seno y el coseno, no sus valores. Con tg²α + 1 = sec²α sale sec α = √5, de ahí cos α = √5/5 y sen α = 2√5/5. Ahora sí: 20/25 + 5/25 = 1.\n\nEn el vídeo completo salen las cinco razones, y el paso donde el cuadrante decide el signo de la raíz.\n\nEjercicio entero en YouTube, y más ejercicios resueltos en ClasesDeApoyo.com.\n\n#trigonometria #matematicas #bachillerato #1bachillerato #4eso #mates #ejerciciosresueltos #razonestrigonometricas #seno #coseno #tangente #selectividad #estudiar #clasesdeapoyo",
+    "cover": {
+      "kicker": "Trigonometría",
+      "line1": "tg α = 2\nno es sen α = 2",
+      "line2": "La tangente es\nuna proporción",
+      "tex": "\\mathrm{tg}^{2}\\alpha + 1 = \\mathrm{sec}^{2}\\alpha",
+      "badge": "2² + 1² = 5"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "El seno no vale 2",
+        "tail": 0.4,
+        "narration": "[excited] Si la tangente de alfa vale dos, el seno no vale dos. Es imposible.",
+        "captions": [
+          "Si tg α = 2, el seno no vale 2.",
+          "Es imposible."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Trigonometría · 1º Bach",
+          "title": "tg α = 2\n*no es sen α = 2*",
+          "tex": "\\mathrm{tg}\\,\\alpha = \\dfrac{\\mathrm{sen}\\,\\alpha}{\\cos\\alpha} = 2",
+          "texColor": "teal",
+          "texSize": 48
+        }
+      },
+      {
+        "id": "r2-error",
+        "phase": "El error",
+        "heading": "Falla la identidad fundamental",
+        "tail": 0.4,
+        "narration": "[didactic] El seno nunca pasa de uno. Y si pruebas seno dos y coseno uno, dos al cuadrado más uno al cuadrado da cinco, no uno. La identidad fundamental se cae.",
+        "captions": [
+          "El seno nunca pasa de 1.",
+          "Con sen = 2 y cos = 1: 2² + 1² = 5, no 1.",
+          "La identidad fundamental se cae."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Mal",
+              "tex": "\\mathrm{sen}\\,\\alpha = 2, \\;\\; \\cos\\alpha = 1",
+              "size": 44,
+              "color": "danger"
+            },
+            {
+              "tex": "2^{2} + 1^{2} = 5 \\neq 1",
+              "size": 48,
+              "color": "danger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-clave",
+        "phase": "La identidad",
+        "heading": "Es una proporción",
+        "tail": 0.4,
+        "narration": "[cheerful] La tangente da la proporción, no los valores. Usa tangente al cuadrado más uno igual a secante al cuadrado: sale secante raíz de cinco, coseno raíz de cinco partido por cinco y seno dos raíz de cinco partido por cinco. Ahora sí suman uno.",
+        "captions": [
+          "La tangente da la proporción, no los valores.",
+          "tg²α + 1 = sec²α = 5, así que sec α = √5.",
+          "Ahora sí: 20/25 + 5/25 = 1."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\mathrm{tg}^{2}\\alpha + 1 = \\mathrm{sec}^{2}\\alpha = 5",
+              "size": 44,
+              "color": "indet"
+            },
+            {
+              "tex": "\\cos\\alpha = \\dfrac{\\sqrt{5}}{5}, \\;\\; \\mathrm{sen}\\,\\alpha = \\dfrac{2\\sqrt{5}}{5}",
+              "size": 42,
+              "color": "solved"
+            },
+            {
+              "tex": "\\dfrac{20}{25} + \\dfrac{5}{25} = 1",
+              "size": 42,
+              "color": "teal"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Las cinco razones, paso a paso, en YouTube. Te espero en Clases de Apoyo.",
+        "captions": [
+          "Las cinco razones, paso a paso, en YouTube.",
+          "Te espero en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "La tangente es\n*una proporción*",
+          "tex": "\\mathrm{tg}^{2}\\alpha + 1 = \\mathrm{sec}^{2}\\alpha",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

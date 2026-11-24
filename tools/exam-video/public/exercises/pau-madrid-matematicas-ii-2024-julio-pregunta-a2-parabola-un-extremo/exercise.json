@@ -1,0 +1,183 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2024-julio-pregunta-a2-parabola-un-extremo",
+  "exam": {
+    "label": "PAU Madrid · Julio 2024 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta A.2",
+    "topic": "Extremos relativos"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "La derivada": "teal",
+    "Un solo cero": "warn",
+    "Ejemplo": "teal",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Una parábola tiene un solo extremo (PAU Madrid, julio 2024, Pregunta A.2)",
+    "caption": "¿Puede una parábola tener dos extremos relativos? Spoiler: no 🚫\n\nPAU Madrid, julio 2024, Matemáticas II, pregunta A.2:\n1️⃣ f(x) = ax² + bx + c, con a ≠ 0\n2️⃣ f′(x) = 2ax + b es una recta, de grado 1\n3️⃣ f′(x) = 0 solo en x = −b/(2a) → un único extremo: el vértice\n\nTruco: un polinomio de grado n tiene como mucho n − 1 extremos. Para tener dos, necesitas grado 3.\n\n📌 Guárdalo para el examen\n💬 ¿Lo habrías justificado así?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#derivadas #extremos #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Julio 2024 · Matemáticas II",
+      "line1": "¿Dos extremos\nen una parábola?",
+      "line2": "No: f′ es\nuna recta",
+      "tex": "f'(x) = 2ax + b",
+      "badge": "✓  un solo extremo",
+      "footer": "Pregunta A.2 · PAU Madrid 2024, resuelta"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "¿Dos extremos?",
+        "tail": 0.4,
+        "narration": "[energetic] ¿Puede una parábola tener dos extremos relativos? No, y se demuestra en una línea.",
+        "captions": [
+          "¿Puede una parábola tener dos extremos relativos?",
+          "No, y se demuestra en una línea."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Julio 2024",
+          "title": "¿Dos extremos\nen una *parábola*?",
+          "tex": "f(x) = ax^2 + bx + c",
+          "texColor": "teal",
+          "texSize": 72
+        }
+      },
+      {
+        "id": "r2-derivada",
+        "phase": "La derivada",
+        "heading": "Su derivada es una recta",
+        "tail": 0.4,
+        "narration": "[didactic] Una parábola es a equis cuadrado más be equis más ce, con a distinto de cero. Su derivada, dos a equis más be, es una recta.",
+        "captions": [
+          "Una parábola es ax² + bx + c, con a ≠ 0.",
+          "Su derivada, 2ax + b, es una recta."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Grado 2",
+              "tex": "f(x) = ax^2 + bx + c,\\ \\ a \\neq 0",
+              "size": 46,
+              "color": "given"
+            },
+            {
+              "label": "Grado 1",
+              "tex": "f'(x) = 2ax + b",
+              "size": 58,
+              "color": "teal"
+            }
+          ],
+          "chips": [
+            {
+              "text": "pendiente 2a ≠ 0",
+              "color": "teal"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-un-cero",
+        "phase": "Un solo cero",
+        "heading": "f′ se anula una sola vez",
+        "tail": 0.4,
+        "narration": "[didactic] Los extremos están donde la derivada vale cero. Y esa recta, que no es horizontal, solo corta al eje en menos be partido por dos a.",
+        "captions": [
+          "Los extremos están donde la derivada vale 0.",
+          "Y esa recta, que no es horizontal, solo corta al eje en x = −b/(2a)."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f'(x) = 0 \\iff 2ax + b = 0",
+              "size": 50,
+              "color": "ink"
+            },
+            {
+              "tex": "x = -\\dfrac{b}{2a}",
+              "size": 64,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "una sola solución",
+            "color": "solved"
+          }
+        }
+      },
+      {
+        "id": "r4-ejemplo",
+        "phase": "Ejemplo",
+        "heading": "El vértice, y nada más",
+        "tail": 0.4,
+        "narration": "[didactic] Por ejemplo, menos equis cuadrado más dos equis tiene un máximo en uno, uno: el vértice. Para dos extremos hace falta grado tres.",
+        "captions": [
+          "Por ejemplo, −x² + 2x tiene un máximo en (1, 1): el vértice.",
+          "Para dos extremos hace falta grado 3."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "-x*x + 2*x",
+          "xMin": -0.45,
+          "xMax": 2.45,
+          "yMin": -1.25,
+          "yMax": 1.5,
+          "points": [
+            {
+              "x": 1,
+              "y": 1,
+              "label": "máximo (1, 1)",
+              "color": "solved"
+            }
+          ],
+          "lead": {
+            "tex": "f(x) = -x^2 + 2x",
+            "size": 50,
+            "color": "teal"
+          },
+          "chips": [
+            {
+              "text": "dos extremos → grado 3 o más",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Grado dos, un solo extremo: el vértice. Más ejercicios en Clases de Apoyo.",
+        "captions": [
+          "Grado 2, un solo extremo: el vértice.",
+          "Más ejercicios en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Grado 2:\n*un solo*\nextremo",
+          "tex": "x = -\\dfrac{b}{2a}",
+          "lines": [
+            "Pregunta A.2 · PAU Madrid 2024",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,595 @@
+{
+  "slug": "pau-madrid-matematicas-ccss-ii-2026-julio-pregunta-4-1-tamano-muestra-binomial-normal",
+  "exam": {
+    "label": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 4.1",
+    "topic": "Tamaño muestral y binomial"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Tamaño muestral": "teal",
+    "Parte b · Binomial a normal": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "La tabla": "indet",
+    "El resultado": "solved"
+  },
+  "youtube": {
+    "title": "Tamaño de la muestra y binomial aproximada por la normal | PAU Madrid Julio 2026, Matemáticas CCSS II, Pregunta 4.1",
+    "description": "Resolvemos paso a paso la Pregunta 4.1 del examen extraordinario de Selectividad (PAU/EvAU) de la Comunidad de Madrid de julio de 2026, Matemáticas Aplicadas a las Ciencias Sociales II. El 83 % de los clientes de una plataforma de cosmética prefiere productos naturales.\n\na) Tamaño mínimo de la muestra para estimar la proporción con un nivel de confianza del 98,8 % y un error máximo del 4 %: z = 2,51, n ≥ 2,51² · 0,83 · 0,17 / 0,04² = 555,59, así que hacen falta al menos 556 clientes.\nb) Muestra de 100 clientes con p = 0,8: X ~ B(100; 0,8) ≈ N(80, 4). Con la corrección por continuidad, P(70 ≤ X < 75) = P(69,5 < X < 74,5) ≈ 0,0809.\n\nLo que vas a aprender:\n• Cómo obtener el valor crítico z a partir del nivel de confianza.\n• Cómo despejar el tamaño de la muestra y por qué se redondea hacia arriba.\n• Cuándo se puede aproximar una binomial por una normal.\n• Cómo aplicar la corrección por continuidad con \"al menos\" y \"menos de\".\n\nEnunciado y solución en PDF del examen de julio de 2026 de Matemáticas CCSS II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasCCSS #Estadística #Inferencia",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "julio 2026",
+      "extraordinaria",
+      "Matemáticas CCSS II",
+      "matemáticas aplicadas a las ciencias sociales",
+      "2º bachillerato",
+      "inferencia estadística",
+      "tamaño de la muestra",
+      "intervalo de confianza proporción",
+      "valor crítico",
+      "binomial aproximada por normal",
+      "corrección por continuidad",
+      "examen resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Tamaño de\nla muestra",
+      "line2": "Y binomial por\nla normal",
+      "tex": "n \\geq 556",
+      "badge": "z = 2,51"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Cuántos clientes encuestar, y una binomial por la normal",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta cuatro punto uno de la PAU de Madrid de julio de dos mil veintiséis, Matemáticas Aplicadas a las Ciencias Sociales. Primero, cuántos clientes hay que encuestar para estimar una proporción con un error pequeño. Después, una binomial de cien clientes que aproximamos por una normal.",
+      "captions": [
+        "Pregunta 4.1 de la PAU de Madrid de julio de 2026, Matemáticas CCSS II.",
+        "Primero, cuántos clientes hay que encuestar para estimar una proporción con un error pequeño.",
+        "Después, una binomial de 100 clientes que aproximamos por una normal."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II · Pregunta 4.1",
+        "title": "¿Cuántos *clientes*\nhay que encuestar?",
+        "tex": "n \\geq z^2\\,\\dfrac{\\hat{p}\\,(1-\\hat{p})}{E^2}",
+        "texColor": "teal",
+        "texSize": 80
+      }
+    },
+    {
+      "id": "02-datos-a",
+      "phase": "Planteamiento",
+      "heading": "Apartado a: los datos",
+      "narration": "Apartado a. Un estudio previo dice que el ochenta y tres por ciento de los clientes prefiere cosmética natural. Queremos un nivel de confianza del noventa y ocho coma ocho por ciento, y que el error no supere el cuatro por ciento.",
+      "captions": [
+        "Apartado a.",
+        "Un estudio previo dice que el 83 % de los clientes prefiere cosmética natural.",
+        "Queremos un nivel de confianza del 98,8 %, y que el error no supere el 4 %."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Proporción previa",
+            "tex": "\\hat{p} = 0{,}83",
+            "color": "given",
+            "size": 56
+          },
+          {
+            "label": "Nivel de confianza",
+            "tex": "1 - \\alpha = 0{,}988",
+            "color": "given",
+            "size": 56
+          },
+          {
+            "label": "Error máximo",
+            "tex": "E = 0{,}04",
+            "color": "given",
+            "size": 56
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-formula",
+      "phase": "Parte a · Tamaño muestral",
+      "heading": "El error de una proporción",
+      "narration": "El error máximo al estimar una proporción es el valor crítico zeta, por la raíz de p por uno menos p, entre n. Para que no pase de cero coma cero cuatro, despejamos n: n tiene que ser mayor o igual que zeta al cuadrado, por p por uno menos p, entre el error al cuadrado.",
+      "captions": [
+        "El error máximo al estimar una proporción es z por la raíz de p(1 − p)/n.",
+        "Para que no pase de 0,04, despejamos n: n ≥ z² · p(1 − p) / E²."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "E = z_{\\alpha/2}\\,\\sqrt{\\dfrac{\\hat{p}\\,(1-\\hat{p})}{n}}",
+            "size": 56
+          },
+          {
+            "tex": "n \\geq z_{\\alpha/2}^{2}\\,\\dfrac{\\hat{p}\\,(1-\\hat{p})}{E^{2}}",
+            "size": 56,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-z-critico",
+      "phase": "Parte a · Tamaño muestral",
+      "heading": "El valor crítico: buscamos 0,994 en la tabla",
+      "narration": "Ahora el valor crítico. El noventa y ocho coma ocho por ciento queda en el centro, y lo que sobra, el uno coma dos por ciento, se reparte entre las dos colas. En cada cola queda un cero coma seis por ciento. Así que buscamos en la tabla el valor que deja por debajo uno más cero coma nueve ocho ocho, entre dos: cero coma nueve nueve cuatro. Es zeta igual a dos coma cinco uno.",
+      "captions": [
+        "Ahora el valor crítico.",
+        "El 98,8 % queda en el centro, y lo que sobra, el 1,2 %, se reparte entre las dos colas.",
+        "En cada cola queda un 0,6 %.",
+        "Así que buscamos en la tabla (1 + 0,988)/2 = 0,994.",
+        "Es z = 2,51."
+      ],
+      "body": {
+        "type": "normal",
+        "mu": 0,
+        "sigma": 1,
+        "cut": 2.51,
+        "tail": "right",
+        "cutLabel": "2,51",
+        "areaLabel": "0,006",
+        "lead": {
+          "tex": "P(Z < z_{\\alpha/2}) = \\dfrac{1 + 0{,}988}{2} = 0{,}994 \\;\\Rightarrow\\; z_{\\alpha/2} = 2{,}51",
+          "size": 42
+        }
+      }
+    },
+    {
+      "id": "05-calculo-n",
+      "phase": "Parte a · Tamaño muestral",
+      "heading": "n ≥ 555,59",
+      "narration": "Sustituimos. Dos coma cinco uno al cuadrado, por cero coma ocho tres, por cero coma uno siete, entre cero coma cero cuatro al cuadrado. Sale quinientos cincuenta y cinco coma cinco nueve.",
+      "captions": [
+        "Sustituimos.",
+        "2,51² · 0,83 · 0,17 / 0,04².",
+        "Sale 555,59."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "n \\geq 2{,}51^2 \\cdot \\dfrac{0{,}83 \\cdot 0{,}17}{0{,}04^2}",
+            "size": 56
+          },
+          {
+            "tex": "n \\geq 555{,}59",
+            "size": 64,
+            "color": "inkSoft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-resultado-a",
+      "phase": "Parte a · Tamaño muestral",
+      "heading": "Redondeamos hacia arriba: 556 clientes",
+      "tail": 0.5,
+      "narration": "El número de clientes es un número entero, y tiene que ser mayor o igual que quinientos cincuenta y cinco coma cinco nueve. Así que redondeamos siempre hacia arriba. Hacen falta como mínimo quinientos cincuenta y seis clientes.",
+      "captions": [
+        "El número de clientes es entero, y tiene que ser mayor o igual que 555,59.",
+        "Así que redondeamos siempre hacia arriba.",
+        "Hacen falta como mínimo 556 clientes."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "n \\geq 555{,}59 \\;\\Rightarrow\\; n = 556",
+            "size": 62,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "siempre hacia arriba",
+            "color": "warn"
+          }
+        ],
+        "badge": {
+          "text": "Al menos 556 clientes",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-binomial",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Apartado b: X ~ B(100; 0,8)",
+      "narration": "Apartado b. Ahora tomamos cien clientes, y la proporción de la población es cero coma ocho. Llamamos X al número de clientes de la muestra que prefieren cosmética natural. Cien ensayos independientes con probabilidad cero coma ocho: es una binomial.",
+      "captions": [
+        "Apartado b.",
+        "Ahora tomamos 100 clientes, y la proporción de la población es p = 0,8.",
+        "X = número de clientes de la muestra que prefieren cosmética natural.",
+        "100 ensayos independientes con probabilidad 0,8: es una binomial."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "X \\equiv \\text{clientes que prefieren cosmética natural}",
+            "size": 44
+          },
+          {
+            "label": "Modelo",
+            "tex": "X \\sim B(100;\\ 0{,}8)",
+            "color": "indet",
+            "size": 64
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-aproximacion",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Aproximamos por N(80, 4)",
+      "narration": "Sumar tantos casos de la binomial es muy largo, así que la aproximamos por una normal. Se puede, porque n por p es ochenta y n por uno menos p es veinte, los dos mayores que cinco. La media es ochenta, y la desviación típica es la raíz de cien por cero coma ocho por cero coma dos, la raíz de dieciséis, cuatro.",
+      "captions": [
+        "Sumar tantos casos de la binomial es muy largo, así que la aproximamos por una normal.",
+        "Se puede, porque np = 80 y n(1 − p) = 20, los dos mayores que 5.",
+        "La media es 80, y la desviación típica es √(100 · 0,8 · 0,2) = √16 = 4."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "np = 80 > 5, \\qquad n(1-p) = 20 > 5",
+            "size": 48,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "\\mu = 80, \\qquad \\sigma = \\sqrt{100 \\cdot 0{,}8 \\cdot 0{,}2} = 4",
+            "size": 50
+          },
+          {
+            "tex": "B(100;\\ 0{,}8) \\approx N(80,\\ 4)",
+            "size": 60,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-traducir",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Al menos el 70 %, menos de 3/4",
+      "narration": "Traducimos el enunciado. Al menos el setenta por ciento de cien es X mayor o igual que setenta. Menos de tres cuartos de cien es X menor que setenta y cinco. Buscamos la probabilidad de que X esté entre setenta, incluido, y setenta y cinco, sin incluir: los valores de setenta a setenta y cuatro.",
+      "captions": [
+        "Traducimos el enunciado.",
+        "Al menos el 70 % de 100: X ≥ 70.",
+        "Menos de 3/4 de 100: X < 75.",
+        "Buscamos P(70 ≤ X < 75): los valores de 70 a 74."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Al menos el 70 %",
+            "tex": "X \\geq 70",
+            "color": "teal",
+            "size": 54
+          },
+          {
+            "label": "Menos de 3/4",
+            "tex": "X < 75",
+            "color": "warn",
+            "size": 54
+          },
+          {
+            "tex": "P(70 \\leq X < 75) = P(X = 70, \\dots, 74)",
+            "size": 50,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-continuidad",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Corrección por continuidad: 69,5 y 74,5",
+      "narration": "Al pasar a la normal, que es continua, corregimos medio punto cada extremo. Setenta está incluido, así que bajamos a sesenta y nueve coma cinco. Setenta y cinco no está incluido, así que el último valor es setenta y cuatro, y subimos a setenta y cuatro coma cinco.",
+      "captions": [
+        "Al pasar a la normal, que es continua, corregimos medio punto cada extremo.",
+        "70 está incluido, así que bajamos a 69,5.",
+        "75 no está incluido, así que el último valor es 74, y subimos a 74,5."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(70 \\leq X < 75) \\approx P(69{,}5 < X' < 74{,}5)",
+            "size": 54,
+            "color": "indet"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "70 \\to 69{,}5",
+            "color": "teal"
+          },
+          {
+            "tex": "74 \\to 74{,}5",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-tipificar",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Tipificamos",
+      "narration": "Tipificamos: restamos ochenta y dividimos entre cuatro. Sesenta y nueve coma cinco da menos dos coma seis dos cinco, y setenta y cuatro coma cinco da menos uno coma tres siete cinco. La tabla tiene dos decimales, así que nos quedamos con menos dos coma seis dos y menos uno coma tres siete.",
+      "captions": [
+        "Tipificamos: restamos 80 y dividimos entre 4.",
+        "(69,5 − 80)/4 = −2,625 y (74,5 − 80)/4 = −1,375.",
+        "La tabla tiene dos decimales, así que nos quedamos con −2,62 y −1,37."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "z_1 = \\dfrac{69{,}5 - 80}{4} = -2{,}625 \\approx -2{,}62",
+            "size": 50
+          },
+          {
+            "tex": "z_2 = \\dfrac{74{,}5 - 80}{4} = -1{,}375 \\approx -1{,}37",
+            "size": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-simetria",
+      "phase": "Parte b · Binomial a normal",
+      "heading": "Por simetría, pasamos a valores positivos",
+      "narration": "La tabla no tiene negativos, así que usamos la simetría. La probabilidad entre menos dos coma seis dos y menos uno coma tres siete es la misma que entre uno coma tres siete y dos coma seis dos. Y esa es la resta de las dos lecturas de la tabla: cero coma nueve nueve cinco seis menos cero coma nueve uno cuatro siete.",
+      "captions": [
+        "La tabla no tiene negativos, así que usamos la simetría.",
+        "P(−2,62 < Z < −1,37) = P(1,37 < Z < 2,62).",
+        "Y esa es la resta de las dos lecturas: 0,9956 − 0,9147."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Simetría",
+            "tex": "P(-2{,}62 < Z < -1{,}37) = P(1{,}37 < Z < 2{,}62)",
+            "size": 46
+          },
+          {
+            "label": "Tabla",
+            "tex": "P(Z < 2{,}62) - P(Z < 1{,}37) = 0{,}9956 - 0{,}9147",
+            "size": 46,
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-resultado-b",
+      "phase": "Resultado",
+      "heading": "P(70 ≤ X < 75) ≈ 0,0809",
+      "tail": 0.5,
+      "narration": "La resta da cero coma cero ocho cero nueve. Hay algo más de un ocho por ciento de probabilidad de que entre el setenta y el setenta y cinco por ciento de la muestra prefiera cosmética natural. Es poco, porque lo esperado es ochenta.",
+      "captions": [
+        "La resta da 0,0809.",
+        "Hay algo más de un 8 % de probabilidad de que entre el 70 % y el 75 % de la muestra prefiera cosmética natural.",
+        "Es poco, porque lo esperado es 80."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(70 \\leq X < 75) \\approx 0{,}9956 - 0{,}9147 = 0{,}0809",
+            "size": 54,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "≈ 0,0809",
+          "sub": "algo más de un 8 %",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. En el apartado a, el valor crítico se busca con cero coma nueve nueve cuatro, sale dos coma cinco uno, y hacen falta al menos quinientos cincuenta y seis clientes, redondeando hacia arriba. En el apartado b, la binomial de cien y cero coma ocho se aproxima por una normal de media ochenta y desviación cuatro, y con la corrección por continuidad la probabilidad es cero coma cero ocho cero nueve.",
+      "captions": [
+        "Resumen.",
+        "En el apartado a, z se busca con 0,994, sale 2,51, y hacen falta al menos 556 clientes, redondeando hacia arriba.",
+        "En el apartado b, B(100; 0,8) ≈ N(80, 4), y con la corrección por continuidad P ≈ 0,0809."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Valor crítico",
+            "tex": "z_{\\alpha/2} = 2{,}51",
+            "color": "teal"
+          },
+          {
+            "label": "a) Muestra",
+            "tex": "n \\geq 556 \\text{ clientes}",
+            "color": "solved"
+          },
+          {
+            "label": "b) Aproximación",
+            "tex": "B(100;\\,0{,}8) \\approx N(80,\\,4)",
+            "color": "indet"
+          },
+          {
+            "label": "b) Probabilidad",
+            "tex": "P(69{,}5 < X' < 74{,}5) \\approx 0{,}0809",
+            "color": "solved"
+          }
+        ],
+        "closing": "En la tabla, busca (1 + NC)/2."
+      }
+    }
+  ],
+  "reel": {
+    "title": "El 98,8 % no se busca en la tabla (PAU Madrid CCSS, julio 2026, Pregunta 4.1)",
+    "caption": "Nivel de confianza del 98,8 %: no busques 0,988 en la tabla.\n\nPregunta 4.1 de la PAU de Madrid de julio de 2026 (Matemáticas CCSS II): cuántos clientes hay que encuestar para estimar una proporción del 83 % con un error máximo del 4 %. Si buscas 0,988 en la tabla te sale z = 2,26 y una muestra de 451 clientes, que se queda corta.\n\nEl 1,2 % que sobra se reparte entre las dos colas, así que buscas (1 + 0,988)/2 = 0,994. Sale z = 2,51 y n ≥ 555,59, es decir, al menos 556 clientes.\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasccss #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #estadistica #inferencia #distribucionnormal",
+    "cover": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "No busques\n0,988 en\nla tabla",
+      "line2": "Busca 0,994",
+      "tex": "z_{\\alpha/2} = 2{,}51",
+      "badge": "✗  z = 2,26"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "El valor crítico",
+        "tail": 0.4,
+        "narration": "[energetic] Confianza del noventa y ocho coma ocho por ciento. Si buscas cero coma nueve ocho ocho en la tabla, has fallado.",
+        "captions": [
+          "Confianza del 98,8 %.",
+          "Si buscas 0,988 en la tabla, has fallado."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Julio 2026",
+          "title": "No busques\n*0,988*\nen la tabla",
+          "tex": "z_{\\alpha/2} = \\;?",
+          "texSize": 80,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Buscar 0,988 tal cual",
+        "tail": 0.4,
+        "narration": "Con cero coma nueve ocho ocho, la tabla da dos coma dos seis, y salen cuatrocientos cincuenta y un clientes. Se queda corto.",
+        "captions": [
+          "Con 0,988, la tabla da z = 2,26, y salen 451 clientes.",
+          "Se queda corto."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "z \\;\\xcancel{=}\\; 2{,}26",
+              "size": 56,
+              "color": "danger"
+            },
+            {
+              "tex": "n = 451",
+              "size": 56,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Deja fuera las dos colas",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-tabla",
+        "phase": "La tabla",
+        "heading": "El 1,2 % se reparte en dos colas",
+        "tail": 0.4,
+        "narration": "El uno coma dos por ciento que sobra va a las dos colas. Así que buscas cero coma nueve nueve cuatro: dos coma cinco uno.",
+        "captions": [
+          "El 1,2 % que sobra va a las dos colas.",
+          "Así que buscas (1 + 0,988)/2 = 0,994: z = 2,51."
+        ],
+        "body": {
+          "type": "normal",
+          "mu": 0,
+          "sigma": 1,
+          "cut": 2.51,
+          "tail": "right",
+          "cutLabel": "2,51",
+          "areaLabel": "0,006",
+          "lead": {
+            "tex": "\\dfrac{1 + 0{,}988}{2} = 0{,}994",
+            "size": 46
+          }
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Al menos 556 clientes",
+        "tail": 0.4,
+        "narration": "Sale quinientos cincuenta y cinco coma cinco nueve. Hacia arriba, quinientos cincuenta y seis.",
+        "captions": [
+          "Sale n ≥ 555,59.",
+          "Hacia arriba, 556 clientes."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "n \\geq 2{,}51^2 \\cdot \\dfrac{0{,}83 \\cdot 0{,}17}{0{,}04^2}",
+              "size": 44
+            },
+            {
+              "tex": "n = 556",
+              "size": 64,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Uno más el nivel de confianza, entre dos. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "(1 + NC)/2.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Busca\n*(1 + NC)/2*",
+          "tex": "z_{\\alpha/2} = 2{,}51",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

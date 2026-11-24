@@ -1,0 +1,175 @@
+{
+  "slug": "matrices-ejercicio-6-potencia-ciclica",
+  "exam": {
+    "label": "Matrices · Ejercicio 6",
+    "site": "ClasesDeApoyo.com",
+    "question": "Ejercicio 6",
+    "topic": "Potencias de una matriz"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Las potencias": "warn",
+    "El ciclo": "indet",
+    "El resultado": "solved"
+  },
+  "reel": {
+    "title": "A elevado a 428 sin multiplicar 428 veces (Matrices, ejercicio 6)",
+    "caption": "¿A⁴²⁸? No multipliques 428 veces.\n\nEjercicio 6: A = [[4, 5, −1], [−3, −4, 1], [−3, −4, 0]]. Calcula A² y A³, y mira lo que pasa: A³ es la identidad. A partir de ahí las potencias se repiten de tres en tres: A⁴ = A, A⁵ = A², A⁶ = I...\n\nAsí que solo necesitas el resto de dividir 428 entre 3. 428 = 3 · 142 + 2, y por tanto A⁴²⁸ = (A³)¹⁴² · A² = I · A² = A² = [[4, 4, 1], [−3, −3, −1], [0, 1, −1]].\n\nEl truco sirve para cualquier potencia enorme: busca la primera que da la identidad y quédate con el resto.\n\nTienes la hoja completa de matrices, con soluciones paso a paso, en ClasesDeApoyo.com.\n\n#matrices #potenciasdematrices #algebra #matematicas #bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #estudiar #clasesdeapoyo #ejerciciosresueltos #algebralineal",
+    "cover": {
+      "kicker": "Matrices · Ejercicio 6",
+      "line1": "A⁴²⁸\nsin multiplicar\n428 veces",
+      "line2": "A³ = I",
+      "tex": "A^{428} = A^{2}",
+      "badge": "✓  busca el ciclo"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "A elevado a 428",
+        "tail": 0.4,
+        "narration": "[excited] ¿A elevado a cuatrocientos veintiocho? No multipliques cuatrocientas veintiocho veces. Basta con tres.",
+        "captions": [
+          "¿A elevado a 428?",
+          "No multipliques 428 veces.",
+          "Basta con tres."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · Ejercicio 6",
+          "title": "A⁴²⁸\n*sin multiplicar*\n428 veces",
+          "tex": "A = \\begin{pmatrix}4&5&-1\\\\-3&-4&1\\\\-3&-4&0\\end{pmatrix}",
+          "texSize": 56,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-potencias",
+        "phase": "Las potencias",
+        "heading": "Calcula A² y A³",
+        "tail": 0.4,
+        "narration": "Calcula A al cuadrado, y luego A al cubo. Mira lo que sale.",
+        "captions": [
+          "Calcula A², y luego A³.",
+          "Mira lo que sale."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^2 = \\begin{pmatrix}4&4&1\\\\-3&-3&-1\\\\0&1&-1\\end{pmatrix}",
+              "size": 46
+            },
+            {
+              "tex": "A^3 = A^2\\cdot A = \\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}",
+              "size": 46,
+              "color": "solved"
+            }
+          ],
+          "badge": {
+            "text": "A³ = I",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "03-ciclo",
+        "phase": "El ciclo",
+        "heading": "Se repite de tres en tres",
+        "tail": 0.4,
+        "narration": "[cheerful] A al cubo es la identidad. A partir de ahí, las potencias se repiten de tres en tres.",
+        "captions": [
+          "A³ es la identidad.",
+          "A partir de ahí, las potencias se repiten de tres en tres."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^4 = A^3\\cdot A = A",
+              "size": 50,
+              "color": "indet"
+            },
+            {
+              "tex": "A^5 = A^3\\cdot A^2 = A^2",
+              "size": 50,
+              "color": "indet"
+            },
+            {
+              "tex": "A^6 = A^3\\cdot A^3 = I",
+              "size": 50,
+              "color": "indet"
+            }
+          ],
+          "chips": [
+            {
+              "text": "ciclo de 3",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Solo importa el resto",
+        "tail": 0.4,
+        "narration": "Divide cuatrocientos veintiocho entre tres: ciento cuarenta y dos, y resto dos. Así que A elevado a cuatrocientos veintiocho es A al cuadrado.",
+        "captions": [
+          "428 entre 3: 142, y resto 2.",
+          "Así que A⁴²⁸ es A²."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "428 = 3\\cdot 142 + 2",
+              "size": 50
+            },
+            {
+              "tex": "A^{428} = (A^3)^{142}\\cdot A^2 = A^2",
+              "size": 48,
+              "color": "solved"
+            },
+            {
+              "tex": "A^{428} = \\begin{pmatrix}4&4&1\\\\-3&-3&-1\\\\0&1&-1\\end{pmatrix}",
+              "size": 44,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Busca la identidad y quédate con el resto. Tienes la hoja resuelta en ClasesDeApoyo punto com.",
+        "captions": [
+          "Busca la identidad y quédate con el resto.",
+          "La hoja resuelta en ClasesDeApoyo.com."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Busca\n*el ciclo*",
+          "tex": "A^3 = I",
+          "lines": [
+            "Hoja de matrices resuelta",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

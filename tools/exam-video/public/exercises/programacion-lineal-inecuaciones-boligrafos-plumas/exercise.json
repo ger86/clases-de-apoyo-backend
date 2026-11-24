@@ -1,0 +1,714 @@
+{
+  "slug": "programacion-lineal-inecuaciones-boligrafos-plumas",
+  "exam": {
+    "label": "Programación lineal · Bolígrafos y plumas",
+    "question": "Ejercicio",
+    "topic": "Sistema de inecuaciones y región factible",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Restricciones": "teal",
+    "Región factible": "indet",
+    "Vértices": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Del enunciado a la región factible",
+      "narration": "[energetic] Bolígrafos y plumas. Este es un problema de programación lineal en el que no hay que optimizar nada: solo hay que plantear las restricciones, dibujar la región factible y encontrar sus vértices. Vamos a hacerlo paso a paso.",
+      "captions": [
+        "Bolígrafos y plumas.",
+        "Es un problema de programación lineal en el que no hay que optimizar nada: solo plantear las restricciones, dibujar la región factible y encontrar sus vértices.",
+        "Vamos a hacerlo paso a paso."
+      ],
+      "tail": 0.5,
+      "body": {
+        "type": "hook",
+        "kicker": "Programación lineal · Sistema de inecuaciones",
+        "title": "Del enunciado a la *región factible*\ny sus *vértices*",
+        "tex": "x \\leq 200, \\quad y \\leq 150, \\quad x + y \\leq 250",
+        "texColor": "teal",
+        "texSize": 72
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "Planteamiento",
+      "heading": "Lo que dice el enunciado",
+      "narration": "[didactic] Una industria fabrica bolígrafos y plumas estilográficas. Cada día no puede producir más de doscientos bolígrafos, ni más de ciento cincuenta plumas. Y el total de la producción no puede superar las doscientas cincuenta unidades. Tres límites: ahí están escondidas las tres restricciones.",
+      "captions": [
+        "Una industria fabrica bolígrafos y plumas estilográficas.",
+        "Cada día no puede producir más de 200 bolígrafos, ni más de 150 plumas.",
+        "Y el total de la producción no puede superar las 250 unidades.",
+        "Tres límites: ahí están escondidas las tres restricciones."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Límite 1",
+            "text": "No más de 200 bolígrafos al día",
+            "color": "given",
+            "size": 46
+          },
+          {
+            "label": "Límite 2",
+            "text": "No más de 150 plumas al día",
+            "color": "given",
+            "size": 46
+          },
+          {
+            "label": "Límite 3",
+            "text": "La producción total no supera las 250 unidades",
+            "color": "warn",
+            "size": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-variables",
+      "phase": "Planteamiento",
+      "heading": "Primero, las variables",
+      "narration": "Lo primero es dar nombre a lo que no conocemos. Llamamos x al número de bolígrafos fabricados cada día, e y al número de plumas fabricadas cada día. Todo el problema se escribe con estas dos letras.",
+      "captions": [
+        "Lo primero es dar nombre a lo que no conocemos.",
+        "Llamamos x al número de bolígrafos fabricados cada día, e y al número de plumas fabricadas cada día.",
+        "Todo el problema se escribe con estas dos letras."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Variable",
+            "tex": "x \\equiv \\text{n\\'umero de bol\\'igrafos fabricados al d\\'ia}",
+            "color": "teal",
+            "size": 48
+          },
+          {
+            "label": "Variable",
+            "tex": "y \\equiv \\text{n\\'umero de plumas fabricadas al d\\'ia}",
+            "color": "indet",
+            "size": 48
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-restricciones-maquinas",
+      "phase": "Restricciones",
+      "heading": "Las dos primeras restricciones: los máximos de cada producto",
+      "narration": "[didactic] No se pueden producir más de doscientos bolígrafos: x menor o igual que doscientos. No se pueden producir más de ciento cincuenta plumas: y menor o igual que ciento cincuenta. Y como no tiene sentido fabricar una cantidad negativa, x e y son mayores o iguales que cero.",
+      "captions": [
+        "No se pueden producir más de 200 bolígrafos: x ≤ 200.",
+        "No se pueden producir más de 150 plumas: y ≤ 150.",
+        "Y como no tiene sentido fabricar una cantidad negativa, x e y son mayores o iguales que 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Bolígrafos",
+            "tex": "0 \\leq x \\leq 200",
+            "color": "teal",
+            "size": 64
+          },
+          {
+            "label": "Plumas",
+            "tex": "0 \\leq y \\leq 150",
+            "color": "indet",
+            "size": 64
+          }
+        ],
+        "chips": [
+          {
+            "text": "las cantidades no pueden ser negativas",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-restriccion-total",
+      "phase": "Restricciones",
+      "heading": "La tercera restricción: el total",
+      "narration": "El total de la producción es la suma de bolígrafos y plumas, x más y. Y ese total no puede superar las doscientas cincuenta unidades. Así que x más y es menor o igual que doscientos cincuenta. Ya tenemos el sistema completo de inecuaciones.",
+      "captions": [
+        "El total de la producción es la suma de bolígrafos y plumas, x + y.",
+        "Y ese total no puede superar las 250 unidades.",
+        "Así que x + y ≤ 250.",
+        "Ya tenemos el sistema completo de inecuaciones."
+      ],
+      "tail": 0.5,
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Total",
+            "tex": "x + y \\leq 250",
+            "color": "warn",
+            "size": 66
+          },
+          {
+            "label": "Sistema",
+            "tex": "\\begin{cases} 0 \\leq x \\leq 200 \\\\ 0 \\leq y \\leq 150 \\\\ x + y \\leq 250 \\end{cases}",
+            "size": 50
+          }
+        ],
+        "badge": {
+          "text": "3 restricciones + las de signo",
+          "sub": "el conjunto de restricciones del enunciado",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "06-rectas",
+      "phase": "Región factible",
+      "heading": "Cada inecuación se dibuja como una recta",
+      "narration": "[didactic] Para dibujar la región, convertimos cada inecuación en una recta. La recta x igual a doscientos es vertical. La recta y igual a ciento cincuenta es horizontal. Y la recta x más y igual a doscientos cincuenta es inclinada: pasa por el punto cero, doscientos cincuenta y por el punto doscientos cincuenta, cero.",
+      "captions": [
+        "Para dibujar la región, convertimos cada inecuación en una recta.",
+        "La recta x = 200 es vertical.",
+        "La recta y = 150 es horizontal.",
+        "Y la recta x + y = 250 es inclinada: pasa por (0, 250) y por (250, 0)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Vertical",
+            "tex": "x = 200",
+            "color": "teal",
+            "size": 56
+          },
+          {
+            "label": "Horizontal",
+            "tex": "y = 150",
+            "color": "indet",
+            "size": 56
+          },
+          {
+            "label": "Inclinada",
+            "tex": "x + y = 250 \\;\\Rightarrow\\; (0,\\,250) \\text{ y } (250,\\,0)",
+            "color": "warn",
+            "size": 52
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-recta-total",
+      "phase": "Región factible",
+      "heading": "La recta x + y = 250 en el plano",
+      "narration": "Así queda la recta x más y igual a doscientos cincuenta. Corta el eje vertical en doscientos cincuenta y el eje horizontal también en doscientos cincuenta. Todo lo que está por debajo de esta recta cumple que x más y es menor que doscientos cincuenta.",
+      "captions": [
+        "Así queda la recta x + y = 250.",
+        "Corta el eje vertical en 250 y el eje horizontal también en 250.",
+        "Todo lo que está por debajo de esta recta cumple que x + y < 250."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "250 - x",
+        "xMin": -15,
+        "xMax": 290,
+        "yMin": -15,
+        "yMax": 290,
+        "xTicks": [
+          {
+            "x": 100,
+            "label": "100"
+          },
+          {
+            "x": 200,
+            "label": "200"
+          },
+          {
+            "x": 250,
+            "label": "250"
+          }
+        ],
+        "points": [
+          {
+            "x": 0,
+            "y": 250,
+            "label": "(0, 250)",
+            "color": "warn"
+          },
+          {
+            "x": 250,
+            "y": 0,
+            "label": "(250, 0)",
+            "color": "warn"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "x + y = 250",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-punto-prueba",
+      "phase": "Región factible",
+      "heading": "¿Qué lado de la recta? Probamos con el origen",
+      "narration": "[didactic] ¿Qué lado de la recta cumple la inecuación? Tomamos un punto de prueba fácil: el origen, cero, cero. Sustituimos: cero más cero es cero, y cero es menor o igual que doscientos cincuenta. Se cumple. Así que la región está en el lado del origen, por debajo de la recta.",
+      "captions": [
+        "¿Qué lado de la recta cumple la inecuación?",
+        "Tomamos un punto de prueba fácil: el origen, (0, 0).",
+        "Sustituimos: 0 + 0 = 0, y 0 ≤ 250.",
+        "Se cumple.",
+        "Así que la región está en el lado del origen, por debajo de la recta."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Punto de prueba",
+            "tex": "P(0,\\,0)",
+            "color": "given",
+            "size": 56
+          },
+          {
+            "tex": "x + y \\leq 250 \\;\\xrightarrow{(0,\\,0)}\\; 0 + 0 = 0 \\leq 250",
+            "size": 52
+          },
+          {
+            "text": "Se cumple: la región está en el lado del origen",
+            "color": "solved",
+            "size": 46
+          }
+        ],
+        "chips": [
+          {
+            "text": "el origen también cumple x ≤ 200 e y ≤ 150",
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-region",
+      "phase": "Región factible",
+      "heading": "La región factible",
+      "narration": "Juntamos todo. A la izquierda de x igual a doscientos, por debajo de y igual a ciento cincuenta, por debajo de la recta inclinada, y en el primer cuadrante. La región factible es este pentágono: un rectángulo al que la recta x más y igual a doscientos cincuenta le corta una esquina.",
+      "captions": [
+        "Juntamos todo.",
+        "A la izquierda de x = 200, por debajo de y = 150, por debajo de la recta inclinada, y en el primer cuadrante.",
+        "La región factible es este pentágono: un rectángulo al que la recta x + y = 250 le corta una esquina."
+      ],
+      "tail": 0.5,
+      "body": {
+        "type": "plot",
+        "fn": "x < 0 ? NaN : (x <= 100 ? 150 : (x <= 200 ? 250 - x : NaN))",
+        "xMin": -15,
+        "xMax": 290,
+        "yMin": -15,
+        "yMax": 200,
+        "xTicks": [
+          {
+            "x": 100,
+            "label": "100"
+          },
+          {
+            "x": 200,
+            "label": "200"
+          },
+          {
+            "x": 250,
+            "label": "250"
+          }
+        ],
+        "shade": {
+          "from": 0,
+          "to": 200,
+          "color": "indet",
+          "label": "Región factible"
+        },
+        "chips": [
+          {
+            "tex": "x \\leq 200",
+            "color": "teal"
+          },
+          {
+            "tex": "y \\leq 150",
+            "color": "indet"
+          },
+          {
+            "tex": "x + y \\leq 250",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-vertices-faciles",
+      "phase": "Vértices",
+      "heading": "Los vértices sobre los ejes",
+      "narration": "[didactic] Ahora los vértices, que son las esquinas de la región. Dos de ellos están sobre los ejes y se leen directamente. A es el punto doscientos, cero: doscientos bolígrafos y ninguna pluma. D es el punto cero, ciento cincuenta: ningún bolígrafo y ciento cincuenta plumas. El origen también es una esquina, pero lo despreciamos, porque no fabricar nada carece de sentido.",
+      "captions": [
+        "Ahora los vértices, que son las esquinas de la región.",
+        "Dos de ellos están sobre los ejes y se leen directamente.",
+        "A es el punto (200, 0): 200 bolígrafos y ninguna pluma.",
+        "D es el punto (0, 150): ningún bolígrafo y 150 plumas.",
+        "El origen también es una esquina, pero lo despreciamos, porque no fabricar nada carece de sentido."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Vértice A",
+            "tex": "A \\equiv \\begin{cases} x = 200 \\\\ y = 0 \\end{cases} \\;\\Rightarrow\\; A(200,\\,0)",
+            "color": "solved",
+            "size": 50
+          },
+          {
+            "label": "Vértice D",
+            "tex": "D \\equiv \\begin{cases} x = 0 \\\\ y = 150 \\end{cases} \\;\\Rightarrow\\; D(0,\\,150)",
+            "color": "solved",
+            "size": 50
+          }
+        ],
+        "chips": [
+          {
+            "text": "el origen (0, 0) se desprecia: no fabricar nada carece de sentido",
+            "color": "muted"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-vertice-b",
+      "phase": "Vértices",
+      "heading": "Vértice B: corte de x = 200 con x + y = 250",
+      "narration": "El vértice B es el corte de la recta vertical x igual a doscientos con la recta x más y igual a doscientos cincuenta. Resolvemos el sistema: si x vale doscientos, entonces doscientos más y es doscientos cincuenta, e y vale cincuenta. B es el punto doscientos, cincuenta.",
+      "captions": [
+        "El vértice B es el corte de la recta vertical x = 200 con la recta x + y = 250.",
+        "Resolvemos el sistema: si x = 200, entonces 200 + y = 250, e y = 50.",
+        "B es el punto (200, 50)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Sistema",
+            "tex": "B \\equiv \\begin{cases} x + y = 250 \\\\ x = 200 \\end{cases}",
+            "size": 52
+          },
+          {
+            "tex": "200 + y = 250 \\;\\Rightarrow\\; y = 50",
+            "color": "inkSoft",
+            "size": 52
+          },
+          {
+            "tex": "B(200,\\,50)",
+            "color": "solved",
+            "size": 66
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-vertice-c",
+      "phase": "Vértices",
+      "heading": "Vértice C: corte de y = 150 con x + y = 250",
+      "narration": "El vértice C es el corte de la recta horizontal y igual a ciento cincuenta con la recta x más y igual a doscientos cincuenta. Si y vale ciento cincuenta, entonces x más ciento cincuenta es doscientos cincuenta, y x vale cien. C es el punto cien, ciento cincuenta.",
+      "captions": [
+        "El vértice C es el corte de la recta horizontal y = 150 con la recta x + y = 250.",
+        "Si y = 150, entonces x + 150 = 250, y x = 100.",
+        "C es el punto (100, 150)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Sistema",
+            "tex": "C \\equiv \\begin{cases} x + y = 250 \\\\ y = 150 \\end{cases}",
+            "size": 52
+          },
+          {
+            "tex": "x + 150 = 250 \\;\\Rightarrow\\; x = 100",
+            "color": "inkSoft",
+            "size": 52
+          },
+          {
+            "tex": "C(100,\\,150)",
+            "color": "solved",
+            "size": 66
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-region-vertices",
+      "phase": "Vértices",
+      "heading": "Los cuatro vértices sobre la región",
+      "narration": "Así queda la región con sus vértices. A, doscientos y cero. B, doscientos y cincuenta. C, cien y ciento cincuenta. Y D, cero y ciento cincuenta. Cualquier punto dentro de esta región es una producción diaria posible, y los vértices marcan sus límites.",
+      "captions": [
+        "Así queda la región con sus vértices.",
+        "A(200, 0).",
+        "B(200, 50).",
+        "C(100, 150).",
+        "Y D(0, 150).",
+        "Cualquier punto dentro de esta región es una producción diaria posible, y los vértices marcan sus límites."
+      ],
+      "tail": 0.6,
+      "body": {
+        "type": "plot",
+        "fn": "x < 0 ? NaN : (x <= 100 ? 150 : (x <= 200 ? 250 - x : NaN))",
+        "xMin": -15,
+        "xMax": 290,
+        "yMin": -15,
+        "yMax": 200,
+        "xTicks": [
+          {
+            "x": 100,
+            "label": "100"
+          }
+        ],
+        "shade": {
+          "from": 0,
+          "to": 200,
+          "color": "indet"
+        },
+        "points": [
+          {
+            "x": 200,
+            "y": 0,
+            "label": "A(200, 0)",
+            "color": "solved"
+          },
+          {
+            "x": 200,
+            "y": 50,
+            "label": "B(200, 50)",
+            "color": "solved"
+          },
+          {
+            "x": 100,
+            "y": 150,
+            "label": "C(100, 150)",
+            "color": "solved"
+          },
+          {
+            "x": 0,
+            "y": 150,
+            "label": "D(0, 150)",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "narration": "[calm] Resumen. Las variables son x, bolígrafos, e y, plumas. Las restricciones: x menor o igual que doscientos, y menor o igual que ciento cincuenta, x más y menor o igual que doscientos cincuenta, y las dos de signo. La región factible es un pentágono, y sus vértices útiles son A, B, C y D. Entre esos puntos está cualquier producción diaria posible.",
+      "captions": [
+        "Resumen.",
+        "Las variables son x, bolígrafos, e y, plumas.",
+        "Las restricciones: x ≤ 200, y ≤ 150, x + y ≤ 250, y las dos de signo.",
+        "La región factible es un pentágono, y sus vértices útiles son A, B, C y D.",
+        "Entre esos puntos está cualquier producción diaria posible."
+      ],
+      "tail": 1.0,
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Variables",
+            "text": "x = bolígrafos al día, y = plumas al día",
+            "color": "teal"
+          },
+          {
+            "label": "Restricciones",
+            "tex": "0 \\leq x \\leq 200, \\quad 0 \\leq y \\leq 150, \\quad x + y \\leq 250",
+            "color": "warn"
+          },
+          {
+            "label": "Vértices",
+            "tex": "A(200,\\,0), \\; B(200,\\,50), \\; C(100,\\,150), \\; D(0,\\,150)",
+            "color": "solved"
+          }
+        ],
+        "closing": "Plantear, dibujar, cortar rectas: así se encuentran los vértices."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Región factible y vértices | Sistema de inecuaciones resuelto paso a paso (bolígrafos y plumas)",
+    "description": "Resolvemos paso a paso un problema clásico de programación lineal de Matemáticas aplicadas a las Ciencias Sociales (2º de Bachillerato): una industria fabrica bolígrafos y plumas estilográficas con tres límites diarios, y hay que plantear el sistema de inecuaciones, dibujar la región factible y calcular sus vértices.\n\nEl enunciado: cada día no se pueden producir más de 200 bolígrafos ni más de 150 plumas, y el total de la producción no puede superar las 250 unidades.\n\nVariables: x = bolígrafos, y = plumas.\nRestricciones: 0 ≤ x ≤ 200, 0 ≤ y ≤ 150, x + y ≤ 250.\nRegión factible: pentágono delimitado por los ejes, x = 200, y = 150 y la recta x + y = 250.\nVértices: A(200, 0), B(200, 50), C(100, 150), D(0, 150).\n\nLo que vas a aprender:\n• Cómo traducir un enunciado a variables y restricciones.\n• Por qué se añaden las restricciones de signo x ≥ 0, y ≥ 0.\n• Cómo dibujar cada inecuación como una recta y elegir el lado correcto con un punto de prueba.\n• Cómo calcular los vértices resolviendo sistemas de dos ecuaciones.\n\nMás ejercicios de programación lineal y exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#ProgramaciónLineal #Inecuaciones #RegiónFactible #MatemáticasCCSS #Bachillerato #Selectividad",
+    "tags": [
+      "programación lineal",
+      "sistema de inecuaciones",
+      "región factible",
+      "vértices",
+      "inecuaciones con dos incógnitas",
+      "matemáticas CCSS",
+      "matemáticas aplicadas a las ciencias sociales",
+      "2º bachillerato",
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "ejercicio resuelto",
+      "problema resuelto",
+      "punto de prueba",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Programación lineal · Matemáticas CCSS",
+      "line1": "Región factible\ny vértices",
+      "line2": "Bolígrafos y plumas,\nresuelto paso a paso",
+      "tex": "x + y \\leq 250",
+      "badge": "4 vértices"
+    }
+  },
+  "reel": {
+    "title": "La esquina que no existe: (200, 150) no es un vértice",
+    "caption": "¿200 bolígrafos y 150 plumas? Suman 350 y el máximo es 250. La restricción del total corta la esquina del rectángulo. Vídeo completo con todos los vértices en YouTube. #programacionlineal #inecuaciones #regionfactible #matematicas #bachillerato #selectividad #clasesdeapoyo",
+    "cover": {
+      "kicker": "Programación lineal",
+      "line1": "La esquina",
+      "line2": "que no existe",
+      "tex": "200 + 150 = 350 > 250",
+      "badge": "región factible"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "La esquina que no existe",
+        "narration": "[excited] ¿Doscientos bolígrafos y ciento cincuenta plumas? Parece un vértice de la región. Pero no lo es.",
+        "captions": [
+          "¿200 bolígrafos y 150 plumas?",
+          "Parece un vértice de la región.",
+          "Pero no lo es."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Programación lineal",
+          "title": "La esquina\nque *no existe*",
+          "tex": "(200,\\,150)\\ ?",
+          "texColor": "danger",
+          "texSize": 80
+        }
+      },
+      {
+        "id": "r2-trampa",
+        "phase": "La trampa",
+        "heading": "Los máximos por separado no bastan",
+        "narration": "[didactic] Como máximo doscientos bolígrafos y como máximo ciento cincuenta plumas. Pero también hay un límite total: doscientos cincuenta unidades. Doscientos más ciento cincuenta son trescientos cincuenta. Se pasa.",
+        "captions": [
+          "Como máximo 200 bolígrafos y como máximo 150 plumas.",
+          "Pero también hay un límite total: 250 unidades.",
+          "200 + 150 = 350.",
+          "Se pasa."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "x \\leq 200, \\quad y \\leq 150",
+              "size": 48,
+              "color": "teal"
+            },
+            {
+              "tex": "x + y \\leq 250",
+              "size": 56,
+              "color": "warn"
+            },
+            {
+              "tex": "200 + 150 = 350 > 250",
+              "size": 52,
+              "color": "danger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-region",
+        "phase": "Región factible",
+        "heading": "La recta x + y = 250 corta la esquina",
+        "narration": "La recta x más y igual a doscientos cincuenta corta esa esquina. La región es un pentágono, y ahí aparecen dos vértices: B, doscientos cincuenta, y C, cien ciento cincuenta.",
+        "captions": [
+          "La recta x + y = 250 corta esa esquina.",
+          "La región es un pentágono, y ahí aparecen dos vértices: B(200, 50) y C(100, 150)."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "x < 0 ? NaN : (x <= 100 ? 150 : (x <= 200 ? 250 - x : NaN))",
+          "xMin": -15,
+          "xMax": 230,
+          "yMin": -15,
+          "yMax": 200,
+          "xTicks": [
+            {
+              "x": 100,
+              "label": "100"
+            },
+            {
+              "x": 200,
+              "label": "200"
+            }
+          ],
+          "shade": {
+            "from": 0,
+            "to": 200,
+            "color": "indet"
+          },
+          "points": [
+            {
+              "x": 200,
+              "y": 50,
+              "label": "B(200, 50)",
+              "color": "solved"
+            },
+            {
+              "x": 100,
+              "y": 150,
+              "label": "C(100, 150)",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "Todos los vértices en YouTube",
+        "narration": "[cheerful] Los cuatro vértices, paso a paso, en el vídeo completo de YouTube. Búscalo en Clases de Apoyo.",
+        "captions": [
+          "Los 4 vértices, paso a paso, en el vídeo completo de YouTube.",
+          "Búscalo en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Los 4 vértices,\n*paso a paso*",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ],
+          "tex": "A,\\ B,\\ C,\\ D"
+        }
+      }
+    ]
+  }
+}

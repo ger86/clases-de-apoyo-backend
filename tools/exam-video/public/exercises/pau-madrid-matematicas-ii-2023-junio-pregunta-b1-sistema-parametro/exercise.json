@@ -1,0 +1,179 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2023-junio-pregunta-b1-sistema-parametro",
+  "exam": {
+    "label": "PAU Madrid · Junio 2023 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta B.1",
+    "topic": "Sistemas con parámetro"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El determinante": "teal",
+    "Caso a = 3": "warn",
+    "Caso a = −5": "warn",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "det = 0 no significa incompatible (PAU Madrid, junio 2023, Pregunta B.1)",
+    "caption": "¿Determinante 0 en un sistema? No escribas «incompatible» todavía ❌\n\nPAU Madrid, junio 2023, Matemáticas II, pregunta B.1:\n1️⃣ |A| = −(a + 5)(a − 3) → se anula en a = 3 y a = −5\n2️⃣ a = 3: la 3ª ecuación es la suma de las otras dos → S.C.I.\n3️⃣ a = −5: la 3ª es la 2ª menos la 1ª → S.C.I.\n\nTruco: con det = 0, compara rg A con rg A*. Solo es incompatible si rg A < rg A*.\n\n📌 Guárdalo para el examen\n💬 ¿Tú habrías puesto incompatible?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#sistemas #rouchefrobenius #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2023 · Matemáticas II",
+      "line1": "det = 0…\n¿incompatible?",
+      "line2": "a = 3 y a = −5",
+      "tex": "\\operatorname{rg} A = \\operatorname{rg} A^{*} = 2",
+      "badge": "✗  det = 0 ⇒ incompatible",
+      "footer": "Pregunta B.1 · PAU Madrid 2023, resuelta"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "det = 0 no es incompatible",
+        "tail": 0.4,
+        "narration": "[energetic] Determinante cero, y escribes incompatible. Error. Aquí no lo es ninguno de los dos.",
+        "captions": [
+          "Determinante 0, y escribes «incompatible».",
+          "Error.",
+          "Aquí no lo es ninguno de los dos."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2023",
+          "title": "det = 0\n*no* es incompatible",
+          "tex": "\\begin{cases} (a+1)x+4y=0 \\\\ (a-1)y+z=3 \\\\ 4x+2ay+z=3 \\end{cases}",
+          "texColor": "teal",
+          "texSize": 56
+        }
+      },
+      {
+        "id": "r2-determinante",
+        "phase": "El determinante",
+        "heading": "¿Dónde se anula?",
+        "tail": 0.4,
+        "narration": "[didactic] El determinante es menos, a más cinco, por a menos tres. Se anula en a igual a tres y en a igual a menos cinco.",
+        "captions": [
+          "El determinante es −(a + 5)(a − 3).",
+          "Se anula en a = 3 y en a = −5."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Determinante",
+              "tex": "\\lvert A\\rvert = -(a+5)(a-3)",
+              "size": 50,
+              "color": "teal"
+            },
+            {
+              "tex": "a = 3 \\qquad a = -5",
+              "size": 60,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "¿Incompatible? Aún no lo sabes",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r3-a-3",
+        "phase": "Caso a = 3",
+        "heading": "La 3ª es la suma",
+        "tail": 0.4,
+        "narration": "[didactic] Con a igual a tres, la tercera ecuación es la suma de las otras dos, término independiente incluido. Los dos rangos valen dos: compatible indeterminado.",
+        "captions": [
+          "Con a = 3, la 3ª ecuación es la suma de las otras dos, término independiente incluido.",
+          "Los dos rangos valen 2: compatible indeterminado."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "1ª + 2ª = 3ª",
+              "tex": "\\begin{array}{rcl} 4x+4y\\phantom{{}+z} & = & 0 \\\\ 2y+z & = & 3 \\\\ \\hline 4x+6y+z & = & 3 \\end{array}",
+              "size": 52,
+              "color": "teal"
+            },
+            {
+              "tex": "\\operatorname{rg} A = \\operatorname{rg} A^{*} = 2",
+              "size": 54,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "compatible indeterminado",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-a-menos-5",
+        "phase": "Caso a = −5",
+        "heading": "La 3ª es la resta",
+        "tail": 0.4,
+        "narration": "[didactic] Con a igual a menos cinco, la tercera es la segunda menos la primera. Otra vez compatible indeterminado.",
+        "captions": [
+          "Con a = −5, la 3ª es la 2ª menos la 1ª.",
+          "Otra vez compatible indeterminado."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "2ª − 1ª = 3ª",
+              "tex": "\\begin{array}{rcl} -6y+z & = & 3 \\\\ 4x-4y\\phantom{{}+z} & = & 0 \\\\ \\hline 4x-10y+z & = & 3 \\end{array}",
+              "size": 52,
+              "color": "teal"
+            },
+            {
+              "tex": "\\operatorname{rg} A = \\operatorname{rg} A^{*} = 2",
+              "size": 54,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "compatible indeterminado",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Determinante cero: mira siempre el rango de la ampliada. Más ejercicios en Clases de Apoyo.",
+        "captions": [
+          "Determinante 0: mira siempre el rango de la ampliada.",
+          "Más ejercicios en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "det = 0:\nmira la *ampliada*",
+          "tex": "\\begin{gathered}\\text{incompatible solo si} \\\\ \\operatorname{rg} A < \\operatorname{rg} A^{*}\\end{gathered}",
+          "lines": [
+            "Pregunta B.1 · PAU Madrid 2023",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

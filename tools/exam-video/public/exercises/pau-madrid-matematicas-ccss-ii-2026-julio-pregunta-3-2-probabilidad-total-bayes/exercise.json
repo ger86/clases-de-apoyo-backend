@@ -1,0 +1,547 @@
+{
+  "slug": "pau-madrid-matematicas-ccss-ii-2026-julio-pregunta-3-2-probabilidad-total-bayes",
+  "exam": {
+    "label": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 3.2",
+    "topic": "Probabilidad total y Bayes"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Probabilidad total": "teal",
+    "Parte b · Bayes": "indet",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "El denominador": "indet",
+    "El resultado": "solved"
+  },
+  "youtube": {
+    "title": "Probabilidad total y teorema de Bayes: likes en redes | PAU Madrid Julio 2026, Matemáticas CCSS II, Pregunta 3.2",
+    "description": "Resolvemos paso a paso la Pregunta 3.2 del examen extraordinario de Selectividad (PAU/EvAU) de la Comunidad de Madrid de julio de 2026, Matemáticas Aplicadas a las Ciencias Sociales II. Susana publica el 20 % de las veces en su cuenta personal y el 80 % en la de su marca. En la marca, el 50 % de las publicaciones pasa de 100 likes; en la personal, el 70 %.\n\na) Porcentaje de publicaciones con más de 100 likes, por el teorema de la probabilidad total: P(B) = 0,2 · 0,7 + 0,8 · 0,5 = 0,54, es decir, el 54 %.\nb) Probabilidad de que una publicación sin más de 100 likes sea de la cuenta personal, por Bayes: P(A | no B) = 0,2 · 0,3 / 0,46 = 3/23 ≈ 0,1304.\n\nLo que vas a aprender:\n• Cómo pasar el enunciado a un diagrama de árbol.\n• Cuándo usar el teorema de la probabilidad total.\n• Cómo aplicar el teorema de Bayes con el suceso contrario.\n• Por qué el denominador es 1 − 0,54 y no 0,54.\n\nEnunciado y solución en PDF del examen de julio de 2026 de Matemáticas CCSS II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasCCSS #Probabilidad #TeoremaDeBayes",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "julio 2026",
+      "extraordinaria",
+      "Matemáticas CCSS II",
+      "matemáticas aplicadas a las ciencias sociales",
+      "2º bachillerato",
+      "probabilidad",
+      "probabilidad total",
+      "teorema de Bayes",
+      "probabilidad condicionada",
+      "diagrama de árbol",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Probabilidad\ntotal y Bayes",
+      "line2": "Likes en redes,\npaso a paso",
+      "tex": "P(A \\mid \\overline{B}) = \\dfrac{3}{23}",
+      "badge": "P(B) = 54 %"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Un árbol, probabilidad total y Bayes",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta tres punto dos de la PAU de Madrid de julio de dos mil veintiséis, Matemáticas Aplicadas a las Ciencias Sociales. Susana tiene dos cuentas en una red social, y queremos saber cuántas de sus publicaciones pasan de cien likes. Un diagrama de árbol, la probabilidad total, y el teorema de Bayes.",
+      "captions": [
+        "Pregunta 3.2 de la PAU de Madrid de julio de 2026, Matemáticas CCSS II.",
+        "Susana tiene dos cuentas en una red social, y queremos saber cuántas de sus publicaciones pasan de 100 likes.",
+        "Un diagrama de árbol, la probabilidad total, y el teorema de Bayes."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II · Pregunta 3.2",
+        "title": "Del *árbol* a la\nprobabilidad *total* y *Bayes*",
+        "tex": "P(B) = 0{,}54",
+        "texColor": "teal"
+      }
+    },
+    {
+      "id": "02-sucesos",
+      "phase": "Planteamiento",
+      "heading": "Los sucesos",
+      "narration": "Llamamos A al suceso de que la publicación sea de la cuenta personal. Su contrario, A barra, es que sea de la cuenta de la marca. Y llamamos B al suceso de que la publicación reciba más de cien likes.",
+      "captions": [
+        "A = la publicación es de la cuenta personal.",
+        "Su contrario, Ā, es que sea de la cuenta de la marca.",
+        "B = la publicación recibe más de 100 likes."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Suceso",
+            "tex": "A \\equiv \\text{cuenta personal}",
+            "color": "teal",
+            "size": 50
+          },
+          {
+            "label": "Contrario",
+            "tex": "\\overline{A} \\equiv \\text{cuenta de la marca}",
+            "color": "indet",
+            "size": 50
+          },
+          {
+            "label": "Suceso",
+            "tex": "B \\equiv \\text{más de 100 likes}",
+            "color": "warn",
+            "size": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-reparto",
+      "phase": "Planteamiento",
+      "heading": "Solo 2 de cada 10 publicaciones son personales",
+      "narration": "Solo el veinte por ciento de las publicaciones las hace en su cuenta personal. Es decir, dos de cada diez. La probabilidad de A es cero coma dos, y la de A barra, cero coma ocho.",
+      "captions": [
+        "Solo el 20 % de las publicaciones las hace en su cuenta personal.",
+        "Es decir, 2 de cada 10.",
+        "P(A) = 0,2 y P(Ā) = 0,8."
+      ],
+      "body": {
+        "type": "dots",
+        "count": 10,
+        "columns": 5,
+        "color": "#8a7cf0",
+        "highlight": [
+          0,
+          1
+        ],
+        "highlightColor": "teal",
+        "chips": [
+          {
+            "tex": "P(A) = 0{,}2",
+            "color": "teal"
+          },
+          {
+            "tex": "P(\\overline{A}) = 0{,}8",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-arbol",
+      "phase": "Planteamiento",
+      "heading": "Las ramas del árbol",
+      "narration": "Ahora las ramas de segundo nivel, que son condicionadas. En la cuenta personal, el setenta por ciento pasa de cien likes: probabilidad de B condicionada a A, cero coma siete. En la cuenta de la marca, el cincuenta por ciento: probabilidad de B condicionada a A barra, cero coma cinco.",
+      "captions": [
+        "Ahora las ramas de segundo nivel, que son condicionadas.",
+        "En la cuenta personal, el 70 % pasa de 100 likes: P(B | A) = 0,7.",
+        "En la cuenta de la marca, el 50 %: P(B | Ā) = 0,5."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Rama personal",
+            "tex": "P(A) = 0{,}2 \\;\\longrightarrow\\; P(B \\mid A) = 0{,}7",
+            "color": "teal",
+            "size": 50
+          },
+          {
+            "label": "Rama marca",
+            "tex": "P(\\overline{A}) = 0{,}8 \\;\\longrightarrow\\; P(B \\mid \\overline{A}) = 0{,}5",
+            "color": "indet",
+            "size": 50
+          }
+        ],
+        "chips": [
+          {
+            "text": "segundo nivel = condicionadas",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-total",
+      "phase": "Parte a · Probabilidad total",
+      "heading": "Apartado a: probabilidad total",
+      "narration": "Apartado a. Una publicación puede pasar de cien likes por dos caminos: siendo personal, o siendo de la marca. Sumamos los dos caminos, y en cada uno multiplicamos sus ramas. Es el teorema de la probabilidad total.",
+      "captions": [
+        "Apartado a.",
+        "Una publicación puede pasar de 100 likes por dos caminos: siendo personal, o siendo de la marca.",
+        "Sumamos los dos caminos, y en cada uno multiplicamos sus ramas.",
+        "Es el teorema de la probabilidad total."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(B) = P(A)\\,P(B \\mid A) + P(\\overline{A})\\,P(B \\mid \\overline{A})",
+            "size": 52,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "text": "multiplicar a lo largo de la rama",
+            "color": "given"
+          },
+          {
+            "text": "sumar los caminos",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-resultado-a",
+      "phase": "Parte a · Probabilidad total",
+      "heading": "P(B) = 0,54: el 54 %",
+      "tail": 0.5,
+      "narration": "Cero coma dos por cero coma siete es cero coma uno cuatro. Cero coma ocho por cero coma cinco es cero coma cuatro. Sumados, cero coma cinco cuatro. El cincuenta y cuatro por ciento de sus publicaciones pasa de cien likes.",
+      "captions": [
+        "0,2 · 0,7 = 0,14.",
+        "0,8 · 0,5 = 0,40.",
+        "Sumados, 0,54.",
+        "El 54 % de sus publicaciones pasa de 100 likes."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(B) = 0{,}2 \\cdot 0{,}7 + 0{,}8 \\cdot 0{,}5",
+            "size": 54
+          },
+          {
+            "tex": "= 0{,}14 + 0{,}40 = 0{,}54",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "54 % de publicaciones con más de 100 likes",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "07-pregunta-b",
+      "phase": "Parte b · Bayes",
+      "heading": "Apartado b: sabemos que NO pasó de 100 likes",
+      "narration": "Apartado b. Ahora sabemos algo: la publicación no ha pasado de cien likes. Y nos preguntan la probabilidad de que sea de la cuenta personal. Es una probabilidad condicionada al revés que en el árbol: la de A sabiendo B barra. Eso es el teorema de Bayes.",
+      "captions": [
+        "Apartado b.",
+        "Ahora sabemos algo: la publicación no ha pasado de 100 likes.",
+        "Y nos preguntan la probabilidad de que sea de la cuenta personal.",
+        "Es una condicionada al revés que en el árbol: P(A | B̄).",
+        "Eso es el teorema de Bayes."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Sabemos",
+            "tex": "\\overline{B} \\equiv \\text{no pasa de 100 likes}",
+            "color": "warn",
+            "size": 48
+          },
+          {
+            "label": "Nos piden",
+            "tex": "P(A \\mid \\overline{B})",
+            "color": "indet",
+            "size": 66
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-bayes",
+      "phase": "Parte b · Bayes",
+      "heading": "Bayes: el camino que nos interesa entre todos los caminos",
+      "narration": "Por la definición de probabilidad condicionada, dividimos la probabilidad de la intersección de A con B barra entre la probabilidad de B barra. Arriba, el camino que nos interesa. Abajo, todos los caminos que acaban en B barra.",
+      "captions": [
+        "Por la definición de probabilidad condicionada: P(A ∩ B̄) entre P(B̄).",
+        "Arriba, el camino que nos interesa.",
+        "Abajo, todos los caminos que acaban en B̄."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(A \\mid \\overline{B}) = \\dfrac{P(A \\cap \\overline{B})}{P(\\overline{B})} = \\dfrac{P(A)\\,P(\\overline{B} \\mid A)}{P(\\overline{B})}",
+            "size": 54,
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-numerador",
+      "phase": "Parte b · Bayes",
+      "heading": "Numerador: 0,2 · 0,3 = 0,06",
+      "narration": "El numerador. Si en la cuenta personal el setenta por ciento pasa de cien likes, el treinta por ciento no pasa. Así que la probabilidad de B barra condicionada a A es cero coma tres. Cero coma dos por cero coma tres, cero coma cero seis.",
+      "captions": [
+        "El numerador.",
+        "Si en la cuenta personal el 70 % pasa de 100 likes, el 30 % no pasa.",
+        "Así que P(B̄ | A) = 1 − 0,7 = 0,3.",
+        "0,2 · 0,3 = 0,06."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(\\overline{B} \\mid A) = 1 - 0{,}7 = 0{,}3",
+            "size": 54
+          },
+          {
+            "tex": "P(A \\cap \\overline{B}) = 0{,}2 \\cdot 0{,}3 = 0{,}06",
+            "size": 56,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-denominador",
+      "phase": "Parte b · Bayes",
+      "heading": "Denominador: 1 − 0,54 = 0,46",
+      "narration": "El denominador. No hace falta otro árbol: B barra es el contrario de B, y la probabilidad de B ya la tenemos del apartado a. Uno menos cero coma cinco cuatro, cero coma cuatro seis. Ojo, aquí no va el cero coma cinco cuatro.",
+      "captions": [
+        "El denominador.",
+        "No hace falta otro árbol: B̄ es el contrario de B, y P(B) ya la tenemos del apartado a.",
+        "1 − 0,54 = 0,46.",
+        "Ojo, aquí no va el 0,54."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(\\overline{B}) = 1 - P(B) = 1 - 0{,}54 = 0{,}46",
+            "size": 56,
+            "color": "warn"
+          }
+        ],
+        "chips": [
+          {
+            "text": "suceso contrario",
+            "color": "warn"
+          },
+          {
+            "tex": "\\text{no } 0{,}54",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-resultado-b",
+      "phase": "Resultado",
+      "heading": "P(A | B̄) = 3/23 ≈ 0,1304",
+      "tail": 0.5,
+      "narration": "Dividimos: cero coma cero seis entre cero coma cuatro seis, que es tres veintitresavos, aproximadamente cero coma uno tres cero cuatro. De las publicaciones que no pasan de cien likes, alrededor del trece por ciento son de la cuenta personal.",
+      "captions": [
+        "Dividimos: 0,06 / 0,46 = 3/23 ≈ 0,1304.",
+        "De las publicaciones que no pasan de 100 likes, alrededor del 13 % son de la cuenta personal."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "P(A \\mid \\overline{B}) = \\dfrac{0{,}06}{0{,}46} = \\dfrac{3}{23} \\approx 0{,}1304",
+            "size": 60,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "≈ 13 % de las que no pasan de 100 likes",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "12-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. Con el árbol y la probabilidad total, el cincuenta y cuatro por ciento de las publicaciones pasa de cien likes. Con Bayes, la probabilidad de que una publicación que no pasa de cien likes sea personal es tres veintitresavos, alrededor de cero coma uno tres. Y el denominador sale del apartado a, con el suceso contrario.",
+      "captions": [
+        "Resumen.",
+        "Con el árbol y la probabilidad total, el 54 % de las publicaciones pasa de 100 likes.",
+        "Con Bayes, P(personal | no pasa de 100 likes) = 3/23 ≈ 0,13.",
+        "Y el denominador sale del apartado a, con el suceso contrario."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Probabilidad total",
+            "tex": "P(B) = 0{,}54 = 54\\,\\%",
+            "color": "solved"
+          },
+          {
+            "label": "b) Bayes",
+            "tex": "P(A \\mid \\overline{B}) = \\tfrac{3}{23} \\approx 0{,}1304",
+            "color": "solved"
+          },
+          {
+            "label": "La clave",
+            "tex": "P(\\overline{B}) = 1 - 0{,}54 = 0{,}46",
+            "color": "warn"
+          }
+        ],
+        "closing": "Multiplica por las ramas, suma los caminos."
+      }
+    }
+  ],
+  "reel": {
+    "title": "Bayes: el denominador es 0,46 (PAU Madrid CCSS, julio 2026, Pregunta 3.2)",
+    "caption": "En Bayes, el denominador es la probabilidad de lo que YA sabes.\n\nPregunta 3.2 de la PAU de Madrid de julio de 2026 (Matemáticas CCSS II): el 54 % de las publicaciones de Susana pasa de 100 likes. Luego te preguntan por una publicación que NO pasó de 100 likes. El numerador es 0,2 · 0,3 = 0,06, y aquí mucha gente divide entre 0,54 porque es el número que acaba de calcular, y le sale 0,111.\n\nPero lo que sabes es que no pasó de 100 likes, así que divides entre 1 − 0,54 = 0,46. P(personal | no pasa de 100 likes) = 3/23 ≈ 0,1304.\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasccss #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #probabilidad #bayes #estadistica",
+    "cover": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Bayes: divide\nentre lo que\nya sabes",
+      "line2": "0,06 / 0,46",
+      "tex": "P(A \\mid \\overline{B}) = \\dfrac{3}{23}",
+      "badge": "✗  0,06 / 0,54"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "El denominador de Bayes",
+        "tail": 0.4,
+        "narration": "[energetic] En Bayes, el denominador es la probabilidad de lo que ya sabes. No el último que has calculado.",
+        "captions": [
+          "En Bayes, el denominador es la probabilidad de lo que ya sabes.",
+          "No el último número que has calculado."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Julio 2026",
+          "title": "Divide entre\n*lo que ya*\nsabes",
+          "tex": "P(A \\mid \\overline{B}) = \\dfrac{?}{?}",
+          "texSize": 70,
+          "texColor": "indet"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Dividir entre 0,54",
+        "tail": 0.4,
+        "narration": "Te preguntan por una publicación que no pasó de cien likes, y que sea personal. El numerador es cero coma cero seis. Si divides entre cero coma cinco cuatro, que es la de pasar de cien, te sale cero coma uno uno uno.",
+        "captions": [
+          "Te preguntan por una publicación que NO pasó de 100 likes, y que sea personal.",
+          "El numerador es 0,2 · 0,3 = 0,06.",
+          "Si divides entre 0,54, que es la de pasar de 100, te sale 0,111."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\dfrac{0{,}06}{0{,}54} \\approx 0{,}111",
+              "size": 60,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "0,54 es lo que NO sabes",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-denominador",
+        "phase": "El denominador",
+        "heading": "Sabes que no pasó de 100 likes",
+        "tail": 0.4,
+        "narration": "Lo que sabes es que no pasó de cien likes. Así que divides entre el contrario, cero coma cuatro seis.",
+        "captions": [
+          "Lo que sabes es que NO pasó de 100 likes.",
+          "Así que divides entre el contrario: 1 − 0,54 = 0,46."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "P(\\overline{B}) = 1 - 0{,}54",
+              "size": 54
+            },
+            {
+              "tex": "= 0{,}46",
+              "size": 64,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "el contrario",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "3/23 ≈ 0,1304",
+        "tail": 0.4,
+        "narration": "Cero coma cero seis entre cero coma cuatro seis: tres veintitresavos, cero coma uno tres cero cuatro.",
+        "captions": [
+          "0,06 / 0,46 = 3/23 ≈ 0,1304."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\dfrac{0{,}06}{0{,}46} = \\dfrac{3}{23}",
+              "size": 60
+            },
+            {
+              "tex": "\\approx 0{,}1304",
+              "size": 64,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Pregúntate siempre qué sabes ya. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "Pregúntate siempre qué sabes ya.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Divide entre\n*lo que sabes*",
+          "tex": "P(\\overline{B}) = 0{,}46",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,647 @@
+{
+  "slug": "pau-madrid-matematicas-ccss-ii-2026-julio-pregunta-2-2-primitiva-monotonia",
+  "exam": {
+    "label": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta 2.2",
+    "topic": "Primitivas y monotonía"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Planteamiento": "teal",
+    "Parte a · Primitiva": "teal",
+    "Parte b · Cortes": "indet",
+    "Parte b · Monotonía": "warn",
+    "Resultado": "solved",
+    "Resumen final": "tealSoft",
+    "El error": "danger",
+    "La comprobación": "indet",
+    "El resultado": "solved"
+  },
+  "youtube": {
+    "title": "Primitiva, cortes con los ejes, máximos y mínimos | PAU Madrid Julio 2026, Matemáticas CCSS II, Pregunta 2.2",
+    "description": "Resolvemos paso a paso la Pregunta 2.2 del examen extraordinario de Selectividad (PAU/EvAU) de la Comunidad de Madrid de julio de 2026, Matemáticas Aplicadas a las Ciencias Sociales II. La función es f(x) = −2x³ + 9x² − 12x + a.\n\na) Valor de a para que f tenga una primitiva con F(0) = 0 y F(2) = 4: F(x) = −x⁴/2 + 3x³ − 6x² + ax + C, de F(0) = 0 sale C = 0 y de F(2) = 4 sale a = 6.\nb) Para a = 9: corta al eje Y en (0, 9) y al eje X solo en (3, 0). f′(x) = −6(x − 1)(x − 2): decrece en (−∞, 1) y (2, +∞), crece en (1, 2), mínimo relativo en (1, 4) y máximo relativo en (2, 5).\n\nLo que vas a aprender:\n• Cómo calcular una primitiva término a término y usar dos condiciones para hallar C y a.\n• Cómo encontrar los cortes con los ejes de un polinomio de grado 3 con Ruffini.\n• Cómo estudiar el signo de la derivada sin olvidar el coeficiente negativo.\n• Cómo comprobar que el máximo y el mínimo tienen sentido.\n\nEnunciado y solución en PDF del examen de julio de 2026 de Matemáticas CCSS II de Madrid, y más exámenes de Selectividad resueltos: https://www.clasesdeapoyo.com\n\n#Selectividad #PAU #EvAU #Madrid #MatemáticasCCSS #Integrales #Derivadas",
+    "tags": [
+      "selectividad",
+      "PAU",
+      "EvAU",
+      "EBAU",
+      "PAU Madrid",
+      "julio 2026",
+      "extraordinaria",
+      "Matemáticas CCSS II",
+      "matemáticas aplicadas a las ciencias sociales",
+      "2º bachillerato",
+      "primitiva",
+      "integral indefinida",
+      "monotonía",
+      "máximos y mínimos",
+      "Ruffini",
+      "examen resuelto",
+      "ejercicio resuelto",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "Primitiva y\nmonotonía",
+      "line2": "Máximos y mínimos,\npaso a paso",
+      "tex": "f'(x) = -6(x-1)(x-2)",
+      "badge": "a = 6"
+    }
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Integrar para hallar a, derivar para estudiar f",
+      "tail": 0.5,
+      "narration": "[energetic] Pregunta dos punto dos de la PAU de Madrid de julio de dos mil veintiséis, Matemáticas Aplicadas a las Ciencias Sociales. Una función polinómica de grado tres con un parámetro. En el apartado a integramos para hallar el parámetro. En el b derivamos para encontrar dónde crece, dónde decrece y sus extremos.",
+      "captions": [
+        "Pregunta 2.2 de la PAU de Madrid de julio de 2026, Matemáticas CCSS II.",
+        "Una función polinómica de grado 3 con un parámetro.",
+        "En el apartado a integramos para hallar el parámetro.",
+        "En el b derivamos para encontrar dónde crece, dónde decrece y sus extremos."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II · Pregunta 2.2",
+        "title": "*Integrar* para hallar a,\n*derivar* para estudiar f",
+        "tex": "f(x) = -2x^3 + 9x^2 - 12x + a",
+        "texColor": "teal",
+        "texSize": 80
+      }
+    },
+    {
+      "id": "02-enunciado-a",
+      "phase": "Planteamiento",
+      "heading": "Apartado a: una primitiva con F(0) = 0 y F(2) = 4",
+      "narration": "Apartado a. Nos piden el valor de a para que f tenga una primitiva, F mayúscula, que cumpla F de cero igual a cero y F de dos igual a cuatro. Dos condiciones, y dos incógnitas: el parámetro a y la constante de integración.",
+      "captions": [
+        "Apartado a.",
+        "Buscamos a para que f tenga una primitiva F con F(0) = 0 y F(2) = 4.",
+        "Dos condiciones, y dos incógnitas: el parámetro a y la constante de integración."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Función",
+            "tex": "f(x) = -2x^3 + 9x^2 - 12x + a",
+            "size": 54
+          },
+          {
+            "label": "Condiciones",
+            "tex": "F(0) = 0, \\qquad F(2) = 4",
+            "color": "given",
+            "size": 56
+          }
+        ],
+        "chips": [
+          {
+            "text": "incógnitas: a y C",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-primitiva",
+      "phase": "Parte a · Primitiva",
+      "heading": "Integramos término a término",
+      "narration": "Integramos término a término: a cada potencia le sumamos uno al exponente y dividimos por el nuevo exponente. Menos dos equis al cubo da menos equis a la cuarta entre dos. Nueve equis al cuadrado da tres equis al cubo. Menos doce equis da menos seis equis al cuadrado. Y la constante a da a por equis, más la constante de integración, C.",
+      "captions": [
+        "Integramos término a término: sumamos 1 al exponente y dividimos por el nuevo exponente.",
+        "−2x³ da −x⁴/2.",
+        "9x² da 3x³.",
+        "−12x da −6x².",
+        "Y la constante a da ax, más la constante de integración C."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C",
+            "size": 46,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "F(x) = -\\dfrac{x^4}{2} + 3x^3 - 6x^2 + ax + C",
+            "size": 58,
+            "color": "teal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-c",
+      "phase": "Parte a · Primitiva",
+      "heading": "F(0) = 0 da C = 0",
+      "narration": "Primera condición. Sustituimos equis por cero: todos los términos con equis se anulan y solo queda C. Como F de cero vale cero, C es cero.",
+      "captions": [
+        "Primera condición.",
+        "Sustituimos x = 0: todos los términos con x se anulan y solo queda C.",
+        "Como F(0) = 0, C = 0."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "F(0) = 0 + 0 - 0 + 0 + C = C",
+            "size": 54
+          },
+          {
+            "tex": "C = 0",
+            "size": 66,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-a",
+      "phase": "Parte a · Primitiva",
+      "heading": "F(2) = 4 da a = 6",
+      "tail": 0.5,
+      "narration": "Segunda condición. Sustituimos equis por dos: menos dieciséis entre dos es menos ocho, tres por ocho es veinticuatro, y seis por cuatro es veinticuatro. Queda menos ocho más dos a, igual a cuatro. Así que dos a es doce, y a vale seis.",
+      "captions": [
+        "Segunda condición.",
+        "Sustituimos x = 2: −16/2 = −8, 3 · 8 = 24 y 6 · 4 = 24.",
+        "Queda −8 + 2a = 4.",
+        "Así que 2a = 12, y a = 6."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "F(2) = -\\dfrac{16}{2} + 24 - 24 + 2a = -8 + 2a",
+            "size": 50
+          },
+          {
+            "tex": "-8 + 2a = 4 \\;\\Rightarrow\\; 2a = 12",
+            "size": 54,
+            "color": "inkSoft"
+          }
+        ],
+        "badge": {
+          "text": "a = 6",
+          "sub": "f(x) = −2x³ + 9x² − 12x + 6",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "06-corte-y",
+      "phase": "Parte b · Cortes",
+      "heading": "Apartado b: a = 9. Corte con el eje Y",
+      "narration": "Apartado b. Ahora a vale nueve. Empezamos por los cortes con los ejes. Con el eje i griega, hacemos equis igual a cero: f de cero es nueve. El punto es cero, nueve.",
+      "captions": [
+        "Apartado b.",
+        "Ahora a = 9.",
+        "Empezamos por los cortes con los ejes.",
+        "Con el eje Y, x = 0: f(0) = 9.",
+        "El punto es (0, 9)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Función",
+            "tex": "f(x) = -2x^3 + 9x^2 - 12x + 9",
+            "size": 54
+          },
+          {
+            "label": "Eje Y",
+            "tex": "x = 0 \\;\\Rightarrow\\; f(0) = 9 \\;\\Rightarrow\\; (0,\\,9)",
+            "color": "solved",
+            "size": 54
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-corte-x",
+      "phase": "Parte b · Cortes",
+      "heading": "Corte con el eje X: solo en x = 3",
+      "narration": "Con el eje equis, resolvemos f de equis igual a cero. Probamos con Ruffini los divisores de nueve, y equis igual a tres funciona: menos cincuenta y cuatro, más ochenta y uno, menos treinta y seis, más nueve, cero. Queda un polinomio de segundo grado con discriminante negativo, menos quince, así que no hay más raíces. La función corta al eje equis solo en el punto tres, cero.",
+      "captions": [
+        "Con el eje X, resolvemos f(x) = 0.",
+        "Probamos con Ruffini los divisores de 9, y x = 3 funciona: −54 + 81 − 36 + 9 = 0.",
+        "Queda un polinomio de segundo grado con discriminante negativo, −15, así que no hay más raíces.",
+        "La función corta al eje X solo en el punto (3, 0)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f(3) = -54 + 81 - 36 + 9 = 0",
+            "size": 50
+          },
+          {
+            "tex": "f(x) = (x - 3)(-2x^2 + 3x - 3)",
+            "size": 52,
+            "color": "teal"
+          },
+          {
+            "tex": "\\Delta = 3^2 - 4(-2)(-3) = -15 < 0",
+            "size": 46,
+            "color": "inkSoft"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "\\text{Eje X: } (3,\\,0)",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-derivada",
+      "phase": "Parte b · Monotonía",
+      "heading": "La derivada: f′(x) = −6(x − 1)(x − 2)",
+      "narration": "Para la monotonía y los extremos estudiamos el signo de la derivada. La derivada es menos seis equis al cuadrado, más dieciocho equis, menos doce. Sacamos menos seis factor común y factorizamos: menos seis por equis menos uno, por equis menos dos. Se anula en uno y en dos.",
+      "captions": [
+        "Para la monotonía y los extremos estudiamos el signo de la derivada.",
+        "f′(x) = −6x² + 18x − 12.",
+        "Sacamos −6 factor común y factorizamos: −6(x − 1)(x − 2).",
+        "Se anula en x = 1 y en x = 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "f'(x) = -6x^2 + 18x - 12",
+            "size": 54
+          },
+          {
+            "tex": "f'(x) = -6\\,(x^2 - 3x + 2) = -6\\,(x - 1)(x - 2)",
+            "size": 50,
+            "color": "teal"
+          }
+        ],
+        "chips": [
+          {
+            "tex": "x = 1",
+            "color": "warn"
+          },
+          {
+            "tex": "x = 2",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "09-signo",
+      "phase": "Parte b · Monotonía",
+      "heading": "Tabla de signos de f′",
+      "narration": "Hacemos la tabla de signos, y aquí está el punto delicado: el menos seis cambia todos los signos. Antes de uno, la derivada es negativa y f decrece. Entre uno y dos, es positiva y f crece. A partir de dos, vuelve a ser negativa y f decrece.",
+      "captions": [
+        "Hacemos la tabla de signos, y aquí está el punto delicado: el −6 cambia todos los signos.",
+        "Antes de 1, f′ < 0 y f decrece.",
+        "Entre 1 y 2, f′ > 0 y f crece.",
+        "A partir de 2, f′ < 0 y f decrece."
+      ],
+      "body": {
+        "type": "table",
+        "columns": [
+          "(-\\infty,\\,1)",
+          "1",
+          "(1,\\,2)",
+          "2",
+          "(2,\\,+\\infty)"
+        ],
+        "rows": [
+          {
+            "label": "f′(x)",
+            "cells": [
+              {
+                "tex": "-",
+                "color": "danger"
+              },
+              {
+                "tex": "0"
+              },
+              {
+                "tex": "+",
+                "color": "solved"
+              },
+              {
+                "tex": "0"
+              },
+              {
+                "tex": "-",
+                "color": "danger"
+              }
+            ]
+          },
+          {
+            "label": "f(x)",
+            "cells": [
+              {
+                "text": "decrece",
+                "color": "danger"
+              },
+              {
+                "text": "mín",
+                "color": "warn"
+              },
+              {
+                "text": "crece",
+                "color": "solved"
+              },
+              {
+                "text": "máx",
+                "color": "warn"
+              },
+              {
+                "text": "decrece",
+                "color": "danger"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-extremos",
+      "phase": "Parte b · Monotonía",
+      "heading": "Mínimo en (1, 4) y máximo en (2, 5)",
+      "narration": "En uno, la función pasa de decrecer a crecer: mínimo relativo. Su valor es f de uno, cuatro. En dos, pasa de crecer a decrecer: máximo relativo. Su valor es f de dos, cinco.",
+      "captions": [
+        "En x = 1, la función pasa de decrecer a crecer: mínimo relativo.",
+        "f(1) = 4.",
+        "En x = 2, pasa de crecer a decrecer: máximo relativo.",
+        "f(2) = 5."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mínimo",
+            "tex": "f(1) = -2 + 9 - 12 + 9 = 4 \\;\\Rightarrow\\; (1,\\,4)",
+            "color": "solved",
+            "size": 48
+          },
+          {
+            "label": "Máximo",
+            "tex": "f(2) = -16 + 36 - 24 + 9 = 5 \\;\\Rightarrow\\; (2,\\,5)",
+            "color": "solved",
+            "size": 48
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-grafica",
+      "phase": "Resultado",
+      "heading": "La gráfica lo confirma",
+      "tail": 0.5,
+      "narration": "Así queda la gráfica. Baja desde el corte cero, nueve hasta el mínimo uno, cuatro, sube hasta el máximo dos, cinco, y vuelve a bajar cortando al eje equis en tres. Fíjate en que el máximo está por encima del mínimo, como tiene que ser.",
+      "captions": [
+        "Así queda la gráfica.",
+        "Baja desde (0, 9) hasta el mínimo (1, 4), sube hasta el máximo (2, 5), y vuelve a bajar cortando al eje X en 3.",
+        "Fíjate en que el máximo está por encima del mínimo, como tiene que ser."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "-2*x*x*x + 9*x*x - 12*x + 9",
+        "xMin": -0.6,
+        "xMax": 3.6,
+        "yMin": -1.5,
+        "yMax": 11,
+        "xTicks": [
+          {
+            "x": 1,
+            "label": "1"
+          },
+          {
+            "x": 2,
+            "label": "2"
+          },
+          {
+            "x": 3,
+            "label": "3"
+          }
+        ],
+        "points": [
+          {
+            "x": 0,
+            "y": 9,
+            "label": "(0, 9)",
+            "color": "given"
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "label": "mín (1, 4)",
+            "color": "solved"
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "label": "máx (2, 5)",
+            "color": "solved"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "label": "(3, 0)",
+            "color": "given"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1.0,
+      "narration": "[calm] Resumen. En el apartado a, integrando y usando las dos condiciones, sale C igual a cero y a igual a seis. En el apartado b, con a igual a nueve, la función corta a los ejes en cero, nueve y en tres, cero. Decrece hasta uno, crece entre uno y dos, y vuelve a decrecer. Mínimo relativo en uno, cuatro, y máximo relativo en dos, cinco.",
+      "captions": [
+        "Resumen.",
+        "En el apartado a, integrando y usando las dos condiciones, C = 0 y a = 6.",
+        "En el apartado b, con a = 9, corta a los ejes en (0, 9) y en (3, 0).",
+        "Decrece hasta 1, crece entre 1 y 2, y vuelve a decrecer.",
+        "Mínimo relativo en (1, 4) y máximo relativo en (2, 5)."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "a) Parámetro",
+            "tex": "a = 6",
+            "color": "solved"
+          },
+          {
+            "label": "b) Cortes",
+            "tex": "(0,\\,9), \\; (3,\\,0)",
+            "color": "teal"
+          },
+          {
+            "label": "b) Monotonía",
+            "text": "decrece en (−∞, 1) y (2, +∞), crece en (1, 2)",
+            "color": "warn"
+          },
+          {
+            "label": "b) Extremos",
+            "tex": "\\text{mín } (1,\\,4), \\; \\text{máx } (2,\\,5)",
+            "color": "solved"
+          }
+        ],
+        "closing": "El −6 de la derivada decide los signos."
+      }
+    }
+  ],
+  "reel": {
+    "title": "El −6 de la derivada cambia los signos (PAU Madrid CCSS, julio 2026, Pregunta 2.2)",
+    "caption": "¿Un máximo más bajo que el mínimo? Algo has hecho mal.\n\nPregunta 2.2 de la PAU de Madrid de julio de 2026 (Matemáticas CCSS II): f(x) = −2x³ + 9x² − 12x + 9. La derivada es f′(x) = −6(x − 1)(x − 2). Si estudias solo el signo de (x − 1)(x − 2) y te olvidas del −6, te sale un máximo en x = 1 con f(1) = 4 y un mínimo en x = 2 con f(2) = 5. Pero entre 1 y 2 la función solo sube o solo baja, así que el máximo no puede quedar por debajo del mínimo.\n\nCon el −6, los signos se invierten: mínimo relativo en (1, 4) y máximo relativo en (2, 5).\n\nEl ejercicio completo, paso a paso, está en YouTube. Enlace en la bio.\n\n#selectividad #pau #evau #ebau #selectividad2026 #matematicas #matematicasccss #bachillerato #2bachillerato #examenresuelto #madrid #mates #clasesdeapoyo #estudiar #derivadas #maximosyminimos",
+    "cover": {
+      "kicker": "PAU Madrid · Julio 2026 · Matemáticas CCSS II",
+      "line1": "¿Máximo más\nbajo que el\nmínimo?",
+      "line2": "Mira el −6",
+      "tex": "f'(x) = -6(x-1)(x-2)",
+      "badge": "✗  máx en x = 1"
+    },
+    "scenes": [
+      {
+        "id": "01-gancho",
+        "phase": "Idea clave",
+        "heading": "Un máximo por debajo del mínimo",
+        "tail": 0.4,
+        "narration": "[energetic] Si te sale un máximo más bajo que el mínimo, algo has hecho mal. Mira este de Selectividad.",
+        "captions": [
+          "Si te sale un máximo más bajo que el mínimo, algo has hecho mal.",
+          "Mira este de Selectividad."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Julio 2026",
+          "title": "¿Un *máximo*\nmás bajo que\nel *mínimo*?",
+          "tex": "f'(x) = -6(x-1)(x-2)",
+          "texSize": 60,
+          "texColor": "teal"
+        }
+      },
+      {
+        "id": "02-error",
+        "phase": "El error",
+        "heading": "Olvidar el −6",
+        "tail": 0.4,
+        "narration": "La derivada es menos seis por equis menos uno, por equis menos dos. Si miras solo los paréntesis, te sale un máximo en uno y un mínimo en dos. Pero f de uno es cuatro, y f de dos es cinco.",
+        "captions": [
+          "La derivada es −6(x − 1)(x − 2).",
+          "Si miras solo los paréntesis, te sale un máximo en 1 y un mínimo en 2.",
+          "Pero f(1) = 4 y f(2) = 5."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\text{máx en } x = 1: \\; f(1) = 4",
+              "size": 48,
+              "color": "danger"
+            },
+            {
+              "tex": "\\text{mín en } x = 2: \\; f(2) = 5",
+              "size": 48,
+              "color": "danger"
+            }
+          ],
+          "badge": {
+            "text": "Máximo más bajo que el mínimo",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "03-comprobacion",
+        "phase": "La comprobación",
+        "heading": "Entre 1 y 2 solo sube o solo baja",
+        "tail": 0.4,
+        "narration": "Entre uno y dos la función solo sube o solo baja, así que el máximo va por encima. El menos seis invierte los signos.",
+        "captions": [
+          "Entre 1 y 2 la función solo sube o solo baja, así que el máximo va por encima.",
+          "El −6 invierte los signos: entre 1 y 2, f′ > 0."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f'(1{,}5) = -6 \\cdot 0{,}5 \\cdot (-0{,}5) = 1{,}5 > 0",
+              "size": 42,
+              "color": "inkSoft"
+            },
+            {
+              "text": "Entre 1 y 2, f crece",
+              "size": 48,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "el −6 cuenta",
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "04-resultado",
+        "phase": "El resultado",
+        "heading": "Mínimo en (1, 4), máximo en (2, 5)",
+        "tail": 0.4,
+        "narration": "Así que es al revés: mínimo relativo en uno, cuatro, y máximo relativo en dos, cinco.",
+        "captions": [
+          "Así que es al revés: mínimo relativo en (1, 4) y máximo relativo en (2, 5)."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "\\text{mín } (1,\\,4)",
+              "size": 60,
+              "color": "solved"
+            },
+            {
+              "tex": "\\text{máx } (2,\\,5)",
+              "size": 60,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "05-cierre",
+        "phase": "El resultado",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "Nunca dejes fuera el número que va delante. Tienes el ejercicio completo en YouTube.",
+        "captions": [
+          "Nunca dejes fuera el número que va delante.",
+          "El ejercicio completo, en YouTube."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Mira el\n*número de delante*",
+          "tex": "-6\\,(x-1)(x-2)",
+          "lines": [
+            "Solución completa en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

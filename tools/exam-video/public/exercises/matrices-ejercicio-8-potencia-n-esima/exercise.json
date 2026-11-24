@@ -1,0 +1,548 @@
+{
+  "slug": "matrices-ejercicio-8-potencia-n-esima",
+  "exam": {
+    "label": "Matrices · 2º Bachillerato",
+    "question": "Ejercicio 8",
+    "topic": "Potencia n-ésima de una matriz",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El enunciado": "teal",
+    "La observación": "indet",
+    "Las potencias": "warn",
+    "El patrón": "warn",
+    "La fórmula": "solved",
+    "La comprobación": "teal",
+    "Por qué": "indet",
+    "Comprobación": "teal",
+    "El error": "danger",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Una potencia n-ésima que sale sola",
+      "tail": 0.5,
+      "narration": "[energetic] Sea A esta matriz tres por tres. Hallar A elevado a ene para todo ene natural. Parece que hace falta multiplicar muchísimas veces, y en realidad solo se mueve un número: el de arriba a la derecha.",
+      "captions": [
+        "Sea A esta matriz 3 × 3.",
+        "Hallar Aⁿ para todo n natural.",
+        "Solo se mueve un número: el de arriba a la derecha."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Matrices · 2º Bachillerato",
+        "title": "Solo se mueve\n*un número*",
+        "tex": "A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+        "texColor": "teal",
+        "texSize": 56
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "El enunciado",
+      "heading": "Qué pide exactamente el enunciado",
+      "narration": "[didactic] El enunciado pide A elevado a ene para todo ene natural. Ojo con ese para todo. No basta con calcular unas cuantas potencias y decir que se ve un patrón. Hay que dar una fórmula y comprobar que vale para cualquier ene.",
+      "captions": [
+        "El enunciado pide Aⁿ para todo n natural.",
+        "Ojo con ese para todo.",
+        "No basta con ver un patrón en unas cuantas potencias.",
+        "Hay que dar una fórmula y comprobarla."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Matriz",
+            "tex": "A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 48,
+            "color": "given"
+          },
+          {
+            "label": "Se pide",
+            "tex": "A^{n} \\quad \\text{para todo } n \\in \\mathbb{N}",
+            "size": 46,
+            "color": "warn"
+          }
+        ],
+        "chips": [
+          {
+            "text": "ver un patrón no es demostrarlo",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-observar",
+      "phase": "La observación",
+      "heading": "A es casi la matriz identidad",
+      "narration": "Fíjate en la matriz antes de multiplicar nada. Es la matriz identidad con un uno de más, arriba a la derecha, en la fila uno columna tres. Todo lo demás está en su sitio: unos en la diagonal y ceros fuera. Ese uno de más es el único que se va a mover.",
+      "captions": [
+        "Fíjate en la matriz antes de multiplicar.",
+        "Es la identidad con un 1 de más en la fila 1, columna 3.",
+        "El resto: unos en la diagonal y ceros fuera.",
+        "Ese 1 de más es el único que se moverá."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Identidad",
+            "tex": "I = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\qquad A = \\begin{pmatrix} 1 & 0 & \\color{#ffc857}{1} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 46
+          }
+        ],
+        "chips": [
+          {
+            "text": "el único elemento extra está en la fila 1, columna 3",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-a2",
+      "phase": "Las potencias",
+      "heading": "Calculamos A al cuadrado",
+      "narration": "[didactic] Calculamos A al cuadrado, que es A por A. Las filas dos y tres de A son las de la identidad, así que salen tal cual. Toda la gracia está en la primera fila, uno, cero, uno, multiplicada por las columnas de A. El resultado tiene un dos arriba a la derecha.",
+      "captions": [
+        "Calculamos A² = A · A.",
+        "Las filas 2 y 3 son las de la identidad: salen tal cual.",
+        "La gracia está en la primera fila, (1, 0, 1).",
+        "El resultado tiene un 2 arriba a la derecha."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{2} = A \\cdot A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{2} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 42
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-a2-detalle",
+      "phase": "Las potencias",
+      "heading": "De dónde sale ese 2",
+      "narration": "Vamos a ver de dónde sale ese dos. Es la fila uno de A por la columna tres de A. La fila uno es uno, cero, uno. La columna tres también es uno, cero, uno. El producto es uno por uno, más cero por cero, más uno por uno, o sea uno más cero más uno, dos.",
+      "captions": [
+        "¿De dónde sale ese 2?",
+        "Es la fila 1 de A por la columna 3 de A.",
+        "La fila 1 es (1, 0, 1).",
+        "La columna 3 también es (1, 0, 1).",
+        "1·1 + 0·0 + 1·1 = 1 + 0 + 1 = 2."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Fila 1 por columna 3",
+            "tex": "(1,\\,0,\\,1) \\cdot (1,\\,0,\\,1)",
+            "size": 50,
+            "color": "teal"
+          },
+          {
+            "tex": "= 1\\cdot 1 + 0\\cdot 0 + 1\\cdot 1 = 1 + 0 + 1 = 2",
+            "size": 50,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-a3",
+      "phase": "Las potencias",
+      "heading": "A al cubo",
+      "narration": "Seguimos con A al cubo, que es A al cuadrado por A. Otra vez las filas dos y tres se quedan igual. Y arriba a la derecha aparece un tres. La cuenta es uno por uno, más cero por cero, más dos por uno, que da tres.",
+      "captions": [
+        "Seguimos con A³ = A² · A.",
+        "Otra vez las filas 2 y 3 se quedan igual.",
+        "Arriba a la derecha aparece un 3.",
+        "1·1 + 0·0 + 2·1 = 3."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{3} = A^{2} \\cdot A = \\begin{pmatrix} 1 & 0 & 2 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{3} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 42
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-a4",
+      "phase": "Las potencias",
+      "heading": "A a la cuarta",
+      "narration": "Y una más, A a la cuarta. Mismo procedimiento y mismo resultado: las filas dos y tres no se mueven, y arriba a la derecha aparece un cuatro. Ya se ve por dónde va esto.",
+      "captions": [
+        "Y una más: A⁴.",
+        "Las filas 2 y 3 no se mueven, y arriba aparece un 4.",
+        "Ya se ve por dónde va esto."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{4} = A^{3} \\cdot A = \\begin{pmatrix} 1 & 0 & 3 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{4} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 42
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-patron",
+      "phase": "El patrón",
+      "heading": "Las cuatro potencias, juntas",
+      "tail": 0.6,
+      "narration": "[didactic] Ponemos las cuatro potencias una al lado de otra. A lleva un uno arriba a la derecha, A al cuadrado un dos, A al cubo un tres y A a la cuarta un cuatro. Los demás elementos no se mueven ni una sola vez. El número de la fila uno columna tres es exactamente el exponente.",
+      "captions": [
+        "Ponemos las cuatro potencias juntas.",
+        "A → 1, A² → 2, A³ → 3, A⁴ → 4.",
+        "Los demás elementos no se mueven.",
+        "El número de la fila 1, columna 3 es el exponente."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "\\begin{pmatrix} 1 & 0 & \\color{#ffc857}{1} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\; \\begin{pmatrix} 1 & 0 & \\color{#ffc857}{2} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\; \\begin{pmatrix} 1 & 0 & \\color{#ffc857}{3} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\; \\begin{pmatrix} 1 & 0 & \\color{#ffc857}{4} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 38
+          }
+        ],
+        "badge": {
+          "text": "el exponente se sienta en la esquina",
+          "sub": "fila 1, columna 3",
+          "color": "warn"
+        }
+      }
+    },
+    {
+      "id": "09-formula",
+      "phase": "La fórmula",
+      "heading": "La fórmula de A elevado a n",
+      "tail": 0.6,
+      "narration": "Así que la fórmula es esta: A elevado a ene es la identidad con un ene arriba a la derecha. La primera fila es uno, cero, ene. La segunda es cero, uno, cero. Y la tercera, cero, cero, uno.",
+      "captions": [
+        "La fórmula: Aⁿ es la identidad con una n arriba a la derecha.",
+        "Primera fila: (1, 0, n).",
+        "Segunda fila: (0, 1, 0).",
+        "Tercera fila: (0, 0, 1)."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{n} = \\begin{pmatrix} 1 & 0 & n \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "esa es la respuesta",
+          "sub": "solo cambia la esquina superior derecha",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "10-induccion",
+      "phase": "La comprobación",
+      "heading": "Lo comprobamos para todo n",
+      "narration": "[didactic] Pero el enunciado dice para todo ene, así que hay que comprobarlo y no solo verlo. Suponemos que la fórmula vale para ene y multiplicamos por A una vez más. La fila uno, uno, cero, ene, por la columna tres de A, uno, cero, uno, da uno más ene. Es decir, A elevado a ene más uno lleva un ene más uno arriba a la derecha, que es justo lo que dice la fórmula. Y como para ene igual a uno la fórmula devuelve la propia A, ya vale para todos.",
+      "captions": [
+        "El enunciado dice para todo n: hay que comprobarlo.",
+        "Suponemos la fórmula para n y multiplicamos por A.",
+        "(1, 0, n) · (1, 0, 1) = 1 + n.",
+        "Aⁿ⁺¹ lleva n + 1 arriba: justo lo que dice la fórmula.",
+        "Y para n = 1 la fórmula devuelve la propia A."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A^{n} \\cdot A = \\begin{pmatrix} 1 & 0 & n \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{n+1} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 40
+          },
+          {
+            "tex": "(1,\\,0,\\,n) \\cdot (1,\\,0,\\,1) = 1 + n",
+            "size": 46,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-por-que",
+      "phase": "Por qué",
+      "heading": "Por qué sale tan limpio",
+      "narration": "[calm] ¿Y por qué sale tan limpio? Escribe A como la identidad más una matriz ene, que solo tiene un uno arriba a la derecha. Esa matriz ene al cuadrado es la matriz nula, porque al multiplicarla por sí misma el uno se queda sin pareja. Al desarrollar la potencia solo sobreviven dos sumandos: la identidad y ene veces esa matriz. Por eso el resultado crece de uno en uno y no de cualquier manera.",
+      "captions": [
+        "¿Por qué sale tan limpio?",
+        "Escribe A = I + N, donde N solo tiene un 1 arriba a la derecha.",
+        "N² es la matriz nula.",
+        "Al desarrollar la potencia solo quedan I y n·N.",
+        "Por eso el resultado crece de uno en uno."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "A = I + N, \\qquad N = \\begin{pmatrix} 0 & 0 & 1 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}",
+            "size": 44,
+            "color": "teal"
+          },
+          {
+            "tex": "N^{2} = O \\;\\Longrightarrow\\; A^{n} = (I+N)^{n} = I + nN",
+            "size": 46,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-casos",
+      "phase": "Comprobación",
+      "heading": "Lo comprobamos con casos concretos",
+      "narration": "Lo comprobamos con casos concretos. Con ene igual a uno la fórmula devuelve la matriz A del enunciado. Con ene igual a dos devuelve la que calculamos a mano. Y con ene igual a cien pone un cien arriba a la derecha, sin multiplicar cien matrices.",
+      "captions": [
+        "Lo comprobamos con casos concretos.",
+        "n = 1 devuelve la A del enunciado.",
+        "n = 2 devuelve la que calculamos a mano.",
+        "n = 100 pone un 100 arriba, sin multiplicar 100 matrices."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "n=1: \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\qquad n=2: \\begin{pmatrix} 1 & 0 & 2 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 40,
+            "color": "teal"
+          },
+          {
+            "tex": "n=100: \\begin{pmatrix} 1 & 0 & 100 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 40,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13-error",
+      "phase": "El error",
+      "heading": "El error de elevar elemento a elemento",
+      "narration": "[didactic] Y ahora el error típico. Elevar cada elemento de la matriz a ene, uno por uno. Si lo haces, A al cuadrado te sale igual que A, porque uno al cuadrado es uno y cero al cuadrado es cero. Pero A al cuadrado lleva un dos arriba a la derecha, así que ese método está mal. Elevar una matriz a una potencia es multiplicarla por sí misma, no elevar sus elementos.",
+      "captions": [
+        "El error típico.",
+        "Elevar cada elemento de la matriz a n, uno por uno.",
+        "Así A² saldría igual que A: 1² = 1 y 0² = 0.",
+        "Pero A² lleva un 2 arriba a la derecha.",
+        "Elevar una matriz es multiplicarla por sí misma."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mal",
+            "tex": "\\begin{pmatrix} 1^{2} & 0^{2} & 1^{2} \\\\ 0^{2} & 1^{2} & 0^{2} \\\\ 0^{2} & 0^{2} & 1^{2} \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 38,
+            "color": "danger"
+          },
+          {
+            "label": "Bien",
+            "tex": "A^{2} = A \\cdot A = \\begin{pmatrix} 1 & 0 & 2 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "size": 40,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1,
+      "narration": "[calm] Resumen. A es la matriz identidad con un uno de más arriba a la derecha. Al elevarla, todo se queda quieto salvo esa esquina, que va contando: uno, dos, tres, cuatro. La fórmula es A elevado a ene igual a la identidad con un ene en la fila uno columna tres. Y queda comprobada multiplicando por A una vez más.",
+      "captions": [
+        "Resumen.",
+        "A es la identidad con un 1 de más arriba a la derecha.",
+        "Al elevarla solo cuenta esa esquina: 1, 2, 3, 4.",
+        "Aⁿ es la identidad con una n en la fila 1, columna 3.",
+        "Comprobado multiplicando por A una vez más."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Observación",
+            "tex": "A = I + N, \\quad N^{2} = O",
+            "color": "teal"
+          },
+          {
+            "label": "Patrón",
+            "tex": "a_{13} = n",
+            "color": "warn"
+          },
+          {
+            "label": "Respuesta",
+            "tex": "A^{n} = \\begin{pmatrix} 1 & 0 & n \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+            "color": "solved"
+          }
+        ],
+        "closing": "Antes de multiplicar matrices a lo bruto, mira cuánto se parecen a la identidad."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Potencia n-ésima de una matriz | Hallar Aⁿ para todo n natural (2º Bachillerato)",
+    "description": "Hallamos Aⁿ para todo n natural siendo A la matriz 3 × 3 con filas (1, 0, 1), (0, 1, 0) y (0, 0, 1). No hay que multiplicar n matrices: basta con ver qué se mueve y comprobarlo.\n\nEl método:\n1. Observa la matriz. A es la identidad con un 1 de más en la fila 1, columna 3.\n2. Calcula las primeras potencias. A² lleva un 2 en esa esquina, A³ un 3 y A⁴ un 4. Todos los demás elementos se quedan exactamente igual.\n3. Escribe la fórmula: Aⁿ es la identidad con una n en la fila 1, columna 3.\n4. Compruébala. El enunciado dice para todo n, así que no basta con ver el patrón: multiplicamos Aⁿ por A y el elemento de esa esquina pasa de n a n + 1, que es justo lo que predice la fórmula. Como para n = 1 devuelve la propia A, queda comprobada para todos.\n\nAdemás explicamos por qué sale tan limpio: A se puede escribir como I + N, donde N solo tiene un 1 arriba a la derecha y cumple N² = O. Al desarrollar (I + N)ⁿ solo sobreviven dos sumandos, I y n·N, y por eso el resultado crece de uno en uno.\n\nEl error típico: elevar cada elemento de la matriz a n. Con ese método A² saldría igual que A, porque 1² = 1 y 0² = 0, pero A² lleva un 2 arriba a la derecha. Elevar una matriz a una potencia es multiplicarla por sí misma.\n\nMás ejercicios resueltos de matrices, determinantes y sistemas: https://www.clasesdeapoyo.com\n\n#Matrices #Bachillerato #Matemáticas #EjercicioResuelto #AlgebraLineal",
+    "tags": [
+      "matrices",
+      "potencia de una matriz",
+      "potencia n-esima",
+      "matriz elevada a n",
+      "An matriz",
+      "matriz identidad",
+      "matriz nilpotente",
+      "induccion matrices",
+      "2º bachillerato",
+      "matematicas 2 bachillerato",
+      "algebra lineal",
+      "matrices y determinantes",
+      "selectividad",
+      "ejercicio resuelto",
+      "matematicas paso a paso",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Matrices · 2º Bachillerato",
+      "line1": "Aⁿ sin hacer\nn productos",
+      "line2": "Solo se mueve\nuna esquina",
+      "tex": "A^{n} = \\begin{pmatrix} 1 & 0 & n \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+      "badge": "para todo n"
+    }
+  },
+  "reel": {
+    "title": "Aⁿ no es elevar cada elemento a n (Matrices, ejercicio 8)",
+    "caption": "Elevar una matriz a n no es elevar cada elemento a n.\n\nCon A = [[1, 0, 1], [0, 1, 0], [0, 0, 1]], si elevas elemento a elemento te sale que A² es igual a A, porque 1² = 1 y 0² = 0. Pero A² de verdad lleva un 2 arriba a la derecha.\n\nLa clave es mirar la matriz antes de multiplicar: A es la identidad con un 1 de más en la fila 1, columna 3. Al elevarla, esa esquina va contando. A² lleva 2, A³ lleva 3 y Aⁿ lleva n. El resto no se mueve.\n\nY como el enunciado dice para todo n, en el vídeo lo comprobamos multiplicando Aⁿ por A: la esquina pasa de n a n + 1.\n\nEjercicio completo en YouTube, y más ejercicios resueltos en ClasesDeApoyo.com.\n\n#matrices #algebra #algebralineal #matematicas #bachillerato #2bachillerato #selectividad #pau #evau #ebau #mates #ejerciciosresueltos #matrizidentidad #estudiar #clasesdeapoyo",
+    "cover": {
+      "kicker": "Matrices",
+      "line1": "Aⁿ no es\nelemento a elemento",
+      "line2": "Solo cuenta\nuna esquina",
+      "tex": "A^{n} = \\begin{pmatrix} 1 & 0 & n \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+      "badge": "para todo n"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "No es elemento a elemento",
+        "tail": 0.4,
+        "narration": "[excited] Elevar una matriz a ene no es elevar cada elemento a ene. Mira lo que pasa con esta.",
+        "captions": [
+          "Elevar una matriz a n no es elevar cada elemento a n.",
+          "Mira lo que pasa con esta."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Matrices · 2º Bach",
+          "title": "Aⁿ no es\n*elemento a elemento*",
+          "tex": "A = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+          "texColor": "teal",
+          "texSize": 48
+        }
+      },
+      {
+        "id": "r2-error",
+        "phase": "El error",
+        "heading": "A² no es igual a A",
+        "tail": 0.4,
+        "narration": "[didactic] Si elevas cada elemento al cuadrado, A al cuadrado te sale igual que A. Pero la de verdad lleva un dos arriba a la derecha.",
+        "captions": [
+          "Elevando cada elemento, A² saldría igual que A.",
+          "Pero la de verdad lleva un 2 arriba a la derecha."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Mal",
+              "tex": "A^{2} = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+              "size": 42,
+              "color": "danger"
+            },
+            {
+              "label": "Bien",
+              "tex": "A^{2} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{2} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+              "size": 42,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-clave",
+        "phase": "El patrón",
+        "heading": "La esquina va contando",
+        "tail": 0.4,
+        "narration": "[cheerful] La clave es que A es la identidad con un uno de más arriba a la derecha. Al elevarla, esa esquina va contando. A al cuadrado lleva un dos, A al cubo un tres, y A elevado a ene lleva un ene.",
+        "captions": [
+          "A es la identidad con un 1 de más arriba a la derecha.",
+          "Al elevarla, esa esquina va contando.",
+          "A² lleva 2, A³ lleva 3, y Aⁿ lleva n."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "A^{n} = \\begin{pmatrix} 1 & 0 & \\color{#33d98a}{n} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}",
+              "size": 50,
+              "color": "solved"
+            },
+            {
+              "label": "Solo cambia",
+              "tex": "a_{13} = n",
+              "size": 44,
+              "color": "warn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] El ejercicio entero, con la comprobación para todo ene, en YouTube. Te espero en Clases de Apoyo.",
+        "captions": [
+          "El ejercicio entero, con la comprobación para todo n, en YouTube.",
+          "Te espero en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Solo cuenta\n*la esquina*",
+          "tex": "A^{n} = I + nN",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

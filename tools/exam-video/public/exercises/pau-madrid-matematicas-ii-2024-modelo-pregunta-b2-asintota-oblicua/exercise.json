@@ -1,0 +1,185 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2024-modelo-pregunta-b2-asintota-oblicua",
+  "exam": {
+    "label": "PAU Madrid · Modelo 2024 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta B.2",
+    "topic": "Asíntotas"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "Las asíntotas": "teal",
+    "La oblicua": "warn",
+    "El atajo": "solved",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Sin horizontal, busca la oblicua (PAU Madrid, modelo 2024, Pregunta B.2)",
+    "caption": "¿No hay asíntota horizontal? No pares: te estás dejando la oblicua ❌\n\nPAU Madrid, modelo 2024, Matemáticas II, pregunta B.2:\n1️⃣ Vertical: x = 1, el límite es −∞ por los dos lados\n2️⃣ Horizontal: f(x) → ±∞, no hay\n3️⃣ Oblicua: m = 1 y n = 0 → y = x\n\nTruco: si f(x) es x más algo que tiende a 0, la asíntota oblicua es y = x.\n\n📌 Guárdalo para el examen\n💬 ¿Tú la habrías buscado?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#asintotas #funciones #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Modelo 2024 · Matemáticas II",
+      "line1": "Sin horizontal…\nbusca la oblicua",
+      "line2": "m = 1, n = 0",
+      "tex": "y = x",
+      "badge": "✗  parar en la horizontal",
+      "footer": "Pregunta B.2 · PAU Madrid 2024, resuelta"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Sin horizontal, busca la oblicua",
+        "tail": 0.4,
+        "narration": "[energetic] ¿No hay asíntota horizontal? Pues no pares ahí. Esta función esconde una oblicua.",
+        "captions": [
+          "¿No hay asíntota horizontal?",
+          "Pues no pares ahí.",
+          "Esta función esconde una oblicua."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Modelo 2024",
+          "title": "Sin horizontal…\nbusca la *oblicua*",
+          "tex": "f(x) = x - \\frac{4}{(x-1)^2}",
+          "texColor": "teal",
+          "texSize": 72
+        }
+      },
+      {
+        "id": "r2-vertical-horizontal",
+        "phase": "Las asíntotas",
+        "heading": "Vertical sí, horizontal no",
+        "tail": 0.4,
+        "narration": "[didactic] En equis igual a uno, el límite es menos infinito por los dos lados: asíntota vertical. En el infinito, la función se va a infinito: no hay horizontal.",
+        "captions": [
+          "En x = 1, el límite es −∞ por los dos lados: asíntota vertical.",
+          "En el infinito, la función se va a infinito: no hay horizontal."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Vertical",
+              "tex": "\\displaystyle \\lim_{x\\to 1^{\\pm}} f(x) = -\\infty",
+              "size": 44,
+              "color": "teal"
+            },
+            {
+              "tex": "x = 1",
+              "size": 56,
+              "color": "solved"
+            },
+            {
+              "label": "Horizontal",
+              "tex": "\\displaystyle \\lim_{x\\to \\pm\\infty} f(x) = \\pm\\infty",
+              "size": 44,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "Aquí paran muchos",
+            "color": "danger"
+          }
+        }
+      },
+      {
+        "id": "r3-oblicua",
+        "phase": "La oblicua",
+        "heading": "y = mx + n",
+        "tail": 0.4,
+        "narration": "[didactic] La pendiente eme es el límite de efe entre equis: uno. Y ene es el límite de efe menos equis: cero.",
+        "captions": [
+          "La pendiente m es el límite de f(x)/x: 1.",
+          "Y n es el límite de f(x) − x: 0."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Pendiente",
+              "tex": "\\displaystyle m = \\lim_{x\\to\\infty} \\frac{f(x)}{x} = 1",
+              "size": 44,
+              "color": "teal"
+            },
+            {
+              "label": "Ordenada",
+              "tex": "\\displaystyle n = \\lim_{x\\to\\infty} \\frac{-4}{(x-1)^2} = 0",
+              "size": 44,
+              "color": "teal"
+            },
+            {
+              "label": "Oblicua",
+              "tex": "y = x",
+              "size": 64,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-atajo",
+        "phase": "El atajo",
+        "heading": "Se ve a simple vista",
+        "tail": 0.4,
+        "narration": "[excited] El atajo: efe es equis menos algo que tiende a cero. La asíntota es y igual a equis, y la curva va siempre por debajo.",
+        "captions": [
+          "El atajo: f es x menos algo que tiende a 0.",
+          "La asíntota es y = x, y la curva va siempre por debajo."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f(x) = \\underbrace{x}_{\\text{asíntota}} - \\underbrace{\\frac{4}{(x-1)^2}}_{\\to\\, 0^{+}}",
+              "size": 54,
+              "color": "teal"
+            },
+            {
+              "tex": "f(x) - x < 0",
+              "size": 54,
+              "color": "solved"
+            }
+          ],
+          "chips": [
+            {
+              "text": "la curva queda por debajo de y = x",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Sin horizontal, busca siempre la oblicua. Más ejercicios resueltos en Clases de Apoyo.",
+        "captions": [
+          "Sin horizontal, busca siempre la oblicua.",
+          "Más ejercicios resueltos en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Sin horizontal,\nbusca la *oblicua*",
+          "tex": "y = x",
+          "lines": [
+            "Pregunta B.2 · PAU Madrid 2024",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}

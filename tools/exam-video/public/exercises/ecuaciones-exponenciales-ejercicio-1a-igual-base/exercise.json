@@ -1,0 +1,632 @@
+{
+  "slug": "ecuaciones-exponenciales-ejercicio-1a-igual-base",
+  "exam": {
+    "label": "Ecuaciones exponenciales · 1º Bachillerato",
+    "question": "Ejercicio 1a",
+    "topic": "Potencias de la misma base",
+    "site": "ClasesDeApoyo.com"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "KDuMsTRG03d18osdZP8V",
+    "fallbackVoiceId": "JBFqnCBsd6RMkjVDRZzb",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "El enunciado": "teal",
+    "La propiedad": "indet",
+    "Por qué": "indet",
+    "El planteamiento": "teal",
+    "El despeje": "warn",
+    "El resultado": "solved",
+    "Comprobación": "teal",
+    "El error": "danger",
+    "La clave": "indet",
+    "El método": "teal",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "phase": "Idea clave",
+      "heading": "Una exponencial sin logaritmos",
+      "tail": 0.5,
+      "narration": "[energetic] Resuelve esta ecuación exponencial. Tres elevado a menos equis más uno es igual a tres elevado a dos equis más tres. No hace falta ningún logaritmo. Las dos potencias tienen la misma base, y eso la resuelve en una línea.",
+      "captions": [
+        "Resuelve esta ecuación exponencial.",
+        "3⁻ˣ⁺¹ = 3²ˣ⁺³",
+        "No hace falta ningún logaritmo.",
+        "Misma base: se resuelve en una línea."
+      ],
+      "body": {
+        "type": "hook",
+        "kicker": "Ecuaciones exponenciales · 1º Bachillerato",
+        "title": "Misma base,\n*mismo exponente*",
+        "tex": "3^{\\,-x+1} = 3^{\\,2x+3}",
+        "texColor": "teal",
+        "texSize": 72
+      }
+    },
+    {
+      "id": "02-enunciado",
+      "phase": "El enunciado",
+      "heading": "Qué tenemos a cada lado",
+      "narration": "[didactic] Mira bien los dos lados de la igualdad. A la izquierda, base tres y exponente menos equis más uno. A la derecha, base tres otra vez, y exponente dos equis más tres. La base es la misma en los dos lados, y la incógnita está arriba, en el exponente.",
+      "captions": [
+        "Mira los dos lados de la igualdad.",
+        "Izquierda: base 3, exponente −x + 1.",
+        "Derecha: base 3, exponente 2x + 3.",
+        "Misma base, y la x está en el exponente."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Ecuación",
+            "tex": "3^{\\,-x+1} = 3^{\\,2x+3}",
+            "size": 64,
+            "color": "given"
+          }
+        ],
+        "chips": [
+          {
+            "text": "la base es 3 en los dos lados",
+            "color": "solved"
+          },
+          {
+            "text": "la x está en el exponente",
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03-propiedad",
+      "phase": "La propiedad",
+      "heading": "Misma base, mismo exponente",
+      "narration": "[didactic] La propiedad que lo resuelve es esta: si dos potencias de la misma base son iguales, sus exponentes también lo son. Se escribe así: a elevado a eme igual a a elevado a ene equivale a eme igual a ene. Tiene una condición: la base debe ser positiva y distinta de uno. El tres la cumple de sobra.",
+      "captions": [
+        "Si dos potencias de la misma base son iguales, sus exponentes también.",
+        "aᵐ = aⁿ ⟺ m = n",
+        "Condición: la base debe ser positiva y distinta de 1.",
+        "El 3 la cumple."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Propiedad",
+            "tex": "a^{m} = a^{n} \\;\\Longleftrightarrow\\; m = n",
+            "size": 58,
+            "color": "indet"
+          },
+          {
+            "label": "Condición",
+            "tex": "a > 0, \\qquad a \\neq 1",
+            "size": 48,
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "04-por-que",
+      "phase": "Por qué",
+      "heading": "Por qué se pueden igualar los exponentes",
+      "narration": "[calm] ¿Y por qué se pueden igualar los exponentes? Porque la función exponencial no repite valores. Con base tres, cada exponente da un resultado distinto y la curva sube sin parar. Así que si dos potencias valen lo mismo, solo puede ser porque el exponente es el mismo. Con base uno esto se caería, porque uno elevado a cualquier cosa vale uno.",
+      "captions": [
+        "¿Por qué se pueden igualar los exponentes?",
+        "Porque la función exponencial no repite valores.",
+        "Con base 3, cada exponente da un resultado distinto.",
+        "Si dos potencias valen lo mismo, el exponente es el mismo.",
+        "Con base 1 no valdría: 1 elevado a lo que sea vale 1."
+      ],
+      "body": {
+        "type": "plot",
+        "fn": "Math.pow(3, x)",
+        "xMin": -2,
+        "xMax": 2,
+        "yMin": 0,
+        "yMax": 9,
+        "points": [
+          {
+            "x": 0,
+            "y": 1,
+            "label": "3⁰ = 1",
+            "color": "teal"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "label": "3¹ = 3",
+            "color": "indet"
+          },
+          {
+            "x": 2,
+            "y": 9,
+            "label": "3² = 9",
+            "color": "solved"
+          }
+        ],
+        "lead": {
+          "tex": "y = 3^{x} \\;\\text{ es siempre creciente}",
+          "size": 44,
+          "color": "inkSoft"
+        },
+        "chips": [
+          {
+            "text": "no repite ningún valor",
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "05-igualar",
+      "phase": "El planteamiento",
+      "heading": "Igualamos los exponentes",
+      "narration": "Aplicamos la propiedad. Igualamos los exponentes: menos equis más uno es igual a dos equis más tres. Y fíjate en lo que acaba de pasar: la ecuación exponencial se ha convertido en una ecuación de primer grado.",
+      "captions": [
+        "Aplicamos la propiedad.",
+        "−x + 1 = 2x + 3",
+        "La exponencial pasa a ser una ecuación de primer grado."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "3^{\\,-x+1} = 3^{\\,2x+3} \\;\\Longleftrightarrow\\; -x + 1 = 2x + 3",
+            "size": 52,
+            "color": "teal"
+          }
+        ],
+        "badge": {
+          "text": "ecuación de primer grado",
+          "sub": "ya no queda ningún exponente",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "06-agrupar",
+      "phase": "El despeje",
+      "heading": "Agrupamos las equis y los números",
+      "narration": "[didactic] Ahora agrupamos. Las equis a un lado y los números al otro. El menos equis de la izquierda pasa sumando a la derecha, y el tres de la derecha pasa restando a la izquierda. Queda uno menos tres igual a dos equis más equis.",
+      "captions": [
+        "Ahora agrupamos.",
+        "Las x a un lado y los números al otro.",
+        "−x pasa sumando a la derecha; el 3 pasa restando a la izquierda.",
+        "1 − 3 = 2x + x"
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Partimos de",
+            "tex": "-x + 1 = 2x + 3",
+            "size": 52
+          },
+          {
+            "label": "Agrupamos",
+            "tex": "1 - 3 = 2x + x",
+            "size": 58,
+            "color": "warn"
+          }
+        ],
+        "chips": [
+          {
+            "text": "cambia de lado, cambia de signo",
+            "color": "indet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "07-operar",
+      "phase": "El despeje",
+      "heading": "Operamos los dos lados",
+      "narration": "Operamos los dos lados. Uno menos tres es menos dos. Y dos equis más equis es tres equis. Nos queda tres equis igual a menos dos.",
+      "captions": [
+        "Operamos los dos lados.",
+        "1 − 3 = −2",
+        "2x + x = 3x",
+        "3x = −2"
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "1 - 3 = -2 \\qquad\\qquad 2x + x = 3x",
+            "size": 50,
+            "color": "inkSoft"
+          },
+          {
+            "tex": "3x = -2",
+            "size": 66,
+            "color": "warn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "08-resultado",
+      "phase": "El resultado",
+      "heading": "La solución de la ecuación",
+      "tail": 0.6,
+      "narration": "Dividimos entre tres y ya está. Equis es igual a menos dos tercios. Esa es la única solución de la ecuación.",
+      "captions": [
+        "Dividimos entre 3.",
+        "x = −2/3",
+        "Es la única solución de la ecuación."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "3x = -2 \\;\\Longrightarrow\\; x = \\dfrac{-2}{3} = -\\dfrac{2}{3}",
+            "size": 58,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "x = −2/3",
+          "sub": "solución única",
+          "color": "solved"
+        }
+      }
+    },
+    {
+      "id": "09-comprobacion",
+      "phase": "Comprobación",
+      "heading": "Lo comprobamos sustituyendo",
+      "narration": "[didactic] Lo comprobamos. Sustituimos equis por menos dos tercios en los dos exponentes. En el de la izquierda: menos, menos dos tercios, más uno, da dos tercios más uno, es decir, cinco tercios. En el de la derecha: dos por menos dos tercios, más tres, da menos cuatro tercios más tres, cinco tercios también. Los dos exponentes coinciden, así que la solución es correcta.",
+      "captions": [
+        "Lo comprobamos.",
+        "Sustituimos x = −2/3 en los dos exponentes.",
+        "Izquierda: −(−2/3) + 1 = 2/3 + 1 = 5/3.",
+        "Derecha: 2·(−2/3) + 3 = −4/3 + 3 = 5/3.",
+        "Coinciden: la solución es correcta."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Izquierda",
+            "tex": "-\\left(-\\tfrac{2}{3}\\right) + 1 = \\tfrac{2}{3} + 1 = \\tfrac{5}{3}",
+            "size": 46,
+            "color": "teal"
+          },
+          {
+            "label": "Derecha",
+            "tex": "2\\left(-\\tfrac{2}{3}\\right) + 3 = -\\tfrac{4}{3} + 3 = \\tfrac{5}{3}",
+            "size": 46,
+            "color": "indet"
+          },
+          {
+            "tex": "3^{\\,5/3} = 3^{\\,5/3}",
+            "size": 52,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10-error-signos",
+      "phase": "El error",
+      "heading": "El error de los signos",
+      "narration": "[didactic] El error más frecuente no está en la propiedad, está en los signos. Mucha gente llega a menos equis más uno igual a dos equis más tres y escribe uno más tres igual a dos equis más equis. Ese tres pasa restando, no sumando. Con ese fallo sale equis igual a cuatro tercios, y esa equis no cumple la ecuación.",
+      "captions": [
+        "El error más frecuente no está en la propiedad, está en los signos.",
+        "Mucha gente escribe 1 + 3 = 2x + x.",
+        "El 3 pasa restando, no sumando.",
+        "Con ese fallo sale x = 4/3, que no cumple la ecuación."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Mal",
+            "tex": "1 + 3 = 2x + x \\;\\Longrightarrow\\; x = \\tfrac{4}{3}",
+            "size": 48,
+            "color": "danger"
+          },
+          {
+            "label": "Bien",
+            "tex": "1 - 3 = 2x + x \\;\\Longrightarrow\\; x = -\\tfrac{2}{3}",
+            "size": 48,
+            "color": "solved"
+          }
+        ],
+        "chips": [
+          {
+            "text": "con x = 4/3 los exponentes dan −1/3 y 17/3",
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11-error-bases",
+      "phase": "El error",
+      "heading": "El error de no mirar las bases",
+      "narration": "[didactic] Y hay un segundo error, bastante más grave. Igualar los exponentes cuando las bases no son iguales. Imagina que a la derecha, en vez de un tres, hubiese un nueve. Si igualas los exponentes sin mirar, vuelve a salirte menos dos tercios, y ahora esa respuesta es falsa.",
+      "captions": [
+        "Hay un segundo error, más grave.",
+        "Igualar los exponentes cuando las bases no son iguales.",
+        "Imagina que a la derecha hubiese un 9 en vez de un 3.",
+        "Igualando sin mirar sale x = −2/3, y ahora es falso."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Otra ecuación",
+            "tex": "3^{\\,-x+1} = 9^{\\,2x+3}",
+            "size": 58,
+            "color": "warn"
+          },
+          {
+            "label": "Mal",
+            "tex": "-x+1 = 2x+3 \\;\\Longrightarrow\\; x = -\\tfrac{2}{3}",
+            "size": 46,
+            "color": "danger"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12-misma-base",
+      "phase": "La clave",
+      "heading": "Primero se igualan las bases",
+      "narration": "La solución es escribirlo todo con la misma base. Nueve es tres al cuadrado, así que nueve elevado a dos equis más tres es tres elevado a cuatro equis más seis. Ahora sí: menos equis más uno igual a cuatro equis más seis. De ahí sale equis igual a menos uno, que es la respuesta buena. La regla es sencilla: antes de igualar exponentes, iguala las bases.",
+      "captions": [
+        "La solución: escribirlo todo con la misma base.",
+        "9 = 3², así que 9²ˣ⁺³ = 3⁴ˣ⁺⁶.",
+        "Ahora sí: −x + 1 = 4x + 6.",
+        "Sale x = −1, la respuesta buena.",
+        "Antes de igualar exponentes, iguala las bases."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "tex": "9^{\\,2x+3} = \\left(3^{2}\\right)^{2x+3} = 3^{\\,4x+6}",
+            "size": 48,
+            "color": "teal"
+          },
+          {
+            "tex": "-x+1 = 4x+6 \\;\\Longrightarrow\\; x = -1",
+            "size": 52,
+            "color": "solved"
+          }
+        ],
+        "badge": {
+          "text": "iguala las bases primero",
+          "sub": "y después los exponentes",
+          "color": "warn"
+        }
+      }
+    },
+    {
+      "id": "13-metodo",
+      "phase": "El método",
+      "heading": "El método, en tres pasos",
+      "narration": "[didactic] El método completo para cualquier ecuación exponencial de este tipo tiene tres pasos. Uno: escribe los dos lados como potencias de la misma base. Dos: iguala los exponentes. Y tres: resuelve la ecuación que queda, que suele ser de primer o de segundo grado.",
+      "captions": [
+        "El método completo tiene tres pasos.",
+        "1. Escribe los dos lados como potencias de la misma base.",
+        "2. Iguala los exponentes.",
+        "3. Resuelve la ecuación que queda."
+      ],
+      "body": {
+        "type": "rows",
+        "rows": [
+          {
+            "label": "Paso 1",
+            "text": "misma base en los dos lados",
+            "size": 44,
+            "color": "given"
+          },
+          {
+            "label": "Paso 2",
+            "tex": "a^{m} = a^{n} \\;\\Longrightarrow\\; m = n",
+            "size": 46,
+            "color": "indet"
+          },
+          {
+            "label": "Paso 3",
+            "text": "resuelve la ecuación que queda",
+            "size": 44,
+            "color": "solved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14-resumen",
+      "phase": "Resumen final",
+      "heading": "Resumen",
+      "tail": 1,
+      "narration": "[calm] Resumen. Las dos potencias tenían la misma base, el tres, así que igualamos los exponentes. Menos equis más uno igual a dos equis más tres lleva a tres equis igual a menos dos. Y la solución es equis igual a menos dos tercios. Comprobada: los dos exponentes valen cinco tercios.",
+      "captions": [
+        "Resumen.",
+        "Misma base, el 3, así que igualamos los exponentes.",
+        "−x + 1 = 2x + 3 lleva a 3x = −2.",
+        "La solución es x = −2/3.",
+        "Comprobada: los dos exponentes valen 5/3."
+      ],
+      "body": {
+        "type": "summary",
+        "rows": [
+          {
+            "label": "Propiedad",
+            "tex": "a^{m} = a^{n} \\Rightarrow m = n",
+            "color": "indet"
+          },
+          {
+            "label": "Ecuación",
+            "tex": "-x + 1 = 2x + 3",
+            "color": "teal"
+          },
+          {
+            "label": "Respuesta",
+            "tex": "x = -\\dfrac{2}{3}",
+            "color": "solved"
+          }
+        ],
+        "closing": "Antes de tocar un logaritmo, mira si puedes poner las dos potencias en la misma base."
+      }
+    }
+  ],
+  "youtube": {
+    "title": "Ecuación exponencial con la misma base | 3^(−x+1) = 3^(2x+3) paso a paso",
+    "description": "Resolvemos la ecuación exponencial 3^(−x+1) = 3^(2x+3) sin usar logaritmos, porque las dos potencias tienen la misma base.\n\nEl método, en tres pasos:\n1. Escribe los dos lados como potencias de la misma base. Aquí ya lo están: los dos son potencias de 3.\n2. Iguala los exponentes. La propiedad dice que a^m = a^n equivale a m = n, siempre que la base sea positiva y distinta de 1.\n3. Resuelve la ecuación que queda: −x + 1 = 2x + 3, que lleva a 1 − 3 = 2x + x, es decir, 3x = −2.\n\nResultado: x = −2/3.\n\nLo comprobamos sustituyendo. El exponente de la izquierda da −(−2/3) + 1 = 5/3 y el de la derecha 2·(−2/3) + 3 = 5/3, así que los dos lados valen 3^(5/3).\n\nTambién explicamos por qué la propiedad funciona: la función y = 3^x es siempre creciente y no repite ningún valor, así que dos potencias iguales solo pueden venir del mismo exponente.\n\nLos dos errores típicos: pasar el 3 sumando en vez de restando, que da x = 4/3 y no cumple la ecuación; e igualar exponentes cuando las bases no coinciden. Si a la derecha hubiese 9^(2x+3), la respuesta correcta sería x = −1, porque 9 = 3² convierte ese exponente en 4x + 6.\n\nMás ejercicios resueltos de exponenciales, logaritmos y ecuaciones: https://www.clasesdeapoyo.com\n\n#EcuacionesExponenciales #Bachillerato #Matemáticas #EjercicioResuelto #Exponenciales",
+    "tags": [
+      "ecuaciones exponenciales",
+      "ecuacion exponencial",
+      "misma base",
+      "potencias de la misma base",
+      "igualar exponentes",
+      "exponenciales y logaritmos",
+      "1 bachillerato",
+      "4 eso",
+      "matematicas bachillerato",
+      "resolver ecuaciones",
+      "ejercicio resuelto",
+      "matematicas paso a paso",
+      "exponenciales sin logaritmos",
+      "propiedades de las potencias",
+      "clases de apoyo"
+    ],
+    "thumbnail": {
+      "kicker": "Ecuaciones exponenciales",
+      "line1": "Sin logaritmos",
+      "line2": "Misma base,\nmismo exponente",
+      "tex": "3^{\\,-x+1} = 3^{\\,2x+3}",
+      "badge": "x = −2/3"
+    }
+  },
+  "reel": {
+    "title": "Antes de igualar exponentes, iguala las bases (Exponenciales, ejercicio 1a)",
+    "caption": "Igualar exponentes solo vale si las bases son iguales.\n\nEn 3^(−x+1) = 3^(2x+3) es directo: los dos lados son potencias de 3, igualas los exponentes y sale x = −2/3.\n\nAhora cambia el 3 de la derecha por un 9 y prueba a hacer lo mismo. Vuelve a salirte −2/3, y esta vez está mal. Como 9 = 3², el exponente de la derecha es 4x + 6, no 2x + 3, y la respuesta buena es x = −1. Dos ecuaciones casi iguales, dos respuestas distintas.\n\nPrimero las bases, después los exponentes.\n\nEjercicio completo con la comprobación en YouTube, y más ejercicios resueltos en ClasesDeApoyo.com.\n\n#exponenciales #ecuacionesexponenciales #matematicas #bachillerato #1bachillerato #4eso #mates #ejerciciosresueltos #logaritmos #potencias #selectividad #estudiar #clasesdeapoyo",
+    "cover": {
+      "kicker": "Exponenciales",
+      "line1": "Primero\nlas bases",
+      "line2": "Después\nlos exponentes",
+      "tex": "3^{\\,-x+1} = 9^{\\,2x+3}",
+      "badge": "aquí no sale −2/3"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Mira la base",
+        "tail": 0.4,
+        "narration": "[excited] Igualar exponentes solo vale si las bases son iguales. Si no lo miras, la respuesta te sale mal.",
+        "captions": [
+          "Igualar exponentes solo vale si las bases son iguales.",
+          "Si no lo miras, la respuesta sale mal."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "Exponenciales · Bach",
+          "title": "Primero\n*la base*",
+          "tex": "3^{\\,-x+1} = 3^{\\,2x+3}",
+          "texColor": "teal",
+          "texSize": 52
+        }
+      },
+      {
+        "id": "r2-bien",
+        "phase": "La propiedad",
+        "heading": "Con la misma base es directo",
+        "tail": 0.4,
+        "narration": "[didactic] Aquí las dos son potencias de tres. Igualas los exponentes y sale equis igual a menos dos tercios.",
+        "captions": [
+          "Aquí las dos son potencias de 3.",
+          "Igualas los exponentes: x = −2/3."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "3^{\\,-x+1} = 3^{\\,2x+3}",
+              "size": 48,
+              "color": "given"
+            },
+            {
+              "tex": "-x+1 = 2x+3",
+              "size": 44,
+              "color": "teal"
+            },
+            {
+              "tex": "x = -\\tfrac{2}{3}",
+              "size": 50,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r3-error",
+        "phase": "El error",
+        "heading": "Cambia el 3 por un 9",
+        "tail": 0.4,
+        "narration": "[didactic] Ahora cambia ese tres de la derecha por un nueve. Si vuelves a igualar los exponentes te sale menos dos tercios, y está mal. Nueve es tres al cuadrado, así que ese exponente es cuatro equis más seis. La respuesta buena es equis igual a menos uno.",
+        "captions": [
+          "Cambia ese 3 de la derecha por un 9.",
+          "Igualando otra vez sale −2/3, y está mal.",
+          "9 = 3², así que el exponente es 4x + 6.",
+          "La respuesta buena es x = −1."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "label": "Ojo",
+              "tex": "3^{\\,-x+1} = 9^{\\,2x+3}",
+              "size": 46,
+              "color": "danger"
+            },
+            {
+              "tex": "9 = 3^{2} \\;\\Rightarrow\\; 3^{\\,-x+1} = 3^{\\,4x+6}",
+              "size": 40,
+              "color": "warn"
+            },
+            {
+              "tex": "x = -1",
+              "size": 52,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] El ejercicio entero, con la comprobación, en YouTube. Te espero en Clases de Apoyo.",
+        "captions": [
+          "El ejercicio entero, con la comprobación, en YouTube.",
+          "Te espero en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Misma base,\n*mismo exponente*",
+          "tex": "a^{m} = a^{n} \\Rightarrow m = n",
+          "lines": [
+            "Vídeo completo en YouTube",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
