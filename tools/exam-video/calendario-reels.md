@@ -9,7 +9,7 @@ Antes de producir cada uno: descargar el enunciado y la solución del índice, c
 | Dom 22 nov | Análisis | 2024 modelo, B.2 | `pau-madrid-matematicas-ii-2024-modelo-pregunta-b2-asintota-oblicua` | No hay asíntota horizontal y paras: te dejas la oblicua y = x. |
 | Lun 23 nov | Álgebra | 2023 junio, B.1 | `pau-madrid-matematicas-ii-2023-junio-pregunta-b1-sistema-parametro` | det = 0 no significa "incompatible": hay que mirar el rango de la ampliada en cada valor. |
 | Mar 24 nov | Álgebra | 2026 modelo, 4.2 | `pau-madrid-matematicas-ii-2026-modelo-pregunta-4-2-cramer-parametro` | Cramer solo vale si \|A\| ≠ 0: simplificar (λ + 1) y sustituir λ = −1 da una solución, pero el sistema es compatible indeterminado. |
-| Mié 25 nov | Geometría | 2025 junio, 3.2 | `pau-madrid-matematicas-ii-2025-junio-pregunta-3-2-distancia-punto-plano` | En la fórmula de la distancia, el plano x + y = 2 se escribe x + y − 2 = 0. |
+| Mié 25 nov | Análisis | 2009 junio, Opción B Ej. 2 | `pau-madrid-matematicas-ii-2009-junio-ejercicio-b2-punto-inflexion` | f″ = 0 no basta: en x = 1, f″ = 4(x − 1)²(x − 4) no cambia de signo, así que la única inflexión es x = 4. |
 | Jue 26 nov | Análisis | 2020 junio, A.2 | `pau-madrid-matematicas-ii-2020-junio-pregunta-a2-pendiente-minima` | La tangente de pendiente mínima sale de f″ = 0, no de f′ = 0. |
 | Vie 27 nov | Álgebra | 2026 julio, Pregunta 3 | `pau-madrid-matematicas-ii-2026-julio-pregunta-3-determinante-2c` | det(2C) no es 2·det(C): en 3×3 es 2³·det(C). |
 | Sáb 28 nov | Probabilidad | 2020 junio, B.4 | `pau-madrid-matematicas-ii-2020-junio-pregunta-b4-independientes-incompatibles` | Independientes no es lo mismo que incompatibles. |

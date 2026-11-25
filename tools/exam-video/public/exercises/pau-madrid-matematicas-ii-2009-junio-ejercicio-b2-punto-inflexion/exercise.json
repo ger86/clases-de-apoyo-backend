@@ -1,0 +1,218 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2009-junio-ejercicio-b2-punto-inflexion",
+  "exam": {
+    "label": "PAU Madrid · Junio 2009 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Opción B · Ejercicio 2",
+    "topic": "Curvatura · Puntos de inflexión"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "La segunda derivada": "teal",
+    "La trampa": "warn",
+    "En la gráfica": "teal",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Punto de inflexión: f″ = 0 no basta (PAU Madrid, junio 2009, Opción B Ejercicio 2)",
+    "caption": "¿f″ = 0 y ya es punto de inflexión? No: tiene que cambiar de signo ❌\n\nPAU Madrid, junio 2009, Matemáticas II, Opción B, Ejercicio 2, con f′(x) = (x − 1)³(x − 5):\n1️⃣ f″(x) = 4(x − 1)²(x − 4) → se anula en x = 1 y x = 4\n2️⃣ En x = 1, f″ es negativa a los dos lados: no hay inflexión\n3️⃣ En x = 4 pasa de negativa a positiva: punto de inflexión\n\nTruco: un factor al cuadrado nunca cambia de signo. Estudia el signo de f″ antes y después.\n\n📌 Guárdalo para el examen\n💬 ¿Tú habrías dado x = 1 como inflexión?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#puntodeinflexion #derivadas #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2009 · Matemáticas II",
+      "line1": "Puntos de\ninflexión",
+      "line2": "¿basta con f″ = 0?",
+      "tex": "f''(x) = 4(x-1)^2(x-4)",
+      "badge": "✗  f″ = 0 no basta",
+      "footer": "Opción B · Ejercicio 2 · PAU Madrid 2009, resuelto"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Puntos de inflexión",
+        "tail": 0.4,
+        "narration": "[energetic] Segunda derivada igual a cero: punto de inflexión. Error. Falta ver si cambia de signo.",
+        "captions": [
+          "f″ = 0: punto de inflexión.",
+          "Error.",
+          "Falta ver si cambia de signo."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2009",
+          "title": "Inflexión:\n*f″ = 0 no basta*",
+          "tex": "f'(x) = (x-1)^3\\,(x-5)",
+          "texColor": "teal",
+          "texSize": 60
+        }
+      },
+      {
+        "id": "r2-segunda",
+        "phase": "La segunda derivada",
+        "heading": "Primero, f″",
+        "tail": 0.4,
+        "narration": "[didactic] Derivamos y sacamos factor común: cuatro, por x menos uno al cuadrado, por x menos cuatro. Se anula en uno y en cuatro.",
+        "captions": [
+          "Derivamos y sacamos factor común: 4(x − 1)²(x − 4).",
+          "Se anula en 1 y en 4."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f''(x) = 4(x-1)^2\\,(x-4)",
+              "size": 54,
+              "color": "teal"
+            },
+            {
+              "tex": "f''(x)=0 \\;\\Rightarrow\\; x=1, \\quad x=4",
+              "size": 52,
+              "color": "warn"
+            }
+          ],
+          "badge": {
+            "text": "Dos candidatos, no dos soluciones",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "r3-trampa",
+        "phase": "La trampa",
+        "heading": "¿Cambia de signo?",
+        "tail": 0.4,
+        "narration": "[didactic] Pero un cuadrado nunca es negativo. Antes y después de uno, la segunda derivada es negativa. En x igual a uno no hay inflexión.",
+        "captions": [
+          "Pero (x − 1)² nunca es negativo.",
+          "Antes y después de 1, f″ es negativa.",
+          "En x = 1 no hay inflexión."
+        ],
+        "body": {
+          "type": "table",
+          "columns": [
+            "(-\\infty,\\,1)",
+            "(1,\\,4)",
+            "(4,\\,+\\infty)"
+          ],
+          "rows": [
+            {
+              "label": "f″(x)",
+              "cells": [
+                {
+                  "tex": "-",
+                  "color": "danger"
+                },
+                {
+                  "tex": "-",
+                  "color": "danger"
+                },
+                {
+                  "tex": "+",
+                  "color": "solved"
+                }
+              ]
+            },
+            {
+              "label": "f(x)",
+              "cells": [
+                {
+                  "tex": "\\cap",
+                  "color": "danger"
+                },
+                {
+                  "tex": "\\cap",
+                  "color": "danger"
+                },
+                {
+                  "tex": "\\cup",
+                  "color": "solved"
+                }
+              ]
+            }
+          ],
+          "chips": [
+            {
+              "text": "x = 1: no cambia, no es inflexión",
+              "color": "danger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-grafica",
+        "phase": "En la gráfica",
+        "heading": "Toca o cruza",
+        "tail": 0.4,
+        "narration": "[didactic] En uno, la segunda derivada toca el eje y vuelve a bajar. En cuatro lo cruza: ese es el único punto de inflexión.",
+        "captions": [
+          "En 1, f″ toca el eje y vuelve a bajar.",
+          "En 4 lo cruza: ese es el único punto de inflexión."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "4*(x-1)**2*(x-4)",
+          "xMin": -0.3,
+          "xMax": 4.8,
+          "yMin": -30,
+          "yMax": 48,
+          "points": [
+            {
+              "x": 1,
+              "y": 0,
+              "label": "x = 1 toca",
+              "color": "danger"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "label": "x = 4 cruza",
+              "color": "solved"
+            }
+          ],
+          "lead": {
+            "tex": "y = f''(x)",
+            "size": 44,
+            "color": "inkSoft"
+          },
+          "chips": [
+            {
+              "text": "inflexión solo en x = 4",
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Inflexión: la segunda derivada se anula y cambia de signo. Más ejercicios en Clases de Apoyo.",
+        "captions": [
+          "Inflexión: f″ se anula y cambia de signo.",
+          "Más ejercicios en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "f″ = 0\n*y cambio de signo*",
+          "tex": "\\begin{gathered} f''(a)=0 \\\\ \\text{y } f'' \\text{ cambia de signo} \\end{gathered}",
+          "lines": [
+            "PAU Madrid · Junio 2009",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
