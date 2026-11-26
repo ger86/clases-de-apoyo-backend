@@ -1,0 +1,199 @@
+{
+  "slug": "pau-madrid-matematicas-ii-2020-junio-pregunta-a2-pendiente-minima",
+  "exam": {
+    "label": "PAU Madrid · Junio 2020 · Matemáticas II",
+    "site": "ClasesDeApoyo.com",
+    "question": "Pregunta A.2",
+    "topic": "Recta tangente · Pendiente mínima"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "voiceId": "uZAgv46kqRrZthdejCSf",
+    "fallbackVoiceId": "t9LRTh3y1ioN00e9wsNh",
+    "reelSettings": {
+      "stability": 0.28,
+      "style": 0.65,
+      "speed": 1.05
+    }
+  },
+  "phaseColors": {
+    "Idea clave": "tealSoft",
+    "La pendiente": "teal",
+    "La trampa": "warn",
+    "La tangente": "teal",
+    "Resumen final": "tealSoft"
+  },
+  "scenes": [],
+  "reel": {
+    "title": "Tangente de pendiente mínima: se usa f″ = 0 (PAU Madrid, junio 2020, Pregunta A.2)",
+    "caption": "¿Tangente de pendiente mínima? Si igualas f′ a cero, te has equivocado ❌\n\nPAU Madrid, junio 2020, Matemáticas II, Pregunta A.2, con f(x) = x³ + 3x² − 1:\n1️⃣ La pendiente es m(x) = f′(x) = 3x² + 6x\n2️⃣ Para minimizarla: f″(x) = 6x + 6 = 0 → x = −1\n3️⃣ m = −3, f(−1) = 1 → y = −3x − 2\n\nTruco: f′ = 0 da las tangentes horizontales (pendiente 0), no la de pendiente mínima.\n\n📌 Guárdalo para el examen\n💬 ¿Tú habrías igualado f′ a cero?\n\nMás ejercicios resueltos en ClasesDeApoyo.com\n\n#rectatangente #derivadas #matematicas #2bachillerato #selectividad",
+    "cover": {
+      "kicker": "PAU Madrid · Junio 2020 · Matemáticas II",
+      "line1": "Tangente de\npendiente mínima",
+      "line2": "¿f′ = 0 o f″ = 0?",
+      "tex": "f(x) = x^3 + 3x^2 - 1",
+      "badge": "✗  f′ = 0 no es",
+      "footer": "Pregunta A.2 · PAU Madrid 2020, resuelto"
+    },
+    "scenes": [
+      {
+        "id": "r1-hook",
+        "phase": "Idea clave",
+        "heading": "Pendiente mínima",
+        "tail": 0.4,
+        "narration": "[energetic] Tangente de pendiente mínima: igualas la derivada a cero. Error. La pendiente ya es la derivada: hay que derivar otra vez.",
+        "captions": [
+          "Tangente de pendiente mínima: igualas f′ a cero.",
+          "Error.",
+          "La pendiente ya es f′: hay que derivar otra vez."
+        ],
+        "body": {
+          "type": "hook",
+          "kicker": "PAU Madrid · Junio 2020",
+          "title": "Pendiente mínima:\n*f″ = 0, no f′ = 0*",
+          "tex": "f(x) = x^3 + 3x^2 - 1",
+          "texColor": "teal",
+          "texSize": 60
+        }
+      },
+      {
+        "id": "r2-pendiente",
+        "phase": "La pendiente",
+        "heading": "La función a minimizar",
+        "tail": 0.4,
+        "narration": "[didactic] La pendiente es tres x al cuadrado más seis x. Su derivada, seis x más seis, se anula en x igual a menos uno.",
+        "captions": [
+          "La pendiente es f′(x) = 3x² + 6x.",
+          "Su derivada, 6x + 6, se anula en x = −1."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "m(x) = f'(x) = 3x^2 + 6x",
+              "size": 54,
+              "color": "teal"
+            },
+            {
+              "tex": "f''(x) = 6x + 6 = 0 \\;\\Rightarrow\\; x = -1",
+              "size": 50,
+              "color": "warn"
+            },
+            {
+              "tex": "f'''(x) = 6 > 0 \\;\\Rightarrow\\; \\text{mínimo}",
+              "size": 46,
+              "color": "inkSoft"
+            }
+          ],
+          "badge": {
+            "text": "Se minimiza f′, no f",
+            "color": "warn"
+          }
+        }
+      },
+      {
+        "id": "r3-trampa",
+        "phase": "La trampa",
+        "heading": "Lo que da f′ = 0",
+        "tail": 0.4,
+        "narration": "[didactic] Con la derivada igual a cero sale menos dos y cero. Ahí la pendiente vale cero: tangentes horizontales. La mínima es menos tres.",
+        "captions": [
+          "Con f′ = 0 sale −2 y 0.",
+          "Ahí la pendiente vale 0: tangentes horizontales.",
+          "La mínima es −3."
+        ],
+        "body": {
+          "type": "plot",
+          "fn": "3*x**2+6*x",
+          "xMin": -2.7,
+          "xMax": 0.7,
+          "yMin": -4.5,
+          "yMax": 6,
+          "points": [
+            {
+              "x": -2,
+              "y": 0,
+              "label": "m = 0",
+              "color": "danger"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "label": "m = 0",
+              "color": "danger"
+            },
+            {
+              "x": -1,
+              "y": -3,
+              "label": "m = −3 mínima",
+              "color": "solved"
+            }
+          ],
+          "lead": {
+            "tex": "y = f'(x)",
+            "size": 44,
+            "color": "inkSoft"
+          },
+          "chips": [
+            {
+              "text": "f′ = 0: tangentes horizontales",
+              "color": "danger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r4-tangente",
+        "phase": "La tangente",
+        "heading": "La recta",
+        "tail": 0.4,
+        "narration": "[didactic] En menos uno, la función vale uno. La tangente es y igual a menos tres x menos dos.",
+        "captions": [
+          "En −1, f vale 1.",
+          "La tangente es y = −3x − 2."
+        ],
+        "body": {
+          "type": "rows",
+          "rows": [
+            {
+              "tex": "f(-1) = 1, \\quad f'(-1) = -3",
+              "size": 52,
+              "color": "teal"
+            },
+            {
+              "tex": "y - 1 = -3\\,(x + 1)",
+              "size": 52,
+              "color": "inkSoft"
+            },
+            {
+              "tex": "y = -3x - 2",
+              "size": 64,
+              "color": "solved"
+            }
+          ]
+        }
+      },
+      {
+        "id": "r5-cta",
+        "phase": "Resumen final",
+        "heading": "Cierre",
+        "tail": 1.2,
+        "narration": "[cheerful] Pendiente mínima: segunda derivada igual a cero. Más ejercicios en Clases de Apoyo.",
+        "captions": [
+          "Pendiente mínima: f″ = 0.",
+          "Más ejercicios en ClasesDeApoyo."
+        ],
+        "body": {
+          "type": "cta",
+          "headline": "Pendiente mínima\n*f″ = 0*",
+          "tex": "\\begin{gathered} m(x) = f'(x) \\\\ m'(x) = f''(x) = 0 \\end{gathered}",
+          "lines": [
+            "PAU Madrid · Junio 2020",
+            "ClasesDeApoyo.com"
+          ]
+        }
+      }
+    ]
+  }
+}
